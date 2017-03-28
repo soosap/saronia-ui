@@ -12,9 +12,9 @@ const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
 
 stories
-  .add('with text', () => (
-    <Button accent onClick={action('clicked')}>{text('DisplayText', 'Accent Button')}</Button>
+  .add('default', () => (
+    <Button onClick={action('clicked')}>{text('Display', 'Register')}</Button>
   ))
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
-  ));
+  .add('accent', () => (
+    <Button accent onClick={action('clicked')}>{text('Display', 'Subscribe')}</Button>
+  ))
