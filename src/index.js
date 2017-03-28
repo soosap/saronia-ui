@@ -1,10 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+/* @flow */
 import injectGlobal from './assets/styles/global';
-import './index.css';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+import Button from './components/Button';
+
+export { Button };
