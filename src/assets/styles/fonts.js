@@ -1,3 +1,4 @@
+/* @flow */
 const system = 'PT Sans';
 const accent = 'Satisfy';
 
