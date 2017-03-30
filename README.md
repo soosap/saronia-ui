@@ -12,6 +12,9 @@ yarn install
 # Create a branch to work with following this pattern:
 git checkout -b 'pill' origin/master
 
+# Start storybook using the following command
+yarn run storybook
+
 # Create storybook stories related to your component (copy-paste from other stories to get started)
 touch src/components/Pill.js
 touch src/stories/Pill.stories.js
