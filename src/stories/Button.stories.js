@@ -11,7 +11,6 @@ import {
 import Button from '../components/Button';
 
 const stories = storiesOf('Button', module);
-
 stories.addDecorator(withKnobs);
 
 stories
