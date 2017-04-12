@@ -8,7 +8,7 @@ import {
   number,
 } from '@kadira/storybook-addon-knobs';
 
-import Button from '../components/Button';
+import Button from '.';
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);

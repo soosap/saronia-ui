@@ -1,10 +1,10 @@
 /* @flow */
-import React from 'react';
 import R from 'ramda';
+import React from 'react';
 import styled from 'styled-components';
 
-import Dimmer from './Dimmer';
-import { borders, colors } from '../assets/styles';
+import Dimmer from '../Dimmer';
+import { borders, colors } from '../../assets/styles';
 
 type Props = {
   overlay?: string | React$Element<*>,

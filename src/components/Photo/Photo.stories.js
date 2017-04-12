@@ -8,8 +8,8 @@ import {
   number,
 } from '@kadira/storybook-addon-knobs';
 
-import Photo from '../components/Photo';
-import Button from '../components/Button';
+import Photo from '../Photo';
+import Button from '../Button';
 
 const stories = storiesOf('Photo', module);
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { borders, colors } from '../assets/styles';
+import { borders, colors } from '../../assets/styles';
 
 const Dimmer = styled.div`
   position: absolute;

@@ -1,8 +1,8 @@
 /* @flow */
-import styled from 'styled-components';
 import R from 'ramda';
+import styled from 'styled-components';
 
-import { colors, fonts } from '../assets/styles';
+import { colors, fonts } from '../../assets/styles';
 
 type Props = {
   inverted?: boolean,
