@@ -17,13 +17,15 @@
     "styled-components": "1.4.4"
   },
   "devDependencies": {
-    "@kadira/storybook": "2.21.0",
-    "@kadira/storybook-addon-knobs": "1.7.1",
+    "@kadira/storybook": "^2.35.3",
+    "@kadira/storybook-addon-knobs": "^1.7.1",
     "babel-cli": "6.24.0",
     "babel-preset-flow": "6.23.0",
     "babel-preset-react-app": "^2.2.0",
     "babel-preset-stage-1": "6.22.0",
+    "enzyme": "^2.8.1",
     "flow-bin": "0.42.0",
+    "react-addons-test-utils": "^15.5.1",
     "react-scripts": "0.9.5",
     "rimraf": "^2.6.1",
     "watch": "^1.0.2"
