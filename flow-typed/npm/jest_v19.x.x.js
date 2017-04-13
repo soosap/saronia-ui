@@ -1,5 +1,5 @@
-// flow-typed signature: 032214c577f085159829eeae40c41e6a
-// flow-typed version: 7dc2a8971e/jest_v18.x.x/flow_>=v0.33.x
+// flow-typed signature: b3ed97c44539e6cdbaf9032b315a2b31
+// flow-typed version: ea7ac31527/jest_v19.x.x/flow_>=v0.33.x
 
 type JestMockFn = {
   (...args: Array<any>): any,
@@ -211,6 +211,10 @@ type JestExpectType = {
    */
   toMatchSnapshot(name?: string): void,
   /**
+   * This ensures that a styled-component matches the most recent snapshot.
+   */
+  toMatchStyledComponentsSnapshot(): void,
+  /**
    * Use .toThrow to test that a function throws when it is called.
    */
   toThrow(message?: string | Error): void,
@@ -247,6 +251,11 @@ type JestObjectType = {
    * An un-hoisted version of enableAutomock
    */
   autoMockOn(): JestObjectType,
+  /**
+   * Clears the mock.calls and mock.instances properties of all mocks.
+   * Equivalent to calling .mockClear() on every mocked function.
+   */
+  clearAllMocks(): JestObjectType,
   /**
    * Resets the state of all mocks. Equivalent to calling .mockReset() on every
    * mocked function.
@@ -342,6 +351,11 @@ type JestObjectType = {
    * Instructs Jest to use the real versions of the standard timer functions.
    */
   useRealTimers(): JestObjectType,
+  /**
+   * Creates a mock function similar to jest.fn but also tracks calls to
+   * object[methodName].
+   */
+  spyOn(object: Object, methodName: string): JestMockFn,
 }
 
 type JestSpyType = {
@@ -408,11 +422,15 @@ declare var expect: {
   (value: any): JestExpectType,
   /** Add additional Jasmine matchers to Jest's roster */
   extend(matchers: {[name:string]: JestMatcher}): void,
+  /** Add a module that formats application-specific data structures. */
+  addSnapshotSerializer(serializer: (input: Object) => string): void,
   assertions(expectedAssertions: number): void,
   any(value: mixed): JestAsymmetricEqualityType,
   anything(): void,
   arrayContaining(value: Array<mixed>): void,
   objectContaining(value: Object): void,
+  /** Matches any received string that contains the exact expected string. */
+  stringContaining(value: string): void,
   stringMatching(value: string | RegExp): void,
 };
 

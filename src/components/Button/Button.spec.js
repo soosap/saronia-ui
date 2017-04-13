@@ -1,9 +1,10 @@
 /* @flow */
 import React from 'react';
-import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import Button from '.';
 
-it('renders w/o crashing', () => {
-  expect(shallow(<Button />).exists()).toBeTruthy();
+it('renders a button w/o crashing', () => {
+  const tree = renderer.create(<Button>Hello</Button>).toJSON();
+  expect(tree.type).toEqual('button');
 });
