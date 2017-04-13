@@ -2,7 +2,7 @@
 const system = 'PT Sans';
 const accent = 'Satisfy';
 
-const sizes = {
+const size = {
    'mini': '0.7rem',
    'tiny': '0.8rem',
    'small': '0.9rem',
@@ -16,4 +16,5 @@ const sizes = {
 export default {
   system,
   accent,
+  size
 }
