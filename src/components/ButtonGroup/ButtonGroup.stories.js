@@ -14,10 +14,18 @@ import Button from '../Button';
 const stories = storiesOf('ButtonGroup', module);
 stories.addDecorator(withKnobs);
 
-stories.add('default', () => (
-  <ButtonGroup>
-    <Button>Left</Button>
-    <Button>Middle</Button>
-    <Button>Right</Button>
-  </ButtonGroup>
-));
+stories
+  .add('default', () => (
+    <ButtonGroup>
+      <Button>Left</Button>
+      <Button>Middle</Button>
+      <Button>Right</Button>
+    </ButtonGroup>
+  ))
+  .add('veritcal', () => (
+    <ButtonGroup vertical>
+      <Button>Left</Button>
+      <Button>Middle</Button>
+      <Button>Right</Button>
+    </ButtonGroup>
+  ))
