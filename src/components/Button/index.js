@@ -18,7 +18,7 @@ const getBackgroundColor = R.cond([
 ]);
 
 const getBackgroundHoverColor = R.cond([
-  [R.prop('inverted'), R.always(colors.transparent)],
+  [R.prop('inverted'), R.always(colors.whiteDark)],
   [R.prop('secondary'), R.always(colors.secondaryDark)],
   [R.T, R.always(colors.primaryDark)],
 ]);
@@ -47,7 +47,7 @@ const getBorder = R.ifElse(
 
 const getColor = R.cond([
   [R.both(R.prop('inverted'), R.prop('secondary')), R.always(colors.secondary)],
-  [R.prop('secondary'), R.always(colors.white)],
+  [R.prop('secondary'), R.always(colors.ivoryDark)],
   [R.T, R.always(colors.black)],
 ]);
 
