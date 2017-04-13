@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> can render in an inverted style 1`] = `
+.bXmVtO {
+  padding: 0.5rem 1rem;
+  background-color: #FFB00C;
+  font-size: 1.2rem;
+  font-family: PT Sans;
+  color: #161616;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  border: none;
+  border-radius: 3px;
+}
+
+.bXmVtO:hover {
+  cursor: pointer;
+  background-color: #FFA104;
+}
+
+.bXmVtO:focus {
+  outline: none;
+}
+
+<button
+  className="bXmVtO"
+>
+  Hello
+</button>
+`;
