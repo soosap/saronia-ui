@@ -1,50 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ButtonGroup horizontal /> first button has no border-radius on right corners 1`] = `
-.gWnTzQ {
+.kkztTS {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-inline-flexbox;
   display: -webkit-inline-flex;
   display: inline-flex;
+  flex-direction: row;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
 }
 
-.bXmVtO {
+.drxYMY {
   padding: 0.5rem 1rem;
   background-color: #FFB00C;
   font-size: 1.2rem;
   font-family: PT Sans;
   color: #161616;
-  transition-duration: 0.5s;
-  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.25s;
+  -webkit-transition-duration: 0.25s;
   border: none;
   border-radius: 3px;
 }
 
-.bXmVtO:hover {
+.drxYMY:hover {
   cursor: pointer;
   background-color: #FFA104;
 }
 
-.bXmVtO:focus {
+.drxYMY:focus {
   outline: none;
 }
 
 <div
-  className="gWnTzQ"
+  className="kkztTS"
 >
   <button
-    className="bXmVtO"
+    className="drxYMY"
   >
     Left
   </button>
   <button
-    className="bXmVtO"
+    className="drxYMY"
   >
     Middle
   </button>
   <button
-    className="bXmVtO"
+    className="drxYMY"
   >
     Right
   </button>
