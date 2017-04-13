@@ -1,21 +1,14 @@
 /* @flow */
 import R from 'ramda';
 import styled from 'styled-components';
+import type { Arrow, Size } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
 type Props = {
   tag?: boolean,
-  arrow?: 'left' | 'right',
-  size?:
-    | 'mini'
-    | 'tiny'
-    | 'small'
-    | 'medium'
-    | 'large'
-    | 'big'
-    | 'huge'
-    | 'massive',
+  arrow?: Arrow,
+  size?: Size,
 };
 
 const getBackgroundColor = R.cond([
@@ -24,14 +17,14 @@ const getBackgroundColor = R.cond([
 ]);
 
 const getSize = R.cond([
-  [R.propEq('size', 'mini'), R.always(fonts.size.mini)],
-  [R.propEq('size', 'tiny'), R.always(fonts.size.tiny)],
-  [R.propEq('size', 'small'), R.always(fonts.size.small)],
-  [R.propEq('size', 'medium'), R.always(fonts.size.medium)],
-  [R.propEq('size', 'large'), R.always(fonts.size.large)],
-  [R.propEq('size', 'big'), R.always(fonts.size.big)],
-  [R.propEq('size', 'huge'), R.always(fonts.size.huge)],
-  [R.propEq('size', 'massive'), R.always(fonts.size.massive)],
+  [R.propEq('size', 'mini'), R.always(fonts.sizes.mini)],
+  [R.propEq('size', 'tiny'), R.always(fonts.sizes.tiny)],
+  [R.propEq('size', 'small'), R.always(fonts.sizes.small)],
+  [R.propEq('size', 'medium'), R.always(fonts.sizes.medium)],
+  [R.propEq('size', 'large'), R.always(fonts.sizes.large)],
+  [R.propEq('size', 'big'), R.always(fonts.sizes.big)],
+  [R.propEq('size', 'huge'), R.always(fonts.sizes.huge)],
+  [R.propEq('size', 'massive'), R.always(fonts.sizes.massive)],
 ]);
 
 const Label = styled.label`
