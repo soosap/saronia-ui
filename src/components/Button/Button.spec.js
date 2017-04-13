@@ -1,10 +1,21 @@
 /* @flow */
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { matcher, serializer } from 'jest-styled-components';
 
 import Button from '.';
 
-it('renders a button w/o crashing', () => {
+expect.addSnapshotSerializer(serializer);
+expect.extend(matcher);
+
+describe('<Button />', () => {
   const tree = renderer.create(<Button>Hello</Button>).toJSON();
-  expect(tree.type).toEqual('button');
+
+  it('renders a button w/o crashing', () => {
+    expect(tree.type).toEqual('button');
+  });
+
+  it('can render in an inverted style', () => {
+    expect(tree).toMatchStyledComponentsSnapshot();
+  });
 });

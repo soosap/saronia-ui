@@ -10,8 +10,6 @@ type Props = {
 const ButtonGroup = styled.div`
   display: inline-flex;
   flex-direction: ${props => props.vertical && 'column' || 'row'};
-  background-color: purple;
-  padding: 10px;
 
   button {
     border-radius: 0;

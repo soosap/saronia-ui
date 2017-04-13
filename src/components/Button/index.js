@@ -1,40 +1,54 @@
 /* @flow */
 import R from 'ramda';
+import React from 'react';
 import styled from 'styled-components';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
 type Props = {
-  inverted?: boolean,
+  inverted?: boolean | 'thin' | 'medium' | 'thick',
   accent?: boolean,
   secondary?: boolean,
 };
 
 const getBackgroundColor = R.cond([
-  [
-    R.both(
-      R.propEq('secondary', true),
-      R.propEq('inverted', true)
-    ),
-    R.always(colors.secondaryInverted),
-  ],
-  [
-    R.propEq('secondary', true),
-    R.always(colors.secondary)
-  ],
-  [
-    R.both(
-      R.propEq('primary', true),
-      R.propEq('inverted', true)
-    ),
-    R.always(colors.primaryInverted),
-  ],
+  [R.prop('inverted'), R.always(colors.transparent)],
+  [R.prop('secondary'), R.always(colors.secondary)],
   [R.T, R.always(colors.primary)],
 ]);
 
 const getBackgroundHoverColor = R.cond([
-  [R.propEq('secondary', true), R.always(colors.secondaryDark)],
+  [R.prop('inverted'), R.always(colors.whiteDark)],
+  [R.prop('secondary'), R.always(colors.secondaryDark)],
   [R.T, R.always(colors.primaryDark)],
+]);
+
+const getBorderWidth = R.cond([
+  [R.propEq('inverted', 'thin'), R.always(borders.width.thin)],
+  [R.propEq('inverted', 'medium'), R.always(borders.width.medium)],
+  [R.propEq('inverted', 'thick'), R.always(borders.width.thick)],
+  [R.T, R.always(borders.width.thin)],
+]);
+
+const getBorderColor = R.cond([
+  [
+    R.both(R.prop('inverted'), R.prop('secondary')),
+    R.always(colors.secondary),
+  ],
+  [R.prop('inverted'), R.always(colors.primary)],
+  [R.T, R.always(undefined)],
+]);
+
+const getBorder = R.ifElse(
+  props => R.isNil(getBorderColor(props)),
+  R.always('none'),
+  props => R.always(`${getBorderWidth(props)} solid ${getBorderColor(props)}`),
+);
+
+const getColor = R.cond([
+  [R.both(R.prop('inverted'), R.prop('secondary')), R.always(colors.secondary)],
+  [R.prop('secondary'), R.always(colors.ivoryDark)],
+  [R.T, R.always(colors.black)],
 ]);
 
 const Button = styled.button`
@@ -42,10 +56,10 @@ const Button = styled.button`
   background-color: ${getBackgroundColor};
   font-size: 1.2rem;
   font-family: ${props => props.accent ? fonts.accent : fonts.system};
-  color: ${props => props.secondary ? colors.white : colors.black};
-  transition-duration: 0.5s;
+  color: ${getColor};
+  transition-duration: 0.25s;
 
-  border: none;
+  border: ${getBorder};
   border-radius: ${borders.radius};
 
   &:hover {
@@ -58,4 +72,4 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export default (props: Props) => <Button {...props} />;
