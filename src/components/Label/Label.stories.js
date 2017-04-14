@@ -22,6 +22,8 @@ stories.addDecorator(story => (
 const arrowOptions = {
    left: 'Left',
    right: 'Right',
+   top: 'Top',
+   bottom: 'Bottom',
 };
 
 const labelSizes = {
