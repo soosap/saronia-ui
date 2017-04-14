@@ -2,12 +2,14 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
+import type { Size } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
 type Props = {
-  inverted?: boolean | 'thin' | 'medium' | 'thick',
   accent?: boolean,
+  circular?: boolean | Size,
+  inverted?: boolean | 'thin' | 'medium' | 'thick',
   secondary?: boolean,
 };
 
@@ -47,8 +49,19 @@ const getBorder = R.ifElse(
 
 const getColor = R.cond([
   [R.both(R.prop('inverted'), R.prop('secondary')), R.always(colors.secondary)],
+  [R.prop('inverted'), R.always(colors.primaryDark)],
   [R.prop('secondary'), R.always(colors.ivoryDark)],
   [R.T, R.always(colors.black)],
+]);
+
+const getHeight = R.cond([
+  [R.prop('circular'), R.always('4rem')],
+  [R.T, R.always('inherit')],
+]);
+
+const getWidth = R.cond([
+  [R.prop('circular'), R.always('4rem')],
+  [R.T, R.always('inherit')],
 ]);
 
 const Button = styled.button`
@@ -60,7 +73,10 @@ const Button = styled.button`
   transition-duration: 0.25s;
 
   border: ${getBorder};
-  border-radius: ${borders.radius};
+  border-radius: ${props => props.circular ? '50%' : borders.radius};
+
+  width: ${getWidth};
+  height: ${getHeight};
 
   &:hover {
     cursor: pointer;
@@ -72,4 +88,4 @@ const Button = styled.button`
   }
 `;
 
-export default (props: Props) => <Button {...props} />;
+export default (props: Props) => <Button {...props} onClick={() => console.log(props)} />;

@@ -17,18 +17,10 @@ stories
   .add('default', () => (
     <Button
       onClick={action('clicked')}
-      accent={boolean('Accent', false)}
-      inverted={boolean('Inverted', false)}
-    >
-      {text('Display', 'Register')}
-    </Button>
-  ))
-  .add('secondary', () => (
-    <Button
-      onClick={action('clicked')}
-      accent={boolean('Accent', false)}
-      inverted={boolean('Inverted', false)}
-      secondary
+      accent={boolean('accent', false)}
+      circular={boolean('circular', false)}
+      inverted={boolean('inverted', false)}
+      secondary={boolean('secondary', false)}
     >
       {text('Display', 'Register')}
     </Button>
