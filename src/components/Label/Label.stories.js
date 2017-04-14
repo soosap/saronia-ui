@@ -45,7 +45,7 @@ stories
    ))
    .add('arrow', () => (
       <Label
-         arrow={select('Arrows', arrowOptions, 'left')}
+         arrow={select('Arrow', arrowOptions, 'left')}
          size={select('Size', labelSizes, 'medium')}
       >
          {text('Display', 'Enter a value')}
