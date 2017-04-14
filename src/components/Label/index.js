@@ -6,37 +6,44 @@ import type { Arrow, Size } from '../../types';
 import { colors, fonts, borders } from '../../assets/styles';
 
 type Props = {
-  tag?: boolean,
-  arrow?: Arrow,
-  size?: Size,
+   tag?: boolean,
+   arrow?: Arrow,
+   size?: Size,
 };
 
 const getBackgroundColor = R.cond([
-  [R.prop('tag'), R.always(colors.grey)],
-  [R.T, R.always(colors.grey)],
+   [R.prop('tag'), R.always(colors.grey)],
+   [R.T, R.always(colors.grey)],
 ]);
 
 const getSize = R.cond([
-  [R.propEq('size', 'mini'), R.always(fonts.sizes.mini)],
-  [R.propEq('size', 'tiny'), R.always(fonts.sizes.tiny)],
-  [R.propEq('size', 'small'), R.always(fonts.sizes.small)],
-  [R.propEq('size', 'medium'), R.always(fonts.sizes.medium)],
-  [R.propEq('size', 'large'), R.always(fonts.sizes.large)],
-  [R.propEq('size', 'big'), R.always(fonts.sizes.big)],
-  [R.propEq('size', 'huge'), R.always(fonts.sizes.huge)],
-  [R.propEq('size', 'massive'), R.always(fonts.sizes.massive)],
+   [R.propEq('size', 'mini'), R.always(fonts.sizes.mini)],
+   [R.propEq('size', 'tiny'), R.always(fonts.sizes.tiny)],
+   [R.propEq('size', 'small'), R.always(fonts.sizes.small)],
+   [R.propEq('size', 'medium'), R.always(fonts.sizes.medium)],
+   [R.propEq('size', 'large'), R.always(fonts.sizes.large)],
+   [R.propEq('size', 'big'), R.always(fonts.sizes.big)],
+   [R.propEq('size', 'huge'), R.always(fonts.sizes.huge)],
+   [R.propEq('size', 'massive'), R.always(fonts.sizes.massive)],
 ]);
 
 const Label = styled.label`
-  padding:  0px 6px;
+  padding:  0.48em 0.833em;
+  margin: 0em 0.5em 0em 0em;
   display: inline-block;
+  line-height: 1;
+  vertical-align: baseline;
   position: relative;
+  text-align: center;
   background-color: ${getBackgroundColor};
   font-size: ${getSize};
   font-family: ${fonts.system};
   color: ${colors.black};
-  border: none;
-  border-radius: ${borders.radius};
+  border: 0px solid transparent;
+  border-radius:  ${props => props.arrow ? 'none' : borders.radius};
+
+  -webkit-transition: background 0.1s ease;
+  transition: background 0.1s ease;
 
   &:focus {
     outline: none;
@@ -49,7 +56,7 @@ const Label = styled.label`
     left: ${props => props.arrow == 'right' ? '100%' : 0};
     height: 0;
     width: 0;
-    border-width: ${props => props.arrow == 'right' ? fonts.sizes.small : 0};
+    border-width: ${props => props.arrow == 'right' ? getSize : 0};
     border-style: solid;
     border-color: ${getBackgroundColor};
     border-top-color:transparent;
@@ -64,7 +71,7 @@ const Label = styled.label`
     right: ${props => props.arrow == 'left' ? '100%' : 0};
     height: 0;
     width: 0;
-    border-width: ${props => props.arrow == 'left' ? '0.5rem' : 0};
+    border-width: ${props => props.arrow == 'left' ? getSize : 0};
     border-style: solid;
     border-color: ${getBackgroundColor};
     border-top-color:transparent;
