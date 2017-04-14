@@ -18,14 +18,14 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
   const circularOption = select('circular', ['yes', 'no', 'custom'], 'yes');
-  const circleSize = circularOption === 'custom' ? select('circle_size', R.invertObj(SizeEnum), 'mini') : null;
+  const circleSize = circularOption === 'custom'
+    ? select('circle_size', R.invertObj(SizeEnum), 'mini')
+    : null;
   const circular = R.cond([
     [R.equals('custom'), R.always(circleSize)],
     [R.equals('yes'), R.always(true)],
     [R.T, R.always(false)],
   ])(circularOption);
-
-  console.log('circular', circular);
 
   return (
     <Button

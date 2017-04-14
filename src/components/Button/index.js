@@ -58,25 +58,21 @@ const getColor = R.cond([
 ]);
 
 const getWidth = R.cond([
-  [R.propEq('circular', true), R.always('5rem')],
+  [R.propEq('circular', true), R.always('2.5rem')],
   [R.propEq('circular', 'mini'), R.always('1.5rem')],
-  [R.propEq('circular', 'tiny'), R.always('2.5rem')],
-  [R.propEq('circular', 'small'), R.always('3rem')],
-  [R.propEq('circular', 'medium'), R.always('4rem')],
-  [R.propEq('circular', 'large'), R.always('6rem')],
-  [R.propEq('circular', 'big'), R.always('8rem')],
-  [R.propEq('circular', 'huge'), R.always('10rem')],
+  [R.propEq('circular', 'tiny'), R.always('2rem')],
+  [R.propEq('circular', 'small'), R.always('2.5rem')],
+  [R.propEq('circular', 'medium'), R.always('3rem')],
+  [R.propEq('circular', 'large'), R.always('4.5rem')],
+  [R.propEq('circular', 'big'), R.always('6rem')],
+  [R.propEq('circular', 'huge'), R.always('9rem')],
   [R.propEq('circular', 'massive'), R.always('12rem')],
   [R.T, R.always('inherit')],
 ]);
 
-// padding logic must be improved
-// show circular-size conditionally in story
 const getPadding = (props) => R.tap(console.log, R.cond([
-  [R.both(R.prop('circular'), R.propEq('accent', true)), R.always('0.2rem')],
   [R.propEq('circular', 'mini'), R.always(0)],
-  [R.propEq('accent', true), R.always('0.65rem 1rem 0.35rem 1rem')],
-  [R.T, R.always('0.3rem 0.6rem')],
+  [R.T, R.always('0.2rem 0.5rem')],
 ])(props));
 
 const Button = styled.button`
