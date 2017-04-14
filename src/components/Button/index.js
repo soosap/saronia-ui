@@ -14,14 +14,14 @@ type Props = {
 };
 
 const getBackgroundColor = R.cond([
-  [R.prop('inverted'), R.always(colors.transparent)],
-  [R.prop('secondary'), R.always(colors.secondary)],
+  [R.propEq('inverted', true), R.always(colors.transparent)],
+  [R.propEq('secondary', true), R.always(colors.secondary)],
   [R.T, R.always(colors.primary)],
 ]);
 
 const getBackgroundHoverColor = R.cond([
-  [R.prop('inverted'), R.always(colors.whiteDark)],
-  [R.prop('secondary'), R.always(colors.secondaryDark)],
+  [R.propEq('inverted', true), R.always(colors.whiteDark)],
+  [R.propEq('secondary', true), R.always(colors.secondaryDark)],
   [R.T, R.always(colors.primaryDark)],
 ]);
 
@@ -34,10 +34,10 @@ const getBorderWidth = R.cond([
 
 const getBorderColor = R.cond([
   [
-    R.both(R.prop('inverted'), R.prop('secondary')),
+    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
     R.always(colors.secondary),
   ],
-  [R.prop('inverted'), R.always(colors.primary)],
+  [R.propEq('inverted', true), R.always(colors.primary)],
   [R.T, R.always(undefined)],
 ]);
 
@@ -48,19 +48,34 @@ const getBorder = R.ifElse(
 );
 
 const getColor = R.cond([
-  [R.both(R.prop('inverted'), R.prop('secondary')), R.always(colors.secondary)],
-  [R.prop('inverted'), R.always(colors.primaryDark)],
-  [R.prop('secondary'), R.always(colors.ivoryDark)],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
+    R.always(colors.secondary),
+  ],
+  [R.propEq('inverted', true), R.always(colors.primaryDark)],
+  [R.propEq('secondary', true), R.always(colors.ivoryDark)],
   [R.T, R.always(colors.black)],
 ]);
 
-const getHeight = R.cond([
-  [R.prop('circular'), R.always('4rem')],
+const getWidth = R.cond([
+  [R.propEq('circular', true), R.always('1rem')],
+  [R.propEq('circular', 'mini'), R.always('32px')],
+  [R.propEq('circular', 'tiny'), R.always('2.5rem')],
+  [R.propEq('circular', 'small'), R.always('4rem')],
+  [R.propEq('circular', 'medium'), R.always('10rem')],
+  [R.propEq('circular', 'large'), R.always('12rem')],
+  [R.propEq('circular', 'big'), R.always('14rem')],
+  [R.propEq('circular', 'huge'), R.always('16rem')],
+  [R.propEq('circular', 'massive'), R.always('20rem')],
   [R.T, R.always('inherit')],
 ]);
 
-const getWidth = R.cond([
-  [R.prop('circular'), R.always('4rem')],
+const getPadding = R.cond([
+  [
+    R.both(R.propEq('circular', 'mini'), R.propEq('accent', true)),
+    R.always('0.3rem'),
+  ],
+  [R.propEq('circular', 'mini'), R.always(0)],
   [R.T, R.always('inherit')],
 ]);
 
@@ -75,8 +90,12 @@ const Button = styled.button`
   border: ${getBorder};
   border-radius: ${props => props.circular ? '50%' : borders.radius};
 
+  display: flex;
+  justify-content: ${props => props.circular ? 'center' : 'flex-start'};
   width: ${getWidth};
-  height: ${getHeight};
+  height: ${getWidth};
+  overflow: hidden;
+  padding: ${getPadding};
 
   &:hover {
     cursor: pointer;
@@ -88,4 +107,6 @@ const Button = styled.button`
   }
 `;
 
-export default (props: Props) => <Button {...props} onClick={() => console.log(props)} />;
+export default (props: Props) => (
+  <Button {...props} onClick={() => console.log(props)} />
+);
