@@ -40,8 +40,8 @@ const Label = styled.label`
    font-size: ${getSize};
    font-family: ${fonts.system};
    font-weight: bold;
-   border: 0px solid transparent;
-   border-radius: 0.28571429rem;
+   border: ${borders.width.thin} solid transparent;
+   border-radius: ${borders.radius};
    -webkit-transition: background 0.1s ease;
    transition: background 0.1s ease;
 
