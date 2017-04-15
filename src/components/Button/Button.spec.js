@@ -15,7 +15,7 @@ describe('<Button />', () => {
     expect(tree.type).toEqual('button');
   });
 
-  it('can render in an inverted style', () => {
+  it('matches styled component snapshot', () => {
     expect(tree).toMatchStyledComponentsSnapshot();
   });
 });

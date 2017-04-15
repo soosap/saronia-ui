@@ -1,13 +1,13 @@
 /* @flow */
 import R from 'ramda';
 import styled from 'styled-components';
-import type { Arrow, Size } from '../../types';
+import type { Position, Size } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
 type Props = {
   tag?: boolean,
-  arrow?: Arrow,
+  arrow?: Position,
   size?: Size,
 };
 

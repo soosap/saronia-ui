@@ -1,6 +1,7 @@
 /* @flow */
-const system = 'PT Sans';
-const accent = 'Satisfy';
+const system = "'Quicksand', sans-serif";
+const accent = "'Satisfy', cursive";
+const url = 'https://fonts.googleapis.com/css?family=Quicksand:300,400|Satisfy';
 
 const sizes = {
   mini: '0.7rem',
@@ -17,4 +18,5 @@ export default {
   system,
   accent,
   sizes,
+  url,
 };

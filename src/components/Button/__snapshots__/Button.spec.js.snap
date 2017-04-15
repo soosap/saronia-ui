@@ -1,29 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Button /> can render in an inverted style 1`] = `
-.drxYMY {
-  padding: 0.5rem 1rem;
+exports[`<Button /> matches styled component snapshot 1`] = `
+.dbSbPF {
   background-color: #FFB00C;
   font-size: 1.2rem;
-  font-family: PT Sans;
+  font-family: 'Quicksand', sans-serif;
   color: #161616;
   transition-duration: 0.25s;
   -webkit-transition-duration: 0.25s;
   border: none;
   border-radius: 3px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  padding: 0.2rem 0.5rem;
 }
 
-.drxYMY:hover {
+.dbSbPF:hover {
   cursor: pointer;
   background-color: #FFA104;
 }
 
-.drxYMY:focus {
+.dbSbPF:focus {
   outline: none;
 }
 
 <button
-  className="drxYMY"
+  className="dbSbPF"
 >
   Hello
 </button>

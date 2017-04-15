@@ -1,6 +1,5 @@
 /* @flow */
-
-export type Arrow = 'left' | 'right' | 'top' | 'bottom';
+export type Position = 'top' | 'right' | 'bottom' | 'left';
 
 export type Size =
   | 'mini'
