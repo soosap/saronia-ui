@@ -31,19 +31,7 @@ describe('<ButtonGroup horizontal />', () => {
     </ButtonGroup>,
   ).toJSON();
 
-  it('first button has no border-radius on right corners', () => {
+  it('matches styled component snapshot', () => {
     expect(tree).toMatchStyledComponentsSnapshot();
   });
-
-  it('last button has no border-radius on left corners');
-
-  it('in-between buttons have no border-radius in any corner');
 });
-
-// describe('<ButtonGroup vertical />', () => {
-//   it('has no border-radius on right corners of first button');
-//
-//   it('has no border-radius on left corners of last button');
-//
-//   it('in-between buttons have no border-radius in any corner');
-// });
