@@ -10,3 +10,11 @@ export type Size =
   | 'big'
   | 'huge'
   | 'massive';
+
+export type Color =
+  | 'primary'
+  | 'secondary'
+  | 'olive'
+  | 'green'
+  | 'black'
+  | 'grey';
