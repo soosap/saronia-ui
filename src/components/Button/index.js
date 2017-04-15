@@ -113,10 +113,10 @@ const Button = styled.button`
 `;
 
 export default (props: Props) => {
-  console.log('props', props);
+  // console.log('props', props);
 
   return R.cond([
-    [R.propEq('pulse', true), R.always(<div>Hello</div>)],
+    // [R.propEq('pulse', true), R.always(<div>Hello</div>)],
     [R.T, R.always(<Button {...props} />)],
   ])(props);
 }

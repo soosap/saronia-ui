@@ -25,33 +25,41 @@ stories.add('default', () => {
     size: select('size', R.invertObj(SizeEnum), 'medium'),
     children: text('children', 'Register'),
     circular,
-    radius: circular ? select('radius', R.invertObj(SizeEnum), 'mini') : undefined,
-  }
+    radius: circular
+      ? select('radius', R.invertObj(SizeEnum), 'mini')
+      : undefined,
+  };
 
   return R.cond([
-    [R.propEq('circular', true), R.always(
-      <Button
-        onClick={action('clicked')}
-        accent={props.accent}
-        circular
-        radius={props.radius || 'mini'}
-        inverted={props.inverted}
-        secondary={props.secondary}
-        size={props.size}
-      >
-        {props.children}
-      </Button>
-    )],
-    [R.T, R.always(
-      <Button
-        onClick={action('clicked')}
-        accent={props.accent}
-        inverted={props.inverted}
-        secondary={props.secondary}
-        size={props.size}
-      >
-        {props.children}
-      </Button>
-    )]
+    [
+      R.propEq('circular', true),
+      R.always(
+        <Button
+          onClick={action('clicked')}
+          accent={props.accent}
+          circular
+          radius={props.radius || 'mini'}
+          inverted={props.inverted}
+          secondary={props.secondary}
+          size={props.size}
+        >
+          {props.children}
+        </Button>,
+      ),
+    ],
+    [
+      R.T,
+      R.always(
+        <Button
+          onClick={action('clicked')}
+          accent={props.accent}
+          inverted={props.inverted}
+          secondary={props.secondary}
+          size={props.size}
+        >
+          {props.children}
+        </Button>,
+      ),
+    ],
   ])(props);
 });
