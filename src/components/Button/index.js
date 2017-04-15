@@ -57,10 +57,10 @@ const getColor = R.cond([
   [R.T, R.always(colors.black)],
 ]);
 
-const getPadding = (props) => R.tap(console.log, R.cond([
+const getPadding = R.cond([
   [R.propEq('circular', 'mini'), R.always(0)],
   [R.T, R.always('0.2rem 0.5rem')],
-])(props));
+]);
 
 const getWidth = R.cond([
   [R.propEq('circular', true), R.always('2.5rem')],
