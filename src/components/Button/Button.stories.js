@@ -20,10 +20,12 @@ stories.add('default', () => {
   const secondary = boolean('secondary', false);
   const accent = boolean('accent', false);
   const inverted = boolean('inverted', false);
+  const size = select('size', R.invertObj(SizeEnum), 'medium');
+  const display = text('Display', 'Register');
   const circularOption = select('circular', ['yes', 'no', 'custom'], 'yes');
   const circleSize = circularOption === 'custom'
-    ? select('circle_size', R.invertObj(SizeEnum), 'mini')
-    : select('circle_size', ['n/a'], 'n/a');
+    ? select('radius', R.invertObj(SizeEnum), 'mini')
+    : null;
   const circular = R.cond([
     [R.equals('custom'), R.always(circleSize)],
     [R.equals('yes'), R.always(true)],
@@ -37,8 +39,9 @@ stories.add('default', () => {
       circular={circular}
       inverted={inverted}
       secondary={secondary}
+      size={size}
     >
-      {text('Display', 'Register')}
+      {display}
     </Button>
   );
 });
