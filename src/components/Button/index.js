@@ -11,6 +11,7 @@ type Props = {
   circular?: boolean | Size,
   inverted?: boolean | 'thin' | 'medium' | 'thick',
   secondary?: boolean,
+  size?: Size,
 };
 
 const getBackgroundColor = R.cond([
@@ -57,6 +58,8 @@ const getColor = R.cond([
   [R.T, R.always(colors.black)],
 ]);
 
+const getFontSize = (props) => fonts.sizes[R.prop('size', props)];
+
 const getPadding = R.cond([
   [R.propEq('circular', 'mini'), R.always(0)],
   [R.T, R.always('0.2rem 0.5rem')],
@@ -77,7 +80,7 @@ const getWidth = R.cond([
 
 const Button = styled.button`
   background-color: ${getBackgroundColor};
-  font-size: 1.2rem;
+  font-size: ${getFontSize};
   font-family: ${props => props.accent ? fonts.accent : fonts.system};
   color: ${getColor};
   transition-duration: 0.25s;
