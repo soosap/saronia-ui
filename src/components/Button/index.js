@@ -6,13 +6,21 @@ import type { Size } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
-type Props = {
+type Props = {|
   accent?: boolean,
-  circular?: boolean | Size,
   inverted?: boolean | 'thin' | 'medium' | 'thick',
+  onClick?: Function,
   secondary?: boolean,
   size?: Size,
-};
+|} | {|
+  circular: true,
+  radius: Size,
+  accent?: boolean,
+  inverted?: boolean | 'thin' | 'medium' | 'thick',
+  onClick?: Function,
+  secondary?: boolean,
+  size?: Size,
+|};
 
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always(colors.transparent)],
@@ -61,20 +69,19 @@ const getColor = R.cond([
 const getFontSize = (props) => fonts.sizes[R.prop('size', props)];
 
 const getPadding = R.cond([
-  [R.propEq('circular', 'mini'), R.always(0)],
+  [R.propEq('radius', 'mini'), R.always(0)],
   [R.T, R.always('0.2rem 0.5rem')],
 ]);
 
 const getWidth = R.cond([
-  [R.propEq('circular', true), R.always('2.5rem')],
-  [R.propEq('circular', 'mini'), R.always('1.5rem')],
-  [R.propEq('circular', 'tiny'), R.always('2rem')],
-  [R.propEq('circular', 'small'), R.always('2.5rem')],
-  [R.propEq('circular', 'medium'), R.always('3rem')],
-  [R.propEq('circular', 'large'), R.always('4.5rem')],
-  [R.propEq('circular', 'big'), R.always('6rem')],
-  [R.propEq('circular', 'huge'), R.always('9rem')],
-  [R.propEq('circular', 'massive'), R.always('12rem')],
+  [R.propEq('radius', 'mini'), R.always('1.5rem')],
+  [R.propEq('radius', 'tiny'), R.always('2rem')],
+  [R.propEq('radius', 'small'), R.always('2.5rem')],
+  [R.propEq('radius', 'medium'), R.always('3rem')],
+  [R.propEq('radius', 'large'), R.always('4.5rem')],
+  [R.propEq('radius', 'big'), R.always('6rem')],
+  [R.propEq('radius', 'huge'), R.always('9rem')],
+  [R.propEq('radius', 'massive'), R.always('12rem')],
   [R.T, R.always('inherit')],
 ]);
 
@@ -105,6 +112,11 @@ const Button = styled.button`
   }
 `;
 
-export default (props: Props) => (
-  <Button {...props} />
-);
+export default (props: Props) => {
+  // console.log('props', props);
+
+  return R.cond([
+    // [R.propEq('pulse', true), R.always(<div>Hello</div>)],
+    [R.T, R.always(<Button {...props} />)],
+  ])(props);
+}
