@@ -25,12 +25,11 @@ const getBackgroundHoverColor = R.cond([
   [R.T, R.always(colors.primaryDark)],
 ]);
 
-const getBorderWidth = R.cond([
-  [R.propEq('inverted', 'thin'), R.always(borders.width.thin)],
-  [R.propEq('inverted', 'medium'), R.always(borders.width.medium)],
-  [R.propEq('inverted', 'thick'), R.always(borders.width.thick)],
-  [R.T, R.always(borders.width.thin)],
-]);
+const getBorder = R.ifElse(
+  props => R.isNil(getBorderColor(props)),
+  R.always('none'),
+  props => R.always(`${getBorderWidth(props)} solid ${getBorderColor(props)}`),
+);
 
 const getBorderColor = R.cond([
   [
@@ -41,11 +40,12 @@ const getBorderColor = R.cond([
   [R.T, R.always(undefined)],
 ]);
 
-const getBorder = R.ifElse(
-  props => R.isNil(getBorderColor(props)),
-  R.always('none'),
-  props => R.always(`${getBorderWidth(props)} solid ${getBorderColor(props)}`),
-);
+const getBorderWidth = R.cond([
+  [R.propEq('inverted', 'thin'), R.always(borders.width.thin)],
+  [R.propEq('inverted', 'medium'), R.always(borders.width.medium)],
+  [R.propEq('inverted', 'thick'), R.always(borders.width.thick)],
+  [R.T, R.always(borders.width.thin)],
+]);
 
 const getColor = R.cond([
   [
@@ -56,6 +56,11 @@ const getColor = R.cond([
   [R.propEq('secondary', true), R.always(colors.ivoryDark)],
   [R.T, R.always(colors.black)],
 ]);
+
+const getPadding = (props) => R.tap(console.log, R.cond([
+  [R.propEq('circular', 'mini'), R.always(0)],
+  [R.T, R.always('0.2rem 0.5rem')],
+])(props));
 
 const getWidth = R.cond([
   [R.propEq('circular', true), R.always('2.5rem')],
@@ -69,11 +74,6 @@ const getWidth = R.cond([
   [R.propEq('circular', 'massive'), R.always('12rem')],
   [R.T, R.always('inherit')],
 ]);
-
-const getPadding = (props) => R.tap(console.log, R.cond([
-  [R.propEq('circular', 'mini'), R.always(0)],
-  [R.T, R.always('0.2rem 0.5rem')],
-])(props));
 
 const Button = styled.button`
   background-color: ${getBackgroundColor};
@@ -103,5 +103,5 @@ const Button = styled.button`
 `;
 
 export default (props: Props) => (
-  <Button {...props} onClick={() => console.log(props)} />
+  <Button {...props} />
 );

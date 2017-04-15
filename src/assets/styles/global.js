@@ -1,15 +1,16 @@
 /* @flow */
 import { injectGlobal } from 'styled-components';
+import fonts from './fonts';
 
 export default injectGlobal`
   @font-face {
-    font-family: 'Satisfy', cursive;
-    font-family: 'PT Sans', sans-serif;
-    src: url('https://fonts.googleapis.com/css?family=PT+Sans|Satisfy');
+    font-family: ${fonts.system};
+    font-family: ${fonts.accent};
+    src: url(fonts.url);
   }
 
 	body {
-    font-family: 'PT Sans', sans-serif;
+    font-family: ${fonts.system};
 		margin: 0;
 	}
 `;

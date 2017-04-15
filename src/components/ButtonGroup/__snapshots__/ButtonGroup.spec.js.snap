@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ButtonGroup horizontal /> first button has no border-radius on right corners 1`] = `
+exports[`<ButtonGroup horizontal /> matches styled component snapshot 1`] = `
 .kkztTS {
   display: -webkit-box;
   display: -moz-box;
@@ -14,24 +14,36 @@ exports[`<ButtonGroup horizontal /> first button has no border-radius on right c
   -webkit-flex-direction: row;
 }
 
-.drxYMY {
-  padding: 0.5rem 1rem;
+.dbSbPF {
   background-color: #FFB00C;
   font-size: 1.2rem;
-  font-family: PT Sans;
+  font-family: 'Quicksand', sans-serif;
   color: #161616;
   transition-duration: 0.25s;
   -webkit-transition-duration: 0.25s;
   border: none;
   border-radius: 3px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  padding: 0.2rem 0.5rem;
 }
 
-.drxYMY:hover {
+.dbSbPF:hover {
   cursor: pointer;
   background-color: #FFA104;
 }
 
-.drxYMY:focus {
+.dbSbPF:focus {
   outline: none;
 }
 
@@ -39,17 +51,17 @@ exports[`<ButtonGroup horizontal /> first button has no border-radius on right c
   className="kkztTS"
 >
   <button
-    className="drxYMY"
+    className="dbSbPF"
   >
     Left
   </button>
   <button
-    className="drxYMY"
+    className="dbSbPF"
   >
     Middle
   </button>
   <button
-    className="drxYMY"
+    className="dbSbPF"
   >
     Right
   </button>
