@@ -16,6 +16,12 @@ export const ivoryDark = '#FFFEF0';
 export const black = '#161616';
 export const transparent = 'transparent';
 
+export const olive = '#B5CC18';
+export const oliveDark = ' #a7bd0d';
+
+export const green = '#21BA45';
+export const greenDark = '#16ab39';
+
 export default {
   primary,
   primaryDark,
@@ -29,4 +35,8 @@ export default {
   greyDark,
   black,
   transparent,
+  olive,
+  oliveDark,
+  green,
+  greenDark
 }
