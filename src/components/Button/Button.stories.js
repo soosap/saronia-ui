@@ -17,10 +17,13 @@ const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
+  const secondary = boolean('secondary', false);
+  const accent = boolean('accent', false);
+  const inverted = boolean('inverted', false);
   const circularOption = select('circular', ['yes', 'no', 'custom'], 'yes');
   const circleSize = circularOption === 'custom'
     ? select('circle_size', R.invertObj(SizeEnum), 'mini')
-    : null;
+    : select('circle_size', ['n/a'], 'n/a');
   const circular = R.cond([
     [R.equals('custom'), R.always(circleSize)],
     [R.equals('yes'), R.always(true)],
@@ -30,10 +33,10 @@ stories.add('default', () => {
   return (
     <Button
       onClick={action('clicked')}
-      accent={boolean('accent', false)}
+      accent={accent}
       circular={circular}
-      inverted={boolean('inverted', false)}
-      secondary={boolean('secondary', false)}
+      inverted={inverted}
+      secondary={secondary}
     >
       {text('Display', 'Register')}
     </Button>
