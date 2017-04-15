@@ -28,49 +28,111 @@ const getSize = R.cond([
 ]);
 
 const Label = styled.label`
-  padding:  0px 6px;
-  display: inline-block;
-  position: relative;
-  background-color: ${getBackgroundColor};
-  font-size: ${getSize};
-  font-family: ${fonts.system};
-  color: ${colors.black};
-  border: none;
-  border-radius: ${borders.radius};
+   display: inline-block;
+   line-height: 1;
+   vertical-align: baseline;
+   margin: 0em 0.14285714em;
+   background-color: ${getBackgroundColor};
+   background-image: none;
+   padding: 0.5833em 0.833em;
+   color: rgba(0, 0, 0, 0.6);
+   text-transform: none;
+   font-size: ${getSize};
+   font-family: ${fonts.system};
+   font-weight: bold;
+   border: ${borders.width.thin} solid transparent;
+   border-radius: ${borders.radius};
+   -webkit-transition: background 0.1s ease;
+   transition: background 0.1s ease;
 
-  &:focus {
-    outline: none;
-  }
+   &:first-child {
+       margin-left: 0em;
+   }
+   &:last-child {
+       margin-right: 0em;
+   }
 
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: ${props => props.arrow == 'right' ? '100%' : 0};
-    height: 0;
-    width: 0;
-    border-width: ${props => props.arrow == 'right' ? fonts.sizes.small : 0};
-    border-style: solid;
-    border-color: ${getBackgroundColor};
-    border-top-color:transparent;
-    border-bottom-color:transparent;
-    border-right-color:transparent;
- }
+   ${props => props.arrow ? 'position: relative' : null};
+   ${props => props.arrow == 'left' ? { ...leftArrow } : null};
+   ${props => props.arrow == 'right' ? { ...rightArrow } : null};
+   ${props => props.arrow == 'top' ? { ...topArrow } : null};
+   ${props => props.arrow == 'bottom' ? { ...bottomArrow } : null};
 
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: ${props => props.arrow == 'left' ? '100%' : 0};
-    height: 0;
-    width: 0;
-    border-width: ${props => props.arrow == 'left' ? '0.5rem' : 0};
-    border-style: solid;
-    border-color: ${getBackgroundColor};
-    border-top-color:transparent;
-    border-bottom-color:transparent;
-    border-left-color:transparent;
-  }
+   &:before {
+      ${props => props.arrow ? { ...labelBefore } : null};
+      ${props => props.arrow ? { ...arrowLabelBefore } : null};
+      ${props => props.arrow == 'left' ? { ...leftArrowBefore } : null};
+      ${props => props.arrow == 'right' ? { ...rightArrowBefore } : null};
+      ${props => props.arrow == 'top' ? { ...topArrowBefore } : null};
+      ${props => props.arrow == 'bottom' ? { ...bottomArrowBefore } : null};
+   }
 `;
+
+const labelBefore = {
+  backgroundColor: 'inherit',
+  backgroundImage: 'inherit',
+  borderWidth: 'none',
+  borderStyle: 'solid',
+  borderColor: 'inherit',
+};
+const arrowLabelBefore = {
+  position: 'absolute',
+  content: '""',
+  WebkitTransform: 'rotate(45deg)',
+  transform: 'rotate(45deg)',
+  backgroundImage: 'none',
+  zIndex: '2',
+  width: '0.6666em',
+  height: '0.6666em',
+  WebkitTransition: 'background 0.1s ease',
+  transition: 'background 0.1s ease',
+};
+const leftArrow = {
+  marginTop: '0em',
+  marginLeft: '0.6666em',
+};
+const leftArrowBefore = {
+  borderWidth: '0px 0px 1px 1px',
+  WebkitTransform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  bottom: 'auto',
+  right: 'auto',
+  top: '50%',
+  left: '0em',
+};
+const rightArrow = {
+  marginTop: '0em',
+  marginRight: '0.6666em',
+};
+const rightArrowBefore = {
+  borderWidth: '1px 1px 0px 0px',
+  WebkitTransform: 'translateX(50%) translateY(-50%) rotate(45deg)',
+  transform: 'translateX(50%) translateY(-50%) rotate(45deg)',
+  bottom: 'auto',
+  right: '0%',
+  top: '50%',
+  left: 'auto',
+};
+const topArrow = {
+  marginTop: '1em',
+};
+const topArrowBefore = {
+  borderWidth: '1px 0px 0px 1px',
+  WebkitTransform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  top: '0',
+  left: '50%',
+};
+const bottomArrow = {
+  marginTop: '0em',
+  marginBottom: '1em',
+};
+const bottomArrowBefore = {
+  borderWidth: '0px 1px 1px 0px',
+  WebkitTransform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  top: '100%',
+  left: '50%',
+};
 
 export default Label;
