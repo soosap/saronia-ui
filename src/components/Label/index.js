@@ -6,13 +6,16 @@ import type { Position, Size } from '../../types';
 import { colors, fonts, borders } from '../../assets/styles';
 
 type Props = {
-  tag?: boolean,
   arrow?: Position,
   size?: Size,
+  inverted?: boolean,
+  primary?: boolean,
+  secondary?: boolean,
 };
 
 const getBackgroundColor = R.cond([
-  [R.prop('tag'), R.always(colors.grey)],
+  [R.propEq('primary', true), R.always(colors.primary)],
+  [R.propEq('secondary', true), R.always(colors.secondary)],
   [R.T, R.always(colors.grey)],
 ]);
 
@@ -27,12 +30,28 @@ const getSize = R.cond([
   [R.propEq('size', 'massive'), R.always(fonts.sizes.massive)],
 ]);
 
+const getBorderColor = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('primary', true)),
+    R.always(colors.primary),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
+    R.always(colors.secondary),
+  ],
+  [
+    R.both(R.propEq('primary', false), R.propEq('secondary', false)),
+    R.always(colors.grey),
+  ],
+  [R.T, R.always(colors.transparent)],
+]);
+
 const Label = styled.label`
    display: inline-block;
    line-height: 1;
    vertical-align: baseline;
    margin: 0em 0.14285714em;
-   background-color: ${getBackgroundColor};
+   background-color: ${props => props.inverted ? colors.white : getBackgroundColor};
    background-image: none;
    padding: 0.5833em 0.833em;
    color: rgba(0, 0, 0, 0.6);
@@ -40,10 +59,8 @@ const Label = styled.label`
    font-size: ${getSize};
    font-family: ${fonts.system};
    font-weight: bold;
-   border: ${borders.width.thin} solid transparent;
+   border: ${borders.width.thin} solid ${getBorderColor};
    border-radius: ${borders.radius};
-   -webkit-transition: background 0.1s ease;
-   transition: background 0.1s ease;
 
    &:first-child {
        margin-left: 0em;
@@ -71,7 +88,7 @@ const Label = styled.label`
 const labelBefore = {
   backgroundColor: 'inherit',
   backgroundImage: 'inherit',
-  borderWidth: 'none',
+  borderWidth: borders.width.thin,
   borderStyle: 'solid',
   borderColor: 'inherit',
 };
@@ -84,8 +101,6 @@ const arrowLabelBefore = {
   zIndex: '2',
   width: '0.6666em',
   height: '0.6666em',
-  WebkitTransition: 'background 0.1s ease',
-  transition: 'background 0.1s ease',
 };
 const leftArrow = {
   marginTop: '0em',
