@@ -37,14 +37,6 @@ const labelSizes = {
   massive: 'Massive',
 };
 
-const labelColor = {
-  primary: 'Primary',
-  secondary: 'Secondary',
-  olive: 'Olive',
-  green: 'Green',
-  grey: 'Grey',
-};
-
 stories
   .add('default', () => (
     <Label
