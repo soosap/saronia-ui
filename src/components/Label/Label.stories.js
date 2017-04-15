@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react';
+import R from 'ramda';
+
 import { storiesOf, action, linkTo } from '@kadira/storybook';
 import {
   withKnobs,
@@ -8,6 +10,10 @@ import {
   number,
   select,
 } from '@kadira/storybook-addon-knobs';
+
+import { PositionEnum, SizeEnum } from '../../assets/constants';
+const positionOptions = R.invertObj(PositionEnum);
+const sizeOptions = R.invertObj(SizeEnum);
 
 import Label from '.';
 
@@ -19,43 +25,25 @@ stories.addDecorator(story => (
   </div>
 ));
 
-const arrowOptions = {
-  left: 'Left',
-  right: 'Right',
-  top: 'Top',
-  bottom: 'Bottom',
-};
-
-const labelSizes = {
-  mini: 'Mini',
-  tiny: 'Tiny',
-  small: 'Small',
-  medium: 'Medium',
-  large: 'Large',
-  big: 'Big',
-  huge: 'Huge',
-  massive: 'Massive',
-};
-
 stories
   .add('default', () => (
     <Label
-      size={select('Size', labelSizes, 'medium')}
-      primary={boolean('Primary', false)}
-      secondary={boolean('Secondary', false)}
-      inverted={boolean('Inverted', false)}
+      size={select('size', sizeOptions, 'medium')}
+      primary={boolean('primary', false)}
+      secondary={boolean('secondary', false)}
+      inverted={boolean('inverted', false)}
     >
       MyLabel
     </Label>
   ))
   .add('arrow', () => (
     <Label
-      arrow={select('Arrow', arrowOptions, 'right')}
-      size={select('Size', labelSizes, 'medium')}
-      primary={boolean('Primary', false)}
-      secondary={boolean('Secondary', false)}
-      inverted={boolean('Inverted', false)}
+      arrow={select('arrow', positionOptions, 'right')}
+      size={select('size', sizeOptions, 'medium')}
+      primary={boolean('primary', false)}
+      secondary={boolean('secondary', false)}
+      inverted={boolean('inverted', false)}
     >
-      {text('Display', 'Enter a value')}
+      {text('display', 'Enter a value')}
     </Label>
   ));

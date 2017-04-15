@@ -14,6 +14,15 @@ type Props = {
 };
 
 const getBackgroundColor = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('primary', true)),
+    R.always(colors.white),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
+    R.always(colors.white),
+  ],
+  [R.propEq('inverted', true), R.always(colors.white)],
   [R.propEq('primary', true), R.always(colors.primary)],
   [R.propEq('secondary', true), R.always(colors.secondary)],
   [R.T, R.always(colors.grey)],
@@ -51,7 +60,7 @@ const Label = styled.label`
    line-height: 1;
    vertical-align: baseline;
    margin: 0em 0.14285714em;
-   background-color: ${props => props.inverted ? colors.white : getBackgroundColor};
+   background-color: ${getBackgroundColor};
    background-image: none;
    padding: 0.5833em 0.833em;
    color: rgba(0, 0, 0, 0.6);
