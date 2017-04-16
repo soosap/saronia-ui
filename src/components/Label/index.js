@@ -6,12 +6,20 @@ import type { Position, Size, Type } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
-type Props = {
-  size?: Size,
-  arrow?: Position,
-  type?: Type,
-  inverted?: boolean,
-};
+type Props =
+  | {|
+      size?: Size,
+      arrow?: Position,
+      type?: Type,
+      inverted?: boolean,
+    |}
+  | {|
+      circular: true,
+      radius?: Size,
+      size?: Size,
+      type?: Type,
+      inverted?: boolean,
+    |};
 
 const labelBefore = {
   'background-color': 'inherit',
@@ -137,22 +145,44 @@ const getSize = R.cond([
   [R.propEq('size', 'massive'), R.always(fonts.sizes.massive)],
 ]);
 
+const getWidth = R.cond([
+  [R.propEq('radius', 'mini'), R.always('1rem')],
+  [R.propEq('radius', 'tiny'), R.always('1.3rem')],
+  [R.propEq('radius', 'small'), R.always('1.5rem')],
+  [R.propEq('radius', 'medium'), R.always('1.8rem')],
+  [R.propEq('radius', 'large'), R.always('2.1rem')],
+  [R.propEq('radius', 'big'), R.always('2.5rem')],
+  [R.propEq('radius', 'huge'), R.always('3rem')],
+  [R.propEq('radius', 'massive'), R.always('3.5rem')],
+  [R.T, R.always('inherit')],
+]);
+
+const getPadding = R.cond([
+  [R.T, R.always('0.2rem')],
+]);
+
 const Label = styled.label`
-   display: inline-block;
-   margin-left: ${props => props.arrow == 'left' ? '0.5em !important' : undefined};
-   margin-right: ${props => props.arrow == 'right' ? '0.5em !important' : undefined};
-   line-height: 1;
-   vertical-align: baseline;
-   background-color: ${getBackgroundColor};
-   background-image: none;
-   padding: 0.5833em 0.833em;
-   color: ${getColor};
-   text-transform: none;
-   font-size: ${getSize};
-   font-family: ${fonts.system};
-   font-weight: bold;
-   border: ${borders.width.thin} solid ${getBorderColor};
-   border-radius: ${borders.radius};
+  display: ${props => props.circular ? 'flex' : 'inline-block'};
+  justify-content: ${props => props.circular ? 'center' : undefined};
+  align-items: ${props => props.circular ? 'center' : undefined};
+  overflow: ${props => props.circular ? 'hidden' : undefined};
+  padding: ${props => props.circular ? getPadding : '0.5833em 0.833em'};
+  width: ${props => props.circular ? getWidth : undefined};
+  height: ${props => props.circular ? getWidth : undefined};
+  margin-left: ${props => props.arrow == 'left' ? '0.5em !important' : undefined};
+  margin-right: ${props => props.arrow == 'right' ? '0.5em !important' : undefined};
+  background-color: ${getBackgroundColor};
+  color: ${getColor};
+  font-size: ${getSize};
+  font-family: ${fonts.system};
+  border: ${borders.width.thin} solid ${getBorderColor};
+  border-radius: ${props => props.circular ? '50%' : borders.radius};
+  text-align: center;
+  background-image: none;
+  text-transform: none;
+  vertical-align: baseline;
+  line-height: 1em;
+  font-weight: bold;
 
    &:first-child {
        margin-left: 0em;
