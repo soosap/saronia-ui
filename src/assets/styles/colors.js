@@ -13,9 +13,6 @@ export const whiteDark = '#FAFAF7';
 export const ivory = '#FDFDF5';
 export const ivoryDark = '#FFFEF0';
 
-export const black = '#161616';
-export const transparent = 'transparent';
-
 export const olive = '#B5CC18';
 export const oliveDark = ' #a7bd0d';
 
@@ -33,8 +30,6 @@ export default {
   ivoryDark,
   grey,
   greyDark,
-  black,
-  transparent,
   olive,
   oliveDark,
   green,
