@@ -31,9 +31,9 @@ stories.add('default', () => {
     children: text('children', 'Register'),
     circular,
     radius: circular
-      ? select('radius', R.invertObj(SizeEnum), 'mini')
+      ? select('radius', R.invertObj(SizeEnum), 'large')
       : undefined,
-    pulse: boolean('pulse', false),
+    pulse: circular ? boolean('pulse', false) : undefined,
   };
 
   return R.cond([
@@ -61,7 +61,6 @@ stories.add('default', () => {
           accent={props.accent}
           inverted={props.inverted}
           onClick={action('clicked')}
-          pulse={props.pulse}
           secondary={props.secondary}
           size={props.size}
         >

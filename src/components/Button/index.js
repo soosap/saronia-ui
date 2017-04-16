@@ -4,14 +4,13 @@ import React from 'react';
 import styled from 'styled-components';
 import type { Size } from '../../types';
 
-import { colors, fonts, borders } from '../../assets/styles';
+import { animations, colors, fonts, borders } from '../../assets/styles';
 
 type Props =
   | {|
       accent?: boolean,
       inverted?: boolean | 'thin' | 'medium' | 'thick',
       onClick?: Function,
-      pulse?: boolean,
       secondary?: boolean,
       size?: Size,
     |}
@@ -126,24 +125,26 @@ const Pulse = styled.div`
   position: relative;
 `;
 
-const GrowAndFadeButton = styled(Button)`
+const Overlay = styled(Button)`
   position: absolute;
   top: 0;
   left: 0;
-  transform: scale(1.2);
-  transition-duration: 4s;
+  color: transparent;
+  z-index: -1;
+  animation-name: ${animations.scaleUpAndFadeOut};
+  animation-duration: 1.6s;
+  animation-iteration-count: infinite;
+  animation-delay: .2s;
 `;
 
 export default (props: Props) => {
-  console.log('props', props);
-
   return R.cond([
     [
       R.propEq('pulse', true),
       R.always(
         <Pulse>
-          <GrowAndFadeButton {...props} />
           <Button {...props} />
+          <Overlay {...R.merge(props, { inverted: true })} />
         </Pulse>,
       ),
     ],
