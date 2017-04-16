@@ -5,13 +5,21 @@ import type { Position, Size } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
-type Props = {
-  arrow?: Position,
-  size?: Size,
-  inverted?: boolean,
-  primary?: boolean,
-  secondary?: boolean,
-};
+type Props = {|
+    size?: Size,
+    inverted?: boolean,
+    arrow?: Position,
+  |} | {|
+    primary: true,
+    size?: Size,
+    inverted?: boolean,
+    arrow?: Position,
+  |} | {|
+    secondary: true,
+    size?: Size,
+    inverted?: boolean,
+    arrow?: Position,
+|};
 
 const getBackgroundColor = R.cond([
   [
