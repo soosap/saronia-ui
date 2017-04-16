@@ -20,6 +20,7 @@ type Props =
       accent?: boolean,
       inverted?: boolean | 'thin' | 'medium' | 'thick',
       onClick?: Function,
+      pop?: 'hover' | 'active',
       pulse?: boolean,
       secondary?: boolean,
       size?: Size,
@@ -76,6 +77,11 @@ const getPadding = R.cond([
   [R.T, R.always('0.2rem 0.5rem')],
 ]);
 
+const getTransform = R.cond([
+  [R.prop('pop'), R.always('scale(1.13)')],
+  [R.T, R.always('none')],
+]);
+
 const getWidth = R.cond([
   [R.propEq('radius', 'mini'), R.always('1.5rem')],
   [R.propEq('radius', 'tiny'), R.always('2rem')],
@@ -114,6 +120,8 @@ const Button = styled.button`
   &:hover {
     cursor: pointer;
     background-color: ${getBackgroundHoverColor};
+    transform: ${getTransform};
+    transition: transform .4s ease-out;
   }
 
   &:focus {
