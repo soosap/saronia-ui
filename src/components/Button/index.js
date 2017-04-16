@@ -11,6 +11,7 @@ type Props =
       accent?: boolean,
       inverted?: boolean | 'thin' | 'medium' | 'thick',
       onClick?: Function,
+      pop?: 'active' | 'focus' | 'hover',
       secondary?: boolean,
       size?: Size,
     |}
@@ -20,6 +21,7 @@ type Props =
       accent?: boolean,
       inverted?: boolean | 'thin' | 'medium' | 'thick',
       onClick?: Function,
+      pop?: 'active' | 'focus' | 'hover',
       pulse?: boolean,
       secondary?: boolean,
       size?: Size,
@@ -76,6 +78,10 @@ const getPadding = R.cond([
   [R.T, R.always('0.2rem 0.5rem')],
 ]);
 
+const getTransform = R.curry((pseudoState, props) =>
+  R.when(R.propEq('pop', pseudoState), R.always('scale(1.13)')),
+);
+
 const getWidth = R.cond([
   [R.propEq('radius', 'mini'), R.always('1.5rem')],
   [R.propEq('radius', 'tiny'), R.always('2rem')],
@@ -109,14 +115,20 @@ const Button = styled.button`
   border-radius: ${props => (props.circular ? '50%' : borders.radius)};
 
   ${/* transition */ ''}
-  transition-duration: 0.25s;
+  transition: all .3s, transform .4s ease-out;
 
   &:hover {
     cursor: pointer;
     background-color: ${getBackgroundHoverColor};
+    transform: ${getTransform('hover')};
+  }
+
+  &:active {
+    transform: ${getTransform('active')};
   }
 
   &:focus {
+    transform: ${getTransform('focus')};
     outline: none;
   }
 `;

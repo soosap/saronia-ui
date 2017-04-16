@@ -9,9 +9,9 @@ import {
   number,
   select,
 } from '@kadira/storybook-addon-knobs';
-import { SizeEnum } from '../../assets/constants';
 
 import Button from '.';
+import { SizeEnum } from '../../assets/constants';
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
@@ -20,6 +20,13 @@ stories.addDecorator(story => (
     {story()}
   </div>
 ));
+
+const popOptions = R.invertObj({
+  ACTIVE: 'active',
+  FOCUS: 'focus',
+  HOVER: 'hover',
+  NONE: undefined,
+});
 
 stories.add('default', () => {
   const circular = boolean('circular', false);
@@ -33,6 +40,7 @@ stories.add('default', () => {
     radius: circular
       ? select('radius', R.invertObj(SizeEnum), 'large')
       : undefined,
+    pop: select('pop', popOptions, undefined),
     pulse: circular ? boolean('pulse', false) : undefined,
   };
 
@@ -45,6 +53,7 @@ stories.add('default', () => {
           circular
           inverted={props.inverted}
           onClick={action('clicked')}
+          pop={props.pop}
           pulse={props.pulse}
           radius={props.radius || 'mini'}
           secondary={props.secondary}
@@ -61,6 +70,7 @@ stories.add('default', () => {
           accent={props.accent}
           inverted={props.inverted}
           onClick={action('clicked')}
+          pop={props.pop}
           secondary={props.secondary}
           size={props.size}
         >
