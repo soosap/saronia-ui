@@ -6,21 +6,25 @@ import type { Size } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
-type Props = {|
-  accent?: boolean,
-  inverted?: boolean | 'thin' | 'medium' | 'thick',
-  onClick?: Function,
-  secondary?: boolean,
-  size?: Size,
-|} | {|
-  circular: true,
-  radius: Size,
-  accent?: boolean,
-  inverted?: boolean | 'thin' | 'medium' | 'thick',
-  onClick?: Function,
-  secondary?: boolean,
-  size?: Size,
-|};
+type Props =
+  | {|
+      accent?: boolean,
+      inverted?: boolean | 'thin' | 'medium' | 'thick',
+      onClick?: Function,
+      pulse?: boolean,
+      secondary?: boolean,
+      size?: Size,
+    |}
+  | {|
+      circular: true,
+      radius: Size,
+      accent?: boolean,
+      inverted?: boolean | 'thin' | 'medium' | 'thick',
+      onClick?: Function,
+      pulse?: boolean,
+      secondary?: boolean,
+      size?: Size,
+    |};
 
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always(colors.transparent)],
@@ -66,7 +70,7 @@ const getColor = R.cond([
   [R.T, R.always(colors.black)],
 ]);
 
-const getFontSize = (props) => fonts.sizes[R.prop('size', props)];
+const getFontSize = props => fonts.sizes[R.prop('size', props)];
 
 const getPadding = R.cond([
   [R.propEq('radius', 'mini'), R.always(0)],
@@ -87,20 +91,26 @@ const getWidth = R.cond([
 
 const Button = styled.button`
   background-color: ${getBackgroundColor};
-  font-size: ${getFontSize};
-  font-family: ${props => props.accent ? fonts.accent : fonts.system};
-  color: ${getColor};
-  transition-duration: 0.25s;
-
-  border: ${getBorder};
-  border-radius: ${props => props.circular ? '50%' : borders.radius};
-
-  display: flex;
-  justify-content: ${props => props.circular ? 'center' : 'flex-start'};
   width: ${getWidth};
   height: ${getWidth};
-  overflow: hidden;
   padding: ${getPadding};
+  overflow: hidden;
+
+  ${/* flexbox */ ''}
+  display: flex;
+  justify-content: ${props => (props.circular ? 'center' : 'flex-start')};
+
+  ${/* font */ ''}
+  color: ${getColor};
+  font-size: ${getFontSize};
+  font-family: ${props => (props.accent ? fonts.accent : fonts.system)};
+
+  ${/* border */ ''}
+  border: ${getBorder};
+  border-radius: ${props => (props.circular ? '50%' : borders.radius)};
+
+  ${/* transition */ ''}
+  transition-duration: 0.25s;
 
   &:hover {
     cursor: pointer;
@@ -112,11 +122,31 @@ const Button = styled.button`
   }
 `;
 
+const Pulse = styled.div`
+  position: relative;
+`;
+
+const GrowAndFadeButton = styled(Button)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(1.2);
+  transition-duration: 4s;
+`;
+
 export default (props: Props) => {
-  // console.log('props', props);
+  console.log('props', props);
 
   return R.cond([
-    // [R.propEq('pulse', true), R.always(<div>Hello</div>)],
+    [
+      R.propEq('pulse', true),
+      R.always(
+        <Pulse>
+          <GrowAndFadeButton {...props} />
+          <Button {...props} />
+        </Pulse>,
+      ),
+    ],
     [R.T, R.always(<Button {...props} />)],
   ])(props);
-}
+};
