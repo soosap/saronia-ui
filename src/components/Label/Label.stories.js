@@ -39,7 +39,7 @@ stories
   .add('arrow', () => {
     const props = {
       arrow: select('arrow', positionOptions, 'top'),
-      size:  select('size', sizeOptions, 'small'),
+      size: select('size', sizeOptions, 'small'),
       type: select('type', typeOptions, undefined),
       inverted: boolean('inverted', false),
       children: text('children', 'Enter a value'),
@@ -60,23 +60,29 @@ stories
       height: 200px;
     	flex-direction: ${getFlexDirection(props)};
     `;
+
     const Segment = styled.div`
       flex: 1;
       background-color: pink;
       width: 150px;
       height: 100px;
     `;
-    const Segment2 = styled.div`
-    flex: none;
+
+    const ArrowLabel = styled(Label)`
+      flex: none;
     `;
+
     return (
       <Wrapper>
-        <Segment></Segment>
-        <Segment2>
-          <Label size={props.size} arrow={props.arrow} type={props.type} inverted={props.inverted}>
-            {props.children}
-          </Label>
-        </Segment2>
+        <Segment />
+        <ArrowLabel
+          size={props.size}
+          arrow={props.arrow}
+          type={props.type}
+          inverted={props.inverted}
+        >
+          {props.children}
+        </ArrowLabel>
       </Wrapper>
     );
   });
