@@ -12,9 +12,10 @@ import {
   select,
 } from '@kadira/storybook-addon-knobs';
 
-import { PositionEnum, SizeEnum } from '../../assets/constants';
+import { PositionEnum, SizeEnum, TypeEnum } from '../../assets/constants';
 const positionOptions = R.invertObj(PositionEnum);
 const sizeOptions = R.invertObj(SizeEnum);
+const typeOptions = R.invertObj(TypeEnum);
 
 import Label from '.';
 
@@ -33,40 +34,27 @@ const Segment = styled.div`
 
 stories
   .add('default', () => {
-    const size = select('size', sizeOptions, 'medium');
-    const primary = boolean('primary', false);
-    const secondary = boolean('secondary', false);
+    const size = select('size', sizeOptions, 'small');
+    const type = select('type', typeOptions, 'default');
     const inverted = boolean('inverted', false);
-
+    const children = text('children', 'MyLabel');
     return (
-      <Label
-        size={size}
-        primary={primary}
-        secondary={secondary}
-        inverted={inverted}
-      >
-        {text('display', 'MyLabel')}
+      <Label size={size} type={type} inverted={inverted}>
+        {children}
       </Label>
     );
   })
   .add('arrow', () => {
     const arrow = select('arrow', positionOptions, 'top');
     const size = select('size', sizeOptions, 'small');
-    const primary = boolean('primary', false);
-    const secondary = boolean('secondary', false);
+    const type = select('type', typeOptions, 'default');
     const inverted = boolean('inverted', false);
-
+    const children = text('children', 'Enter a value');
     return (
       <Wrapper>
         <Segment />
-        <Label
-          arrow={arrow}
-          size={size}
-          primary={primary}
-          secondary={secondary}
-          inverted={inverted}
-        >
-          {text('display', 'Enter a value')}
+        <Label size={size} arrow={arrow} type={type} inverted={inverted}>
+          {children}
         </Label>
       </Wrapper>
     );

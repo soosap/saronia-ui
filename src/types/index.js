@@ -10,3 +10,5 @@ export type Size =
   | 'big'
   | 'huge'
   | 'massive';
+
+export type Type = 'default' | 'primary' | 'secondary;';

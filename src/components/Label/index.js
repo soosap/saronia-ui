@@ -1,38 +1,34 @@
 /* @flow */
 import R from 'ramda';
+import React from 'react';
 import styled from 'styled-components';
-import type { Position, Size } from '../../types';
+import type { Position, Size, Type } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
-type Props = {|
+type Props = {
     size?: Size,
-    inverted?: boolean,
     arrow?: Position,
-  |} | {|
-    primary: true,
-    size?: Size,
+    type?: Type,
     inverted?: boolean,
-    arrow?: Position,
-  |} | {|
-    secondary: true,
-    size?: Size,
-    inverted?: boolean,
-    arrow?: Position,
-|};
+};
 
 const getBackgroundColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('primary', true)),
+    R.both(R.propEq('inverted', true), R.propEq('type', 'default')),
     R.always(colors.white),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
+    R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
     R.always(colors.white),
   ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', 'primary')),
+    R.always(colors.white),
+  ],
+  [R.propEq('type', 'primary'), R.always(colors.primary)],
+  [R.propEq('type', 'secondary'), R.always(colors.secondary)],
   [R.propEq('inverted', true), R.always(colors.white)],
-  [R.propEq('primary', true), R.always(colors.primary)],
-  [R.propEq('secondary', true), R.always(colors.secondary)],
   [R.T, R.always(colors.grey)],
 ]);
 
@@ -49,15 +45,15 @@ const getSize = R.cond([
 
 const getBorderColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('primary', true)),
+    R.both(R.propEq('inverted', true), R.propEq('type', 'primary')),
     R.always(colors.primary),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
+    R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
     R.always(colors.secondary),
   ],
   [
-    R.both(R.propEq('primary', false), R.propEq('secondary', false)),
+    R.both(R.propEq('inverted', true), R.propEq('type', 'default')),
     R.always(colors.grey),
   ],
   [R.T, R.always( 'transparent')],
@@ -65,11 +61,11 @@ const getBorderColor = R.cond([
 
 const getFontColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('primary', true)),
+    R.both(R.propEq('inverted', true), R.propEq('type', 'primary')),
     R.always(colors.primary),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
+    R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
     R.always(colors.secondary),
   ],
   [R.T, R.always('rgba(0, 0, 0, 0.6)')],
