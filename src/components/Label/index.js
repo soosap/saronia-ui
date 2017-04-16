@@ -38,7 +38,7 @@ const leftArrow = {
 
 const leftArrowBefore = {
   'border-width': '0px 0px 1px 1px',
-  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  transform: 'translateX(-53%) translateY(-53%) rotate(45deg)',
   bottom: 'auto',
   right: 'auto',
   top: '50%',
@@ -52,7 +52,7 @@ const rightArrow = {
 
 const rightArrowBefore = {
   'border-width': '1px 1px 0 0',
-  transform: 'translateX(50%) translateY(-50%) rotate(45deg)',
+  transform: 'translateX(53%) translateY(-53%) rotate(45deg)',
   bottom: 'auto',
   right: '0',
   top: '50%',
@@ -65,7 +65,7 @@ const topArrow = {
 
 const topArrowBefore = {
   'border-width': '1px 0 0 1px',
-  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  transform: 'translateX(-53%) translateY(-53%) rotate(45deg)',
   top: '0',
   left: '50%',
 };
@@ -77,14 +77,14 @@ const bottomArrow = {
 
 const bottomArrowBefore = {
   'border-width': '0 1px 1px 0',
-  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  transform: 'translateX(-47%) translateY(-47%) rotate(45deg)',
   top: '100%',
   left: '50%',
 };
 
 const getBackgroundColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', 'default')),
+    R.both(R.propEq('inverted', true), R.propEq('type', undefined)),
     R.always(colors.white),
   ],
   [
@@ -110,10 +110,7 @@ const getBorderColor = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
     R.always(colors.secondary),
   ],
-  [
-    R.both(R.propEq('inverted', true), R.propEq('type', 'default')),
-    R.always(colors.grey),
-  ],
+  [R.propEq('inverted', true), R.always(colors.grey)],
   [R.T, R.always('transparent')],
 ]);
 
@@ -142,9 +139,10 @@ const getSize = R.cond([
 
 const Label = styled.label`
    display: inline-block;
+   margin-left: ${props => props.arrow == 'left' ? '0.5em !important' : undefined};
+   margin-right: ${props => props.arrow == 'right' ? '0.5em !important' : undefined};
    line-height: 1;
    vertical-align: baseline;
-   margin: 0em 0.14285714em;
    background-color: ${getBackgroundColor};
    background-image: none;
    padding: 0.5833em 0.833em;
@@ -163,19 +161,19 @@ const Label = styled.label`
        margin-right: 0em;
    }
 
-   ${props => (props.arrow ? 'position: relative' : null)};
-   ${props => (props.arrow == 'left' ? { ...leftArrow } : null)};
-   ${props => (props.arrow == 'right' ? { ...rightArrow } : null)};
-   ${props => (props.arrow == 'top' ? { ...topArrow } : null)};
-   ${props => (props.arrow == 'bottom' ? { ...bottomArrow } : null)};
+   ${props => props.arrow ? 'position: relative' : null};
+   ${props => props.arrow == 'left' ? { ...leftArrow } : null};
+   ${props => props.arrow == 'right' ? { ...rightArrow } : null};
+   ${props => props.arrow == 'top' ? { ...topArrow } : null};
+   ${props => props.arrow == 'bottom' ? { ...bottomArrow } : null};
 
    &:before {
-      ${props => (props.arrow ? { ...labelBefore } : null)};
-      ${props => (props.arrow ? { ...arrowLabelBefore } : null)};
-      ${props => (props.arrow == 'left' ? { ...leftArrowBefore } : null)};
-      ${props => (props.arrow == 'right' ? { ...rightArrowBefore } : null)};
-      ${props => (props.arrow == 'top' ? { ...topArrowBefore } : null)};
-      ${props => (props.arrow == 'bottom' ? { ...bottomArrowBefore } : null)};
+      ${props => props.arrow ? { ...labelBefore } : null};
+      ${props => props.arrow ? { ...arrowLabelBefore } : null};
+      ${props => props.arrow == 'left' ? { ...leftArrowBefore } : null};
+      ${props => props.arrow == 'right' ? { ...rightArrowBefore } : null};
+      ${props => props.arrow == 'top' ? { ...topArrowBefore } : null};
+      ${props => props.arrow == 'bottom' ? { ...bottomArrowBefore } : null};
    }
 `;
 

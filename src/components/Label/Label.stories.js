@@ -23,17 +23,6 @@ import Label from '.';
 const stories = storiesOf('Label', module);
 stories.addDecorator(withKnobs);
 
-const Wrapper = styled.div`
-  display: flex-inline;
-  flex-direction: column;
-  width: 250px;
-`;
-
-const Segment = styled.div`
-  height: 50px;
-  background-color: red;
-`;
-
 stories
   .add('default', () => {
     const size = select('size', sizeOptions, 'small');
@@ -48,18 +37,46 @@ stories
     );
   })
   .add('arrow', () => {
-    const arrow = select('arrow', positionOptions, 'top');
-    const size = select('size', sizeOptions, 'small');
-    const type = select('type', typeOptions, undefined);
-    const inverted = boolean('inverted', false);
-    const children = text('children', 'Enter a value');
+    const props = {
+      arrow: select('arrow', positionOptions, 'top'),
+      size:  select('size', sizeOptions, 'small'),
+      type: select('type', typeOptions, undefined),
+      inverted: boolean('inverted', false),
+      children: text('children', 'Enter a value'),
+    };
 
+    const getFlexDirection = R.cond([
+      [R.propEq('arrow', 'top'), R.always('column')],
+      [R.propEq('arrow', 'bottom'), R.always('column-reverse')],
+      [R.propEq('arrow', 'left'), R.always('row')],
+      [R.propEq('arrow', 'right'), R.always('row-reverse')],
+    ]);
+
+    const Wrapper = styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      height: 200px;
+    	flex-direction: ${getFlexDirection(props)};
+    `;
+    const Segment = styled.div`
+      flex: 1;
+      background-color: pink;
+      width: 150px;
+      height: 100px;
+    `;
+    const Segment2 = styled.div`
+    flex: none;
+    `;
     return (
       <Wrapper>
-        <Segment />
-        <Label size={size} arrow={arrow} type={type} inverted={inverted}>
-          {children}
-        </Label>
+        <Segment></Segment>
+        <Segment2>
+          <Label size={props.size} arrow={props.arrow} type={props.type} inverted={props.inverted}>
+            {props.children}
+          </Label>
+        </Segment2>
       </Wrapper>
     );
   });

@@ -11,4 +11,4 @@ export type Size =
   | 'huge'
   | 'massive';
 
-export type Type = 'default' | 'primary' | 'secondary;';
+export type Type = 'primary' | 'secondary';
