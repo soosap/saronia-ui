@@ -15,6 +15,11 @@ import Button from '.';
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
+stories.addDecorator(story => (
+  <div style={{ margin: '50px' }}>
+    {story()}
+  </div>
+));
 
 stories.add('default', () => {
   const circular = boolean('circular', false);
@@ -26,8 +31,9 @@ stories.add('default', () => {
     children: text('children', 'Register'),
     circular,
     radius: circular
-      ? select('radius', R.invertObj(SizeEnum), 'mini')
+      ? select('radius', R.invertObj(SizeEnum), 'large')
       : undefined,
+    pulse: circular ? boolean('pulse', false) : undefined,
   };
 
   return R.cond([
@@ -35,11 +41,12 @@ stories.add('default', () => {
       R.propEq('circular', true),
       R.always(
         <Button
-          onClick={action('clicked')}
           accent={props.accent}
           circular
-          radius={props.radius || 'mini'}
           inverted={props.inverted}
+          onClick={action('clicked')}
+          pulse={props.pulse}
+          radius={props.radius || 'mini'}
           secondary={props.secondary}
           size={props.size}
         >
@@ -51,9 +58,9 @@ stories.add('default', () => {
       R.T,
       R.always(
         <Button
-          onClick={action('clicked')}
           accent={props.accent}
           inverted={props.inverted}
+          onClick={action('clicked')}
           secondary={props.secondary}
           size={props.size}
         >

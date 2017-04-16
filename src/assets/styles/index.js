@@ -1,10 +1,12 @@
 /* @flow */
+import animations from './animations';
+import borders from './borders';
 import colors from './colors';
 import distances from './distances';
-import borders from './borders';
 import fonts from './fonts';
 
 export {
+  animations,
   borders,
   colors,
   distances,
