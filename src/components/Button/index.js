@@ -26,7 +26,7 @@ type Props =
     |};
 
 const getBackgroundColor = R.cond([
-  [R.propEq('inverted', true), R.always(colors.transparent)],
+  [R.propEq('inverted', true), R.always('transparent')],
   [R.propEq('secondary', true), R.always(colors.secondary)],
   [R.T, R.always(colors.primary)],
 ]);

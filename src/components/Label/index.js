@@ -1,19 +1,129 @@
 /* @flow */
 import R from 'ramda';
+import React from 'react';
 import styled from 'styled-components';
-import type { Position, Size } from '../../types';
+import type { Position, Size, Type } from '../../types';
 
 import { colors, fonts, borders } from '../../assets/styles';
 
 type Props = {
-  tag?: boolean,
-  arrow?: Position,
   size?: Size,
+  arrow?: Position,
+  type?: Type,
+  inverted?: boolean,
+};
+
+const labelBefore = {
+  'background-color': 'inherit',
+  'background-image': 'inherit',
+  'border-width': borders.width.thin,
+  'border-style': 'solid',
+  'border-color': 'inherit',
+};
+
+const arrowLabelBefore = {
+  position: 'absolute',
+  content: '""',
+  transform: 'rotate(45deg)',
+  'background-image': 'none',
+  'z-index': '2',
+  width: '0.6666em',
+  height: '0.6666em',
+};
+
+const leftArrow = {
+  'margin-top': '0',
+  'margin-left': '0.5em',
+};
+
+const leftArrowBefore = {
+  'border-width': '0px 0px 1px 1px',
+  transform: 'translateX(-53%) translateY(-53%) rotate(45deg)',
+  bottom: 'auto',
+  right: 'auto',
+  top: '50%',
+  left: '0',
+};
+
+const rightArrow = {
+  'margin-top': '0',
+  'margin-right': '0.5em',
+};
+
+const rightArrowBefore = {
+  'border-width': '1px 1px 0 0',
+  transform: 'translateX(53%) translateY(-53%) rotate(45deg)',
+  bottom: 'auto',
+  right: '0',
+  top: '50%',
+  left: 'auto',
+};
+
+const topArrow = {
+  'margin-top': '0.5em',
+};
+
+const topArrowBefore = {
+  'border-width': '1px 0 0 1px',
+  transform: 'translateX(-53%) translateY(-53%) rotate(45deg)',
+  top: '0',
+  left: '50%',
+};
+
+const bottomArrow = {
+  'margin-top': '0',
+  'margin-bottom': '0.5em',
+};
+
+const bottomArrowBefore = {
+  'border-width': '0 1px 1px 0',
+  transform: 'translateX(-47%) translateY(-47%) rotate(45deg)',
+  top: '100%',
+  left: '50%',
 };
 
 const getBackgroundColor = R.cond([
-  [R.prop('tag'), R.always(colors.grey)],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', undefined)),
+    R.always(colors.white),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
+    R.always(colors.white),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', 'primary')),
+    R.always(colors.white),
+  ],
+  [R.propEq('type', 'primary'), R.always(colors.primary)],
+  [R.propEq('type', 'secondary'), R.always(colors.secondary)],
+  [R.propEq('inverted', true), R.always(colors.white)],
   [R.T, R.always(colors.grey)],
+]);
+
+const getBorderColor = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', 'primary')),
+    R.always(colors.primary),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
+    R.always(colors.secondary),
+  ],
+  [R.propEq('inverted', true), R.always(colors.grey)],
+  [R.T, R.always('transparent')],
+]);
+
+const getColor = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', 'primary')),
+    R.always(colors.primary),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
+    R.always(colors.secondary),
+  ],
+  [R.T, R.always(colors.blackTransparent)],
 ]);
 
 const getSize = R.cond([
@@ -29,21 +139,20 @@ const getSize = R.cond([
 
 const Label = styled.label`
    display: inline-block;
+   margin-left: ${props => props.arrow == 'left' ? '0.5em !important' : undefined};
+   margin-right: ${props => props.arrow == 'right' ? '0.5em !important' : undefined};
    line-height: 1;
    vertical-align: baseline;
-   margin: 0em 0.14285714em;
    background-color: ${getBackgroundColor};
    background-image: none;
    padding: 0.5833em 0.833em;
-   color: rgba(0, 0, 0, 0.6);
+   color: ${getColor};
    text-transform: none;
    font-size: ${getSize};
    font-family: ${fonts.system};
    font-weight: bold;
-   border: ${borders.width.thin} solid transparent;
+   border: ${borders.width.thin} solid ${getBorderColor};
    border-radius: ${borders.radius};
-   -webkit-transition: background 0.1s ease;
-   transition: background 0.1s ease;
 
    &:first-child {
        margin-left: 0em;
@@ -68,71 +177,4 @@ const Label = styled.label`
    }
 `;
 
-const labelBefore = {
-  backgroundColor: 'inherit',
-  backgroundImage: 'inherit',
-  borderWidth: 'none',
-  borderStyle: 'solid',
-  borderColor: 'inherit',
-};
-const arrowLabelBefore = {
-  position: 'absolute',
-  content: '""',
-  WebkitTransform: 'rotate(45deg)',
-  transform: 'rotate(45deg)',
-  backgroundImage: 'none',
-  zIndex: '2',
-  width: '0.6666em',
-  height: '0.6666em',
-  WebkitTransition: 'background 0.1s ease',
-  transition: 'background 0.1s ease',
-};
-const leftArrow = {
-  marginTop: '0em',
-  marginLeft: '0.6666em',
-};
-const leftArrowBefore = {
-  borderWidth: '0px 0px 1px 1px',
-  WebkitTransform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-  bottom: 'auto',
-  right: 'auto',
-  top: '50%',
-  left: '0em',
-};
-const rightArrow = {
-  marginTop: '0em',
-  marginRight: '0.6666em',
-};
-const rightArrowBefore = {
-  borderWidth: '1px 1px 0px 0px',
-  WebkitTransform: 'translateX(50%) translateY(-50%) rotate(45deg)',
-  transform: 'translateX(50%) translateY(-50%) rotate(45deg)',
-  bottom: 'auto',
-  right: '0%',
-  top: '50%',
-  left: 'auto',
-};
-const topArrow = {
-  marginTop: '1em',
-};
-const topArrowBefore = {
-  borderWidth: '1px 0px 0px 1px',
-  WebkitTransform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-  top: '0',
-  left: '50%',
-};
-const bottomArrow = {
-  marginTop: '0em',
-  marginBottom: '1em',
-};
-const bottomArrowBefore = {
-  borderWidth: '0px 1px 1px 0px',
-  WebkitTransform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-  top: '100%',
-  left: '50%',
-};
-
-export default Label;
+export default (props: Props) => <Label {...props} />;

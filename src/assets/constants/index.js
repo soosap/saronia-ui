@@ -16,3 +16,9 @@ export const SizeEnum = {
   HUGE: 'huge',
   MASSIVE: 'massive',
 };
+
+export const TypeEnum = {
+  DEFAULT: undefined,
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+};
