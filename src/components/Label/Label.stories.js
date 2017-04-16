@@ -1,6 +1,6 @@
 /* @flow */
-import React from 'react';
 import R from 'ramda';
+import React from 'react';
 import styled from 'styled-components';
 
 import { storiesOf, action, linkTo } from '@kadira/storybook';
@@ -13,6 +13,7 @@ import {
 } from '@kadira/storybook-addon-knobs';
 
 import { PositionEnum, SizeEnum, TypeEnum } from '../../assets/constants';
+
 const positionOptions = R.invertObj(PositionEnum);
 const sizeOptions = R.invertObj(SizeEnum);
 const typeOptions = R.invertObj(TypeEnum);
@@ -27,6 +28,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 250px;
 `;
+
 const Segment = styled.div`
   height: 50px;
   background-color: red;
@@ -35,9 +37,10 @@ const Segment = styled.div`
 stories
   .add('default', () => {
     const size = select('size', sizeOptions, 'small');
-    const type = select('type', typeOptions, 'default');
+    const type = select('type', typeOptions, undefined);
     const inverted = boolean('inverted', false);
     const children = text('children', 'MyLabel');
+
     return (
       <Label size={size} type={type} inverted={inverted}>
         {children}
@@ -47,9 +50,10 @@ stories
   .add('arrow', () => {
     const arrow = select('arrow', positionOptions, 'top');
     const size = select('size', sizeOptions, 'small');
-    const type = select('type', typeOptions, 'default');
+    const type = select('type', typeOptions, undefined);
     const inverted = boolean('inverted', false);
     const children = text('children', 'Enter a value');
+
     return (
       <Wrapper>
         <Segment />

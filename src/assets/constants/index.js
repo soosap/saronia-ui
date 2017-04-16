@@ -18,7 +18,7 @@ export const SizeEnum = {
 };
 
 export const TypeEnum = {
-  DEFAULT: 'default',
+  DEFAULT: undefined,
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
 };
