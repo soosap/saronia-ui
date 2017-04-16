@@ -27,32 +27,47 @@ const Wrapper = styled.div`
   width: 250px;
 `;
 const Segment = styled.div`
-height: 50px;
+  height: 50px;
   background-color: red;
 `;
 
 stories
-  .add('default', () => (
-    <Label
-      size={select('size', sizeOptions, 'medium')}
-      primary={boolean('primary', false)}
-      secondary={boolean('secondary', false)}
-      inverted={boolean('inverted', false)}
-    >
-      MyLabel
-    </Label>
-  ))
-  .add('arrow', () => (
-    <Wrapper>
-      <Segment></Segment>
+  .add('default', () => {
+    const size = select('size', sizeOptions, 'medium');
+    const primary = boolean('primary', false);
+    const secondary = boolean('secondary', false);
+    const inverted = boolean('inverted', false);
+
+    return (
       <Label
-        arrow={select('arrow', positionOptions, 'right')}
-        size={select('size', sizeOptions, 'medium')}
-        primary={boolean('primary', false)}
-        secondary={boolean('secondary', false)}
-        inverted={boolean('inverted', false)}
+        size={size}
+        primary={primary}
+        secondary={secondary}
+        inverted={inverted}
       >
-        {text('display', 'Enter a value')}
+        {text('display', 'MyLabel')}
       </Label>
-    </Wrapper>
-  ));
+    );
+  })
+  .add('arrow', () => {
+    const arrow = select('arrow', positionOptions, 'top');
+    const size = select('size', sizeOptions, 'small');
+    const primary = boolean('primary', false);
+    const secondary = boolean('secondary', false);
+    const inverted = boolean('inverted', false);
+
+    return (
+      <Wrapper>
+        <Segment />
+        <Label
+          arrow={arrow}
+          size={size}
+          primary={primary}
+          secondary={secondary}
+          inverted={inverted}
+        >
+          {text('display', 'Enter a value')}
+        </Label>
+      </Wrapper>
+    );
+  });
