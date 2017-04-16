@@ -15,7 +15,7 @@ type Props =
     |}
   | {|
       circular: true,
-      radius?: Size,
+      radius: Size,
       size?: Size,
       type?: Type,
       inverted?: boolean,
