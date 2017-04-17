@@ -9,7 +9,7 @@ import { animations, colors, fonts, borders } from '../../assets/styles';
 type Props =
   | {|
       accent?: boolean,
-      inverted?: boolean | 'thin' | 'medium' | 'thick',
+      inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
       secondary?: boolean,
@@ -19,7 +19,7 @@ type Props =
       circular: true,
       radius: Size,
       accent?: boolean,
-      inverted?: boolean | 'thin' | 'medium' | 'thick',
+      inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
       pulse?: boolean,
