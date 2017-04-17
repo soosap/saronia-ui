@@ -12,3 +12,5 @@ export type Size =
   | 'massive';
 
 export type Type = 'primary' | 'secondary';
+
+export type Degree = 'small' | 'medium' | 'large'; 
