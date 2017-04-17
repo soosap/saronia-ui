@@ -21,15 +21,19 @@ const basicStyle = {
   border: 'none',
   'border-radius': '0px',
 };
+
 const compactStyle = {
   display: 'table',
 };
+
 const raisedStyle = {
   'box-shadow': '0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15)',
 };
+
 const stackedStyle = {
   'padding-bottom': '1.4em',
 };
+
 const stackedStyleBefore = {
   content: "''",
   position: 'absolute',
@@ -42,6 +46,7 @@ const stackedStyleBefore = {
   visibility: 'visible',
   display: 'none',
 };
+
 const stackedStyleAfter = {
   content: "''",
   position: 'absolute',
@@ -53,6 +58,7 @@ const stackedStyleAfter = {
   height: '6px',
   visibility: 'visible',
 };
+
 const getBackgroundColor = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
@@ -100,17 +106,17 @@ const Segment = styled.div`
   border-radius: ${borders.radius};
   border: 1px solid rgba(34, 36, 38, 0.15);
 
-  ${props => props.basic ? { ...basicStyle } : null};
-  ${props => props.padded ? { ...paddedStyle } : null};
-  ${props => props.compact ? { ...compactStyle } : null};
-  ${props => props.emphasis == 'raised' ? {...raisedStyle} : null}
-  ${props => props.emphasis == 'stacked' ? { ...stackedStyle } : null};
+  ${props => (props.basic ? { ...basicStyle } : null)};
+  ${props => (props.compact ? { ...compactStyle } : null)};
+  ${props => (props.emphasis == 'raised' ? { ...raisedStyle } : null)}
+  ${props => (props.emphasis == 'stacked' ? { ...stackedStyle } : null)};
 
   &:before {
-    ${props => props.emphasis == 'stacked' ? {...stackedStyleBefore} : null}
+    ${props => (props.emphasis == 'stacked' ? { ...stackedStyleBefore } : null)}
   }
+
   &:after{
-    ${props => props.emphasis == 'stacked' ? {...stackedStyleAfter} : null}
+    ${props => (props.emphasis == 'stacked' ? { ...stackedStyleAfter } : null)}
   }
 `;
 
