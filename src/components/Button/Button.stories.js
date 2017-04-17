@@ -31,53 +31,23 @@ const popOptions = R.invertObj({
 
 stories.add('default', () => {
   const circular = boolean('circular', false);
-  const props = {
+  const children = text('children', 'Register');
+  const props = R.pickBy(R.complement(R.isNil), {
     secondary: boolean('secondary', false),
     accent: boolean('accent', false),
     inverted: boolean('inverted', false),
     size: select('size', R.invertObj(SizeEnum), 'medium'),
-    children: text('children', 'Register'),
     circular,
     radius: circular
       ? select('radius', R.invertObj(SizeEnum), 'large')
       : undefined,
     pop: select('pop', popOptions, undefined),
     pulse: circular ? boolean('pulse', false) : undefined,
-  };
+  });
 
-  return R.cond([
-    [
-      R.propEq('circular', true),
-      R.always(
-        <Button
-          accent={props.accent}
-          circular
-          inverted={props.inverted}
-          onClick={action('clicked')}
-          pop={props.pop}
-          pulse={props.pulse}
-          radius={props.radius || 'mini'}
-          secondary={props.secondary}
-          size={props.size}
-        >
-          {props.children}
-        </Button>,
-      ),
-    ],
-    [
-      R.T,
-      R.always(
-        <Button
-          accent={props.accent}
-          inverted={props.inverted}
-          onClick={action('clicked')}
-          pop={props.pop}
-          secondary={props.secondary}
-          size={props.size}
-        >
-          {props.children}
-        </Button>,
-      ),
-    ],
-  ])(props);
+  return (
+    <Button {...props} onClick={action('clicked')}>
+      {children}
+    </Button>
+  );
 });

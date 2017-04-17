@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { matcher, serializer } from 'jest-styled-components';
 
-import Button from '.';
+import { Button } from '.';
 
 expect.addSnapshotSerializer(serializer);
 expect.extend(matcher);

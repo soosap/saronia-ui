@@ -17,21 +17,22 @@ import {
 type Props =
   | {|
       accent?: boolean,
+      breed?: Breed,
+      circular?: false,
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
-      breed?: Breed,
       size?: Magnitude,
     |}
   | {|
-      circular: true,
-      radius: Magnitude,
       accent?: boolean,
+      breed?: Breed,
+      circular: true,
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
       pulse?: boolean,
-      breed?: Breed,
+      radius: Magnitude,
       size?: Magnitude,
     |};
 
