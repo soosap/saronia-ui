@@ -6,18 +6,18 @@ export { default as Color } from './color';
 export { default as Space } from './space';
 export { default as Font, FontSize, FONT_URL } from './font';
 
-export const Breed = {
+export const BreedEnum = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
 };
 
-export const Size = {
+export const SizeEnum = {
   SMALL: 'small',
   MEDIUM: 'medium',
   LARGE: 'large',
 };
 
-export const Magnitude = {
+export const MagnitudeEnum = {
   MINI: 'mini',
   TINY: 'tiny',
   SMALL: 'small',
@@ -28,7 +28,7 @@ export const Magnitude = {
   MASSIVE: 'massive',
 };
 
-export const Position = {
+export const PositionEnum = {
   TOP: 'top',
   RIGHT: 'right',
   BOTTOM: 'bottom',

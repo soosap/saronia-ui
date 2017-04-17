@@ -26,3 +26,28 @@ git commit -m 'Added hover effects on <Pill /> component'
 # Regularly push your work to obtain feedback
 git push
 ```
+
+## Conventions
+
+### Enum vs. Constant
+
+Whenever the left-hand side is a mere lowercase representation of the right-hand side as in the example below, we add the **Enum** suffix to the variable name declaration.
+
+```js
+const SizeEnum = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large',
+}
+```
+
+On the contrary, whenever the left-hand side and the right-hand side do not match up as the example below, no additional suffix is being attached.
+```js
+const Color = {
+  PRIMARY: '#FFB00C',
+  SECONDARY: '#F2416C',
+  WHITE: '#FFFFFF',
+}
+```
+
+Following this pattern has an important benefit: FlowType definitions will not clash w/ constants and enums.

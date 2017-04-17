@@ -2,9 +2,8 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import type { Size } from '../../types';
-
-import { animations, colors, fonts, borders } from '../../assets/styles';
+import type { Breed as BreedType, Magnitude as MagnitudeType } from '../../types';
+import { Animation, Color, Font, Border, Breed, Magnitude } from '../../assets/constants';
 
 type Props =
   | {|
@@ -12,24 +11,24 @@ type Props =
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
-      secondary?: boolean,
-      size?: Size,
+      breed?: BreedType,
+      size?: MagnitudeType,
     |}
   | {|
       circular: true,
-      radius: Size,
+      radius: MagnitudeType,
       accent?: boolean,
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
       pulse?: boolean,
-      secondary?: boolean,
-      size?: Size,
+      breed?: BreedType,
+      size?: MagnitudeType,
     |};
 
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always('transparent')],
-  [R.propEq('secondary', true), R.always(colors.secondary)],
+  [R.propEq('breed', Breed.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(colors.primary)],
 ]);
 
