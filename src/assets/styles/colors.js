@@ -26,6 +26,7 @@ export default {
   ivory,
   ivoryDark,
   grey,
+  greyDark,
   black,
   blackTransparent,
 };

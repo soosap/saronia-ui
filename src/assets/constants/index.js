@@ -1,4 +1,6 @@
 /* @flow */
+export { default as IconEnum } from './icons';
+
 export const PositionEnum = {
   TOP: 'top',
   RIGHT: 'right',
@@ -17,10 +19,14 @@ export const SizeEnum = {
   MASSIVE: 'massive',
 };
 
+export const DegreeEnum = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large',
+};
+
 export const TypeEnum = {
   DEFAULT: undefined,
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
 };
-
-export { default as IconEnum } from './icons';
