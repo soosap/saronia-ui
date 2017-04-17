@@ -19,11 +19,7 @@ stories.addDecorator(withKnobs);
 
 const typeOptions = R.invertObj(TypeEnum);
 const paddingOptions = R.invertObj(DegreeEnum);
-const alignmentOptions = {
-  left: 'left',
-  center: 'center',
-  right: 'right',
-};
+
 const emphasisOptions = {
   undefined: 'default',
   raised: 'raised',
