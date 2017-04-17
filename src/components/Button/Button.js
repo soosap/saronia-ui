@@ -2,8 +2,15 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import type { Breed as BreedType, Magnitude as MagnitudeType } from '../../types';
-import { Animation, Color, Font, Border, Breed, Magnitude } from '../../assets/constants';
+import type { Breed, Magnitude } from '../../types';
+import {
+  Animation,
+  Border,
+  BreedEnum,
+  Color,
+  Font,
+  MagnitudeEnum,
+} from '../../assets/constants';
 
 type Props =
   | {|
@@ -11,38 +18,45 @@ type Props =
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
-      breed?: BreedType,
-      size?: MagnitudeType,
+      breed?: Breed,
+      size?: Magnitude,
     |}
   | {|
       circular: true,
-      radius: MagnitudeType,
+      radius: Magnitude,
       accent?: boolean,
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
       pulse?: boolean,
-      breed?: BreedType,
-      size?: MagnitudeType,
+      breed?: Breed,
+      size?: Magnitude,
     |};
 
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always('transparent')],
-  [R.propEq('breed', Breed.SECONDARY), R.always(Color.SECONDARY)],
-  [R.T, R.always(colors.primary)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.PRIMARY)],
 ]);
 
 const getBackgroundHoverColor = R.cond([
-  [R.propEq('inverted', true), R.always(colors.whiteDark)],
-  [R.propEq('secondary', true), R.always(colors.secondaryDark)],
-  [R.T, R.always(colors.primaryDark)],
+  [R.propEq('inverted', true), R.always(Color.WHITE_DARK)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARK)],
+  [R.T, R.always(Color.PRIMARY_DARK)],
 ]);
 
-const getBorder = R.ifElse(
-  props => R.isNil(getBorderColor(props)),
-  R.always('none'),
-  props => R.always(`${getBorderWidth(props)} solid ${getBorderColor(props)}`),
-);
+const getBorder = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
+    R.always(Border.PRIMARY),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
+    R.always(Border.SECONDARY),
+  ],
+  [R.propEq('inverted', true), R.always(Border.DEFAULT)],
+  [(R.T, R.always('none'))],
+]);
 
 const getBorderColor = R.cond([
   [
@@ -51,13 +65,6 @@ const getBorderColor = R.cond([
   ],
   [R.propEq('inverted', true), R.always(colors.primary)],
   [R.T, R.always(undefined)],
-]);
-
-const getBorderWidth = R.cond([
-  [R.propEq('inverted', 'thin'), R.always(borders.width.thin)],
-  [R.propEq('inverted', 'medium'), R.always(borders.width.medium)],
-  [R.propEq('inverted', 'thick'), R.always(borders.width.thick)],
-  [R.T, R.always(borders.width.thin)],
 ]);
 
 const getColor = R.cond([
