@@ -25,16 +25,40 @@ stories.addDecorator(withKnobs);
 
 stories
   .add('default', () => {
-    const size = select('size', sizeOptions, 'small');
-    const type = select('type', typeOptions, undefined);
-    const inverted = boolean('inverted', false);
-    const children = text('children', 'MyLabel');
+    const circular = boolean('circular', false);
+    const props = {
+      size: select('size', sizeOptions, 'mini'),
+      type: select('type', typeOptions, undefined),
+      inverted: boolean('inverted', false),
+      children: text('children', 'MyLabel'),
+      circular,
+      radius: circular ? select('radius', sizeOptions, 'big') : undefined,
+    };
 
-    return (
-      <Label size={size} type={type} inverted={inverted}>
-        {children}
-      </Label>
-    );
+    return R.cond([
+      [
+        R.propEq('circular', true),
+        R.always(
+          <Label
+            size={props.size}
+            type={props.type}
+            inverted={props.inverted}
+            circular
+            radius={props.radius}
+          >
+            {props.children}
+          </Label>,
+        ),
+      ],
+      [
+        R.T,
+        R.always(
+          <Label size={props.size} type={props.type} inverted={props.inverted}>
+            {props.children}
+          </Label>,
+        ),
+      ],
+    ])(props);
   })
   .add('arrow', () => {
     const props = {
