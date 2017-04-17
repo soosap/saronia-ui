@@ -18,7 +18,7 @@ const positionOptions = R.invertObj(PositionEnum);
 const sizeOptions = R.invertObj(SizeEnum);
 const typeOptions = R.invertObj(TypeEnum);
 
-import Label from '.';
+import { Label } from '.';
 
 const stories = storiesOf('Label', module);
 stories.addDecorator(withKnobs);

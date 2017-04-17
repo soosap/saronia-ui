@@ -10,7 +10,7 @@ import {
   select,
 } from '@kadira/storybook-addon-knobs';
 
-import Button from '.';
+import { Button } from '.';
 import { SizeEnum } from '../../assets/constants';
 
 const stories = storiesOf('Button', module);

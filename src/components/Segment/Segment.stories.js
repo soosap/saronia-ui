@@ -12,7 +12,7 @@ import {
   select,
 } from '@kadira/storybook-addon-knobs';
 import { TypeEnum, DegreeEnum } from '../../assets/constants';
-import Segment from '.';
+import { Segment } from '.';
 
 const stories = storiesOf('Segment', module);
 stories.addDecorator(withKnobs);
