@@ -6,9 +6,11 @@ import type { Breed, Magnitude } from '../../types';
 import {
   Animation,
   Border,
+  BORDER_RADIUS,
   BreedEnum,
   Color,
   Font,
+  FontSize,
   MagnitudeEnum,
 } from '../../assets/constants';
 
@@ -58,29 +60,20 @@ const getBorder = R.cond([
   [(R.T, R.always('none'))],
 ]);
 
-const getBorderColor = R.cond([
-  [
-    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
-    R.always(colors.secondary),
-  ],
-  [R.propEq('inverted', true), R.always(colors.primary)],
-  [R.T, R.always(undefined)],
-]);
-
 const getColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('secondary', true)),
-    R.always(colors.secondary),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
+    R.always(Color.SECONDARY),
   ],
-  [R.propEq('inverted', true), R.always(colors.primaryDark)],
-  [R.propEq('secondary', true), R.always(colors.ivoryDark)],
-  [R.T, R.always(colors.black)],
+  [R.propEq('inverted', true), R.always(Color.PRIMARY_DARK)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
+  [R.T, R.always(Color.BLACK)],
 ]);
 
-const getFontSize = props => fonts.sizes[R.prop('size', props)];
+const getFontSize = props => FontSize[R.toUpper(R.prop('size', props))];
 
 const getPadding = R.cond([
-  [R.propEq('radius', 'mini'), R.always(0)],
+  [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
   [R.T, R.always('0.2rem 0.5rem')],
 ]);
 
@@ -89,14 +82,14 @@ const getTransform = R.curry((pseudoState, props) =>
 );
 
 const getWidth = R.cond([
-  [R.propEq('radius', 'mini'), R.always('1.5rem')],
-  [R.propEq('radius', 'tiny'), R.always('2rem')],
-  [R.propEq('radius', 'small'), R.always('2.5rem')],
-  [R.propEq('radius', 'medium'), R.always('3rem')],
-  [R.propEq('radius', 'large'), R.always('4.5rem')],
-  [R.propEq('radius', 'big'), R.always('6rem')],
-  [R.propEq('radius', 'huge'), R.always('9rem')],
-  [R.propEq('radius', 'massive'), R.always('12rem')],
+  [R.propEq('radius', MagnitudeEnum.MINI), R.always('1.5rem')],
+  [R.propEq('radius', MagnitudeEnum.TINY), R.always('2rem')],
+  [R.propEq('radius', MagnitudeEnum.SMALL), R.always('2.5rem')],
+  [R.propEq('radius', MagnitudeEnum.MEDIUM), R.always('3rem')],
+  [R.propEq('radius', MagnitudeEnum.LARGE), R.always('4.5rem')],
+  [R.propEq('radius', MagnitudeEnum.BIG), R.always('6rem')],
+  [R.propEq('radius', MagnitudeEnum.HUGE), R.always('9rem')],
+  [R.propEq('radius', MagnitudeEnum.MASSIVE), R.always('12rem')],
   [R.T, R.always('inherit')],
 ]);
 
@@ -114,11 +107,11 @@ const Button = styled.button`
   ${/* font */ ''}
   color: ${getColor};
   font-size: ${getFontSize};
-  font-family: ${props => (props.accent ? fonts.accent : fonts.system)};
+  font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
 
   ${/* border */ ''}
   border: ${getBorder};
-  border-radius: ${props => (props.circular ? '50%' : borders.radius)};
+  border-radius: ${props => (props.circular ? '50%' : BORDER_RADIUS)};
 
   ${/* transition */ ''}
   transition: all .3s, transform .4s ease-out;
@@ -149,7 +142,7 @@ const Overlay = styled(Button)`
   left: 0;
   color: transparent;
   z-index: -1;
-  animation-name: ${animations.scaleUpAndFadeOut};
+  animation-name: ${Animation.SCALE_UP_AND_FADE_OUT};
   animation-duration: 1.6s;
   animation-iteration-count: infinite;
   animation-delay: .2s;
