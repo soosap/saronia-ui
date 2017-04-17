@@ -27,12 +27,12 @@ stories
   .add('default', () => {
     const circular = boolean('circular', false);
     const props = {
-      size: select('size', sizeOptions, 'mini'),
+      size: select('size', sizeOptions, 'medium'),
       type: select('type', typeOptions, undefined),
       inverted: boolean('inverted', false),
       children: text('children', 'MyLabel'),
       circular,
-      radius: circular ? select('radius', sizeOptions, 'big') : undefined,
+      radius: circular ? select('radius', sizeOptions, 'medium') : undefined,
     };
 
     return R.cond([
@@ -44,7 +44,7 @@ stories
             type={props.type}
             inverted={props.inverted}
             circular
-            radius={props.radius}
+            radius={props.radius || 'medium'}
           >
             {props.children}
           </Label>,

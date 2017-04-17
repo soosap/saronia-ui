@@ -14,6 +14,7 @@ import { Button } from '.';
 import { SizeEnum } from '../../assets/constants';
 
 const stories = storiesOf('Button', module);
+
 stories.addDecorator(withKnobs);
 stories.addDecorator(story => (
   <div style={{ margin: '50px' }}>
