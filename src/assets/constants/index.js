@@ -22,3 +22,5 @@ export const TypeEnum = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
 };
+
+export { default as IconEnum } from './icons';

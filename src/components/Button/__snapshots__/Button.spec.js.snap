@@ -1,15 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Button /> matches styled component snapshot 1`] = `
-.dbSbPF {
+.keCvcC {
   background-color: #FFB00C;
-  font-size: 1.2rem;
-  font-family: 'Quicksand', sans-serif;
-  color: #161616;
-  transition-duration: 0.25s;
-  -webkit-transition-duration: 0.25s;
-  border: none;
-  border-radius: 3px;
+  width: inherit;
+  height: inherit;
+  padding: 0.2rem 0.5rem;
+  overflow: hidden;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -19,23 +16,47 @@ exports[`<Button /> matches styled component snapshot 1`] = `
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   -webkit-justify-content: flex-start;
-  width: inherit;
-  height: inherit;
-  overflow: hidden;
-  padding: 0.2rem 0.5rem;
+  color: #161616;
+  font-size: ;
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  border-radius: 3px;
+  transition: all .3s, -ms-transform .4s ease-out, -webkit-transform .4s ease-out, transform .4s ease-out;
+  -webkit-transition: all .3s, -webkit-transform .4s ease-out, transform .4s ease-out;
 }
 
-.dbSbPF:hover {
+.keCvcC:hover {
   cursor: pointer;
   background-color: #FFA104;
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -hello: ;
 }
 
-.dbSbPF:focus {
+
+
+.keCvcC:active {
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -hello: ;
+}
+
+
+
+.keCvcC:focus {
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -hello: ;
   outline: none;
 }
 
+
+
 <button
-  className="dbSbPF"
+  className="keCvcC"
 >
   Hello
 </button>

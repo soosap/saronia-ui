@@ -14,15 +14,28 @@ exports[`<ButtonGroup horizontal /> matches styled component snapshot 1`] = `
   -webkit-flex-direction: row;
 }
 
-.dbSbPF {
+.kkztTS button {
+  border-radius: 0;
+}
+
+.kkztTS button:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 3px;
+}
+
+.kkztTS button:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 0;
+}
+
+.gVHuyA {
   background-color: #FFB00C;
-  font-size: 1.2rem;
-  font-family: 'Quicksand', sans-serif;
-  color: #161616;
-  transition-duration: 0.25s;
-  -webkit-transition-duration: 0.25s;
-  border: none;
-  border-radius: 3px;
+  width: inherit;
+  height: inherit;
+  padding: 0.2rem 0.5rem;
+  overflow: hidden;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -32,36 +45,168 @@ exports[`<ButtonGroup horizontal /> matches styled component snapshot 1`] = `
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   -webkit-justify-content: flex-start;
-  width: inherit;
-  height: inherit;
-  overflow: hidden;
-  padding: 0.2rem 0.5rem;
+  color: #161616;
+  font-size: ;
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  border-radius: 3px;
+  transition: all .3s, -ms-transform .4s ease-out, -webkit-transform .4s ease-out, transform .4s ease-out;
+  -webkit-transition: all .3s, -webkit-transform .4s ease-out, transform .4s ease-out;
 }
 
-.dbSbPF:hover {
+.gVHuyA:hover {
   cursor: pointer;
   background-color: #FFA104;
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -left: ;
 }
 
-.dbSbPF:focus {
+
+
+.gVHuyA:active {
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -left: ;
+}
+
+
+
+.gVHuyA:focus {
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -left: ;
   outline: none;
 }
+
+
+
+.eeMFOQ {
+  background-color: #FFB00C;
+  width: inherit;
+  height: inherit;
+  padding: 0.2rem 0.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  color: #161616;
+  font-size: ;
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  border-radius: 3px;
+  transition: all .3s, -ms-transform .4s ease-out, -webkit-transform .4s ease-out, transform .4s ease-out;
+  -webkit-transition: all .3s, -webkit-transform .4s ease-out, transform .4s ease-out;
+}
+
+.eeMFOQ:hover {
+  cursor: pointer;
+  background-color: #FFA104;
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -middle: ;
+}
+
+
+
+.eeMFOQ:active {
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -middle: ;
+}
+
+
+
+.eeMFOQ:focus {
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -middle: ;
+  outline: none;
+}
+
+
+
+.eEIXmf {
+  background-color: #FFB00C;
+  width: inherit;
+  height: inherit;
+  padding: 0.2rem 0.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  color: #161616;
+  font-size: ;
+  font-family: 'Quicksand', sans-serif;
+  border: none;
+  border-radius: 3px;
+  transition: all .3s, -ms-transform .4s ease-out, -webkit-transform .4s ease-out, transform .4s ease-out;
+  -webkit-transition: all .3s, -webkit-transform .4s ease-out, transform .4s ease-out;
+}
+
+.eEIXmf:hover {
+  cursor: pointer;
+  background-color: #FFA104;
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -right: ;
+}
+
+
+
+.eEIXmf:active {
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -right: ;
+}
+
+
+
+.eEIXmf:focus {
+  transform: children:;
+  -ms-transform: children:;
+  -webkit-transform: children:;
+  -right: ;
+  outline: none;
+}
+
+
 
 <div
   className="kkztTS"
 >
   <button
-    className="dbSbPF"
+    className="gVHuyA"
   >
     Left
   </button>
   <button
-    className="dbSbPF"
+    className="eeMFOQ"
   >
     Middle
   </button>
   <button
-    className="dbSbPF"
+    className="eEIXmf"
   >
     Right
   </button>
