@@ -22,3 +22,9 @@ export const TypeEnum = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
 };
+
+export const DegreeEnum = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large',
+}
