@@ -1,0 +1,15 @@
+/* @flow */
+export default {
+  PRIMARY: '#FFB00C',
+  PRIMARY_DARK: '#FFA104',
+  SECONDARY: '#F2416C',
+  SECONDARY_DARK: '#D3395E',
+  WHITE: '#FFFFFF',
+  WHITE_DARK: '#FAFAF7',
+  IVORY: '#FDFDF5',
+  IVORY_DARK: '#FFFEF0',
+  GREY: '#CDCDCB',
+  GREY_DARK: '#BABCB9',
+  BLACK: '#161616', // => rgb 22, 22, 22
+  BLACK_TRANSPARENT: 'rgba(22, 22, 22, 0.65)',
+};

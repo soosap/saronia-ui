@@ -7,7 +7,7 @@ type Props = {
   vertical?: boolean,
 };
 
-const ButtonGroup = styled.div`
+const Buttons = styled.div`
   display: inline-flex;
   flex-direction: ${props => props.vertical && 'column' || 'row'};
 
@@ -28,4 +28,4 @@ const ButtonGroup = styled.div`
   }
 `;
 
-export default (props: Props) => <ButtonGroup {...props} />;
+export default (props: Props) => <Buttons {...props} />;
