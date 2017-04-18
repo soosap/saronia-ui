@@ -1,4 +1,6 @@
-#saronia-ui
+# saronia-ui
+
+saronia-ui is a set of React components built using flexbox and styled-components.
 
 ## Setup
 
@@ -49,7 +51,7 @@ import { IconSVGPath } from '@saronia/saronia-ui/constants';
 ### rem vs. em
 
 For consistency sake we exclusively use rem.
-Read up the difference between the two [here](https://zellwk.com/blog/rem-vs-em/)
+Read up the difference between the two [here](https://zellwk.com/blog/rem-vs-em/).
 
 ### Enum vs. Constant
 
@@ -73,3 +75,8 @@ const Color = {
 ```
 
 Following this pattern has an important benefit: FlowType definitions will not clash w/ constants and enums.
+
+## Contributors
+
+@DaniyarJakupov
+@soosap
