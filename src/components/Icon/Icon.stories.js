@@ -11,20 +11,24 @@ import {
 } from '@kadira/storybook-addon-knobs';
 
 import { Icon } from '.';
-import { IconEnum, SizeEnum, TypeEnum } from '../../assets/constants';
+import {
+  Icon as IconPath,
+  MagnitudeEnum,
+  BreedEnum,
+} from '../../assets/constants';
 
 const stories = storiesOf('Icon', module);
-const iconOptions = R.invertObj(IconEnum);
-const sizeOptions = R.invertObj(SizeEnum);
-const typeOptions = R.invertObj(TypeEnum);
+const iconOptions = R.invertObj(IconPath);
+const sizeOptions = R.invertObj(MagnitudeEnum);
+const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
   const props = {
-    icon: select('icon', iconOptions, IconEnum.TWITTER),
-    size: select('size', sizeOptions, SizeEnum.MEDIUM),
-    type: select('type', typeOptions, TypeEnum.DEFAULT),
+    icon: select('icon', iconOptions, IconPath.TWITTER),
+    size: select('size', sizeOptions, MagnitudeEnum.MEDIUM),
+    type: select('type', typeOptions, undefined),
   };
 
   return <Icon {...props} />;

@@ -13,7 +13,7 @@ type Props = {
 };
 
 const getFill = R.cond([
-  [R.T, R.always()]
+  [R.T, R.always(Color.BLACK)]
 ]);
 
 const getWidth = R.cond([
