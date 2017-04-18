@@ -82,7 +82,7 @@ const getColor = R.cond([
     R.always(Color.PRIMARY),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
-  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.BLACK_TRANSPARENT_HUGE)],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.BLACK_TRANSPARENT_SEVERE)],
   [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
   [R.T, R.always(Color.BLACK)],
 ]);
@@ -168,7 +168,6 @@ const Overlay = styled(Button)`
 `;
 
 export default (props: Props) => {
-  console.log('props', props);
   return R.cond([
     [
       R.propEq('pulse', true),

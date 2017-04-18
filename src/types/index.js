@@ -11,6 +11,17 @@ export type Magnitude =
   | 'huge'
   | 'massive';
 
+// https://en.wikipedia.org/wiki/Mercalli_intensity_scale
+export type Intensity =
+  | 'weak'
+  | 'light'
+  | 'moderate'
+  | 'strong'
+  | 'very_strong'
+  | 'severe'
+  | 'violent'
+  | 'extreme';
+
 export type Breed = 'primary' | 'secondary';
 
 export type Size = 'small' | 'medium' | 'large';

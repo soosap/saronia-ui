@@ -78,5 +78,5 @@ Following this pattern has an important benefit: FlowType definitions will not c
 
 ## Contributors
 
-@DaniyarJakupov
-@soosap
+* @DaniyarJakupov
+* @soosap
