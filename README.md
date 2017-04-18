@@ -49,7 +49,7 @@ import { IconSVGPath } from '@saronia/saronia-ui/constants';
 ### rem vs. em
 
 For consistency sake we exclusively use rem.
-Read up the difference between the two (here)[https://zellwk.com/blog/rem-vs-em/]
+Read up the difference between the two [here](https://zellwk.com/blog/rem-vs-em/)
 
 ### Enum vs. Constant
 
