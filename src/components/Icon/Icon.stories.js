@@ -12,13 +12,13 @@ import {
 
 import { Icon } from '.';
 import {
-  Icon as IconPath,
+  IconSVGPath,
   MagnitudeEnum,
   BreedEnum,
 } from '../../assets/constants';
 
 const stories = storiesOf('Icon', module);
-const iconOptions = R.invertObj(IconPath);
+const iconOptions = R.invertObj(IconSVGPath);
 const sizeOptions = R.invertObj(MagnitudeEnum);
 const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 
@@ -26,7 +26,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
   const props = {
-    icon: select('icon', iconOptions, IconPath.TWITTER),
+    svgPath: select('icon', iconOptions, IconSVGPath.TWITTER),
     size: select('size', sizeOptions, MagnitudeEnum.MEDIUM),
     type: select('type', typeOptions, undefined),
   };

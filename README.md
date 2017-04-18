@@ -27,7 +27,31 @@ git commit -m 'Added hover effects on <Pill /> component'
 git push
 ```
 
+## Components
+
+### Icon
+
+In order to add new icons to the application, determine the icon's svg path and add it to `src/assets/constants/icon`;
+You can then use the icon component like this:
+
+```js
+import { IconSVGPath } from 'src/assets/constants';
+
+<Icon svgPath={IconSVGPath.TWITTER} size='massive' type='primary' />
+```
+To make the icons available to the user of the library we export both, the component itself and the paths object. Alternatively, you could only import the the component and pass it a special svg path that is unique to the application being developed.
+
+```js
+import { Icon } from '@saronia/saronia-ui';
+import { IconSVGPath } from '@saronia/saronia-ui/constants';
+```
+
 ## Conventions
+
+### rem vs. em
+
+For consistency sake we exclusively use rem.
+Read up the difference between the two (here)[https://zellwk.com/blog/rem-vs-em/]
 
 ### Enum vs. Constant
 
