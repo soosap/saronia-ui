@@ -17,16 +17,15 @@ import {
 type Props =
   | {|
       accent?: boolean,
-      breed?: Breed,
       circular?: false,
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
       size?: Magnitude,
+      type?: Breed,
     |}
   | {|
       accent?: boolean,
-      breed?: Breed,
       circular: true,
       inverted?: boolean,
       onClick?: Function,
@@ -34,44 +33,62 @@ type Props =
       pulse?: boolean,
       radius: Magnitude,
       size?: Magnitude,
+      type?: Breed,
     |};
+
+const peek = R.tap(console.log);
 
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always('transparent')],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
-  [R.T, R.always(Color.PRIMARY)],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.GREY)],
 ]);
 
-const getBackgroundHoverColor = R.cond([
+const getBackgroundColorHover = R.cond([
   [R.propEq('inverted', true), R.always(Color.WHITE_DARK)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARK)],
-  [R.T, R.always(Color.PRIMARY_DARK)],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARK)],
+  [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARK)],
+  [R.T, R.always(Color.GREY_DARK)],
 ]);
 
-const getBorder = R.cond([
+const getBackgroundColorActive = R.cond([
+  [R.propEq('inverted', true), R.always(Color.IVORY_DARK)],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARKER)],
+  [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARKER)],
+  [R.T, R.always(Color.GREY_DARKER)],
+]);
+
+const getBorder = R.compose(peek, R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
     R.always(Border.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
     R.always(Border.SECONDARY),
   ],
   [R.propEq('inverted', true), R.always(Border.DEFAULT)],
-  [(R.T, R.always('none'))],
-]);
+  [R.T, R.always('none')],
+]));
 
 const getColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.propEq('inverted', true), R.always(Color.PRIMARY_DARK)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
+    R.always(Color.PRIMARY),
+  ],
+  [R.propEq('inverted', true), R.always(Color.BLACK)],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.BLACK_TRANSPARENT_HUGE)],
+  [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
-const getFontSize = props => FontSize[R.toUpper(R.prop('size', props))];
+const getFontSize = props =>
+  FontSize[R.toUpper(R.propOr('medium', 'size', props))];
 
 const getPadding = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
@@ -119,12 +136,13 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
-    background-color: ${getBackgroundHoverColor};
+    background-color: ${getBackgroundColorHover};
     transform: ${getTransform('hover')};
   }
 
   &:active {
     transform: ${getTransform('active')};
+    background-color: ${getBackgroundColorActive};
   }
 
   &:focus {
@@ -150,6 +168,7 @@ const Overlay = styled(Button)`
 `;
 
 export default (props: Props) => {
+  console.log('props', props);
   return R.cond([
     [
       R.propEq('pulse', true),

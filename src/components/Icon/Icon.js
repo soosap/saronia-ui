@@ -3,14 +3,13 @@ import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
 
-import type { Size, Type } from '../../types';
-import { Size, Color } from '../../assets/constants';
-import { colors } from '../../assets/styles';
+import type { Magnitude, Breed } from '../../types';
+import { MagnitudeEnum, Color } from '../../assets/constants';
 
 type Props = {
   icon: string,
-  size?: Size,
-  type?: Type,
+  size?: Magnitude,
+  type?: Breed,
 };
 
 const getFill = R.cond([
@@ -18,14 +17,14 @@ const getFill = R.cond([
 ]);
 
 const getWidth = R.cond([
-  [R.propEq('size', Size.MINI), R.always('0.64rem')],
-  [R.propEq('size', Size.TINY), R.always('0.72rem')],
-  [R.propEq('size', Size.SMALL), R.always('0.84rem')],
-  [R.propEq('size', Size.MEDIUM), R.always('1rem')],
-  [R.propEq('size', Size.LARGE), R.always('1.3rem')],
-  [R.propEq('size', Size.BIG), R.always('1.7rem')],
-  [R.propEq('size', Size.HUGE), R.always('2.2rem')],
-  [R.propEq('size', Size.MASSIVE), R.always('3rem')],
+  [R.propEq('size', MagnitudeEnum.MINI), R.always('0.64rem')],
+  [R.propEq('size', MagnitudeEnum.TINY), R.always('0.72rem')],
+  [R.propEq('size', MagnitudeEnum.SMALL), R.always('0.84rem')],
+  [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('1rem')],
+  [R.propEq('size', MagnitudeEnum.LARGE), R.always('1.3rem')],
+  [R.propEq('size', MagnitudeEnum.BIG), R.always('1.7rem')],
+  [R.propEq('size', MagnitudeEnum.HUGE), R.always('2.2rem')],
+  [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('3rem')],
   [R.T, R.always('1rem')],
 ]);
 
