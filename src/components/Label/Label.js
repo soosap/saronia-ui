@@ -138,7 +138,7 @@ const getColor = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.T, R.always(Color.BLACK_TRANSPARENT_VERY_STRONG)],
+  [R.T, R.always(Color.BLACK_TRANSPARENT_SEVERE)],
 ]);
 
 const getSize = R.cond([

@@ -32,7 +32,5 @@ stories.add('default', () => {
     inverted: boolean('inverted', false),
   });
 
-  console.log('props', props);
-
   return <Icon {...props} />;
 });
