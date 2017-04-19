@@ -36,8 +36,6 @@ type Props =
       type?: Breed,
     |};
 
-const peek = R.tap(console.log);
-
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always('transparent')],
   [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
@@ -59,7 +57,7 @@ const getBackgroundColorActive = R.cond([
   [R.T, R.always(Color.GREY_DARKER)],
 ]);
 
-const getBorder = R.compose(peek, R.cond([
+const getBorder = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
     R.always(Border.PRIMARY),
@@ -70,7 +68,7 @@ const getBorder = R.compose(peek, R.cond([
   ],
   [R.propEq('inverted', true), R.always(Border.DEFAULT)],
   [R.T, R.always('none')],
-]));
+]);
 
 const getColor = R.cond([
   [

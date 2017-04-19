@@ -17,11 +17,6 @@ const stories = storiesOf('Button', module);
 const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 
 stories.addDecorator(withKnobs);
-stories.addDecorator(story => (
-  <div style={{ margin: '50px' }}>
-    {story()}
-  </div>
-));
 
 const popOptions = R.invertObj({
   ACTIVE: 'active',

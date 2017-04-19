@@ -35,11 +35,11 @@ stories.addDecorator(withKnobs);
 stories
   .add('default', () => {
     const circular = boolean('circular', false);
-    const children = text('children', 'MyLabel');
+    const children = text('children', '22');
 
     const props = R.pickBy(isNotNil, {
       size: select('size', sizeOptions, 'medium'),
-      type: select('type', typeOptions, undefined),
+      type: select('type', typeOptions, 'secondary'),
       inverted: boolean('inverted', false),
       circular,
       radius: circular ? select('radius', sizeOptions, 'medium') : undefined,
@@ -53,7 +53,7 @@ stories
   })
   .add('arrow', () => {
     const children = text('children', 'MyLabel');
-    
+
     const props = R.pickBy(isNotNil, {
       arrow: select('arrow', positionOptions, 'top'),
       size: select('size', sizeOptions, 'small'),
