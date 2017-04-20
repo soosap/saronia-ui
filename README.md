@@ -31,13 +31,11 @@ git push
 
 ## Button
 
-### props
-
-#### circular | radius
+### circular | radius
 `<Button circular radius='huge'>Register</Button>`
 Renders a circular button whose radius can be controlled by a separate prop.
 
-#### icon | iconPosition
+### icon | iconPosition
 `<Button icon={XYZ} iconPosition='right'>Subscribe</Button>`
 Renders the default button with an icon attached. The position of the icon can be controlled via a separate prop.
 
