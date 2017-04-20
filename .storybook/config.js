@@ -1,5 +1,7 @@
 import { configure } from '@kadira/storybook';
-import '../src/assets/styles/global';
+import { generateAndInjectGlobalCSS } from '../src';
+
+generateAndInjectGlobalCSS();
 
 const req = require.context('../src/components', true, /\.stories\.js$/);
 

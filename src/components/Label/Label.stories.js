@@ -12,13 +12,22 @@ import {
   select,
 } from '@kadira/storybook-addon-knobs';
 
-import { PositionEnum, SizeEnum, TypeEnum } from '../../assets/constants';
+import {
+  PositionEnum,
+  MagnitudeEnum,
+  BreedEnum,
+  Color,
+} from '../../assets/constants';
 
 const positionOptions = R.invertObj(PositionEnum);
-const sizeOptions = R.invertObj(SizeEnum);
-const typeOptions = R.invertObj(TypeEnum);
+const sizeOptions = R.invertObj(MagnitudeEnum);
+const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const isNotNil = R.both(
+  R.complement(R.isNil),
+  R.complement(R.equals('undefined')),
+);
 
-import Label from '.';
+import { Label } from '.';
 
 const stories = storiesOf('Label', module);
 stories.addDecorator(withKnobs);
@@ -26,48 +35,31 @@ stories.addDecorator(withKnobs);
 stories
   .add('default', () => {
     const circular = boolean('circular', false);
-    const props = {
-      size: select('size', sizeOptions, 'mini'),
-      type: select('type', typeOptions, undefined),
-      inverted: boolean('inverted', false),
-      children: text('children', 'MyLabel'),
-      circular,
-      radius: circular ? select('radius', sizeOptions, 'big') : undefined,
-    };
+    const children = text('children', '22');
 
-    return R.cond([
-      [
-        R.propEq('circular', true),
-        R.always(
-          <Label
-            size={props.size}
-            type={props.type}
-            inverted={props.inverted}
-            circular
-            radius={props.radius}
-          >
-            {props.children}
-          </Label>,
-        ),
-      ],
-      [
-        R.T,
-        R.always(
-          <Label size={props.size} type={props.type} inverted={props.inverted}>
-            {props.children}
-          </Label>,
-        ),
-      ],
-    ])(props);
+    const props = R.pickBy(isNotNil, {
+      size: select('size', sizeOptions, 'medium'),
+      type: select('type', typeOptions, 'secondary'),
+      inverted: boolean('inverted', false),
+      circular,
+      radius: circular ? select('radius', sizeOptions, 'medium') : undefined,
+    });
+
+    return (
+      <Label {...props}>
+        {children}
+      </Label>
+    );
   })
   .add('arrow', () => {
-    const props = {
+    const children = text('children', 'MyLabel');
+
+    const props = R.pickBy(isNotNil, {
       arrow: select('arrow', positionOptions, 'top'),
       size: select('size', sizeOptions, 'small'),
       type: select('type', typeOptions, undefined),
       inverted: boolean('inverted', false),
-      children: text('children', 'Enter a value'),
-    };
+    });
 
     const getFlexDirection = R.cond([
       [R.propEq('arrow', 'top'), R.always('column')],
@@ -87,7 +79,7 @@ stories
 
     const Segment = styled.div`
       flex: 1;
-      background-color: pink;
+      background-color: ${Color.PRIMARY};
       width: 150px;
       height: 100px;
     `;
@@ -99,13 +91,8 @@ stories
     return (
       <Wrapper>
         <Segment />
-        <ArrowLabel
-          size={props.size}
-          arrow={props.arrow}
-          type={props.type}
-          inverted={props.inverted}
-        >
-          {props.children}
+        <ArrowLabel {...props}>
+          {children}
         </ArrowLabel>
       </Wrapper>
     );

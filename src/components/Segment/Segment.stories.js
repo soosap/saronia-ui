@@ -2,7 +2,6 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-
 import { storiesOf, action, linkTo } from '@kadira/storybook';
 import {
   withKnobs,
@@ -11,46 +10,40 @@ import {
   number,
   select,
 } from '@kadira/storybook-addon-knobs';
-import { TypeEnum, DegreeEnum } from '../../assets/constants';
-import Segment from '.';
+
+import { BreedEnum, SizeEnum } from '../../assets/constants';
+import { Segment } from '.';
 
 const stories = storiesOf('Segment', module);
 stories.addDecorator(withKnobs);
 
-const typeOptions = R.invertObj(TypeEnum);
-const paddingOptions = R.invertObj(DegreeEnum);
-
-const emphasisOptions = {
-  undefined: 'default',
-  raised: 'raised',
-  stacked: 'stacked',
-  piled: 'piled',
-};
+const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const paddingOptions = R.invertObj(SizeEnum);
+const emphasisOptions = R.invertObj({
+  DEFAULT: undefined,
+  RAISED: 'raised',
+  STACKED: 'stacked',
+  PILED: 'piled',
+});
 
 stories.add('default', () => {
+  const children = text(
+    'children',
+    `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+  );
+
   const props = {
     basic: boolean('basic', false),
     type: select('type', typeOptions, undefined),
     inverted: boolean('inverted', false),
-    padding: select('padding', paddingOptions, 'small'),
+    padding: select('padding', paddingOptions, 'medium'),
     compact: boolean('compact', false),
     emphasis: select('emphasis', emphasisOptions, undefined),
-    children: text('children', 'This is a segment'),
   };
 
   return (
-    <Segment
-      basic={props.basic}
-      inverted={props.inverted}
-      type={props.type}
-      padding={props.padding}
-      compact={props.compact}
-      emphasis={props.emphasis}
-    >
-      <p>{props.children}</p>
-      <p>{props.children}</p>
-      <p>{props.children}</p>
-      <p>{props.children}</p>
+    <Segment {...props}>
+      {children}
     </Segment>
   );
 });

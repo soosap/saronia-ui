@@ -1,7 +1,7 @@
 /* @flow */
 import { keyframes } from 'styled-components';
 
-const scaleUpAndFadeOut = keyframes`
+const SCALE_UP_AND_FADE_OUT = keyframes`
   from {
     transform: scale(1.0);
     opacity: 1;
@@ -14,5 +14,5 @@ const scaleUpAndFadeOut = keyframes`
 `;
 
 export default {
-  scaleUpAndFadeOut,
+  SCALE_UP_AND_FADE_OUT,
 };

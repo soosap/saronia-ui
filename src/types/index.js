@@ -1,7 +1,7 @@
 /* @flow */
 export type Position = 'top' | 'right' | 'bottom' | 'left';
 
-export type Size =
+export type Magnitude =
   | 'mini'
   | 'tiny'
   | 'small'
@@ -11,6 +11,17 @@ export type Size =
   | 'huge'
   | 'massive';
 
-export type Type = 'primary' | 'secondary';
+// https://en.wikipedia.org/wiki/Mercalli_intensity_scale
+export type Intensity =
+  | 'weak'
+  | 'light'
+  | 'moderate'
+  | 'strong'
+  | 'very_strong'
+  | 'severe'
+  | 'violent'
+  | 'extreme';
 
-export type Degree = 'small' | 'medium' | 'large'; 
+export type Breed = 'primary' | 'secondary';
+
+export type Size = 'small' | 'medium' | 'large';

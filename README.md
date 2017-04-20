@@ -1,6 +1,6 @@
-#saronia-ui
+saronia-ui is a set of React components built using flexbox and styled-components.
 
-## Setup
+# Setup
 
 ```sh
 # Clone the repository
@@ -26,3 +26,69 @@ git commit -m 'Added hover effects on <Pill /> component'
 # Regularly push your work to obtain feedback
 git push
 ```
+
+# Components
+
+## Button
+
+### circular | radius
+```js
+<Button circular radius='huge'>Register</Button>
+```
+Renders a circular button whose radius can be controlled by a separate prop.
+
+### icon | iconPosition
+```js
+<Button icon={XYZ} iconPosition='right'>Subscribe</Button>
+```
+Renders the default button with an icon attached. The position of the icon can be controlled via a separate prop.
+
+## Icon
+
+In order to add new icons to the application, determine the icon's svg path and add it to `src/assets/constants/icon`;
+You can then use the icon component like this:
+
+```js
+<Icon svgPath={IconSVGPath.TWITTER} size='massive' type='primary' />
+```
+To make the icons available to the user of the library we export both, the component itself and the paths object. Alternatively, you could only import the the component and pass it a special svg path that is unique to the application being developed.
+
+```js
+import { Icon } from '@saronia/saronia-ui';
+import { IconSVGPath } from '@saronia/saronia-ui/constants';
+```
+
+# Conventions
+
+## rem vs. em
+
+For consistency sake we exclusively use rem.
+Read up the difference between the two [here](https://zellwk.com/blog/rem-vs-em/).
+
+## Enum vs. Constant
+
+Whenever the left-hand side is a mere lowercase representation of the right-hand side as in the example below, we add the **Enum** suffix to the variable name declaration.
+
+```js
+const SizeEnum = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large',
+}
+```
+
+On the contrary, whenever the left-hand side and the right-hand side do not match up as the example below, no additional suffix is being attached.
+```js
+const Color = {
+  PRIMARY: '#FFB00C',
+  SECONDARY: '#F2416C',
+  WHITE: '#FFFFFF',
+}
+```
+
+Following this pattern has an important benefit: FlowType definitions will not clash w/ constants and enums.
+
+# Contributors
+
+* @DaniyarJakupov
+* @soosap
