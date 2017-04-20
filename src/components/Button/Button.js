@@ -60,6 +60,53 @@ const getBackgroundColorActive = R.cond([
   [R.T, R.always(Color.GREY_DARKER)],
 ]);
 
+const getIconBackgroundColor = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
+    R.always(Color.PRIMARY),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
+    R.always(Color.SECONDARY),
+  ],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARKER)],
+  [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARKER)],
+  [R.T, R.always(Color.GREY_DARKER)],
+]);
+
+const getIconFill = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
+    R.always(Color.WHITE),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
+    R.always(Color.WHITE),
+  ],
+]);
+
+const getIconFillHover = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
+    R.always(Color.WHITE_DARK),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
+    R.always(Color.WHITE_DARK),
+  ],
+]);
+
+const getIconFillActive = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
+    R.always(Color.IVORY_DARK),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
+    R.always(Color.IVORY_DARK),
+  ],
+]);
+
 const getBorder = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
@@ -99,7 +146,7 @@ const getPadding = R.cond([
   [R.propEq('size', MagnitudeEnum.MINI), R.always('.2rem .3rem')],
   [R.propEq('size', MagnitudeEnum.TINY), R.always('.2rem .3rem')],
   [R.propEq('size', MagnitudeEnum.SMALL), R.always('.2rem .4rem')],
-  [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('.2rem .5rem')],
+  [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('.25rem .5rem')],
   [R.propEq('size', MagnitudeEnum.LARGE), R.always('.25rem .5rem')],
   [R.propEq('size', MagnitudeEnum.BIG), R.always('.3rem .5rem')],
   [R.propEq('size', MagnitudeEnum.HUGE), R.always('.4rem .7rem')],
@@ -192,10 +239,26 @@ const renderIconButton = props => {
   const Wrapper = styled(Button)`
     padding: 0;
     align-items: stretch;
+
+    svg {
+      fill: ${getIconFill};
+    }
+
+    &:hover {
+      svg {
+        fill: ${getIconFillHover};
+      }
+    }
+
+    &:active {
+      svg {
+        fill: ${getIconFillActive};
+      }
+    }
   `;
 
   const IconWrapper = styled.div`
-    background-color: ${getBackgroundColorActive};
+    background-color: ${getIconBackgroundColor};
     padding: ${getPadding};
     display: flex;
     justify-content: center;
@@ -212,7 +275,12 @@ const renderIconButton = props => {
   return (
     <Wrapper {...props}>
       <IconWrapper {...props}>
-        <Icon {...R.merge(props, { svgPath: props.icon, inverted: !props.inverted })} />
+        <Icon
+          {...R.merge(props, {
+            svgPath: props.icon,
+            inverted: !props.inverted,
+          })}
+        />
       </IconWrapper>
       <TextWrapper {...props}>
         {R.prop('children', props)}
