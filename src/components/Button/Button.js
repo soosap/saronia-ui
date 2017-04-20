@@ -16,17 +16,27 @@ import {
 import { Icon } from '../Icon';
 
 type Props =
-  | {|
+  | {| // default
       accent?: boolean,
       circular?: false,
-      icon?: string,
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
       size?: Magnitude,
       type?: Breed,
     |}
-  | {|
+  | {| // icon
+      accent?: boolean,
+      circular?: false,
+      icon: string,
+      iconPosition?: 'left' | 'right',
+      inverted?: boolean,
+      onClick?: Function,
+      pop?: 'active' | 'focus' | 'hover',
+      size?: Magnitude,
+      type?: Breed,
+    |}
+  | {| // circular
       accent?: boolean,
       circular: true,
       icon?: false,
@@ -235,7 +245,6 @@ const renderPulseButton = props => {
 };
 
 const renderIconButton = props => {
-  console.log('props icon', props);
   const Wrapper = styled(Button)`
     padding: 0;
     align-items: stretch;
@@ -263,6 +272,7 @@ const renderIconButton = props => {
     display: flex;
     justify-content: center;
     align-items: center;
+    order: ${props => props.iconPosition === 'right' ? 1 : 0};
   `;
 
   const TextWrapper = styled.div`
@@ -290,7 +300,6 @@ const renderIconButton = props => {
 };
 
 export default (props: Props) => {
-  console.log('props boo', props);
   return R.cond([
     [R.prop('icon'), renderIconButton],
     [R.propEq('pulse', true), renderPulseButton],
