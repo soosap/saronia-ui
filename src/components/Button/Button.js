@@ -96,7 +96,14 @@ const getFontSize = props =>
 
 const getPadding = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
-  [R.T, R.always('0.2rem 0.5rem')],
+  [R.propEq('size', MagnitudeEnum.MINI), R.always('.2rem .3rem')],
+  [R.propEq('size', MagnitudeEnum.TINY), R.always('.2rem .3rem')],
+  [R.propEq('size', MagnitudeEnum.SMALL), R.always('.2rem .4rem')],
+  [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('.2rem .5rem')],
+  [R.propEq('size', MagnitudeEnum.LARGE), R.always('.25rem .5rem')],
+  [R.propEq('size', MagnitudeEnum.BIG), R.always('.3rem .5rem')],
+  [R.propEq('size', MagnitudeEnum.HUGE), R.always('.4rem .7rem')],
+  [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('.5rem 1rem')],
 ]);
 
 const getTransform = R.curry((pseudoState, props) =>
@@ -181,15 +188,15 @@ const renderPulseButton = props => {
 };
 
 const renderIconButton = props => {
-  const IconButton = styled(Button)`
+  console.log('props icon', props);
+  const Wrapper = styled(Button)`
     padding: 0;
     align-items: stretch;
   `;
 
   const IconWrapper = styled.div`
-    background-color: ${Color.PRIMARY};
-    width: 2rem;
-    min-width: 26px;
+    background-color: ${getBackgroundColorActive};
+    padding: ${getPadding};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -197,17 +204,20 @@ const renderIconButton = props => {
 
   const TextWrapper = styled.div`
     padding: ${getPadding};
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `;
 
   return (
-    <IconButton {...R.omit(['children', 'icon'], props)}>
-      <IconWrapper>
-        <Icon svgPath={R.prop('icon', props)} />
+    <Wrapper {...props}>
+      <IconWrapper {...props}>
+        <Icon {...R.merge(props, { svgPath: props.icon, inverted: !props.inverted })} />
       </IconWrapper>
-      <TextWrapper>
+      <TextWrapper {...props}>
         {R.prop('children', props)}
       </TextWrapper>
-    </IconButton>
+    </Wrapper>
   );
 };
 

@@ -20,6 +20,7 @@ import {
 
 const stories = storiesOf('Button', module);
 const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const iconOptions = R.invertObj(IconSVGPath);
 const popOptions = R.invertObj({
   ACTIVE: 'active',
   FOCUS: 'focus',
@@ -59,6 +60,7 @@ stories
     const children = text('children', 'Register');
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
+      icon: select('icon', iconOptions, IconSVGPath.TWITTER),
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
@@ -66,7 +68,7 @@ stories
     });
 
     return (
-      <Button {...props} icon={IconSVGPath.BIN2} onClick={action('clicked')}>
+      <Button {...props} onClick={action('clicked')}>
         {children}
       </Button>
     );

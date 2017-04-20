@@ -1,10 +1,10 @@
 /* @flow */
 export const FontSize = {
-  MINI: '0.64285714rem',
-  TINY: '0.78571429rem',
-  SMALL: '0.85714286rem',
-  MEDIUM: '1rem',
-  LARGE: '1.42857143rem',
+  MINI: '0.7rem',
+  TINY: '0.88rem',
+  SMALL: '1rem',
+  MEDIUM: '1.3rem',
+  LARGE: '1.6rem',
   BIG: '1.92857142rem',
   HUGE: '2.35714287rem',
   MASSIVE: '3rem',
