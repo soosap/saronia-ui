@@ -53,21 +53,21 @@ const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always('transparent')],
   [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
   [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
-  [R.T, R.always(Color.GREY)],
+  [R.T, R.always(Color.GREY_LIGHT)],
 ]);
 
 const getBackgroundColorHover = R.cond([
   [R.propEq('inverted', true), R.always(Color.WHITE_DARK)],
   [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARK)],
   [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARK)],
-  [R.T, R.always(Color.GREY_DARK)],
+  [R.T, R.always(Color.GREY_MODERATE)],
 ]);
 
 const getBackgroundColorActive = R.cond([
   [R.propEq('inverted', true), R.always(Color.IVORY_DARK)],
   [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARKER)],
   [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARKER)],
-  [R.T, R.always(Color.GREY_DARKER)],
+  [R.T, R.always(Color.GREY_STRONG)],
 ]);
 
 const getIconBackgroundColor = R.cond([
@@ -81,7 +81,7 @@ const getIconBackgroundColor = R.cond([
   ],
   [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARKER)],
   [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARKER)],
-  [R.T, R.always(Color.GREY_DARKER)],
+  [R.T, R.always(Color.GREY_STRONG)],
 ]);
 
 const getIconFill = R.cond([

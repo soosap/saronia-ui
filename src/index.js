@@ -6,6 +6,7 @@ import { Button, Buttons } from './components/Button';
 import { Icon } from './components/Icon';
 import { Label } from './components/Label';
 import { Segment } from './components/Segment';
+import { List, ListItem } from './components/List';
 import { H1, H2, H3, H4, H5, H6 } from './components/Heading';
 
 export const generateAndInjectGlobalCSS = () => injectGlobal`
@@ -21,4 +22,18 @@ export const generateAndInjectGlobalCSS = () => injectGlobal`
 	}
 `;
 
-export { Button, Buttons, Label, Segment, Icon, H1, H2, H3, H4, H5, H6 };
+export {
+  Button,
+  Buttons,
+  Label,
+  Segment,
+  Icon,
+  List,
+  ListItem,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+};

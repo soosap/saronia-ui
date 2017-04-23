@@ -11,8 +11,10 @@ type Props = {
 
 const H6 = styled.h6`
   font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
+  font-weight: 400;
   text-transform: ${props => (props.transform ? props.transform : 'inherit')};
   text-decoration: ${props => (props.decoration ? props.decoration : 'inherit')};
+  margin: .2rem 0;
 `;
 
 export default (props: Props) => <H6 {...props} />;
