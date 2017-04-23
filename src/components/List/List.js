@@ -9,21 +9,9 @@ type Props = {
   children: any,
   gap?: Magnitude,
   timeline?: boolean,
-  marginLeft?: Magnitude,
+  marginLeft?: string,
   type?: Breed,
 };
-
-export const getMarginLeft = R.cond([
-  [R.propEq('marginLeft', MagnitudeEnum.MINI), R.always('30px')],
-  [R.propEq('marginLeft', MagnitudeEnum.TINY), R.always('45px')],
-  [R.propEq('marginLeft', MagnitudeEnum.SMALL), R.always('60px')],
-  [R.propEq('marginLeft', MagnitudeEnum.MEDIUM), R.always('75px')],
-  [R.propEq('marginLeft', MagnitudeEnum.LARGE), R.always('90px')],
-  [R.propEq('marginLeft', MagnitudeEnum.BIG), R.always('105px')],
-  [R.propEq('marginLeft', MagnitudeEnum.HUGE), R.always('120px')],
-  [R.propEq('marginLeft', MagnitudeEnum.MASSIVE), R.always('135px')],
-  [R.T, R.always('75px')],
-]);
 
 const Wrapper = styled.ul`
   display: flex;
@@ -32,7 +20,7 @@ const Wrapper = styled.ul`
   margin: 0;
   padding: 0;
   position: relative;
-  margin-left: ${getMarginLeft};
+  margin-left: ${R.propOr('75px', 'marginLeft')};
 
   &::before {
     content: '';
@@ -45,19 +33,29 @@ const Wrapper = styled.ul`
   }
 `;
 
-const List = (props: Props) => {
+const Content = styled.div`
+
+`;
+
+const renderTimeline = (props: Props) => {
   return (
     <Wrapper {...props}>
-      {props.children.map(child =>
+      {props.children.map((child, index) =>
         React.cloneElement(child, {
           timeline: props.timeline,
           type: props.type,
           gap: props.gap,
-          labelWidth: props.marginLeft,
+          marginLeft: props.marginLeft,
+          key: index,
         }),
       )}
     </Wrapper>
   );
 };
 
-export default List;
+export default (props: Props) => {
+  return R.cond([
+    [R.prop('timeline'), renderTimeline],
+    [R.T, R.always(<Content {...props} />)],
+  ])(props);
+};

@@ -25,7 +25,7 @@ type Props =
       gap?: Magnitude,
       labelBottom?: string,
       labelTop?: string,
-      labelWidth?: Magnitude,
+      marginLeft?: string,
       timeline: true,
       type?: Breed,
     };
@@ -48,18 +48,6 @@ const getMarginTopBottom = R.cond([
   [R.T, R.always('30px')],
 ]);
 
-const getLabelWidth = R.cond([
-  [R.propEq('labelWidth', MagnitudeEnum.MINI), R.always(30)],
-  [R.propEq('labelWidth', MagnitudeEnum.TINY), R.always(45)],
-  [R.propEq('labelWidth', MagnitudeEnum.SMALL), R.always(60)],
-  [R.propEq('labelWidth', MagnitudeEnum.MEDIUM), R.always(75)],
-  [R.propEq('labelWidth', MagnitudeEnum.LARGE), R.always(90)],
-  [R.propEq('labelWidth', MagnitudeEnum.BIG), R.always(105)],
-  [R.propEq('labelWidth', MagnitudeEnum.HUGE), R.always(120)],
-  [R.propEq('labelWidth', MagnitudeEnum.MASSIVE), R.always(135)],
-  [R.T, R.always(75)],
-]);
-
 const Wrapper = styled.li`
   display: flex;
   margin: ${getMarginTopBottom} 0;
@@ -67,70 +55,70 @@ const Wrapper = styled.li`
   padding-left: 1rem;
 `;
 
-const VerticalLine = styled.span`
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  border: 1px solid ${Color.GREY_SEVERE};
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border: 2px solid ${getColor};
-    border-radius: 6px;
-    background-color: ${Color.WHITE};
-    top: -2px;
-    left: -5px;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border: 2px solid ${getColor};
-    border-radius: 6px;
-    background-color: ${Color.WHITE};
-    bottom: -2px;
-    left: -5px;
-  }
-`;
-
-const Label = styled.span`
-  position: absolute;
-  left: -${getLabelWidth}px;
-  width: ${props => getLabelWidth(props) - 10}px;
-  text-align: right;
-  font-size: ${FontSize.MINI};
-  color: ${Color.GREY_VIOLENT};
-`;
-
-const LabelTop = styled(Label)`
-  top: -3px;
-`;
-
-const LabelBottom = styled(Label)`
-  bottom: -5px;
-`;
-
 const Content = styled.div`
 
 `;
 
-const renderTimeline = (props: Props) => {
+const renderTimelineItem = (props: Props) => {
+  const VerticalLine = styled.span`
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border: 1px solid ${Color.GREY_SEVERE};
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 2px solid ${getColor};
+      border-radius: 6px;
+      background-color: ${Color.WHITE};
+      top: -2px;
+      left: -5px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 2px solid ${getColor};
+      border-radius: 6px;
+      background-color: ${Color.WHITE};
+      bottom: -2px;
+      left: -5px;
+    }
+  `;
+
+  const Label = styled.span`
+    position: absolute;
+    left: -${R.propOr('75px', 'marginLeft')};
+    width: ${R.propOr('75px', 'marginLeft')};
+    text-align: right;
+    font-size: ${FontSize.MINI};
+    color: ${Color.GREY_VIOLENT};
+  `;
+
+  const LabelTop = styled(Label)`
+    top: -3px;
+  `;
+
+  const LabelBottom = styled(Label)`
+    bottom: -5px;
+  `;
+
   return (
     <Wrapper {...props}>
       <VerticalLine type={props.type} />
-      <LabelTop {...R.pick(['labelWidth'], props)}>
-        {R.prop('labelTop', props)}
+      <LabelTop {...R.pick(['marginLeft'], props)}>
+        {R.prop('labelTop', props)}&nbsp;&nbsp;&nbsp;
       </LabelTop>
-      <LabelBottom {...R.pick(['labelWidth'], props)}>
-        {R.prop('labelBottom', props)}
+      <LabelBottom {...R.pick(['marginLeft'], props)}>
+        {R.prop('labelBottom', props)}&nbsp;&nbsp;&nbsp;
       </LabelBottom>
       <Content {...props}>{props.children}</Content>
     </Wrapper>
@@ -139,7 +127,7 @@ const renderTimeline = (props: Props) => {
 
 export default (props: Props) => {
   return R.cond([
-    [R.prop('timeline'), renderTimeline],
+    [R.prop('timeline'), renderTimelineItem],
     [R.T, R.always(<Content {...props} />)],
   ])(props);
 };

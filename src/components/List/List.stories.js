@@ -24,9 +24,9 @@ const isNotNil = R.both(
 
 stories.add('timeline', () => {
   const props = R.pickBy(isNotNil, {
-    gap: select('gap', R.invertObj(MagnitudeEnum), 'medium'),
-    marginLeft: select('margin', R.invertObj(MagnitudeEnum), 'medium'),
     timeline: boolean('timeline', true),
+    marginLeft: text('marginLeft', '75px'),
+    gap: select('gap', R.invertObj(MagnitudeEnum), 'medium'),
     type: select('type', typeOptions, undefined),
   });
 
