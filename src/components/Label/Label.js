@@ -125,7 +125,7 @@ const getBorderColor = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.propEq('inverted', true), R.always(Color.GREY)],
+  [R.propEq('inverted', true), R.always(Color.GREY_DARKER)],
   [R.T, R.always('transparent')],
 ]);
 
@@ -180,7 +180,7 @@ const Label = styled.label`
   color: ${getColor};
   font-size: ${getSize};
   font-family: ${Font.SYSTEM};
-  border: ${Border.DEFAULT} solid ${getBorderColor};
+  border: ${BorderWidth.SMALL} solid ${getBorderColor};
   border-radius: ${props => (props.circular ? '50%' : BORDER_RADIUS)};
   text-align: center;
   background-image: none;
