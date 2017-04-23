@@ -19,6 +19,8 @@ import {
 } from '../../assets/constants';
 
 const stories = storiesOf('Button', module);
+stories.addDecorator(withKnobs);
+
 const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const iconOptions = R.invertObj(IconSVGPath);
 const iconPositionOptions = R.invertObj({ LEFT: 'left', RIGHT: 'right' });
@@ -33,7 +35,6 @@ const isNotNil = R.both(
   R.complement(R.equals('undefined')),
 );
 
-stories.addDecorator(withKnobs);
 stories
   .add('default', () => {
     const circular = boolean('circular', false);

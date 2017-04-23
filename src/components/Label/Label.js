@@ -166,7 +166,7 @@ const getWidth = R.cond([
 
 const getPadding = R.cond([[R.T, R.always('0.2rem')]]);
 
-const Label = styled.label`
+const Label = styled.span`
   display: ${props => (props.circular ? 'flex' : 'inline-block')};
   justify-content: ${props => (props.circular ? 'center' : undefined)};
   align-items: ${props => (props.circular ? 'center' : undefined)};
