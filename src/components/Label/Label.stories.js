@@ -21,7 +21,7 @@ import {
 
 const positionOptions = R.invertObj(PositionEnum);
 const sizeOptions = R.invertObj(MagnitudeEnum);
-const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const typeOptions = R.invertObj(R.merge({ DEFAULT: undefined }, BreedEnum));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -39,7 +39,7 @@ stories
 
     const props = R.pickBy(isNotNil, {
       size: select('size', sizeOptions, 'medium'),
-      type: select('type', typeOptions, 'secondary'),
+      type: select('type', typeOptions, undefined),
       inverted: boolean('inverted', false),
       circular,
       radius: circular ? select('radius', sizeOptions, 'medium') : undefined,
@@ -56,7 +56,7 @@ stories
 
     const props = R.pickBy(isNotNil, {
       arrow: select('arrow', positionOptions, 'top'),
-      size: select('size', sizeOptions, 'small'),
+      size: select('size', sizeOptions, 'medium'),
       type: select('type', typeOptions, undefined),
       inverted: boolean('inverted', false),
     });
