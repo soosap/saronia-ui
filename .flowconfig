@@ -40,4 +40,4 @@ suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 module.ignore_non_literal_requires=true
 
 [version]
-0.42.0
+0.45.0

@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Button /> matches styled component snapshot 1`] = `
-.keCvcC {
-  background-color: #FFB00C;
+.ibbjEI {
+  background-color: #E9E9E6;
   width: inherit;
   height: inherit;
-  padding: 0.2rem 0.5rem;
+  padding: ;
   overflow: hidden;
   display: -webkit-box;
   display: -moz-box;
@@ -16,8 +16,8 @@ exports[`<Button /> matches styled component snapshot 1`] = `
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   -webkit-justify-content: flex-start;
-  color: #161616;
-  font-size: ;
+  color: #1B1B1B;
+  font-size: 1.2rem;
   font-family: 'Quicksand', sans-serif;
   border: none;
   border-radius: 3px;
@@ -25,9 +25,9 @@ exports[`<Button /> matches styled component snapshot 1`] = `
   -webkit-transition: all .3s, -webkit-transform .4s ease-out, transform .4s ease-out;
 }
 
-.keCvcC:hover {
+.ibbjEI:hover {
   cursor: pointer;
-  background-color: #FFA104;
+  background-color: #DFDFDC;
   transform: children:;
   -ms-transform: children:;
   -webkit-transform: children:;
@@ -36,16 +36,17 @@ exports[`<Button /> matches styled component snapshot 1`] = `
 
 
 
-.keCvcC:active {
+.ibbjEI:active {
   transform: children:;
   -ms-transform: children:;
   -webkit-transform: children:;
   -hello: ;
+  background-color: #D8D7D2;
 }
 
 
 
-.keCvcC:focus {
+.ibbjEI:focus {
   transform: children:;
   -ms-transform: children:;
   -webkit-transform: children:;
@@ -56,7 +57,7 @@ exports[`<Button /> matches styled component snapshot 1`] = `
 
 
 <button
-  className="keCvcC"
+  className="ibbjEI"
 >
   Hello
 </button>
