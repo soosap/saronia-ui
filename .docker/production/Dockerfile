@@ -16,7 +16,7 @@ WORKDIR /home/nodejs/app
 # -------------------------------------------------------------------------
 #  Build application artefacts
 # -------------------------------------------------------------------------
-COPY package.json yarn.lock .
+COPY package.json yarn.lock ./
 RUN yarn install --production
 RUN yarn run build-storybook
 
