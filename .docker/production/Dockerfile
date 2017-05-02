@@ -14,19 +14,19 @@ RUN mkdir -p /home/nodejs/app
 WORKDIR /home/nodejs/app
 
 # -------------------------------------------------------------------------
+#  Build application artefacts
+# -------------------------------------------------------------------------
+COPY package.json yarn.lock .
+RUN yarn install --production
+RUN yarn run build-storybook
+
+# -------------------------------------------------------------------------
 #  Bake application into image
 # -------------------------------------------------------------------------
 #  Whatever you do not want to be part of the image exclude it via
 #  .dockerignore
 # -------------------------------------------------------------------------
-COPY package.json .
-RUN npm install --production
 COPY . .
-
-# -------------------------------------------------------------------------
-#  Build application artefacts
-# -------------------------------------------------------------------------
-RUN npm run build-storybook
 
 # -------------------------------------------------------------------------
 #  Serve application artefacts w/ a node.js/express webserver
