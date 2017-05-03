@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "ui component library",
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "private": false,
   "author": "Prasath Soosaithasan et. al (https://saronia.io/ui)",
   "keywords": [
@@ -12,9 +14,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "chalk": "^1.1.3",
-    "compression": "^1.6.2",
-    "express": "^4.15.2",
     "ramda": "^0.23.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -23,6 +22,7 @@
   "devDependencies": {
     "@kadira/storybook": "^2.35.3",
     "@kadira/storybook-addon-knobs": "^1.7.1",
+    "@kadira/storybook-addon-options": "^1.0.2",
     "babel-cli": "6.24.0",
     "babel-jest": "^19.0.0",
     "babel-preset-flow": "^6.23.0",
@@ -38,7 +38,7 @@
     "watch": "^1.0.2"
   },
   "scripts": {
-    "start": "NODE_ENV=production babel-node server.js",
+    "start": "npm run storybook",
     "test": "jest",
     "eject": "react-scripts eject",
     "flow": "flow",
@@ -46,7 +46,7 @@
     "build": "rimraf ./dist && NODE_ENV=production babel src --out-dir dist",
     "prepublishOnly": "yarn run build",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "rimraf ./dist-storybook && build-storybook -s public -o dist-storybook/storybook-static && NODE_ENV=production babel server.js --out-dir dist-storybook"
+    "build-storybook": "build-storybook -s public"
   },
   "jest": {
     "testEnvironment": "node"

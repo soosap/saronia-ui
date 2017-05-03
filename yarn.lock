@@ -30,6 +30,10 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@kadira/storybook-addon-links/-/storybook-addon-links-1.0.1.tgz#566136a8020b60f82f146ef37d93b0c86de969d8"
 
+"@kadira/storybook-addon-options@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@kadira/storybook-addon-options/-/storybook-addon-options-1.0.2.tgz#76f821f605099a4348f29833192bfa5952bd87c4"
+
 "@kadira/storybook-addons@^1.5.0":
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/@kadira/storybook-addons/-/storybook-addons-1.6.1.tgz#e84923d298b38c7c1231ddebc219dfb87b2858a6"
@@ -825,13 +829,13 @@ babel-plugin-transform-es2015-computed-properties@^6.24.1, babel-plugin-transfor
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-plugin-transform-es2015-destructuring@6.16.0:
+babel-plugin-transform-es2015-destructuring@6.16.0, babel-plugin-transform-es2015-destructuring@^6.6.0:
   version "6.16.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-destructuring/-/babel-plugin-transform-es2015-destructuring-6.16.0.tgz#050fe0866f5d53b36062ee10cdf5bfe64f929627"
   dependencies:
     babel-runtime "^6.9.0"
 
-babel-plugin-transform-es2015-destructuring@^6.22.0, babel-plugin-transform-es2015-destructuring@^6.6.0:
+babel-plugin-transform-es2015-destructuring@^6.22.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-destructuring/-/babel-plugin-transform-es2015-destructuring-6.23.0.tgz#997bb1f1ab967f682d2b0876fe358d60e765c56d"
   dependencies:
@@ -904,7 +908,7 @@ babel-plugin-transform-es2015-object-super@^6.24.1, babel-plugin-transform-es201
     babel-helper-replace-supers "^6.24.1"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-es2015-parameters@6.17.0:
+babel-plugin-transform-es2015-parameters@6.17.0, babel-plugin-transform-es2015-parameters@^6.6.0:
   version "6.17.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-parameters/-/babel-plugin-transform-es2015-parameters-6.17.0.tgz#e06d30cef897f46adb4734707bbe128a0d427d58"
   dependencies:
@@ -915,7 +919,7 @@ babel-plugin-transform-es2015-parameters@6.17.0:
     babel-traverse "^6.16.0"
     babel-types "^6.16.0"
 
-babel-plugin-transform-es2015-parameters@^6.24.1, babel-plugin-transform-es2015-parameters@^6.6.0:
+babel-plugin-transform-es2015-parameters@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-parameters/-/babel-plugin-transform-es2015-parameters-6.24.1.tgz#57ac351ab49caf14a97cd13b09f66fdf0a625f2b"
   dependencies:
@@ -1774,7 +1778,7 @@ compressible@~2.0.8:
   dependencies:
     mime-db ">= 1.27.0 < 2"
 
-compression@^1.5.2, compression@^1.6.2:
+compression@^1.5.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/compression/-/compression-1.6.2.tgz#cceb121ecc9d09c52d7ad0c3350ea93ddd402bc3"
   dependencies:
@@ -2071,13 +2075,13 @@ debug@2.2.0, debug@~2.2.0:
   dependencies:
     ms "0.7.1"
 
-debug@2.6.1, debug@^2.1.1:
+debug@2.6.1, debug@^2.1.1, debug@^2.2.0, debug@^2.6.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
   dependencies:
     ms "0.7.2"
 
-debug@2.6.4, debug@^2.1.0, debug@^2.2.0, debug@^2.6.0, debug@^2.6.3:
+debug@2.6.4, debug@^2.1.0, debug@^2.6.3:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.4.tgz#7586a9b3c39741c0282ae33445c4e8ac74734fe0"
   dependencies:
@@ -2612,7 +2616,7 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-express@^4.13.3, express@^4.15.2:
+express@^4.13.3:
   version "4.15.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.15.2.tgz#af107fc148504457f2dca9a6f2571d7129b97b35"
   dependencies:
