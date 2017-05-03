@@ -23,7 +23,7 @@ RUN yarn run build-storybook
 # -------------------------------------------------------------------------
 #  Bake application into image
 # -------------------------------------------------------------------------
-COPY dist-storybook  ./
+COPY dist-storybook .storybook ./
 
 # -------------------------------------------------------------------------
 #  Serve application artefacts w/ a node.js/express webserver
