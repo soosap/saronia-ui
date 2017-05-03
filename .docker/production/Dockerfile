@@ -4,4 +4,4 @@ MAINTAINER Prasath Soosaithasan <prasath.soosaithasan@gmail.com>
 # -------------------------------------------------------------------------
 #  Bake static files into image
 # -------------------------------------------------------------------------
-COPY dist-storybook /usr/share/nginx/html
+COPY storybook-static /usr/share/nginx/html
