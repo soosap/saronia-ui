@@ -17,22 +17,18 @@ WORKDIR /home/nodejs/app
 #  Build application artefacts
 # -------------------------------------------------------------------------
 COPY package.json yarn.lock ./
-RUN yarn install --production
+RUN yarn install
 RUN yarn run build-storybook
 
 # -------------------------------------------------------------------------
 #  Bake application into image
 # -------------------------------------------------------------------------
-#  Whatever you do not want to be part of the image exclude it via
-#  .dockerignore
-# -------------------------------------------------------------------------
-COPY . .
+COPY dist-storybook  ./
 
 # -------------------------------------------------------------------------
 #  Serve application artefacts w/ a node.js/express webserver
 # -------------------------------------------------------------------------
-ENV PATH=./node_modules/.bin:${PATH}
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["babel-node", "server.js"]
+CMD ["node", "server.js"]

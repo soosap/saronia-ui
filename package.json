@@ -2,7 +2,7 @@
   "name": "@saronia/saronia-ui",
   "version": "0.1.0",
   "description": "ui component library",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "files": ["dist"],
   "private": false,
   "author": "Prasath Soosaithasan et. al (https://saronia.io/ui)",
@@ -43,10 +43,10 @@
     "eject": "react-scripts eject",
     "flow": "flow",
     "dev": "watch 'yarn run build' src",
-    "build": "rimraf ./lib && NODE_ENV=production babel src --out-dir lib",
+    "build": "rimraf ./dist && NODE_ENV=production babel src --out-dir dist",
     "prepublish": "yarn run build",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "rimraf ./dist-storybook && build-storybook -s public -o dist-storybook/storybook-static && NODE_ENV=production babel server.js --out-dir dist-storybook"
   },
   "jest": {
     "testEnvironment": "node"
