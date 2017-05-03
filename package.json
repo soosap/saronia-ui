@@ -44,7 +44,7 @@
     "flow": "flow",
     "dev": "watch 'yarn run build' src",
     "build": "rimraf ./dist && NODE_ENV=production babel src --out-dir dist",
-    "prepublish": "yarn run build",
+    "prepublishOnly": "yarn run build",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "rimraf ./dist-storybook && build-storybook -s public -o dist-storybook/storybook-static && NODE_ENV=production babel server.js --out-dir dist-storybook"
   },
