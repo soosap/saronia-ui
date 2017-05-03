@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "ui component library",
   "main": "lib/index.js",
+  "files": ["dist"],
   "private": false,
   "author": "Prasath Soosaithasan et. al (https://saronia.io/ui)",
   "keywords": [
