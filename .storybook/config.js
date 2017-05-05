@@ -12,7 +12,7 @@ function loadStories() {
 
 setOptions({
   name: 'saronia-ui',
-  url: 'https://saronia.io/ui'
+  url: 'https://ui.saronia.io'
 });
 
 configure(loadStories, module);
