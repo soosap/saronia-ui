@@ -14,6 +14,11 @@ const Buttons = styled.div`
   button {
     border-radius: 0;
 
+    &:not(:first-child):not(:last-child) {
+      border-left: none;
+      border-right: none;
+    }
+
     &:first-child {
       border-top-left-radius: ${BORDER_RADIUS};
       border-top-right-radius: ${props => props.vertical ? BORDER_RADIUS : 0};
