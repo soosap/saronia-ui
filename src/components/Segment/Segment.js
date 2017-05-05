@@ -13,14 +13,21 @@ import {
   SizeEnum,
 } from '../../assets/constants';
 
-type Props = {
-  basic?: boolean,
-  inverted?: boolean,
-  type?: Breed,
-  padding?: Size,
-  compact?: boolean,
-  emphasis?: 'raised' | 'stacked' | 'piled',
-};
+type Props =
+  | {|
+      basic?: false,
+      padding?: Size,
+      inverted?: boolean,
+      type?: Breed,
+      compact?: boolean,
+      emphasis?: 'raised' | 'stacked' | 'piled',
+    |}
+  | {|
+      basic: true,
+      padding?: Size,
+      type?: Breed,
+      compact?: boolean,
+    |};
 
 const basicStyle = {
   background: 'transparent',
@@ -66,13 +73,50 @@ const stackedStyleAfter = {
   visibility: 'visible',
 };
 
+const piledStyle = {
+   margin: '3em 0em',
+   'box-shadow': "''",
+   'z-index': 'auto',
+};
+
+const piledStyleBefore = {
+   content: "''",
+   position: 'absolute',
+   left: '0px',
+   'border': '1px solid rgba(34, 36, 38, 0.15)',
+   'background-color': getBackgroundColor,
+   width: '100%',
+   height: '100%',
+   visibility: 'visible',
+   display: 'block',
+   transform: 'rotate(-1deg)',
+   top: '0',
+   'z-index': '-2',
+   'box-shadow': "''",
+};
+const piledStyleAfter = {
+   content: "''",
+   position: 'absolute',
+   left: '0px',
+   'border': '1px solid rgba(34, 36, 38, 0.15)',
+   'background-color': getBackgroundColor,
+   width: '100%',
+   height: '100%',
+   visibility: 'visible',
+   display: 'block',
+   transform: 'rotate(1deg)',
+   top: '0',
+   'z-index': '-1',
+   'box-shadow': "''",
+};
+
 const getBackgroundColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', 'primary')),
+    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
     R.always(Color.PRIMARY),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
@@ -106,24 +150,34 @@ const getPadding = R.cond([
 
 const Segment = styled.div`
   position: relative;
-  background: ${getBackgroundColor};
+  background-color: ${getBackgroundColor};
   color: ${getColor};
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
   padding: ${getPadding};
   border-radius: ${BORDER_RADIUS};
   border: 1px solid rgba(34, 36, 38, 0.15);
 
+  &:first-child {
+      ${props => (props.emphasis == 'piled' ? 'margin-left: 0' : null)}
+  }
+  &:last-child {
+      ${props => (props.emphasis == 'piled' ? 'margin-bottom: 0' : null)}
+  }
+
   ${props => (props.basic ? { ...basicStyle } : null)};
   ${props => (props.compact ? { ...compactStyle } : null)};
   ${props => (props.emphasis == 'raised' ? { ...raisedStyle } : null)}
   ${props => (props.emphasis == 'stacked' ? { ...stackedStyle } : null)};
+  ${props => (props.emphasis == 'piled' ? { ...piledStyle } : null)};
 
   &:before {
     ${props => (props.emphasis == 'stacked' ? { ...stackedStyleBefore } : null)}
+    ${props => (props.emphasis == 'piled' ? { ...piledStyleBefore } : null)}
   }
 
   &:after{
     ${props => (props.emphasis == 'stacked' ? { ...stackedStyleAfter } : null)}
+    ${props => (props.emphasis == 'piled' ? { ...piledStyleAfter } : null)}
   }
 `;
 
