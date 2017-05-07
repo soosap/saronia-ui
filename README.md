@@ -89,6 +89,10 @@ const Color = {
 
 Following this pattern has an important benefit: FlowType definitions will not clash w/ constants and enums.
 
+## Release
+
+After making changes to the project that shall be published, fire `$ yarn release`. In the ensuing prompt select between **patch**, **minor**, and **major**.
+
 ## Contributors
 * @DaniyarJakupov
 * @soosap
