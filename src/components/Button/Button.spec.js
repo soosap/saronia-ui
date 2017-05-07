@@ -15,7 +15,7 @@ describe('<Button />', () => {
     expect(tree.type).toEqual('button');
   });
 
-  it('matches styled component snapshot', () => {
-    expect(tree).toMatchStyledComponentsSnapshot();
-  });
+  // it('matches styled component snapshot', () => {
+  //   expect(tree).toMatchStyledComponentsSnapshot();
+  // });
 });

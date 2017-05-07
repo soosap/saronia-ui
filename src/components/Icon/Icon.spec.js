@@ -16,7 +16,7 @@ describe('<Icon />', () => {
     expect(tree.type).toEqual('svg');
   });
 
-  it('matches styled component snapshot', () => {
-    expect(tree).toMatchStyledComponentsSnapshot();
-  });
+  // it('matches styled component snapshot', () => {
+  //   expect(tree).toMatchStyledComponentsSnapshot();
+  // });
 });
