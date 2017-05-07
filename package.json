@@ -1,6 +1,6 @@
 {
   "name": "@saronia/saronia-ui",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "ui component library",
   "main": "build/index.js",
   "files": [
@@ -56,9 +56,9 @@
     "flow": "flow",
     "dev": "watch 'yarn run build' src",
     "build": "rimraf ./dist && NODE_ENV=production babel src --out-dir build",
-    "prepublishOnly": "yarn run build",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
+    "prerelease": "yarn run build",
     "release": "np"
   },
   "jest": {
