@@ -7,7 +7,10 @@
     "build"
   ],
   "private": false,
-  "author": "Prasath Soosaithasan et. al (https://ui.saronia.io)",
+  "authors": [
+    "Daniyar Jakupov",
+    "Prasath Soosaithasan <prasath.soosaithasan@gmail.com> (https://ui.saronia.io)"
+  ],
   "keywords": [
     "ui",
     "styled-components"
