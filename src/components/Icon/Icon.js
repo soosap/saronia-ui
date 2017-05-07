@@ -11,6 +11,7 @@ type Props = {
   size?: Magnitude,
   svgPath: string,
   type?: Breed,
+  viewBox?: string,
 };
 
 const getFill = R.cond([
@@ -46,10 +47,10 @@ const Wrapper = styled.svg`
   fill: ${getFill};
 `;
 
-const Icon = ({ svgPath, size, type, inverted }: Props) => {
+const Icon = ({ svgPath, size, type, inverted, viewBox }: Props) => {
   return (
     <Wrapper
-      viewBox="0 0 1024 1024"
+      viewBox={viewBox ? viewBox : '0 0 1024 1024'}
       size={size}
       type={type}
       inverted={inverted}

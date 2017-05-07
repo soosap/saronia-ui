@@ -28,36 +28,10 @@ git commit -m 'Added hover effects on <Pill /> component'
 git push
 ```
 
-## Components
+## Development
 
-### Button
-
-#### circular | radius
-```js
-<Button circular radius='huge'>Register</Button>
-```
-Renders a circular button whose radius can be controlled by a separate prop.
-
-#### icon | iconPosition
-```js
-<Button icon={XYZ} iconPosition='right'>Subscribe</Button>
-```
-Renders the default button with an icon attached. The position of the icon can be controlled via a separate prop.
-
-### Icon
-
-In order to add new icons to the application, determine the icon's svg path and add it to `src/assets/constants/icon`;
-You can then use the icon component like this:
-
-```js
-<Icon svgPath={IconSVGPath.TWITTER} size='massive' type='primary' />
-```
-To make the icons available to the user of the library we export both, the component itself and the paths object. Alternatively, you could only import the the component and pass it a special svg path that is unique to the application being developed.
-
-```js
-import { Icon } from '@saronia/saronia-ui';
-import { IconSVGPath } from '@saronia/saronia-ui/constants';
-```
+1. `$ npm link` and then `$ yarn run dev` inside the **@saronia/saronia-ui** project
+2. `$ npm link @saronia/saronia-ui` inside the target project
 
 ## Conventions
 
