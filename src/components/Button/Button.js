@@ -16,7 +16,8 @@ import {
 import { Icon } from '../Icon';
 
 type Props =
-  | {| // default
+  | {|
+      // default
       accent?: boolean,
       circular?: false,
       inverted?: boolean,
@@ -25,7 +26,8 @@ type Props =
       size?: Magnitude,
       type?: Breed,
     |}
-  | {| // icon
+  | {|
+      // icon
       accent?: boolean,
       circular?: false,
       icon: string,
@@ -36,7 +38,8 @@ type Props =
       size?: Magnitude,
       type?: Breed,
     |}
-  | {| // circular
+  | {|
+      // circular
       accent?: boolean,
       circular: true,
       icon?: false,
@@ -85,10 +88,7 @@ const getIconBackgroundColor = R.cond([
 ]);
 
 const getIconFill = R.cond([
-  [
-    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
-    R.always(Color.WHITE),
-  ],
+  [R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)), R.always(Color.WHITE)],
   [
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
     R.always(Color.WHITE),
@@ -140,16 +140,12 @@ const getColor = R.cond([
     R.always(Color.PRIMARY),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
-  [
-    R.propEq('type', BreedEnum.PRIMARY),
-    R.always(Color.BLACK_TRANSPARENT_SEVERE),
-  ],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.BLACK_TRANSPARENT_SEVERE)],
   [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
-const getFontSize = props =>
-  FontSize[R.toUpper(R.propOr('medium', 'size', props))];
+const getFontSize = props => FontSize[R.toUpper(R.propOr('medium', 'size', props))];
 
 const getPadding = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
@@ -186,20 +182,20 @@ const Button = styled.button`
   padding: ${getPadding};
   overflow: hidden;
 
-  ${/* flexbox */ ''}
+  ${''}
   display: flex;
   justify-content: ${props => (props.circular ? 'center' : 'flex-start')};
 
-  ${/* font */ ''}
+  ${''}
   color: ${getColor};
   font-size: ${getFontSize};
   font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
 
-  ${/* border */ ''}
+  ${''}
   border: ${getBorder};
   border-radius: ${props => (props.circular ? '50%' : BORDER_RADIUS)};
 
-  ${/* transition */ ''}
+  ${''}
   transition: all .3s, transform .4s ease-out;
 
   &:hover {
@@ -219,7 +215,7 @@ const Button = styled.button`
   }
 `;
 
-const renderPulseButton = props => {
+const renderPulseButton = (props) => {
   const Pulse = styled.div`
     position: relative;
   `;
@@ -244,7 +240,7 @@ const renderPulseButton = props => {
   );
 };
 
-const renderIconButton = props => {
+const renderIconButton = (props) => {
   const Wrapper = styled(Button)`
     padding: 0;
     align-items: stretch;
@@ -272,7 +268,7 @@ const renderIconButton = props => {
     display: flex;
     justify-content: center;
     align-items: center;
-    order: ${props => props.iconPosition === 'right' ? 1 : 0};
+    order: ${props => (props.iconPosition === 'right' ? 1 : 0)};
   `;
 
   const TextWrapper = styled.div`
@@ -299,10 +295,9 @@ const renderIconButton = props => {
   );
 };
 
-export default (props: Props) => {
-  return R.cond([
+export default (props: Props) =>
+  R.cond([
     [R.prop('icon'), renderIconButton],
     [R.propEq('pulse', true), renderPulseButton],
     [R.T, R.always(<Button {...props} />)],
   ])(props);
-};

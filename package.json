@@ -37,12 +37,12 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "babel-runtime": "^6.20.0",
-    "eslint": "3.16.1",
-    "eslint-config-react-app": "^0.6.2",
-    "eslint-plugin-flowtype": "2.21.0",
-    "eslint-plugin-import": "2.0.1",
-    "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.4.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
     "flow-bin": "^0.45.0",
     "jest-cli": "^20.0.0",
     "jest-styled-components": "^2.0.0",
@@ -62,7 +62,8 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "prerelease": "yarn run build",
-    "release": "np"
+    "release": "np",
+    "lint": "eslint --ext .js src/**/*; exit 0;"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -79,8 +80,5 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   }
 }
