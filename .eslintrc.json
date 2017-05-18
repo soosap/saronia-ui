@@ -7,6 +7,8 @@
 	},
   "plugins": ["react", "babel"],
 	"rules": {
+		"no-shadow": 0,
+		"import/no-extraneous-dependencies": [2, { "devDependencies": true }],
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
 	}
 }

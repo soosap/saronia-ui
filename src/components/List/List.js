@@ -2,7 +2,7 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import { Color, MagnitudeEnum } from '../../assets/constants';
+import { Color } from '../../lib/constants';
 import type { Magnitude, Breed } from '../../types';
 
 type Props = {

@@ -1,8 +1,7 @@
 /* @flow */
-import React from 'react';
 import styled from 'styled-components';
 
-import { BORDER_RADIUS, Color } from '../../assets/constants';
+import { BORDER_RADIUS, Color } from '../../lib/constants';
 
 const Dimmer = styled.div`
   position: absolute;

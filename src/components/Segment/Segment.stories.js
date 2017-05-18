@@ -1,17 +1,10 @@
 /* @flow */
 import R from 'ramda';
 import React from 'react';
-import styled from 'styled-components';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  select,
-} from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@kadira/storybook';
+import { withKnobs, text, boolean, number, select } from '@kadira/storybook-addon-knobs';
 
-import { BreedEnum, SizeEnum } from '../../assets/constants';
+import { BreedEnum, SizeEnum } from '../../lib/constants';
 import { Segment } from '.';
 
 const stories = storiesOf('Segment', module);
@@ -29,7 +22,7 @@ const emphasisOptions = R.invertObj({
 stories.add('default', () => {
   const children = text(
     'children',
-    `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   );
 
   const props = {

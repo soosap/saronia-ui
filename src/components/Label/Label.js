@@ -8,12 +8,11 @@ import {
   Color,
   Font,
   FontSize,
-  Border,
   BorderWidth,
   BORDER_RADIUS,
   BreedEnum,
   MagnitudeEnum,
-} from '../../assets/constants';
+} from '../../lib/constants';
 
 type Props =
   | {|

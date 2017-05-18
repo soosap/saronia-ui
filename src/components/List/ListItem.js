@@ -1,14 +1,13 @@
 /* @flow */
 import R from 'ramda';
-import React, { Element } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {
-  Border,
   Color,
   FontSize,
   BreedEnum,
   MagnitudeEnum,
-} from '../../assets/constants';
+} from '../../lib/constants';
 import type { Magnitude, Breed } from '../../types';
 
 type Props =

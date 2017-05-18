@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import type { Magnitude, Breed } from '../../types';
-import { MagnitudeEnum, BreedEnum, Color } from '../../assets/constants';
+import { MagnitudeEnum, BreedEnum, Color } from '../../lib/constants';
 
 type Props = {
   inverted?: boolean,
@@ -47,18 +47,11 @@ const Wrapper = styled.svg`
   fill: ${getFill};
 `;
 
-const Icon = ({ svgPath, size, type, inverted, viewBox }: Props) => {
-  return (
-    <Wrapper
-      viewBox={viewBox ? viewBox : '0 0 1024 1024'}
-      size={size}
-      type={type}
-      inverted={inverted}
-    >
-      <path d={svgPath} />
-    </Wrapper>
-  );
-};
+const Icon = ({ svgPath, size, type, inverted, viewBox }: Props) => (
+  <Wrapper viewBox={viewBox || '0 0 1024 1024'} size={size} type={type} inverted={inverted}>
+    <path d={svgPath} />
+  </Wrapper>
+);
 
 // Icon.defaultProps = {
 //   svgPath: 'path of saronia logo'

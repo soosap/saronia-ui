@@ -12,7 +12,7 @@ import {
   Font,
   FontSize,
   MagnitudeEnum,
-} from '../../assets/constants';
+} from '../../lib/constants';
 import { Icon } from '../Icon';
 
 type Props =
