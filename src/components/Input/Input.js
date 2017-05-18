@@ -1,8 +1,11 @@
 /* @flow */
+import React from 'react';
 import styled from 'styled-components';
 
-const Input = styled.input`
+type Props = {};
 
+const Input = styled.input`
+  color: blue;
 `;
 
-export default Input;
+export default (props: Props) => <Input {...props} />;
