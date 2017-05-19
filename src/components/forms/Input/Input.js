@@ -3,9 +3,13 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 import { transparentize } from 'polished';
-import { BORDER_RADIUS, Color, ContextEnum } from '../../../lib/constants';
 
-type Props = {};
+import { BORDER_RADIUS, Color, ContextEnum } from '../../../lib/constants';
+import type { Context } from '../../../lib/types';
+
+type Props = {
+  context?: Context
+};
 
 const getBorderColor = R.cond([
   [R.propEq('context', ContextEnum.DANGER), R.always(Color.Context.DANGER)],
@@ -21,15 +25,30 @@ const getBorderWidth = R.cond([
 ]);
 
 const getBoxShadow = R.cond([
-  [R.prop('context'), R.always(`
-    0 0 0 1px ${Color.Context.DANGER},
-    0 0 0 3px ${transparentize(.7, Color.Context.DANGER)},
+  [R.prop('context'), (props) => `
+    0 0 0 0 rgba(19, 124, 189, 0),
+    0 0 0 0 rgba(19, 124, 189, 0),
+    inset 0 0 0 1px ${Color.Context[R.toUpper(props.context)]}, 
+    inset 0 0 0 1px rgba(16, 22, 26, 0.15),
     inset 0 1px 1px rgba(16, 22, 26, 0.2);
-  `)],
+  `],
   [R.T, R.always(`
     0 0 0 0 rgba(19, 124, 189, 0),
     0 0 0 0 rgba(19, 124, 189, 0),
     inset 0 0 0 1px rgba(16, 22, 26, 0.15),
+    inset 0 1px 1px rgba(16, 22, 26, 0.2);
+  `)],
+]);
+
+const getBoxShadowOnFocus = R.cond([
+  [R.prop('context'), (props) => `
+    0 0 0 1px ${Color.Context[R.toUpper(props.context)]},
+    0 0 0 3px ${transparentize(.7, Color.Context[props.context.toUpperCase()])},
+    inset 0 1px 1px rgba(16, 22, 26, 0.2);
+  `],
+  [R.T, R.always(`
+    0 0 0 1px ${Color.PRIMARY},
+    0 0 0 3px ${transparentize(.7, Color.PRIMARY)},
     inset 0 1px 1px rgba(16, 22, 26, 0.2);
   `)],
 ]);
@@ -49,10 +68,7 @@ const Input = styled.input`
   transition: box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9);
 
   &:focus {
-    box-shadow:
-      0 0 0 1px ${Color.PRIMARY},
-      0 0 0 3px ${transparentize(.7, Color.PRIMARY)},
-      inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    box-shadow: ${getBoxShadowOnFocus};
   }
 `;
 
