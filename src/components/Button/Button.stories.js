@@ -19,7 +19,7 @@ import {
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
 
-const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const iconOptions = R.invertObj(IconSVGPath);
 const iconPositionOptions = R.invertObj({ LEFT: 'left', RIGHT: 'right' });
 const popOptions = R.invertObj({
@@ -47,7 +47,7 @@ stories
         : undefined,
       pop: select('pop', popOptions, undefined),
       pulse: circular ? boolean('pulse', false) : undefined,
-      type: select('type', typeOptions, undefined),
+      breed: select('breed', breedOptions, undefined),
     });
 
     return (
@@ -65,7 +65,7 @@ stories
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
-      type: select('type', typeOptions, undefined),
+      breed: select('breed', breedOptions, undefined),
     });
 
     return (
