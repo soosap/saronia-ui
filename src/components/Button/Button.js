@@ -2,7 +2,7 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import type { Breed, Magnitude } from '../../types';
+import type { Breed, Magnitude } from '../../lib/types';
 import {
   Animation,
   Border,
@@ -88,7 +88,10 @@ const getIconBackgroundColor = R.cond([
 ]);
 
 const getIconFill = R.cond([
-  [R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)), R.always(Color.WHITE)],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
+    R.always(Color.WHITE),
+  ],
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.WHITE),
@@ -140,12 +143,16 @@ const getColor = R.cond([
     R.always(Color.PRIMARY),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.BLACK_TRANSPARENT_SEVERE)],
+  [
+    R.propEq('breed', BreedEnum.PRIMARY),
+    R.always(Color.BLACK_TRANSPARENT_SEVERE),
+  ],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
-const getFontSize = props => FontSize[R.toUpper(R.propOr('medium', 'size', props))];
+const getFontSize = props =>
+  FontSize[R.toUpper(R.propOr('medium', 'size', props))];
 
 const getPadding = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
@@ -159,7 +166,7 @@ const getPadding = R.cond([
   [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('.5rem 1rem')],
 ]);
 
-const getTransform = R.curry((pseudoState, props) =>
+const getTransform = R.curry(pseudoState =>
   R.when(R.propEq('pop', pseudoState), R.always('scale(1.13)')),
 );
 
@@ -180,22 +187,19 @@ const Button = styled.button`
   width: ${getWidth};
   height: ${getWidth};
   padding: ${getPadding};
+  margin-top: .75rem;
   overflow: hidden;
 
-  ${''}
   display: flex;
   justify-content: ${props => (props.circular ? 'center' : 'flex-start')};
 
-  ${''}
   color: ${getColor};
   font-size: ${getFontSize};
   font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
 
-  ${''}
   border: ${getBorder};
   border-radius: ${props => (props.circular ? '50%' : BORDER_RADIUS)};
 
-  ${''}
   transition: all .3s, transform .4s ease-out;
 
   &:hover {
@@ -215,7 +219,7 @@ const Button = styled.button`
   }
 `;
 
-const renderPulseButton = (props) => {
+const renderPulseButton = props => {
   const Pulse = styled.div`
     position: relative;
   `;
@@ -240,7 +244,7 @@ const renderPulseButton = (props) => {
   );
 };
 
-const renderIconButton = (props) => {
+const renderIconButton = props => {
   const Wrapper = styled(Button)`
     padding: 0;
     align-items: stretch;

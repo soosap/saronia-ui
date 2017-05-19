@@ -9,7 +9,7 @@ type Props = {
 const Field = styled.label`
   display: flex;
   flex-direction: column;
-  margin-bottom: .4rem;
+  margin-bottom: .6rem;
 `;
 
 Field.defaulProps = {

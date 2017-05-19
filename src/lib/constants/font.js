@@ -11,7 +11,7 @@ export const FontSize = {
 };
 
 export const FONT_URL =
-  'https://fonts.googleapis.com/css?family=Quicksand:300,400|Satisfy';
+  'https://fonts.googleapis.com/css?family=Quicksand:300,400,500|Satisfy';
 
 export default {
   SYSTEM: "'Quicksand', sans-serif",
