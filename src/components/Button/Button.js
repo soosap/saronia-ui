@@ -20,6 +20,7 @@ type Props =
       // default
       accent?: boolean,
       circular?: false,
+      compact?: false,
       inverted?: boolean,
       onClick?: Function,
       pop?: 'active' | 'focus' | 'hover',
@@ -30,6 +31,7 @@ type Props =
       // icon
       accent?: boolean,
       circular?: false,
+      compact?: false,
       icon: string,
       iconPosition?: 'left' | 'right',
       inverted?: boolean,
@@ -42,6 +44,7 @@ type Props =
       // circular
       accent?: boolean,
       circular: true,
+      compact?: false,
       icon?: false,
       inverted?: boolean,
       onClick?: Function,
@@ -88,10 +91,7 @@ const getIconBackgroundColor = R.cond([
 ]);
 
 const getIconFill = R.cond([
-  [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
-    R.always(Color.WHITE),
-  ],
+  [R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)), R.always(Color.WHITE)],
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.WHITE),
@@ -143,16 +143,12 @@ const getColor = R.cond([
     R.always(Color.PRIMARY),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
-  [
-    R.propEq('breed', BreedEnum.PRIMARY),
-    R.always(Color.BLACK_TRANSPARENT_SEVERE),
-  ],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.BLACK_TRANSPARENT_SEVERE)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
-const getFontSize = props =>
-  FontSize[R.toUpper(R.propOr('medium', 'size', props))];
+const getFontSize = props => FontSize[R.toUpper(R.propOr('medium', 'size', props))];
 
 const getPadding = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
@@ -160,10 +156,11 @@ const getPadding = R.cond([
   [R.propEq('size', MagnitudeEnum.TINY), R.always('.2rem .3rem')],
   [R.propEq('size', MagnitudeEnum.SMALL), R.always('.2rem .4rem')],
   [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('.25rem .5rem')],
-  [R.propEq('size', MagnitudeEnum.LARGE), R.always('.25rem .5rem')],
-  [R.propEq('size', MagnitudeEnum.BIG), R.always('.3rem .5rem')],
-  [R.propEq('size', MagnitudeEnum.HUGE), R.always('.4rem .7rem')],
-  [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('.5rem 1rem')],
+  [R.propEq('size', MagnitudeEnum.LARGE), R.always('.3rem .7rem')],
+  [R.propEq('size', MagnitudeEnum.BIG), R.always('.35rem .75rem')],
+  [R.propEq('size', MagnitudeEnum.HUGE), R.always('.4rem .9rem')],
+  [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('.5rem 1.2rem')],
+  [R.T, R.always(R.always('.3rem .7rem'))],
 ]);
 
 const getTransform = R.curry(pseudoState =>
@@ -219,7 +216,7 @@ const Button = styled.button`
   }
 `;
 
-const renderPulseButton = props => {
+const renderPulseButton = (props) => {
   const Pulse = styled.div`
     position: relative;
   `;
@@ -244,7 +241,7 @@ const renderPulseButton = props => {
   );
 };
 
-const renderIconButton = props => {
+const renderIconButton = (props) => {
   const Wrapper = styled(Button)`
     padding: 0;
     align-items: stretch;

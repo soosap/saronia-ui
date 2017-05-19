@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { getBoxShadow, getBoxShadowOnFocus } from './utils';
-import { BORDER_RADIUS } from '../../../lib/constants';
+import { BORDER_RADIUS, Color } from '../../../lib/constants';
 import type { Context } from '../../../lib/types';
 
 type Props = {
@@ -23,6 +23,10 @@ const Input = styled.input`
 
   box-shadow: ${getBoxShadow};
   transition: box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9);
+
+  &::placeholder {
+    color: ${Color.GREY_VERY_STRONG};
+  }
 
   &:focus {
     box-shadow: ${getBoxShadowOnFocus};
