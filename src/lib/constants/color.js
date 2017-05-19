@@ -1,5 +1,14 @@
 /* @flow */
+const Context = {
+  DANGER: '#DB5E7B',
+  SUCCESS: '#86D39B',
+  WARNING: '#000000',
+  INFO: '#000000',
+};
+
 export default {
+  Context,
+
   PRIMARY: '#FFB00C',
   PRIMARY_DARK: '#FFAA06',
   PRIMARY_DARKER: '#FFA104',
