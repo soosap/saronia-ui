@@ -1,8 +1,8 @@
 /* @flow */
-import Field from './Field/Field';
-import FieldLabel from './Field/FieldLabel';
-import Input from './Input/Input';
-import Radio from './Radio/Radio';
-import TextArea from './TextArea/TextArea';
+import { Field, FieldLabel } from './Field';
+import { Input } from './Input';
+import { Radio } from './Radio';
+import { TextArea } from './TextArea';
+import { ContextMessage } from './ContextMessage'
 
-export { Field, FieldLabel, Input, Radio, TextArea };
+export { Field, FieldLabel, Input, Radio, TextArea, ContextMessage };

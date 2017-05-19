@@ -9,7 +9,7 @@ import { Segment } from './components/Segment';
 import { List, ListItem } from './components/List';
 
 import { H1, H2, H3, H4, H5, H6 } from './components/headings';
-import { Field, FieldLabel, Input, Radio, TextArea } from './components/forms';
+import { Field, FieldLabel, Input, Radio, TextArea, ContextMessage } from './components/forms';
 
 export const generateAndInjectGlobalCSS = () => injectGlobal`
   @font-face {
@@ -45,4 +45,5 @@ export {
   Input,
   Radio,
   TextArea,
+  ContextMessage,
 };
