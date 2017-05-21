@@ -7,6 +7,7 @@ import { Icon } from './components/Icon';
 import { Label } from './components/Label';
 import { Segment } from './components/Segment';
 import { List, ListItem } from './components/List';
+import { Spinner } from './components/Spinner';
 
 import { H1, H2, H3, H4, H5, H6 } from './components/headings';
 import { Field, FieldLabel, Input, Radio, TextArea, ContextMessage } from './components/forms';
@@ -32,6 +33,7 @@ export {
   Icon,
   List,
   ListItem,
+  Spinner,
   // heading
   H1,
   H2,

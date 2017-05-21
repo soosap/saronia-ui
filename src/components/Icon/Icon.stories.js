@@ -1,6 +1,6 @@
 /* @flow */
-import R from 'ramda';
 import React from 'react';
+import R from 'ramda';
 import { storiesOf } from '@kadira/storybook';
 import {
   withKnobs,
