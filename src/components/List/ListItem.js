@@ -8,7 +8,7 @@ import {
   BreedEnum,
   MagnitudeEnum,
 } from '../../lib/constants';
-import type { Magnitude, Breed } from '../../types';
+import type { Magnitude, Breed } from '../../lib/types';
 
 type Props =
   | {

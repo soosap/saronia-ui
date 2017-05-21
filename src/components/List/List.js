@@ -3,7 +3,7 @@ import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
 import { Color } from '../../lib/constants';
-import type { Magnitude, Breed } from '../../types';
+import type { Magnitude, Breed } from '../../lib/types';
 
 type Props = {
   children: any,
@@ -37,25 +37,22 @@ const Content = styled.div`
 
 `;
 
-const renderTimeline = (props: Props) => {
-  return (
-    <Wrapper {...props}>
-      {props.children.map((child, index) =>
-        React.cloneElement(child, {
-          timeline: props.timeline,
-          type: props.type,
-          gap: props.gap,
-          marginLeft: props.marginLeft,
-          key: index,
-        }),
-      )}
-    </Wrapper>
-  );
-};
+const renderTimeline = (props: Props) => (
+  <Wrapper {...props}>
+    {props.children.map((child, index) =>
+      React.cloneElement(child, {
+        timeline: props.timeline,
+        type: props.type,
+        gap: props.gap,
+        marginLeft: props.marginLeft,
+        key: index,
+      }),
+    )}
+  </Wrapper>
+);
 
-export default (props: Props) => {
-  return R.cond([
+export default (props: Props) =>
+  R.cond([
     [R.prop('timeline'), renderTimeline],
     [R.T, R.always(<Content {...props} />)],
   ])(props);
-};
