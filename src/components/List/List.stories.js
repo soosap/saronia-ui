@@ -1,17 +1,16 @@
 /* @flow */
 import R from 'ramda';
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 import {
   withKnobs,
   text,
   boolean,
-  number,
   select,
 } from '@kadira/storybook-addon-knobs';
 
 import { List, ListItem } from '.';
-import { MagnitudeEnum, BreedEnum, IconSVGPath } from '../../assets/constants';
+import { MagnitudeEnum, BreedEnum } from '../../lib/constants';
 
 const stories = storiesOf('List', module);
 stories.addDecorator(withKnobs);

@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import { matcher, serializer } from 'jest-styled-components';
 
 import { Icon } from '.';
-import { IconSVGPath } from '../../assets/constants';
+import { IconSVGPath } from '../../lib/constants';
 
 expect.addSnapshotSerializer(serializer);
 expect.extend(matcher);

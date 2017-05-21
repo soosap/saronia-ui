@@ -7,6 +7,10 @@
 	},
   "plugins": ["react", "babel"],
 	"rules": {
-		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+		"max-len": [2, 100],
+		"no-shadow": 0,
+		"import/no-extraneous-dependencies": [2, { "devDependencies": true }],
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"react/require-default-props": 0
 	}
 }

@@ -3,12 +3,11 @@ import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
 
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf } from '@kadira/storybook';
 import {
   withKnobs,
   text,
   boolean,
-  number,
   select,
 } from '@kadira/storybook-addon-knobs';
 
@@ -17,7 +16,9 @@ import {
   MagnitudeEnum,
   BreedEnum,
   Color,
-} from '../../assets/constants';
+} from '../../lib/constants';
+
+import { Label } from '.';
 
 const positionOptions = R.invertObj(PositionEnum);
 const sizeOptions = R.invertObj(MagnitudeEnum);
@@ -26,8 +27,6 @@ const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
 );
-
-import { Label } from '.';
 
 const stories = storiesOf('Label', module);
 stories.addDecorator(withKnobs);

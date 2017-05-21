@@ -3,15 +3,13 @@ import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
 
-import type { Position, Magnitude, Breed, Size } from '../../types';
+import type { Breed, Size } from '../../types';
 import {
   Color,
-  Font,
-  Border,
   BORDER_RADIUS,
   BreedEnum,
   SizeEnum,
-} from '../../assets/constants';
+} from '../../lib/constants';
 
 type Props = {
   basic?: boolean,
@@ -115,15 +113,15 @@ const Segment = styled.div`
 
   ${props => (props.basic ? { ...basicStyle } : null)};
   ${props => (props.compact ? { ...compactStyle } : null)};
-  ${props => (props.emphasis == 'raised' ? { ...raisedStyle } : null)}
-  ${props => (props.emphasis == 'stacked' ? { ...stackedStyle } : null)};
+  ${props => (props.emphasis === 'raised' ? { ...raisedStyle } : null)}
+  ${props => (props.emphasis === 'stacked' ? { ...stackedStyle } : null)};
 
   &:before {
-    ${props => (props.emphasis == 'stacked' ? { ...stackedStyleBefore } : null)}
+    ${props => (props.emphasis === 'stacked' ? { ...stackedStyleBefore } : null)}
   }
 
   &:after{
-    ${props => (props.emphasis == 'stacked' ? { ...stackedStyleAfter } : null)}
+    ${props => (props.emphasis === 'stacked' ? { ...stackedStyleAfter } : null)}
   }
 `;
 

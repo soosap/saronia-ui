@@ -1,42 +1,25 @@
 /* @flow */
 import R from 'ramda';
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 import {
   withKnobs,
   text,
   boolean,
-  number,
   select,
 } from '@kadira/storybook-addon-knobs';
 
 import { Button } from '.';
 import {
-  SizeEnum,
   MagnitudeEnum,
   BreedEnum,
   IconSVGPath,
-} from '../../assets/constants';
+} from '../../lib/constants';
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
 
-// Todo: Add this as description
-// ### Button
-//
-// #### circular | radius
-// ```js
-// <Button circular radius='huge'>Register</Button>
-// ```
-// Renders a circular button whose radius can be controlled by a separate prop.
-//
-// #### icon | iconPosition
-// ```js
-// <Button icon={XYZ} iconPosition='right'>Subscribe</Button>
-// ```
-// Renders the default button with an icon attached. The position of the icon can be controlled via a separate prop.
-
-const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const iconOptions = R.invertObj(IconSVGPath);
 const iconPositionOptions = R.invertObj({ LEFT: 'left', RIGHT: 'right' });
 const popOptions = R.invertObj({
@@ -64,7 +47,7 @@ stories
         : undefined,
       pop: select('pop', popOptions, undefined),
       pulse: circular ? boolean('pulse', false) : undefined,
-      type: select('type', typeOptions, undefined),
+      breed: select('breed', breedOptions, undefined),
     });
 
     return (
@@ -82,7 +65,7 @@ stories
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
-      type: select('type', typeOptions, undefined),
+      breed: select('breed', breedOptions, undefined),
     });
 
     return (
