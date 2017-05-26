@@ -26,23 +26,29 @@ const getTextTransform = props =>
 const getTextDecoration = props =>
   props.decoration ? props.decoration : 'inherit';
 
-const Heading = styled.h1`
-  font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
-  font-weight: 300;
-  font-size: ${getFontSize};
-  text-transform: ${getTextTransform};
-  text-decoration: ${getTextDecoration};
-  margin: 0;
-  padding: 0;
-  margin-bottom: 1.5rem;
-  line-height: 1.125;
-  word-break: break-word;
-`;
-
 export const Title = (props: Props) => {
   const { accent, transform, decoration, ...rest } = props;
 
-  const Title = Heading.withComponent(`h${props.size || '3'}`);
+  const Title = styled.h1`
+    font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
+    font-weight: 300;
+    font-size: ${getFontSize};
+    text-transform: ${getTextTransform};
+    text-decoration: ${getTextDecoration};
+    margin: 0;
+    padding: 0;
+    line-height: 1.125;
+    word-break: break-word;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    + .subtitle {
+      margin-top: -1.25rem;
+    }
+  `.withComponent(`h${props.size || '3'}`);
+
   return (
     <Title
       accent={accent}
@@ -60,9 +66,24 @@ Title.defaultProps = {
 export const Subtitle = (props: Props) => {
   const { accent, transform, decoration, ...rest } = props;
 
-  const Subtitle = Heading.withComponent(`h${props.size || '5'}`).extend`
+  const Subtitle = styled.h1.attrs({
+    className: 'subtitle',
+  })`
+    font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
+    font-weight: 300;
+    font-size: ${getFontSize};
+    text-transform: ${getTextTransform};
+    text-decoration: ${getTextDecoration};
+    margin: 0;
+    padding: 0;
+    line-height: 1.125;
+    word-break: break-word;
     color: grey;
-  `;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  `.withComponent(`h${props.size || '5'}`);
 
   return (
     <Subtitle
