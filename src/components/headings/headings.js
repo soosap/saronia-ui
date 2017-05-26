@@ -39,10 +39,6 @@ const Heading = styled.h1`
   word-break: break-word;
 `;
 
-Heading.defaultProps = {
-  size: '3',
-};
-
 export const Title = (props: Props) => {
   const { accent, transform, decoration, ...rest } = props;
 
@@ -57,7 +53,27 @@ export const Title = (props: Props) => {
   );
 };
 
-export const Subtitle = () => {
+Title.defaultProps = {
+  size: '3',
+};
 
-  return <div>hello</div>;
-}
+export const Subtitle = (props: Props) => {
+  const { accent, transform, decoration, ...rest } = props;
+
+  const Subtitle = Heading.withComponent(`h${props.size || '5'}`).extend`
+    color: grey;
+  `;
+
+  return (
+    <Subtitle
+      accent={accent}
+      transform={transform}
+      decoration={decoration}
+      {...rest}
+    />
+  );
+};
+
+Subtitle.defaultProps = {
+  size: '5',
+};
