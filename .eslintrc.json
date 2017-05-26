@@ -7,8 +7,9 @@
 	},
   "plugins": ["react", "babel"],
 	"rules": {
-		"max-len": [2, 100],
+		"max-len": [2, 80],
 		"no-shadow": 0,
+		"no-confusing-arrow": 0,
 		"import/no-extraneous-dependencies": [2, { "devDependencies": true }],
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
 		"react/require-default-props": 0
