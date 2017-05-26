@@ -65,7 +65,7 @@
     "dev": "watch 'yarn run build' src",
     "build": "rimraf ./dist && NODE_ENV=production babel src --out-dir build",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook -s public --output-dir ${PWD}/storybook-static",
     "prerelease": "yarn run build",
     "release": "np",
     "lint": "eslint --ext .js src/**/*; exit 0;"
