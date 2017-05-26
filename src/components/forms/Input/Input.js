@@ -28,6 +28,10 @@ const Input = styled.input`
     color: ${Color.GREY_VERY_STRONG};
   }
 
+  &:hover {
+    border-color: #b5b5b5;
+  }
+
   &:focus {
     box-shadow: ${getBoxShadowOnFocus};
   }

@@ -1,13 +1,14 @@
 /* @flow */
 import R from 'ramda';
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { action } from '@storybook/addon-actions';
+import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
   text,
   boolean,
   select,
-} from '@kadira/storybook-addon-knobs';
+} from '@storybook/addon-knobs';
 
 import { Button } from '.';
 import {

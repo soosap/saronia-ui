@@ -2,14 +2,14 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
   text,
   boolean,
+  number,
   select,
-} from '@kadira/storybook-addon-knobs';
+} from '@storybook/addon-knobs';
 
 import {
   PositionEnum,
