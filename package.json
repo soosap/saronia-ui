@@ -29,6 +29,7 @@
     "@storybook/addon-info": "^3.0.0-alpha.0",
     "@storybook/addon-knobs": "^3.0.0-alpha.0",
     "@storybook/addon-options": "^3.0.0-alpha.0",
+    "@storybook/addons": "^3.0.0-alpha.0",
     "@storybook/react": "^3.0.0-alpha.0",
     "autoprefixer": "6.7.2",
     "babel-cli": "6.24.0",
