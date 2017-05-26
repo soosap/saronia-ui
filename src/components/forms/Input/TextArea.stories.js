@@ -14,6 +14,7 @@ import {
 import centered from '@storybook/addon-centered';
 
 import { Input, TextArea } from '.';
+import { Field, FieldLabel } from '../Field';
 
 const stories = storiesOf('TextArea', module);
 stories.addDecorator(withKnobs).addDecorator(centered);
@@ -30,14 +31,19 @@ const Form = styled.form`
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
-    accent: boolean('accent', false),
-    placeholder: 'Enter your name...',
+    placeholder: 'Enter your email...',
   });
 
   return (
     <Form>
-      <Input {...props} />
-      <TextArea {...props} />
+      <Field>
+        <FieldLabel>Email</FieldLabel>
+        <Input {...props} />
+      </Field>
+      <Field>
+        <FieldLabel>Description</FieldLabel>
+        <TextArea {...props} placeholder="Tell us about you." />
+      </Field>
     </Form>
   );
 });

@@ -11,9 +11,9 @@ export const FontSize = {
 };
 
 export const FONT_URL =
-  'https://fonts.googleapis.com/css?family=Quicksand:300,400,500|Satisfy';
+  'https://fonts.googleapis.com/css?family=Nunito:400,600,700|Satisfy';
 
 export default {
-  SYSTEM: "'Quicksand', sans-serif",
+  SYSTEM: "'Nunito', sans-serif",
   ACCENT: "'Satisfy', cursive",
 };

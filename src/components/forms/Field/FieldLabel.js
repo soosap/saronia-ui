@@ -7,8 +7,8 @@ type Props = {
 };
 
 const FieldLabel = styled.div`
-  font-weight: 600;
-  font-size: .85rem;
+  font-weight: 400;
+  font-size: .9rem;
   margin-left: .1rem;
   margin-bottom: .25rem;
 `;
