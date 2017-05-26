@@ -2,14 +2,22 @@
 import React from 'react';
 import R from 'ramda';
 import { storiesOf, action, linkTo } from '@kadira/storybook';
-import { withKnobs, text, boolean, number } from '@kadira/storybook-addon-knobs';
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+} from '@kadira/storybook-addon-knobs';
 
-import Title from './Title';
+import { Title } from '.';
 
 const stories = storiesOf('Title', module);
 stories.addDecorator(withKnobs);
 
-const isNotNil = R.both(R.complement(R.isNil), R.complement(R.equals('undefined')));
+const isNotNil = R.both(
+  R.complement(R.isNil),
+  R.complement(R.equals('undefined')),
+);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {

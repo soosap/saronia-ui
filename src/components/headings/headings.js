@@ -43,8 +43,7 @@ Heading.defaultProps = {
   size: '3',
 };
 
-export default (props: Props) => {
-  console.log('props', props);
+export const Title = (props: Props) => {
   const { accent, transform, decoration, ...rest } = props;
 
   const Title = Heading.withComponent(`h${props.size || '3'}`);
@@ -57,3 +56,8 @@ export default (props: Props) => {
     />
   );
 };
+
+export const Subtitle = () => {
+
+  return <div>hello</div>;
+}
