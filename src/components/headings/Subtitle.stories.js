@@ -9,9 +9,9 @@ import {
   number,
 } from '@kadira/storybook-addon-knobs';
 
-import { Title } from '.';
+import { Title, Subtitle } from '.';
 
-const stories = storiesOf('Title', module);
+const stories = storiesOf('Subtitle', module);
 stories.addDecorator(withKnobs);
 
 const isNotNil = R.both(
@@ -27,12 +27,19 @@ stories.add('default', () => {
   return (
     <div>
       <Title {...props} size="1">Title 1</Title>
+      <Subtitle {...props} size="3">Subtitle 3</Subtitle>
+
       <Title {...props} size="2">Title 2</Title>
+      <Subtitle {...props} size="4">Subtitle 4</Subtitle>
+
       <Title {...props} size="3">Title 3</Title>
+      <Subtitle {...props} size="5">Subtitle 5</Subtitle>
+
       <Title {...props}>Title 3 (default)</Title>
+      <Subtitle {...props}>Subtitle 5 (default)</Subtitle>
+
       <Title {...props} size="4">Title 4</Title>
-      <Title {...props} size="5">Title 5</Title>
-      <Title {...props} size="6">Title 6</Title>
+      <Subtitle {...props} size="6">Subtitle 6</Subtitle>
     </div>
   );
 });
