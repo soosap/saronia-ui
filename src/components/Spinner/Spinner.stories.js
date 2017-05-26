@@ -1,12 +1,22 @@
 /* @flow */
 import React from 'react';
 import R from 'ramda';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
-import { withKnobs, text, boolean, number } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  select,
+} from '@storybook/addon-knobs';
 
 import Spinner from './Spinner';
 
-const isNotNil = R.both(R.complement(R.isNil), R.complement(R.equals('undefined')));
+const isNotNil = R.both(
+  R.complement(R.isNil),
+  R.complement(R.equals('undefined')),
+);
 
 const stories = storiesOf('Spinner', module);
 stories.addDecorator(withKnobs);

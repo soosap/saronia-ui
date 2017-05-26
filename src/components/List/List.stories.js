@@ -1,13 +1,15 @@
 /* @flow */
 import R from 'ramda';
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import {
   withKnobs,
   text,
   boolean,
+  number,
   select,
-} from '@kadira/storybook-addon-knobs';
+} from '@storybook/addon-knobs';
 
 import { List, ListItem } from '.';
 import { MagnitudeEnum, BreedEnum } from '../../lib/constants';

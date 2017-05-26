@@ -1,8 +1,14 @@
 /* @flow */
 import R from 'ramda';
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import { withKnobs, text, boolean, number, select } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  select,
+} from '@storybook/addon-knobs';
 
 import { BreedEnum, SizeEnum } from '../../lib/constants';
 import { Segment } from '.';

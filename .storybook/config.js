@@ -1,5 +1,7 @@
-import { configure } from '@kadira/storybook';
-import { setOptions } from '@kadira/storybook-addon-options';
+import { configure, setAddon } from '@storybook/react';
+import { setOptions } from '@storybook/addon-options';
+import infoAddon from '@storybook/addon-info';
+
 import { generateAndInjectGlobalCSS } from '../src';
 
 generateAndInjectGlobalCSS();
@@ -9,6 +11,8 @@ const req = require.context('../src/components', true, /\.stories\.js$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
+
+setAddon(infoAddon);
 
 setOptions({
   name: 'saronia-ui',

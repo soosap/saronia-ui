@@ -1,12 +1,14 @@
 /* @flow */
 import React from 'react';
 import R from 'ramda';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
+  text,
   boolean,
+  number,
   select,
-} from '@kadira/storybook-addon-knobs';
+} from '@storybook/addon-knobs';
 
 import { Icon } from '.';
 import { IconSVGPath, MagnitudeEnum, BreedEnum } from '../../lib/constants';
