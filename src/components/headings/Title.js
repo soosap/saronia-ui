@@ -33,6 +33,7 @@ const Heading = styled.h1`
   text-transform: ${getTextTransform};
   text-decoration: ${getTextDecoration};
   margin: 0;
+  padding: 0;
   margin-bottom: 1.5rem;
   line-height: 1.125;
   word-break: break-word;

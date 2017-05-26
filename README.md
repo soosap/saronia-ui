@@ -11,7 +11,7 @@ git clone https://github.com/saronia/saronia-ui.git saronia-ui && cd $_
 yarn install
 
 # Create a branch to work with following this pattern:
-git checkout -b 'pill' origin/master
+git checkout -b 'feature/subtitle' origin/master
 
 # Start storybook using the following command
 yarn run storybook
