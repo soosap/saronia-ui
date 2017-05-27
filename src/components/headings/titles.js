@@ -6,6 +6,7 @@ import { Font, FontSize } from '../../lib/constants';
 
 type Props = {
   accent?: boolean,
+  align?: 'left' | 'center' | 'right',
   size: '1' | '2' | '3' | '4' | '5' | '6',
   transform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase',
   decoration?: 'none' | 'underline' | 'overline' | 'line-through',
@@ -20,12 +21,28 @@ const getFontSize = R.cond([
   [R.propEq('size', '6'), R.always(FontSize.SMALL)],
 ]);
 
+/*
+|-----------------------------------------------------------
+| Helper methods
+|-----------------------------------------------------------
+*/
 const getTextTransform = props =>
   props.transform ? props.transform : 'inherit';
 
 const getTextDecoration = props =>
   props.decoration ? props.decoration : 'inherit';
 
+const getTextAlign = R.cond([
+  [R.propEq('align', 'left'), R.always('left')],
+  [R.propEq('align', 'right'), R.always('right')],
+  [R.T, R.always('center')],
+]);
+
+/*
+|-----------------------------------------------------------
+| <Title />
+|-----------------------------------------------------------
+*/
 export const Title = (props: Props) => {
   const { accent, transform, decoration, ...rest } = props;
 
@@ -35,6 +52,7 @@ export const Title = (props: Props) => {
     font-size: ${getFontSize};
     text-transform: ${getTextTransform};
     text-decoration: ${getTextDecoration};
+    text-align: ${getTextAlign};
     margin: 0;
     padding: 0;
     line-height: 1.125;
@@ -61,8 +79,14 @@ export const Title = (props: Props) => {
 
 Title.defaultProps = {
   size: '3',
+  align: 'center',
 };
 
+/*
+|-----------------------------------------------------------
+| <Subtitle />
+|-----------------------------------------------------------
+*/
 export const Subtitle = (props: Props) => {
   const { accent, transform, decoration, ...rest } = props;
 
@@ -74,6 +98,7 @@ export const Subtitle = (props: Props) => {
     font-size: ${getFontSize};
     text-transform: ${getTextTransform};
     text-decoration: ${getTextDecoration};
+    text-align: ${getTextAlign};
     margin: 0;
     padding: 0;
     line-height: 1.125;
@@ -97,4 +122,5 @@ export const Subtitle = (props: Props) => {
 
 Subtitle.defaultProps = {
   size: '5',
+  align: 'center',
 };
