@@ -9,7 +9,7 @@ import { Segment } from './components/Segment';
 import { List, ListItem } from './components/List';
 import { Spinner } from './components/Spinner';
 
-import { Title, Subtitle } from './components/headings';
+import { Title, Subtitle, Headings } from './components/headings';
 import {
   Field,
   FieldLabel,
@@ -44,6 +44,7 @@ export {
   // heading
   Title,
   Subtitle,
+  Headings,
   // forms
   Field,
   FieldLabel,
