@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 type Props = {
-  inline: boolean,
+  inline?: boolean,
 };
 
 const Field = styled.label`
