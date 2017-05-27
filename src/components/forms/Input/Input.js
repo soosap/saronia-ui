@@ -19,7 +19,7 @@ const Input = styled.input`
   border-radius: ${BORDER_RADIUS};
   font-size: 1rem;
   padding: 0 .5rem;
-  margin-bottom: .2rem;
+  margin-bottom: .5rem;
   box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
   border-color: #dbdbdb;
   transition: box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9);
