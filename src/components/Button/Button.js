@@ -184,7 +184,6 @@ const Button = styled.button`
   width: ${getWidth};
   height: ${getWidth};
   padding: ${getPadding};
-  margin-top: .75rem;
   overflow: hidden;
 
   display: flex;

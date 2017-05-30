@@ -97,9 +97,10 @@ const getColor = R.cond([
 ]);
 
 const getPadding = R.cond([
-  [R.propEq('padding', SizeEnum.SMALL), R.always('1em')],
-  [R.propEq('padding', SizeEnum.MEDIUM), R.always('2em')],
-  [R.propEq('padding', SizeEnum.LARGE), R.always('3em')],
+  [R.propEq('padding', SizeEnum.SMALL), R.always('1rem')],
+  [R.propEq('padding', SizeEnum.MEDIUM), R.always('2rem')],
+  [R.propEq('padding', SizeEnum.LARGE), R.always('3rem')],
+  [R.T, R.always('1rem')],
 ]);
 
 const Segment = styled.div`
