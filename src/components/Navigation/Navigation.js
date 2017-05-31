@@ -1,34 +1,8 @@
 /* @flow */
-import React from 'react';
+import React, { Component, Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 import { Color } from '../../lib/constants';
-
-type Props = {
-
-};
-
-/*
-|-----------------------------------------------------------
-| Navigation
-|-----------------------------------------------------------
-*/
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-size: 1.3rem;
-`;
-
-const Navigation = ({ children }: Object) => {
-  return (
-    <Wrapper>
-      {children}
-    </Wrapper>
-  );
-};
-
 
 /*
 |-----------------------------------------------------------
@@ -39,7 +13,7 @@ const WrapperLeft = styled.div`
   display: flex;
 `;
 
-Navigation.Left = ({ children }: Object) => {
+const NavigationLeft = ({ children }: Object) => {
   return (
     <WrapperLeft>
       {children}
@@ -56,7 +30,7 @@ const WrapperRight = styled.div`
   display: flex;
 `;
 
-Navigation.Right = ({ children }: Object) => {
+const NavigationRight = ({ children }: Object) => {
   return (
     <WrapperRight>
       {children}
@@ -74,13 +48,18 @@ const getBorderBottom = R.cond([
 ]);
 
 const WrapperItem = styled.div`
-  padding: .5rem;
-  margin: .5rem;
+  padding: .5rem .6rem;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
   border-bottom: ${getBorderBottom};
   transition: all .5s;
+
+  &:hover {
+    background-color:
+  }
 `;
 
-Navigation.Item = ({ children, active }: Object) => {
+const NavigationItem = ({ children, active }: Object) => {
   return (
     <WrapperItem active={active}>
       {children}
@@ -88,5 +67,45 @@ Navigation.Item = ({ children, active }: Object) => {
   );
 };
 
+/*
+|-----------------------------------------------------------
+| Navigation
+|-----------------------------------------------------------
+*/
+type Props = {
+  children: any,
+};
+
+type State = {
+  activeItem?: string,
+  something: number,
+};
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.3rem;
+`;
+
+const Navigation = class Navigation extends Component<void, Props, State> {
+  static Left = NavigationLeft;
+  static Right = NavigationRight;
+  static Item = NavigationItem;
+
+  state = {
+    activeItem: undefined,
+    something: 22,
+  };
+
+  render() {
+    return (
+      <Wrapper>
+        {this.props.children}
+      </Wrapper>
+    );
+  }
+};
 
 export default Navigation;

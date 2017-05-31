@@ -5,13 +5,16 @@
 		"node": true,
 		"browser": true
 	},
-  "plugins": ["react", "babel"],
+  "plugins": ["babel", "react", "flowtype"],
 	"rules": {
 		"max-len": [2, 80],
 		"no-shadow": 0,
 		"no-confusing-arrow": 0,
 		"import/no-extraneous-dependencies": [2, { "devDependencies": true }],
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-		"react/require-default-props": 0
+		"react/require-default-props": 0,
+		"react/prop-types": 0,
+		"flowtype/define-flow-type": 1,
+		"flowtype/use-flow-type": 1
 	}
 }

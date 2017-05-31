@@ -24,8 +24,18 @@ const isNotNil = R.both(
   R.complement(R.equals('undefined')),
 );
 
+const ImageContainer = styled.div`
+  width: 150px;
+  display: flex;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  width: 100%;;
+`;
+
 stories
-  .add('default', () => {
+  .add('welcome', () => {
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
     });
@@ -33,9 +43,9 @@ stories
     return (
       <Navigation {...props} onClick={action('clicked')}>
         <Navigation.Left>
-          <Navigation.Item>
-            Logo
-          </Navigation.Item>
+          <ImageContainer>
+            <Image src="/wordmark.png" alt="logo" />
+          </ImageContainer>
         </Navigation.Left>
         <Navigation.Right>
           <Navigation.Item active>
