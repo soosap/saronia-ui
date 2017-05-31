@@ -16,7 +16,7 @@ import {
 import { Icon } from '../Icon';
 
 type Props =
-  | {|
+  | {
       // default
       accent?: boolean,
       circular?: false,
@@ -26,8 +26,8 @@ type Props =
       pop?: 'active' | 'focus' | 'hover',
       size?: Magnitude,
       breed?: Breed,
-    |}
-  | {|
+    }
+  | {
       // icon
       accent?: boolean,
       circular?: false,
@@ -39,8 +39,8 @@ type Props =
       pop?: 'active' | 'focus' | 'hover',
       size?: Magnitude,
       breed?: Breed,
-    |}
-  | {|
+    }
+  | {
       // circular
       accent?: boolean,
       circular: true,
@@ -53,7 +53,7 @@ type Props =
       radius: Magnitude,
       size?: Magnitude,
       breed?: Breed,
-    |};
+    };
 
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always('transparent')],
@@ -91,7 +91,10 @@ const getIconBackgroundColor = R.cond([
 ]);
 
 const getIconFill = R.cond([
-  [R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)), R.always(Color.WHITE)],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
+    R.always(Color.WHITE),
+  ],
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.WHITE),
@@ -143,12 +146,16 @@ const getColor = R.cond([
     R.always(Color.PRIMARY),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.BLACK_TRANSPARENT_SEVERE)],
+  [
+    R.propEq('breed', BreedEnum.PRIMARY),
+    R.always(Color.BLACK_TRANSPARENT_SEVERE),
+  ],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
-const getFontSize = props => FontSize[R.toUpper(R.propOr('medium', 'size', props))];
+const getFontSize = props =>
+  FontSize[R.toUpper(R.propOr('medium', 'size', props))];
 
 const getPadding = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
