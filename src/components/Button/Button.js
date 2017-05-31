@@ -154,8 +154,11 @@ const getColor = R.cond([
   [R.T, R.always(Color.BLACK)],
 ]);
 
-const getFontSize = props =>
-  FontSize[R.toUpper(R.propOr('medium', 'size', props))];
+const getFontSize = (props: Props) => {
+  const size = R.prop('size', props);
+
+  return size ? FontSize[R.toUpper(size)] : FontSize.MEDIUM;
+};
 
 const getPadding = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
@@ -221,6 +224,8 @@ const Button = styled.button`
     outline: none;
   }
 `;
+
+Button.displayName = 'Button';
 
 const renderPulseButton = (props) => {
   const Pulse = styled.div`
