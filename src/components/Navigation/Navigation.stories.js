@@ -16,8 +16,7 @@ import {
 import { Navigation } from '.';
 
 const stories = storiesOf('Navigation', module);
-stories
-  .addDecorator(withKnobs);
+stories.addDecorator(withKnobs);
 
 const isNotNil = R.both(
   R.complement(R.isNil),
@@ -32,6 +31,10 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;;
+`;
+
+const Link = styled.a`
+  background-color: red;
 `;
 
 stories
@@ -57,4 +60,27 @@ stories
         </Navigation.Right>
       </Navigation>
     );
-  });
+  })
+  .add('links', () => (
+    <Navigation>
+      <Navigation.Left>
+        <ImageContainer>
+          <Image src="/wordmark.png" alt="logo" />
+        </ImageContainer>
+      </Navigation.Left>
+      <Navigation.Right>
+        <Link>
+          <Navigation.Item
+            name="login"
+            initial
+            onClick={() => console.log('clicked')}
+          >
+            Login
+          </Navigation.Item>
+        </Link>
+        <Navigation.Item name="signup" onClick={action('clicked')}>
+          <a>Signup</a>
+        </Navigation.Item>
+      </Navigation.Right>
+    </Navigation>
+  ));

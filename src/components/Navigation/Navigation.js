@@ -35,9 +35,12 @@ const getBorderBottom = R.cond([
 
 const WrapperItem = styled.div`
   padding: .5rem .6rem;
-  margin-top: .25rem;
-  margin-bottom: .25rem;
   border-bottom: ${getBorderBottom};
+
+  a {
+    color: ${Color.BLACK};
+    text-decoration: none;
+  }
 
   &:hover {
     cursor: pointer;
@@ -55,7 +58,7 @@ const NavigationItem = ({
   <WrapperItem
     active={(activeItem || (initial && name)) === name}
     onClick={() => {
-      onClick();
+      if (onClick) onClick();
       selectItem(name);
     }}
   >
