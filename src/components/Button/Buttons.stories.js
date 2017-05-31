@@ -30,7 +30,7 @@ stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
     accent: boolean('accent', false),
     inverted: boolean('inverted', true),
-    breed: select('breed', breedOptions, undefined),
+    breed: select('breed', breedOptions, 'primary'),
   });
 
   return (

@@ -5,6 +5,7 @@ import { BORDER_RADIUS } from '../../lib/constants';
 import type { Breed } from '../../lib/types';
 
 type Props = {
+  accent?: boolean,
   vertical?: boolean,
   inverted?: boolean,
   breed?: Breed,
@@ -49,6 +50,7 @@ export default (props: Props) =>
   <Buttons {...props}>
     {React.Children.map(props.children, child =>
       React.cloneElement(child, {
+        accent: props.accent,
         inverted: props.inverted,
         breed: props.breed,
       }),
