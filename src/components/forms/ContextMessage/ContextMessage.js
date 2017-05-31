@@ -10,8 +10,11 @@ type Props = {
   context: Context,
 };
 
-const ContextMessage = styled.div`
-  color: ${props => Color.Context[R.toUpper(props.context)]};
+const ContextMessage = styled.div.attrs({
+  className: 'context-message',
+})`
+  color: ${props => (props.context ?
+    Color.Context[R.toUpper(props.context)] : 'inherit')};
   font-size: .7rem;
   margin-bottom: .2rem;
   margin-left: .05rem;
