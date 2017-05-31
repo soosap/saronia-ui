@@ -1,6 +1,6 @@
 /* @flow */
-import R from 'ramda';
 import React from 'react';
+import R from 'ramda';
 import styled from 'styled-components';
 import type { Breed, Magnitude } from '../../lib/types';
 import {
