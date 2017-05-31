@@ -2,14 +2,15 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
 import { BORDER_RADIUS } from '../../lib/constants';
-import type { Breed } from '../../lib/types';
+import type { Breed, Magnitude } from '../../lib/types';
 
 type Props = {
   accent?: boolean,
-  vertical?: boolean,
-  inverted?: boolean,
   breed?: Breed,
   children: Children,
+  inverted?: boolean,
+  size?: Magnitude,
+  vertical?: boolean,
 };
 
 const Buttons = styled.div`
@@ -51,8 +52,9 @@ export default (props: Props) =>
     {React.Children.map(props.children, child =>
       React.cloneElement(child, {
         accent: props.accent,
-        inverted: props.inverted,
         breed: props.breed,
+        inverted: props.inverted,
+        size: props.size,
       }),
     )}
   </Buttons>;

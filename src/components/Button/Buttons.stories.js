@@ -1,7 +1,6 @@
 /* @flow */
 import React from 'react';
 import R from 'ramda';
-import styled from 'styled-components';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -15,7 +14,7 @@ import {
 import centered from '@storybook/addon-centered';
 
 import { Buttons, Button } from '.';
-import { BreedEnum } from '../../lib/constants';
+import { BreedEnum, MagnitudeEnum } from '../../lib/constants';
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
@@ -29,8 +28,9 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
     accent: boolean('accent', false),
-    inverted: boolean('inverted', true),
     breed: select('breed', breedOptions, 'primary'),
+    inverted: boolean('inverted', true),
+    size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
   });
 
   return (
