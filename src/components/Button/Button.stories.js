@@ -9,6 +9,7 @@ import {
   boolean,
   select,
 } from '@storybook/addon-knobs';
+import centered from '@storybook/addon-centered';
 
 import { Button } from '.';
 import {
@@ -18,7 +19,7 @@ import {
 } from '../../lib/constants';
 
 const stories = storiesOf('Button', module);
-stories.addDecorator(withKnobs);
+stories.addDecorator(withKnobs).addDecorator(centered);
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const iconOptions = R.invertObj(IconSVGPath);
@@ -48,7 +49,7 @@ stories
         : undefined,
       pop: select('pop', popOptions, undefined),
       pulse: circular ? boolean('pulse', false) : undefined,
-      breed: select('breed', breedOptions, undefined),
+      breed: select('breed', breedOptions, 'primary'),
     });
 
     return (
@@ -66,7 +67,7 @@ stories
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
-      breed: select('breed', breedOptions, undefined),
+      breed: select('breed', breedOptions, 'primary'),
     });
 
     return (

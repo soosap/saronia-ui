@@ -14,6 +14,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import { Navigation } from '.';
+import { Buttons, Button } from '../Button';
 
 const stories = storiesOf('Navigation', module);
 stories.addDecorator(withKnobs);
@@ -37,7 +38,7 @@ const Image = styled.img`
 const Link = styled.a``;
 
 stories
-  .add('welcome', () => {
+  .add('text', () => {
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
     });
@@ -78,6 +79,21 @@ stories
         <Navigation.Item name="signup" onClick={action('clicked')}>
           <a>Signup</a>
         </Navigation.Item>
+      </Navigation.Right>
+    </Navigation>
+  ))
+  .add('buttons', () => (
+    <Navigation>
+      <Navigation.Left>
+        <ImageContainer>
+          <Image src="/wordmark.png" alt="logo" />
+        </ImageContainer>
+      </Navigation.Left>
+      <Navigation.Right>
+        <Buttons breed="primary">
+          <Button>Login</Button>
+          <Button>Sign up</Button>
+        </Buttons>
       </Navigation.Right>
     </Navigation>
   ));

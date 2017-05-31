@@ -84,12 +84,16 @@ const NavigationLeft = ({
   activeItem,
 }: NavigationContainer) => (
   <WrapperLeft>
-    {React.Children.map(children, child =>
-      React.cloneElement(child, {
-        selectItem,
-        activeItem,
-      }),
-    )}
+    {React.Children.map(children, (child) => {
+      if (child.type && child.type.name === 'NavigationItem') {
+        return React.cloneElement(child, {
+          selectItem,
+          activeItem,
+        });
+      }
+
+      return child;
+    })}
   </WrapperLeft>
 );
 
@@ -108,12 +112,16 @@ const NavigationRight = ({
   activeItem,
 }: NavigationContainer) => (
   <WrapperRight>
-    {React.Children.map(children, child =>
-      React.cloneElement(child, {
-        selectItem,
-        activeItem,
-      }),
-    )}
+    {React.Children.map(children, (child) => {
+      if (child.type && child.type.name === 'NavigationItem') {
+        return React.cloneElement(child, {
+          selectItem,
+          activeItem,
+        });
+      }
+
+      return child;
+    })}
   </WrapperRight>
 );
 

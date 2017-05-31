@@ -12,8 +12,9 @@
 		"no-confusing-arrow": 0,
 		"import/no-extraneous-dependencies": [2, { "devDependencies": true }],
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-		"react/require-default-props": 0,
 		"react/prop-types": 0,
+		"react/require-default-props": 0,
+		"react/no-unused-prop-types": 0,
 		"flowtype/define-flow-type": 1,
 		"flowtype/use-flow-type": 1
 	}
