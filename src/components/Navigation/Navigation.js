@@ -34,7 +34,7 @@ const getBorderBottom = R.cond([
 ]);
 
 const WrapperItem = styled.div`
-  padding: .5rem .6rem;
+  padding: .4rem .6rem;
   border-bottom: ${getBorderBottom};
 
   a {
@@ -122,6 +122,8 @@ const NavigationRight = ({
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: .6rem;
+  margin-bottom: .6rem;
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1.3rem;
