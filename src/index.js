@@ -47,8 +47,7 @@ export {
   // heading
   Title,
   Subtitle,
-  Headings,
-  // forms
+  // form
   Form,
   Field,
   FieldLabel,
