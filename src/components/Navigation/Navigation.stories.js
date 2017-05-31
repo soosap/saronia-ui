@@ -41,17 +41,17 @@ stories
     });
 
     return (
-      <Navigation {...props} onClick={action('clicked')}>
+      <Navigation {...props}>
         <Navigation.Left>
           <ImageContainer>
             <Image src="/wordmark.png" alt="logo" />
           </ImageContainer>
         </Navigation.Left>
         <Navigation.Right>
-          <Navigation.Item active>
+          <Navigation.Item name="login" initial onClick={action('clicked')}>
             Login
           </Navigation.Item>
-          <Navigation.Item>
+          <Navigation.Item name="signup" onClick={action('clicked')}>
             Signup
           </Navigation.Item>
         </Navigation.Right>

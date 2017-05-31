@@ -4,38 +4,24 @@ import R from 'ramda';
 import styled from 'styled-components';
 import { Color } from '../../lib/constants';
 
-/*
-|-----------------------------------------------------------
-| Navigation.Left
-|-----------------------------------------------------------
-*/
-const WrapperLeft = styled.div`
-  display: flex;
-`;
-
-const NavigationLeft = ({ children }: Object) => {
-  return (
-    <WrapperLeft>
-      {children}
-    </WrapperLeft>
-  );
+type Props = {
+  children: Children,
 };
 
-/*
-|-----------------------------------------------------------
-| Navigation.Right
-|-----------------------------------------------------------
-*/
-const WrapperRight = styled.div`
-  display: flex;
-`;
+type State = {
+  activeItem: ?string,
+};
 
-const NavigationRight = ({ children }: Object) => {
-  return (
-    <WrapperRight>
-      {children}
-    </WrapperRight>
-  );
+type NavigationContainer = {
+  children: Children,
+  activeItem: ?string,
+  selectItem: (item: string) => void,
+};
+
+type ItemContainer = NavigationContainer & {
+  name: string,
+  initial?: string,
+  onClick: Function,
 };
 
 /*
@@ -52,34 +38,84 @@ const WrapperItem = styled.div`
   margin-top: .25rem;
   margin-bottom: .25rem;
   border-bottom: ${getBorderBottom};
-  transition: all .5s;
 
   &:hover {
-    background-color:
+    cursor: pointer;
   }
 `;
 
-const NavigationItem = ({ children, active }: Object) => {
-  return (
-    <WrapperItem active={active}>
-      {children}
-    </WrapperItem>
-  );
-};
+const NavigationItem = ({
+  children,
+  name,
+  initial,
+  activeItem,
+  selectItem,
+  onClick,
+}: ItemContainer) => (
+  <WrapperItem
+    active={(activeItem || (initial && name)) === name}
+    onClick={() => {
+      onClick();
+      selectItem(name);
+    }}
+  >
+    {children}
+  </WrapperItem>
+);
+
+/*
+|-----------------------------------------------------------
+| Navigation.Left
+|-----------------------------------------------------------
+*/
+const WrapperLeft = styled.div`
+  display: flex;
+`;
+
+const NavigationLeft = ({
+  children,
+  selectItem,
+  activeItem,
+}: NavigationContainer) => (
+  <WrapperLeft>
+    {React.Children.map(children, child =>
+      React.cloneElement(child, {
+        selectItem,
+        activeItem,
+      }),
+    )}
+  </WrapperLeft>
+);
+
+/*
+|-----------------------------------------------------------
+| Navigation.Right
+|-----------------------------------------------------------
+*/
+const WrapperRight = styled.div`
+  display: flex;
+`;
+
+const NavigationRight = ({
+  children,
+  selectItem,
+  activeItem,
+}: NavigationContainer) => (
+  <WrapperRight>
+    {React.Children.map(children, child =>
+      React.cloneElement(child, {
+        selectItem,
+        activeItem,
+      }),
+    )}
+  </WrapperRight>
+);
 
 /*
 |-----------------------------------------------------------
 | Navigation
 |-----------------------------------------------------------
 */
-type Props = {
-  children: Children,
-};
-
-type State = {
-  activeItem?: string,
-};
-
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -95,13 +131,21 @@ class Navigation extends Component<void, Props, State> {
 
   state = {
     activeItem: undefined,
-    something: 22,
+  };
+
+  handleItemSelection = (activeItem: string) => {
+    this.setState({ activeItem });
   };
 
   render() {
     return (
       <Wrapper>
-        {this.props.children}
+        {React.Children.map(this.props.children, child =>
+          React.cloneElement(child, {
+            selectItem: this.handleItemSelection,
+            activeItem: this.state.activeItem,
+          }),
+        )}
       </Wrapper>
     );
   }

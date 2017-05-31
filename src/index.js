@@ -9,6 +9,7 @@ import { Segment } from './components/Segment';
 import { List, ListItem } from './components/List';
 import { Spinner } from './components/Spinner';
 import { Link } from './components/Link';
+import { Navigation } from './components/Navigation';
 
 import { Title, Subtitle } from './components/heading';
 import {
@@ -44,6 +45,7 @@ export {
   ListItem,
   Spinner,
   Link,
+  Navigation,
   // heading
   Title,
   Subtitle,
