@@ -73,12 +73,11 @@ const NavigationItem = ({ children, active }: Object) => {
 |-----------------------------------------------------------
 */
 type Props = {
-  children: any,
+  children: Children,
 };
 
 type State = {
   activeItem?: string,
-  something: number,
 };
 
 const Wrapper = styled.div`
@@ -89,7 +88,7 @@ const Wrapper = styled.div`
   font-size: 1.3rem;
 `;
 
-const Navigation = class Navigation extends Component<void, Props, State> {
+class Navigation extends Component<void, Props, State> {
   static Left = NavigationLeft;
   static Right = NavigationRight;
   static Item = NavigationItem;
@@ -106,6 +105,6 @@ const Navigation = class Navigation extends Component<void, Props, State> {
       </Wrapper>
     );
   }
-};
+}
 
 export default Navigation;
