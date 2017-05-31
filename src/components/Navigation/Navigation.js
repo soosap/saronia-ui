@@ -34,12 +34,15 @@ const getBorderBottom = R.cond([
 ]);
 
 const WrapperItem = styled.div`
-  padding: .4rem .6rem;
   border-bottom: ${getBorderBottom};
 
   a {
     color: ${Color.BLACK};
     text-decoration: none;
+  }
+
+  * {
+    padding: .4rem .6rem;
   }
 
   &:hover {

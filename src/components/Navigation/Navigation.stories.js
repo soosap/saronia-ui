@@ -33,9 +33,8 @@ const Image = styled.img`
   width: 100%;;
 `;
 
-const Link = styled.a`
-  background-color: red;
-`;
+// simulating use of third-party <Link /> components
+const Link = styled.a``;
 
 stories
   .add('welcome', () => {
@@ -52,10 +51,10 @@ stories
         </Navigation.Left>
         <Navigation.Right>
           <Navigation.Item name="login" initial onClick={action('clicked')}>
-            Login
+            <span>Login</span>
           </Navigation.Item>
           <Navigation.Item name="signup" onClick={action('clicked')}>
-            Signup
+            <span>Signup</span>
           </Navigation.Item>
         </Navigation.Right>
       </Navigation>
@@ -69,15 +68,13 @@ stories
         </ImageContainer>
       </Navigation.Left>
       <Navigation.Right>
-        <Link>
-          <Navigation.Item
-            name="login"
-            initial
-            onClick={() => console.log('clicked')}
-          >
-            Login
-          </Navigation.Item>
-        </Link>
+        <Navigation.Item
+          name="login"
+          initial
+          onClick={() => console.log('clicked')}
+        >
+          <Link>Login</Link>
+        </Navigation.Item>
         <Navigation.Item name="signup" onClick={action('clicked')}>
           <a>Signup</a>
         </Navigation.Item>
