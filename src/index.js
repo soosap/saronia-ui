@@ -9,8 +9,9 @@ import { Segment } from './components/Segment';
 import { List, ListItem } from './components/List';
 import { Spinner } from './components/Spinner';
 import { Link } from './components/Link';
+import { Navigation } from './components/Navigation';
 
-import { Title, Subtitle, Headings } from './components/headings';
+import { Title, Subtitle } from './components/heading';
 import {
   Form,
   Field,
@@ -19,7 +20,7 @@ import {
   Radio,
   TextArea,
   ContextMessage,
-} from './components/forms';
+} from './components/form';
 
 export const generateAndInjectGlobalCSS = () => injectGlobal`
   @font-face {
@@ -44,11 +45,11 @@ export {
   ListItem,
   Spinner,
   Link,
+  Navigation,
   // heading
   Title,
   Subtitle,
-  Headings,
-  // forms
+  // form
   Form,
   Field,
   FieldLabel,
