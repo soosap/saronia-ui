@@ -43,6 +43,22 @@ stories
       </Buttons>
     );
   })
+  .add('two items only', () => {
+    const props = R.pickBy(isNotNil, {
+      accent: boolean('accent', false),
+      breed: select('breed', breedOptions, 'primary'),
+      inverted: boolean('inverted', true),
+      vertical: boolean('vertical', false),
+      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+    });
+
+    return (
+      <Buttons {...props} onClick={action('clicked')}>
+        <Button>Login</Button>
+        <Button>Sign up</Button>
+      </Buttons>
+    );
+  })
   .add('links', () => {
     const LinkButton = Button.withComponent('a');
     /*
