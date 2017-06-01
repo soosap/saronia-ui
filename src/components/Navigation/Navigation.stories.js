@@ -15,6 +15,7 @@ import {
 
 import { Navigation } from '.';
 import { Buttons, Button } from '../Button';
+import { Link } from '../Link';
 
 const stories = storiesOf('Navigation', module);
 stories.addDecorator(withKnobs);
@@ -33,9 +34,6 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   width: 100%;;
 `;
-
-// simulating use of third-party <Link /> components
-const Link = styled.a``;
 
 stories
   .add('text', () => {

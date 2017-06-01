@@ -1,13 +1,13 @@
 /* @flow */
-import React from 'react';
 import styled from 'styled-components';
+import { darken } from 'polished';
 
-type Props = {
-
-};
+import { Color } from '../../lib/constants';
 
 const Link = styled.a`
-
+  color: ${darken(0.07, Color.PRIMARY)};
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
-export default (props: Props) => <Link {...props} />;
+export default Link;
