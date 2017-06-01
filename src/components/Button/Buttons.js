@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 
   * {
     border-radius: 0;
+    text-decoration: none;
 
     &:not(:first-child):not(:last-child) {
       border-left: ${p => (p.vertical ? '1px solid' : 'none')};
