@@ -2,7 +2,7 @@
 import { injectGlobal } from 'styled-components';
 import { Font, FONT_URL } from './lib/constants';
 
-import { Button, Buttons } from './components/Button';
+import { Button, Buttons, IconButton, PulseButton } from './components/Button';
 import { Icon } from './components/Icon';
 import { Label } from './components/Label';
 import { Segment } from './components/Segment';
@@ -37,6 +37,8 @@ export const generateAndInjectGlobalCSS = () => injectGlobal`
 
 export {
   Button,
+  IconButton,
+  PulseButton,
   Buttons,
   Label,
   Segment,

@@ -11,7 +11,7 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Button } from '.';
+import { Button, IconButton, PulseButton } from '.';
 import {
   MagnitudeEnum,
   BreedEnum,
@@ -58,6 +58,26 @@ stories
       </Button>
     );
   })
+  .add('link', () => {
+    const children = text('children', 'Click me!');
+    const props = R.pickBy(isNotNil, {
+      accent: boolean('accent', false),
+      icon: select('icon', iconOptions, IconSVGPath.TWITTER),
+      iconPosition: select('icon position', iconPositionOptions, 'left'),
+      inverted: boolean('inverted', false),
+      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      pop: select('pop', popOptions, undefined),
+      breed: select('breed', breedOptions, 'primary'),
+    });
+
+    const LinkButton = Button.withComponent('a');
+
+    return (
+      <LinkButton {...props} href="https://saronia.com">
+        {children}
+      </LinkButton>
+    );
+  })
   .add('icon', () => {
     const children = text('children', 'Register');
     const props = R.pickBy(isNotNil, {
@@ -71,8 +91,30 @@ stories
     });
 
     return (
-      <Button {...props} onClick={action('clicked')}>
+      <IconButton {...props} onClick={action('clicked')}>
         {children}
-      </Button>
+      </IconButton>
+    );
+  })
+  .add('pulse', () => {
+    const children = text('children', 'Register');
+    const circular = boolean('circular', true);
+    const props = R.pickBy(isNotNil, {
+      accent: boolean('accent', false),
+      icon: select('icon', iconOptions, IconSVGPath.TWITTER),
+      inverted: boolean('inverted', false),
+      size: select('size', R.invertObj(MagnitudeEnum), MagnitudeEnum.MEDIUM),
+      circular,
+      radius: circular
+        ? select('radius', R.invertObj(MagnitudeEnum), MagnitudeEnum.BIG)
+        : undefined,
+      pop: select('pop', popOptions, undefined),
+      breed: select('breed', breedOptions, 'secondary'),
+    });
+
+    return (
+      <PulseButton {...props} onClick={action('clicked')}>
+        {children}
+      </PulseButton>
     );
   });
