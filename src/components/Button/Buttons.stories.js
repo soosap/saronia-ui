@@ -25,19 +25,51 @@ const isNotNil = R.both(
 const stories = storiesOf('Buttons', module);
 stories.addDecorator(withKnobs).addDecorator(centered);
 
-stories.add('default', () => {
-  const props = R.pickBy(isNotNil, {
-    accent: boolean('accent', false),
-    breed: select('breed', breedOptions, 'primary'),
-    inverted: boolean('inverted', true),
-    size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
-  });
+stories
+  .add('default', () => {
+    const props = R.pickBy(isNotNil, {
+      accent: boolean('accent', false),
+      breed: select('breed', breedOptions, 'primary'),
+      inverted: boolean('inverted', true),
+      vertical: boolean('vertical', false),
+      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+    });
 
-  return (
-    <Buttons {...props} onClick={action('clicked')}>
-      <Button>Login</Button>
-      <Button>Do nothing</Button>
-      <Button>Sign up</Button>
-    </Buttons>
-  );
-});
+    return (
+      <Buttons {...props} onClick={action('clicked')}>
+        <Button>Login</Button>
+        <Button>Do nothing</Button>
+        <Button>Sign up</Button>
+      </Buttons>
+    );
+  })
+  .add('links', () => {
+    const LinkButton = Button.withComponent('a');
+    /*
+    |-----------------------------------------------------------
+    | Whitelisting props
+    |-----------------------------------------------------------
+    |
+    | Currently, all props are passed to the underlying HTML
+    | element. This will throw an error as an <a> tag receives
+    | unknown props 'accent', 'breed', etc. There is currently
+    | no official solution via styled-components. It's being
+    | worked on and it'll probably land in v3.0.
+    |
+    */
+    const props = R.pickBy(isNotNil, {
+      accent: boolean('accent', false),
+      breed: select('breed', breedOptions, 'primary'),
+      inverted: boolean('inverted', true),
+      vertical: boolean('vertical', false),
+      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+    });
+
+    return (
+      <Buttons {...props} onClick={action('clicked')}>
+        <LinkButton href="https://saronia.com/login">Login</LinkButton>
+        <LinkButton>Do nothing</LinkButton>
+        <LinkButton href="https://saronia.com/signup">Sign up</LinkButton>
+      </Buttons>
+    );
+  });
