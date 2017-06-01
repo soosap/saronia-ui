@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Children } from 'react';
 import styled from 'styled-components';
-import { BORDER_RADIUS, Border } from '../../lib/constants';
+import { BORDER_RADIUS } from '../../lib/constants';
 import type { Breed, Magnitude } from '../../lib/types';
 
 type Props = {
@@ -26,6 +26,9 @@ const Wrapper = styled.div`
       border-top: ${p => (p.vertical ? 'none' : '1px solid')};
       border-bottom: ${p => (p.vertical ? 'none' : '1px solid')};
       border-radius: 0;
+      border: 1px solid;
+      border-right: ${p => (p.vertical ? '1px solid' : 'none')};
+      border-bottom: ${p => (p.vertical ? 'none' : '1px solid')};
     }
 
     &:first-child {
@@ -33,6 +36,8 @@ const Wrapper = styled.div`
       border-top-right-radius: ${p => (p.vertical ? BORDER_RADIUS : 0)};
       border-bottom-left-radius: ${p => (p.vertical ? 0 : BORDER_RADIUS)};
       border-bottom-right-radius: 0;
+      border-right: ${p => (p.vertical ? '1px solid' : 'none')};
+      border-bottom: ${p => (p.vertical ? 'none' : '1px solid')};
     }
 
     &:last-child {
