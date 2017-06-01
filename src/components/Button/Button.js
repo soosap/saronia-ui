@@ -135,6 +135,7 @@ const Button = styled.button`
 
   display: flex;
   justify-content: ${props => (props.circular ? 'center' : 'flex-start')};
+  align-items: center;
 
   color: ${getColor};
   font-size: ${getFontSize};
