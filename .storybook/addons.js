@@ -1,6 +1,7 @@
-//  To get our default addons (actions and links)
 import '@storybook/addons';
-//  Add the knobs addon
+// Register actions addon
+import '@storybook/addon-actions/register';
+// Register knobs addon
 import '@storybook/addon-knobs/register'
-// Add the options addon to customize the storybook-ui
+// Register addon to customize the storybook-ui
 import '@storybook/addon-options/register';
