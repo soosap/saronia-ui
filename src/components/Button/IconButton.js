@@ -118,20 +118,24 @@ const TextWrapper = styled.div`
   align-items: center;
 `;
 
-const IconButton = (props: Props) => (
-  <Wrapper {...props}>
-    <IconWrapper {...props}>
-      <Icon
-        {...R.merge(props, {
-          svgPath: props.icon,
-          inverted: !props.inverted,
-        })}
-      />
-    </IconWrapper>
-    <TextWrapper {...props}>
-      {R.prop('children', props)}
-    </TextWrapper>
-  </Wrapper>
-);
+const IconButton = (props: Props) => {
+  const passthroughProps = R.omit(['onClick', 'icon'], props);
+
+  return (
+    <Wrapper {...props}>
+      <IconWrapper {...passthroughProps}>
+        <Icon
+          {...R.merge(passthroughProps, {
+            svgPath: props.icon,
+            inverted: !props.inverted,
+          })}
+        />
+      </IconWrapper>
+      <TextWrapper {...passthroughProps}>
+        {R.prop('children', props)}
+      </TextWrapper>
+    </Wrapper>
+  );
+};
 
 export default IconButton;
