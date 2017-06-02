@@ -12,6 +12,7 @@ type Props = {
   svgPath: string,
   type?: Breed,
   viewBox?: string,
+  onClick?: Function,
 };
 
 const getFill = R.cond([
@@ -40,19 +41,26 @@ const getWidth = R.cond([
   [R.T, R.always('1rem')],
 ]);
 
+const getCursor = R.cond([
+  [R.prop('onClick'), R.always('pointer')],
+  [R.T, R.always('default')],
+]);
+
 const Wrapper = styled.svg`
   display: inline-block;
   vertical-align: middle;
   width: ${getWidth};
   fill: ${getFill};
+  cursor: ${getCursor};
 `;
 
-const Icon = ({ svgPath, size, type, inverted, viewBox }: Props) => (
+const Icon = ({ svgPath, size, type, inverted, viewBox, onClick }: Props) => (
   <Wrapper
     viewBox={viewBox}
     size={size}
     type={type}
     inverted={inverted}
+    onClick={onClick}
   >
     <path d={svgPath} />
   </Wrapper>

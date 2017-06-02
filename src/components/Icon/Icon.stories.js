@@ -9,6 +9,7 @@ import {
   number,
   select,
 } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { Icon } from '.';
 import { IconSVGPath, MagnitudeEnum, BreedEnum } from '../../lib/constants';
@@ -24,13 +25,25 @@ const isNotNil = R.both(
 
 stories.addDecorator(withKnobs);
 
-stories.add('default', () => {
-  const props = R.pickBy(isNotNil, {
-    svgPath: select('icon', iconOptions, IconSVGPath.ADD),
-    size: select('size', sizeOptions, MagnitudeEnum.MEDIUM),
-    type: select('type', typeOptions, undefined),
-    inverted: boolean('inverted', false),
-  });
+stories
+  .add('default', () => {
+    const props = R.pickBy(isNotNil, {
+      svgPath: select('icon', iconOptions, IconSVGPath.ADD),
+      size: select('size', sizeOptions, MagnitudeEnum.MEDIUM),
+      type: select('type', typeOptions, undefined),
+      inverted: boolean('inverted', false),
+    });
 
-  return <Icon {...props} />;
-});
+    return <Icon {...props} />;
+  })
+  .add('w/ onClick handler', () => {
+    const props = R.pickBy(isNotNil, {
+      svgPath: select('icon', iconOptions, IconSVGPath.ADD),
+      size: select('size', sizeOptions, MagnitudeEnum.MEDIUM),
+      type: select('type', typeOptions, undefined),
+      inverted: boolean('inverted', false),
+      onClick: action('icon-click'),
+    });
+
+    return <Icon {...props} />;
+  });
