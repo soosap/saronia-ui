@@ -43,7 +43,7 @@ const getWidth = R.cond([
 
 const getCursor = R.cond([
   [R.prop('onClick'), R.always('pointer')],
-  [R.T, R.always('default')],
+  [R.T, R.always('inherit')],
 ]);
 
 const Wrapper = styled.svg`
