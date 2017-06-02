@@ -59,7 +59,8 @@ const Icon = ({ svgPath, size, type, inverted, viewBox }: Props) => (
 );
 
 Icon.defaultProps = {
-  svgPath: 'path of saronia logo',
+  // Todo for later...
+  // svgPath: 'path of saronia logo',
   viewBox: '0 0 100 100'
 };
 
