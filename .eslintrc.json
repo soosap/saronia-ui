@@ -7,6 +7,7 @@
 	},
   "plugins": ["babel", "react", "flowtype"],
 	"rules": {
+		"no-underscore-dangle": [2, { "allow": ["__"] }],
 		"max-len": [2, 80],
 		"no-shadow": 0,
 		"no-confusing-arrow": 0,
