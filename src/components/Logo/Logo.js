@@ -14,37 +14,46 @@ type Props = {
 const getWidth = R.cond([
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.MASSIVE)),
-    R.always('32rem'),
+    R.always('48rem'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.HUGE)),
-    R.always('24rem'),
+    R.always('36rem'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.BIG)),
-    R.always('20rem'),
+    R.always('24rem'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.LARGE)),
-    R.always('16rem'),
+    R.always('20.692rem'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.MEDIUM)),
-    R.always('12rem'),
+    R.always('13.795rem'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.SMALL)),
-    R.always('10rem'),
+    R.always('11.498rem'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.TINY)),
-    R.always('8rem'),
+    R.always('9.2rem'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.MINI)),
-    R.always('6rem'),
+    R.always('6.9rem'),
   ],
-  [R.T, R.always('100px')],
+  [R.propEq('wordmark', true), R.always('13.795rem')],
+  [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('16rem')],
+  [R.propEq('size', MagnitudeEnum.HUGE), R.always('12rem')],
+  [R.propEq('size', MagnitudeEnum.BIG), R.always('8rem')],
+  [R.propEq('size', MagnitudeEnum.LARGE), R.always('4.5rem')],
+  [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('3rem')],
+  [R.propEq('size', MagnitudeEnum.SMALL), R.always('2.5rem')],
+  [R.propEq('size', MagnitudeEnum.TINY), R.always('2rem')],
+  [R.propEq('size', MagnitudeEnum.MINI), R.always('1.5rem')],
+  [R.T, R.always('3rem')],
 ]);
 
 const getImageSrc = R.cond([
@@ -53,6 +62,7 @@ const getImageSrc = R.cond([
       R.propEq('wordmark', true),
       R.propSatisfies(
         R.contains(R.__, [
+          MagnitudeEnum.LARGE,
           MagnitudeEnum.BIG,
           MagnitudeEnum.HUGE,
           MagnitudeEnum.MASSIVE,
@@ -87,13 +97,10 @@ const Image = styled.img`
   height:100%;
 `;
 
-const Logo = (props: Props) => {
-  console.log('props', props);
-  return (
-    <Wrapper {...props}>
-      <Image src={getImageSrc(props)} alt="logo" />
-    </Wrapper>
-  );
-};
+const Logo = (props: Props) => (
+  <Wrapper {...props}>
+    <Image src={getImageSrc(props)} alt="logo" />
+  </Wrapper>
+);
 
 export default Logo;
