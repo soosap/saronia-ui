@@ -91,7 +91,7 @@ stories
     });
 
     return (
-      <IconButton {...props} onClick={action('clicked')}>
+      <IconButton {...props} onClick={() => console.log('clicked')}>
         {children}
       </IconButton>
     );
