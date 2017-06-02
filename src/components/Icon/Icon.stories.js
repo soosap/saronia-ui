@@ -26,7 +26,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
-    svgPath: select('icon', iconOptions, IconSVGPath.TWITTER),
+    svgPath: select('icon', iconOptions, IconSVGPath.ADD),
     size: select('size', sizeOptions, MagnitudeEnum.MEDIUM),
     type: select('type', typeOptions, undefined),
     inverted: boolean('inverted', false),

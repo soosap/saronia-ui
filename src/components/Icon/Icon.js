@@ -1,9 +1,9 @@
 /* @flow */
-import R from 'ramda';
 import React from 'react';
+import R from 'ramda';
 import styled from 'styled-components';
 
-import type { Magnitude, Breed } from '../../types';
+import type { Magnitude, Breed } from '../../lib/types';
 import { MagnitudeEnum, BreedEnum, Color } from '../../lib/constants';
 
 type Props = {
@@ -48,13 +48,20 @@ const Wrapper = styled.svg`
 `;
 
 const Icon = ({ svgPath, size, type, inverted, viewBox }: Props) => (
-  <Wrapper viewBox={viewBox || '0 0 1024 1024'} size={size} type={type} inverted={inverted}>
+  <Wrapper
+    viewBox={viewBox}
+    size={size}
+    type={type}
+    inverted={inverted}
+  >
     <path d={svgPath} />
   </Wrapper>
 );
 
-// Icon.defaultProps = {
-//   svgPath: 'path of saronia logo'
-// };
+Icon.defaultProps = {
+  // Todo for later...
+  // svgPath: 'path of saronia logo',
+  viewBox: '0 0 100 100'
+};
 
 export default (props: Props) => <Icon {...props} />;
