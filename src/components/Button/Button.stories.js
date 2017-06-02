@@ -62,7 +62,7 @@ stories
     const children = text('children', 'Click me!');
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      icon: select('icon', iconOptions, IconSVGPath.TWITTER),
+      icon: select('icon', iconOptions, IconSVGPath.ADD),
       iconPosition: select('icon position', iconPositionOptions, 'left'),
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
@@ -79,10 +79,10 @@ stories
     );
   })
   .add('icon', () => {
-    const children = text('children', 'Register');
+    const children = text('children', 'Add word');
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      icon: select('icon', iconOptions, IconSVGPath.TWITTER),
+      icon: select('icon', iconOptions, IconSVGPath.ADD),
       iconPosition: select('icon position', iconPositionOptions, 'left'),
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
@@ -101,7 +101,7 @@ stories
     const circular = boolean('circular', true);
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      icon: select('icon', iconOptions, IconSVGPath.TWITTER),
+      icon: select('icon', iconOptions, IconSVGPath.ADD),
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), MagnitudeEnum.MEDIUM),
       circular,
