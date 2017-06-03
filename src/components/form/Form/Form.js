@@ -7,9 +7,9 @@ type Props = {};
 const Form = styled.form`
   flex-grow: 1;
 
-  .field {
+  .fields {
     &:last-of-type {
-      margin-bottom: .3rem;
+      margin-bottom: 1.5rem;
     }
   }
 `;

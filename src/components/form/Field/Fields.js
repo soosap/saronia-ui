@@ -12,7 +12,6 @@ const Fields = styled.label.attrs({
   display: flex;
   flex-grow: 1;
   flex-direction: ${p => p.vertical ? 'column' : 'row'};
-  margin-bottom: 1.5rem;
 
   .field {
     &:not(:last-of-type) {

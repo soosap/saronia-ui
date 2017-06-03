@@ -68,47 +68,6 @@ stories
       </div>
     );
   })
-  .add('wrapped w/ Form', () => {
-    const props = R.pickBy(isNotNil, {
-      accent: boolean('accent', false),
-      placeholder: 'Enter your name...',
-    });
-
-    return (
-      <Form>
-        <Field>
-          <FieldLabel>First name</FieldLabel>
-          <Input {...props} onClick={action('clicked')} />
-        </Field>
-        <Field>
-          <FieldLabel>Last name</FieldLabel>
-          <Input {...props} onClick={action('clicked')} />
-        </Field>
-
-        <Fields>
-          <Field>
-            <FieldLabel>First name</FieldLabel>
-            <Input {...props} onClick={action('clicked')} />
-          </Field>
-          <Field>
-            <FieldLabel>Last name</FieldLabel>
-            <Input {...props} onClick={action('clicked')} />
-          </Field>
-        </Fields>
-
-        <Fields>
-          <Field>
-            <FieldLabel>First name</FieldLabel>
-            <Input {...props} onClick={action('clicked')} />
-          </Field>
-          <Field>
-            <FieldLabel>Last name</FieldLabel>
-            <Input {...props} onClick={action('clicked')} />
-          </Field>
-        </Fields>
-      </Form>
-    );
-  })
   .add('w/ icons', () => {
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
