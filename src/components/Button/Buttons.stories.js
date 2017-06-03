@@ -13,7 +13,7 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Buttons, Button } from '.';
+import { Buttons, Button, LinkButton } from '.';
 import { BreedEnum, MagnitudeEnum } from '../../lib/constants';
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
@@ -60,7 +60,6 @@ stories
     );
   })
   .add('links', () => {
-    const LinkButton = Button.withComponent('a');
     /*
     |-----------------------------------------------------------
     | Whitelisting props

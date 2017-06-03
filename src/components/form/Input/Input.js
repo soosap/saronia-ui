@@ -51,7 +51,10 @@ const Input = styled.input`
 `;
 
 const Wrapper = styled.p`
+  display: flex;
   position: relative;
+  padding: 0;
+  margin: 0;
 
   input {
     &:focus {
