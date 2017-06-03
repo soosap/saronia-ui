@@ -4,7 +4,8 @@
   "description": "ui component library",
   "main": "build/index.js",
   "files": [
-    "build"
+    "build",
+    "constants.js"
   ],
   "private": false,
   "authors": [
