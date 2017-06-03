@@ -15,13 +15,13 @@ import centered from '@storybook/addon-centered';
 import { Field, Fields, FieldLabel } from '.';
 import { Input } from '../Input';
 
-const stories = storiesOf('Fields', module);
-stories.addDecorator(withKnobs).addDecorator(centered);
-
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
 );
+
+const stories = storiesOf('Fields', module);
+stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
