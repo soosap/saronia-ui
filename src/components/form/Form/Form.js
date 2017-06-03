@@ -6,6 +6,7 @@ type Props = {};
 
 const Form = styled.form`
   flex-grow: 1;
+  position: relative;
 
   .fields {
     &:last-of-type {

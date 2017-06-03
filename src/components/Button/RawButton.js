@@ -106,7 +106,7 @@ const RawButton = styled.button`
   padding: ${getPadding};
   overflow: hidden;
 
-  display: flex;
+  display: inline-flex;
   justify-content: ${props => (props.circular ? 'center' : 'flex-start')};
   align-items: center;
 

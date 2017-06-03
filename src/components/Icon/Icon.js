@@ -56,15 +56,9 @@ const Wrapper = styled.svg.attrs({
   cursor: ${getCursor};
 `;
 
-const Icon = ({ svgPath, size, type, inverted, viewBox, onClick }: Props) => (
-  <Wrapper
-    viewBox={viewBox}
-    size={size}
-    type={type}
-    inverted={inverted}
-    onClick={onClick}
-  >
-    <path d={svgPath} />
+const Icon = (props: Props) => (
+  <Wrapper {...R.omit(['svgPath'], props)}>
+    <path d={props.svgPath} />
   </Wrapper>
 );
 

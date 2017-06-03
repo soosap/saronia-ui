@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react';
 import R from 'ramda';
+import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import {
@@ -15,11 +16,24 @@ import centered from '@storybook/addon-centered';
 import { Form } from '.';
 import { Field, Fields, FieldLabel } from '../Field';
 import { Input } from '../Input';
+import { Button } from '../../Button';
+import { Icon } from '../../Icon';
+import { IconSVGPath } from '../../../lib/constants';
 
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
 );
+
+const CloseIcon = styled.div`
+  position: absolute;
+  right: 0;
+  top: -1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const stories = storiesOf('Form', module);
 stories.addDecorator(withKnobs).addDecorator(centered);
@@ -29,6 +43,7 @@ stories.add('default', () => {
 
   return (
     <Form>
+      <CloseIcon><Icon svgPath={IconSVGPath.CLOSE} /></CloseIcon>
       <Fields {...props}>
         <Field>
           <FieldLabel>First name</FieldLabel>
@@ -52,6 +67,9 @@ stories.add('default', () => {
           <FieldLabel>Last name</FieldLabel>
           <Input placeholder="Enter something..." onClick={action('clicked')} />
         </Field>
+      </Fields>
+      <Fields>
+        <Button>Submit</Button>
       </Fields>
     </Form>
   );
