@@ -4,10 +4,10 @@ import { Font, FONT_URL } from './lib/constants';
 
 import {
   Button,
-  Buttons,
   LinkButton,
   RawButton,
   PulseButton,
+  Buttons,
 } from './components/Button';
 import { Icon } from './components/Icon';
 import { Label } from './components/Label';
