@@ -12,10 +12,9 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Input, InputWithIcons, InputWithAddons } from '.';
+import { Input, InputWithAddons } from '.';
 import { Icon } from '../../Icon';
 import { Field, Fields, FieldLabel } from '../Field';
-import { Form } from '../Form';
 import { IconSVGPath } from '../../../lib/constants';
 
 const stories = storiesOf('Input', module);
@@ -29,7 +28,6 @@ const isNotNil = R.both(
 stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
-      accent: boolean('accent', false),
       placeholder: 'Enter your name...',
     });
 
@@ -70,16 +68,14 @@ stories
   })
   .add('w/ icons', () => {
     const props = R.pickBy(isNotNil, {
-      accent: boolean('accent', false),
       placeholder: 'Enter your name...',
+      iconLeft: boolean('iconLeft', true) ? IconSVGPath.ADD : 'undefined',
+      iconRight: boolean('iconRight', true) ? IconSVGPath.TRASH : 'undefined',
+      onClick: action('clicked'),
     });
 
     return (
-      <InputWithIcons onClick={action('clicked')}>
-        <Icon svgPath={IconSVGPath.ADD} />
-        <Input {...props} />
-        <Icon svgPath={IconSVGPath.TRASH} />
-      </InputWithIcons>
+      <Input {...props} />
     );
   })
   .add('w/ addons', () => {

@@ -46,7 +46,9 @@ const getCursor = R.cond([
   [R.T, R.always('inherit')],
 ]);
 
-const Wrapper = styled.svg`
+const Wrapper = styled.svg.attrs({
+  className: 'icon',
+})`
   display: inline-block;
   vertical-align: middle;
   width: ${getWidth};

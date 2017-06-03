@@ -3,11 +3,14 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
+import { Icon } from '../../Icon';
 import { BORDER_RADIUS, Color } from '../../../lib/constants';
 import type { Context } from '../../../lib/types';
 
 type Props = {
   context?: Context,
+  iconLeft?: string,
+  iconRight?: string,
 };
 
 const getBorderColor = R.cond([
@@ -15,14 +18,6 @@ const getBorderColor = R.cond([
   [R.propEq('context', 'warning'), R.always(Color.Context.WARNING)],
   [R.T, R.always('#dbdbdb')],
 ]);
-
-const Wrapper = styled.p`
-  position: relative;
-  padding: 0;
-  margin: 0;
-  flex-grow: 1;
-  display: flex;
-`;
 
 const Input = styled.input`
   flex-grow: 1;
@@ -55,8 +50,96 @@ const Input = styled.input`
   }
 `;
 
-export default (props: Props) => (
-  <Wrapper>
-    <Input {...props} />
-  </Wrapper>
-);
+const Wrapper = styled.p`
+  position: relative;
+
+  input {
+    &:focus {
+      ~ .icon {
+        fill: ${Color.GREY_SEVERE};
+      }
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: .37rem;
+    width: 1.5rem;
+    fill: ${Color.GREY_MODERATE};
+    z-index: 4;
+    pointer-events: none;
+  }
+`;
+
+const WrapperIconLeft = Wrapper.extend`
+  input {
+    padding-left: 2.25rem;
+  }
+
+  .icon {
+    &:first-of-type {
+      left: .3rem;
+    }
+  }
+`;
+
+const WrapperIconRight = Wrapper.extend`
+  input {
+    padding-right: 2.25rem;
+  }
+
+  .icon {
+    &:last-of-type {
+      right: .3rem;
+    }
+  }
+`;
+
+const WrapperIconBothSides = Wrapper.extend`
+  input {
+    padding-left: 2.25rem;
+  }
+
+  .icon {
+    &:first-of-type {
+      left: .3rem;
+    }
+
+    &:last-of-type {
+      right: .3rem;
+    }
+  }
+`;
+
+export default (props: Props) =>
+  R.cond([
+    [
+      R.both(R.prop('iconRight'), R.prop('iconLeft')),
+      R.always(
+        <WrapperIconBothSides>
+          <Input {...props} />
+          <Icon svgPath={R.prop('iconLeft', props)} />
+          <Icon svgPath={R.prop('iconRight', props)} />
+        </WrapperIconBothSides>,
+      ),
+    ],
+    [
+      R.prop('iconLeft'),
+      R.always(
+        <WrapperIconLeft>
+          <Input {...props} />
+          <Icon svgPath={R.prop('iconLeft', props)} />
+        </WrapperIconLeft>,
+      ),
+    ],
+    [
+      R.prop('iconRight'),
+      R.always(
+        <WrapperIconRight>
+          <Input {...props} />
+          <Icon svgPath={R.prop('iconRight', props)} />
+        </WrapperIconRight>,
+      ),
+    ],
+    [R.T, R.always(<Wrapper><Input {...props} /></Wrapper>)],
+  ])(props);
