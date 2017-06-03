@@ -5,12 +5,13 @@ import styled from 'styled-components';
 type Props = {};
 
 const Form = styled.form`
+  flex-grow: 1;
+
   .field {
     &:last-of-type {
       margin-bottom: .3rem;
     }
   }
-
 `;
 
 export default (props: Props) => <Form {...props} />;

@@ -10,6 +10,7 @@ const Field = styled.label.attrs({
   className: 'field',
 })`
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   margin-bottom: .6rem;
 

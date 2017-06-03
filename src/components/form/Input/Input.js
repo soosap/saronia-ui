@@ -16,8 +16,19 @@ const getBorderColor = R.cond([
   [R.T, R.always('#dbdbdb')],
 ]);
 
+const Wrapper = styled.p`
+  position: relative;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+`;
+
 const Input = styled.input`
+  flex-grow: 1;
   display: inline-flex;
+  justify-content: flex-start;
+  position: relative;
   font-size: 1rem;
   padding: 0 .5rem;
   margin-bottom: .5rem;
@@ -44,4 +55,8 @@ const Input = styled.input`
   }
 `;
 
-export default (props: Props) => <Input {...props} />;
+export default (props: Props) => (
+  <Wrapper>
+    <Input {...props} />
+  </Wrapper>
+);

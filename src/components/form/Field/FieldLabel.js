@@ -8,8 +8,7 @@ type Props = {
 
 const FieldLabel = styled.div`
   font-weight: 400;
-  font-size: .9rem;
-  margin-left: .1rem;
+  font-size: .975rem;
   margin-bottom: .25rem;
 `;
 
