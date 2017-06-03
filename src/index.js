@@ -2,7 +2,13 @@
 import { injectGlobal } from 'styled-components';
 import { Font, FONT_URL } from './lib/constants';
 
-import { Button, Buttons, IconButton, PulseButton } from './components/Button';
+import {
+  Button,
+  Buttons,
+  LinkButton,
+  RawButton,
+  PulseButton,
+} from './components/Button';
 import { Icon } from './components/Icon';
 import { Label } from './components/Label';
 import { Segment } from './components/Segment';
@@ -18,6 +24,7 @@ import {
   Field,
   FieldLabel,
   Input,
+  InputWithAddons,
   Radio,
   TextArea,
   ContextMessage,
@@ -38,7 +45,8 @@ export const generateAndInjectGlobalCSS = () => injectGlobal`
 
 export {
   Button,
-  IconButton,
+  RawButton,
+  LinkButton,
   PulseButton,
   Buttons,
   Label,
@@ -58,6 +66,7 @@ export {
   Field,
   FieldLabel,
   Input,
+  InputWithAddons,
   Radio,
   TextArea,
   ContextMessage,

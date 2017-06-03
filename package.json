@@ -37,6 +37,7 @@
     "babel-eslint": "7.1.1",
     "babel-jest": "^20.0.0",
     "babel-loader": "6.2.10",
+    "babel-plugin-styled-components": "^1.1.4",
     "babel-preset-env": "^1.4.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",

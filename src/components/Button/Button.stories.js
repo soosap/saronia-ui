@@ -11,7 +11,7 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Button, IconButton, PulseButton } from '.';
+import { Button, LinkButton, PulseButton } from '.';
 import {
   MagnitudeEnum,
   BreedEnum,
@@ -23,7 +23,6 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const iconOptions = R.invertObj(IconSVGPath);
-const iconPositionOptions = R.invertObj({ LEFT: 'left', RIGHT: 'right' });
 const popOptions = R.invertObj({
   ACTIVE: 'active',
   FOCUS: 'focus',
@@ -62,15 +61,11 @@ stories
     const children = text('children', 'Click me!');
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      icon: select('icon', iconOptions, IconSVGPath.ADD),
-      iconPosition: select('icon position', iconPositionOptions, 'left'),
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
       breed: select('breed', breedOptions, 'primary'),
     });
-
-    const LinkButton = Button.withComponent('a');
 
     return (
       <LinkButton {...props} href="https://saronia.com">
@@ -82,8 +77,8 @@ stories
     const children = text('children', 'Add word');
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      icon: select('icon', iconOptions, IconSVGPath.ADD),
-      iconPosition: select('icon position', iconPositionOptions, 'left'),
+      iconLeft: boolean('iconLeft', true) ? IconSVGPath.ADD : 'undefined',
+      iconRight: boolean('iconRight', true) ? IconSVGPath.TRASH : 'undefined',
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
@@ -91,9 +86,9 @@ stories
     });
 
     return (
-      <IconButton {...props} onClick={action('button-click')}>
+      <Button {...props} onClick={action('button-click')}>
         {children}
-      </IconButton>
+      </Button>
     );
   })
   .add('pulse', () => {

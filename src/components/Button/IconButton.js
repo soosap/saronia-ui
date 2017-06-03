@@ -3,23 +3,10 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import type { Breed, Magnitude } from '../../lib/types';
-import { BreedEnum, MagnitudeEnum, Color } from '../../lib/constants';
-import Button from './Button';
+import RawButton from './RawButton';
 import { Icon } from '../Icon';
-
-type Props = {
-  accent?: boolean,
-  circular?: false,
-  compact?: false,
-  icon: string,
-  iconPosition?: 'left' | 'right',
-  inverted?: boolean,
-  onClick?: Function,
-  pop?: 'active' | 'focus' | 'hover',
-  size?: Magnitude,
-  breed?: Breed,
-};
+import { BreedEnum, MagnitudeEnum, Color } from '../../lib/constants';
+import type { Props } from './Button';
 
 const getPadding = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
@@ -81,7 +68,7 @@ const getIconFillActive = R.cond([
   ],
 ]);
 
-const Wrapper = styled(Button)`
+const Wrapper = RawButton.withComponent('div').extend`
   padding: 0;
   align-items: stretch;
 
@@ -102,16 +89,15 @@ const Wrapper = styled(Button)`
   }
 `;
 
-const IconWrapper = styled.div`
+const IconWrapper = styled.span`
   background-color: ${getIconBackgroundColor};
   padding: ${getPadding};
   display: flex;
   justify-content: center;
   align-items: center;
-  order: ${props => (props.iconPosition === 'right' ? 1 : 0)};
 `;
 
-const TextWrapper = styled.div`
+const TextWrapper = styled.span`
   padding: ${getPadding};
   display: flex;
   justify-content: center;
@@ -119,21 +105,23 @@ const TextWrapper = styled.div`
 `;
 
 const IconButton = (props: Props) => {
-  const passthroughProps = R.omit(['onClick', 'icon'], props);
+  const passthroughProps = R.omit(['onClick', 'iconLeft', 'iconRight'], props);
+
+  console.log('props', props);
 
   return (
     <Wrapper {...props}>
-      <IconWrapper {...passthroughProps}>
-        <Icon
-          {...R.merge(passthroughProps, {
-            svgPath: props.icon,
-            inverted: !props.inverted,
-          })}
-        />
-      </IconWrapper>
+      {props.iconLeft &&
+        <IconWrapper {...passthroughProps}>
+          <Icon svgPath={props.iconLeft} inverted={!props.inverted} />
+        </IconWrapper>}
       <TextWrapper {...passthroughProps}>
         {R.prop('children', props)}
       </TextWrapper>
+      {props.iconRight &&
+        <IconWrapper {...passthroughProps}>
+          <Icon svgPath={props.iconRight} inverted={!props.inverted} />
+        </IconWrapper>}
     </Wrapper>
   );
 };

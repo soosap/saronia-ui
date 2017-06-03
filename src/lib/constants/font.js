@@ -11,7 +11,7 @@ export const FontSize = {
 };
 
 export const FONT_URL =
-  'https://fonts.googleapis.com/css?family=Nunito:400,600,700|Satisfy';
+  'https://fonts.googleapis.com/css?family=Nunito:400,600|Satisfy';
 
 export default {
   SYSTEM: "'Nunito', sans-serif",
