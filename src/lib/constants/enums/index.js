@@ -4,5 +4,13 @@ import ContextEnum from './context.enum';
 import MagnitudeEnum from './magnitude.enum';
 import PositionEnum from './position.enum';
 import SizeEnum from './size.enum';
+import IntensityEnum from './intensity.enum';
 
-export { BreedEnum, ContextEnum, MagnitudeEnum, PositionEnum, SizeEnum };
+export {
+  BreedEnum,
+  ContextEnum,
+  MagnitudeEnum,
+  PositionEnum,
+  SizeEnum,
+  IntensityEnum,
+};

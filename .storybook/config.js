@@ -6,7 +6,7 @@ import { generateAndInjectGlobalCSS } from '../src';
 
 generateAndInjectGlobalCSS();
 
-const req = require.context('../src/components', true, /\.stories\.js$/);
+const req = require.context('../src', true, /\.stories\.js$/);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));
@@ -16,7 +16,7 @@ setAddon(infoAddon);
 
 setOptions({
   name: 'saronia-ui',
-  url: 'https://ui.saronia.io'
+  url: 'https://ui.saronia.io',
 });
 
 configure(loadStories, module);

@@ -16,21 +16,21 @@ const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always('transparent')],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
-  [R.T, R.always(Color.GREY_LIGHT)],
+  [R.T, R.always(Color.Gray.LIGHT)],
 ]);
 
 const getBackgroundColorHover = R.cond([
   [R.propEq('inverted', true), R.always(Color.WHITE_DARK)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARK)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARK)],
-  [R.T, R.always(Color.GREY_MODERATE)],
+  [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 
 const getBackgroundColorActive = R.cond([
   [R.propEq('inverted', true), R.always(Color.IVORY_DARK)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARKER)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARKER)],
-  [R.T, R.always(Color.GREY_STRONG)],
+  [R.T, R.always(Color.Black.LIGHT)],
 ]);
 
 const getBorder = R.cond([
@@ -62,6 +62,14 @@ const getColor = R.cond([
   ],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.IVORY_DARK)],
   [R.T, R.always(Color.BLACK)],
+]);
+
+const getColorHover = R.cond([
+  [R.T, R.always(Color.Black.MODERATE)],
+]);
+
+const getColorActive = R.cond([
+  [R.T, R.always(Color.White.MODERATE)],
 ]);
 
 const getFontSize = (props: Props) => {
@@ -117,17 +125,19 @@ const RawButton = styled.button`
   border: ${getBorder};
   border-radius: ${props => (props.circular ? '50%' : BORDER_RADIUS)};
 
-  transition: all .3s, transform .4s ease-out;
+  transition: transform .4s ease-out, all .3s;
 
   &:hover {
     cursor: pointer;
     background-color: ${getBackgroundColorHover};
     transform: ${getTransform('hover')};
+    color: ${getColorHover};
   }
 
   &:active {
     transform: ${getTransform('active')};
     background-color: ${getBackgroundColorActive};
+    color: ${getColorActive};
   }
 
   &:focus {
