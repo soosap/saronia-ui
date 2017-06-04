@@ -4,27 +4,14 @@ import R from 'ramda';
 import styled from 'styled-components';
 
 import { Animation } from '../../lib/constants';
-import type { Breed, Magnitude } from '../../lib/types';
-import Button from './Button';
-
-type Props = {
-  accent?: boolean,
-  circular: true,
-  compact?: false,
-  icon?: false,
-  inverted?: boolean,
-  onClick?: Function,
-  pop?: 'active' | 'focus' | 'hover',
-  radius: Magnitude,
-  size?: Magnitude,
-  breed?: Breed,
-};
+import RawButton from './RawButton';
+import type { Props } from './Button';
 
 const Pulse = styled.div`
   position: relative;
 `;
 
-const Overlay = styled(Button)`
+const Overlay = RawButton.extend`
   position: absolute;
   top: 0;
   left: 0;
@@ -36,11 +23,10 @@ const Overlay = styled(Button)`
   animation-delay: .2s;
 `;
 
-const PulseButton = (props: Props) => (
+const PulseButton = (props: Props) =>
   <Pulse>
-    <Button {...props} />
+    <RawButton {...props} />
     <Overlay {...R.merge(props, { inverted: true })} />
-  </Pulse>
-);
+  </Pulse>;
 
 export default PulseButton;

@@ -7,34 +7,32 @@ import IconButton from './IconButton';
 
 import type { Breed, Magnitude } from '../../lib/types';
 
-export type Props =
-  | {
-      // default
-      accent?: boolean,
-      circular?: false,
-      compact?: false,
-      inverted?: boolean,
-      iconLeft?: string,
-      iconRight?: string,
-      onClick?: Function,
-      pop?: 'active' | 'focus' | 'hover',
-      size?: Magnitude,
-      breed?: Breed,
-    }
-  | {
-      // circular
-      accent?: boolean,
-      circular: true,
-      compact?: false,
-      iconLeft?: false,
-      iconRight?: false,
-      inverted?: boolean,
-      onClick?: Function,
-      pop?: 'active' | 'focus' | 'hover',
-      radius: Magnitude,
-      size?: Magnitude,
-      breed?: Breed,
-    };
+export type DefaultButtonProps = {
+  accent?: boolean,
+  circular?: false,
+  compact?: false,
+  inverted?: boolean,
+  iconLeft?: string,
+  iconRight?: string,
+  onClick?: Function,
+  pop?: 'active' | 'focus' | 'hover',
+  size?: Magnitude,
+  breed?: Breed,
+};
+
+export type CircularButtonProps = {
+  accent?: boolean,
+  circular: true,
+  compact?: false,
+  inverted?: boolean,
+  onClick?: Function,
+  pop?: 'active' | 'focus' | 'hover',
+  radius: Magnitude,
+  size?: Magnitude,
+  breed?: Breed,
+};
+
+export type Props = DefaultButtonProps | CircularButtonProps;
 
 export default (props: Props) =>
   R.cond([
