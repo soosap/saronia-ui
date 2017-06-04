@@ -65,7 +65,7 @@ const Icon = (props: Props) => (
 Icon.defaultProps = {
   // Todo for later...
   // svgPath: 'path of saronia logo',
-  viewBox: '0 0 100 100'
+  viewBox: '0 0 100 100',
 };
 
 export default (props: Props) => <Icon {...props} />;

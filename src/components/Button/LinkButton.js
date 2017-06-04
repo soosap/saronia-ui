@@ -6,4 +6,4 @@ import type { Props } from './Button';
 
 const LinkButton = RawButton.withComponent('a');
 
-export default (props: Props) => <LinkButton {...props} />
+export default (props: Props) => <LinkButton {...props} />;

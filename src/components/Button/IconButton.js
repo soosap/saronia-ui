@@ -95,14 +95,20 @@ const IconButton = (props: Props) => {
     <Wrapper {...props}>
       {props.iconLeft &&
         <IconWrapper {...passthroughProps}>
-          <Icon svgPath={props.iconLeft} inverted={!props.inverted} />
+          <Icon
+            svgPath={R.prop('iconLeft', props)}
+            inverted={!props.inverted}
+          />
         </IconWrapper>}
       <TextWrapper {...passthroughProps}>
         {R.prop('children', props)}
       </TextWrapper>
       {props.iconRight &&
         <IconWrapper {...passthroughProps}>
-          <Icon svgPath={props.iconRight} inverted={!props.inverted} />
+          <Icon
+            svgPath={R.prop('iconRight', props)}
+            inverted={!props.inverted}
+          />
         </IconWrapper>}
     </Wrapper>
   );
