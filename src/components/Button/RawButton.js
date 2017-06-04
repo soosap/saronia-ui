@@ -46,7 +46,7 @@ const getBorder = R.cond([
   [R.T, R.always('none')],
 ]);
 
-const getColor = R.cond([
+export const getColor = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.Primary.DARKER),
@@ -61,7 +61,7 @@ const getColor = R.cond([
   [R.T, R.always(Color.Black.TRANSPARENT)],
 ]);
 
-const getColorHover = R.cond([
+export const getColorHover = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.Primary.DARKER),
@@ -75,7 +75,7 @@ const getColorHover = R.cond([
   [R.T, R.always(Color.Black.MODERATE)],
 ]);
 
-const getColorActive = R.cond([
+export const getColorActive = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.Primary.DARKER),

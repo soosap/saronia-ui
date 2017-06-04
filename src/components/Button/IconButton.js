@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import RawButton, {
   getBackgroundColorActive,
   getBackgroundColorHover,
+  getColor,
+  getColorHover,
+  getColorActive,
 } from './RawButton';
 import { Icon } from '../Icon';
 import { BreedEnum, MagnitudeEnum, Color } from '../../lib/constants';
@@ -38,50 +41,18 @@ const getIconBackgroundColor = R.cond([
   [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 
-const getIconFill = R.cond([
-  [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
-    R.always(Color.WHITE),
-  ],
-  [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
-    R.always(Color.WHITE),
-  ],
-]);
-
-const getIconFillHover = R.cond([
-  [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
-    R.always(Color.WHITE_DARK),
-  ],
-  [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
-    R.always(Color.WHITE_DARK),
-  ],
-]);
-
-const getIconFillActive = R.cond([
-  [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
-    R.always(Color.IVORY_DARK),
-  ],
-  [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
-    R.always(Color.IVORY_DARK),
-  ],
-]);
-
 const Wrapper = RawButton.withComponent('div').extend`
   padding: 0;
   align-items: stretch;
+  transition: all .6s;
 
   svg {
-    fill: ${getIconFill};
+    fill: ${getColor};
   }
 
   &:hover {
     svg {
-      fill: ${getIconFillHover};
+      fill: ${getColorHover};
     }
 
     span {
@@ -95,12 +66,13 @@ const Wrapper = RawButton.withComponent('div').extend`
     }
 
     svg {
-      fill: ${getIconFillActive};
+      fill: ${getColorActive};
     }
   }
 `;
 
 const IconWrapper = styled.span`
+  transition: all .6s;
   background-color: ${getIconBackgroundColor};
   padding: ${getPadding};
   display: flex;
@@ -109,6 +81,7 @@ const IconWrapper = styled.span`
 `;
 
 const TextWrapper = styled.span`
+  transition: all .6s;
   padding: ${getPadding};
   display: flex;
   justify-content: center;
