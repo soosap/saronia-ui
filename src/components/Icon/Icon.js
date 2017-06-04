@@ -18,11 +18,11 @@ type Props = {
 const getFill = R.cond([
   [
     R.both(R.propEq('type', BreedEnum.PRIMARY), R.propEq('inverted', true)),
-    R.always(Color.BLACK_TRANSPARENT_SEVERE),
+    R.always(Color.Black.TRANSPARENT),
   ],
   [
     R.both(R.propEq('type', BreedEnum.SECONDARY), R.propEq('inverted', true)),
-    R.always(Color.IVORY_DARK),
+    R.always(Color.White.LIGHT),
   ],
   [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
   [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
