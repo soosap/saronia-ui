@@ -73,7 +73,7 @@ stories
       align-items: center;
       width: 50%;
       height: 200px;
-    	flex-direction: ${getFlexDirection(props)};
+      flex-direction: ${getFlexDirection(props)};
     `;
 
     const Segment = styled.div`

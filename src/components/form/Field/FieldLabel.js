@@ -2,9 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type Props = {
-
-};
+type Props = {};
 
 const FieldLabel = styled.div`
   font-weight: 400;

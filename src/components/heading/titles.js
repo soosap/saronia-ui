@@ -12,15 +12,6 @@ type Props = {
   decoration?: 'none' | 'underline' | 'overline' | 'line-through',
 };
 
-const getFontSize = R.cond([
-  [R.propEq('size', '1'), R.always(FontSize.MASSIVE)],
-  [R.propEq('size', '2'), R.always(FontSize.HUGE)],
-  [R.propEq('size', '3'), R.always(FontSize.BIG)],
-  [R.propEq('size', '4'), R.always(FontSize.LARGE)],
-  [R.propEq('size', '5'), R.always(FontSize.MEDIUM)],
-  [R.propEq('size', '6'), R.always(FontSize.SMALL)],
-]);
-
 /*
 |-----------------------------------------------------------
 | Helper methods
@@ -36,6 +27,15 @@ const getTextAlign = R.cond([
   [R.propEq('align', 'left'), R.always('left')],
   [R.propEq('align', 'right'), R.always('right')],
   [R.T, R.always('center')],
+]);
+
+const getFontSize = R.cond([
+  [R.propEq('size', '1'), R.always(FontSize.MASSIVE)],
+  [R.propEq('size', '2'), R.always(FontSize.HUGE)],
+  [R.propEq('size', '3'), R.always(FontSize.BIG)],
+  [R.propEq('size', '4'), R.always(FontSize.LARGE)],
+  [R.propEq('size', '5'), R.always(FontSize.MEDIUM)],
+  [R.propEq('size', '6'), R.always(FontSize.SMALL)],
 ]);
 
 /*

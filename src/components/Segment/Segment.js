@@ -3,13 +3,8 @@ import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
 
-import type { Breed, Size } from '../../types';
-import {
-  Color,
-  BORDER_RADIUS,
-  BreedEnum,
-  SizeEnum,
-} from '../../lib/constants';
+import type { Breed, Size } from '../../lib/types';
+import { Color, BORDER_RADIUS, BreedEnum, SizeEnum } from '../../lib/constants';
 
 type Props = {
   basic?: boolean,
@@ -32,7 +27,8 @@ const compactStyle = {
 };
 
 const raisedStyle = {
-  'box-shadow': '0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15)',
+  'box-shadow':
+    '0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15)',
 };
 
 const stackedStyle = {
@@ -80,17 +76,17 @@ const getBackgroundColor = R.cond([
 const getColor = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
-    R.always(Color.BLACK_TRANSPARENT_SEVERE),
+    R.always(Color.Black.TRANSPARENT),
   ],
   [
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
-    R.always(Color.BLACK_TRANSPARENT_SEVERE),
+    R.always(Color.Black.TRANSPARENT),
   ],
   [
     R.both(R.propEq('inverted', true), R.propEq('basic', true)),
     R.always(Color.BLACK),
   ],
-  [R.propEq('inverted', true), R.always(Color.IVORY)],
+  [R.propEq('inverted', true), R.always(Color.WHITE)],
   [R.propEq('type', 'primary'), R.always(Color.PRIMARY)],
   [R.propEq('type', 'secondary'), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.BLACK)],
@@ -118,7 +114,8 @@ const Segment = styled.div`
   ${props => (props.emphasis === 'stacked' ? { ...stackedStyle } : null)};
 
   &:before {
-    ${props => (props.emphasis === 'stacked' ? { ...stackedStyleBefore } : null)}
+    ${props =>
+      props.emphasis === 'stacked' ? { ...stackedStyleBefore } : null}
   }
 
   &:after{

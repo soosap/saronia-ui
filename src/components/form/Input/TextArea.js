@@ -24,7 +24,7 @@ const TextArea = styled.textarea`
   transition: box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9);
 
   &::placeholder {
-    color: ${Color.GREY_VERY_STRONG};
+    color: ${Color.Gray.STRONG};
   }
 
   &:hover {

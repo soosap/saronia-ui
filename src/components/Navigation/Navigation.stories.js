@@ -59,7 +59,7 @@ stories
       </Navigation>
     );
   })
-  .add('links', () => (
+  .add('links', () =>
     <Navigation>
       <Navigation.Left>
         <ImageContainer>
@@ -70,7 +70,7 @@ stories
         <Navigation.Item
           name="login"
           initial
-          onClick={() => console.log('clicked')}
+          onClick={action('clicked')}
         >
           <Link>Login</Link>
         </Navigation.Item>
@@ -78,9 +78,9 @@ stories
           <a>Signup</a>
         </Navigation.Item>
       </Navigation.Right>
-    </Navigation>
-  ))
-  .add('buttons', () => (
+    </Navigation>,
+  )
+  .add('buttons', () =>
     <Navigation>
       <Navigation.Left>
         <ImageContainer>
@@ -93,5 +93,5 @@ stories
           <Button>Sign up</Button>
         </Buttons>
       </Navigation.Right>
-    </Navigation>
-  ));
+    </Navigation>,
+  );

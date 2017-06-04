@@ -23,13 +23,12 @@ const Wrapper = styled.div`
 
     &:not(:first-child):not(:last-child) {
       border-left: ${p => (p.vertical ? '1px solid' : 'none')};
-      border-right: ${p => (p.vertical ? '1px solid' : 'none')};
       border-top: ${p => (p.vertical ? 'none' : '1px solid')};
       border-bottom: ${p => (p.vertical ? 'none' : '1px solid')};
       border-radius: 0;
       border: 1px solid;
-      border-right: ${p => (p.vertical ? '1px solid' : 'none')};
-      border-bottom: ${p => (p.vertical ? 'none' : '1px solid')};
+      border-right: ${p => p.inverted && (p.vertical ? '1px solid' : 'none')};
+      border-bottom: ${p => p.inverted && (p.vertical ? 'none' : '1px solid')};
     }
 
     &:first-child {
@@ -37,8 +36,8 @@ const Wrapper = styled.div`
       border-top-right-radius: ${p => (p.vertical ? BORDER_RADIUS : 0)};
       border-bottom-left-radius: ${p => (p.vertical ? 0 : BORDER_RADIUS)};
       border-bottom-right-radius: 0;
-      border-right: ${p => (p.vertical ? '1px solid' : 'none')};
-      border-bottom: ${p => (p.vertical ? 'none' : '1px solid')};
+      border-right: ${p => p.inverted && (p.vertical ? '1px solid' : 'none')};
+      border-bottom: ${p => p.inverted && (p.vertical ? 'none' : '1px solid')};
     }
 
     &:last-child {

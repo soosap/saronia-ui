@@ -74,9 +74,7 @@ stories
       onClick: action('clicked'),
     });
 
-    return (
-      <Input {...props} />
-    );
+    return <Input {...props} />;
   })
   .add('w/ addons', () => {
     const props = R.pickBy(isNotNil, {

@@ -11,11 +11,11 @@ const Fields = styled.label.attrs({
 })`
   display: flex;
   flex-grow: 1;
-  flex-direction: ${p => p.vertical ? 'column' : 'row'};
+  flex-direction: ${p => (p.vertical ? 'column' : 'row')};
 
   .field {
     &:not(:last-of-type) {
-      margin-right: ${p => p.vertical ? '0' : '1rem'};
+      margin-right: ${p => (p.vertical ? '0' : '1rem')};
     }
   }
 `;

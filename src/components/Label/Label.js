@@ -2,7 +2,7 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import type { Position, Magnitude, Breed } from '../../types';
+import type { Position, Magnitude, Breed } from '../../lib/types';
 
 import {
   Color,
@@ -112,7 +112,7 @@ const getBackgroundColor = R.cond([
   [R.propEq('type', 'primary'), R.always(Color.PRIMARY)],
   [R.propEq('type', 'secondary'), R.always(Color.SECONDARY)],
   [R.propEq('inverted', true), R.always(Color.WHITE)],
-  [R.T, R.always(Color.GREY)],
+  [R.T, R.always(Color.GRAY)],
 ]);
 
 const getBorderColor = R.cond([
@@ -124,7 +124,7 @@ const getBorderColor = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.propEq('inverted', true), R.always(Color.GREY_DARKER)],
+  [R.propEq('inverted', true), R.always(Color.Gray.STRONG)],
   [R.T, R.always('transparent')],
 ]);
 
@@ -137,7 +137,7 @@ const getColor = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.T, R.always(Color.BLACK_TRANSPARENT_SEVERE)],
+  [R.T, R.always(Color.Black.TRANSPARENT)],
 ]);
 
 const getSize = R.cond([
@@ -173,8 +173,10 @@ const Label = styled.span`
   padding: ${props => (props.circular ? getPadding : '0.5833em 0.833em')};
   width: ${props => (props.circular ? getWidth : undefined)};
   height: ${props => (props.circular ? getWidth : undefined)};
-  margin-left: ${props => (props.arrow == 'left' ? '0.5em !important' : undefined)};
-  margin-right: ${props => (props.arrow == 'right' ? '0.5em !important' : undefined)};
+  margin-left: ${props =>
+    props.arrow === 'left' ? '0.5em !important' : undefined};
+  margin-right: ${props =>
+    props.arrow === 'right' ? '0.5em !important' : undefined};
   background-color: ${getBackgroundColor};
   color: ${getColor};
   font-size: ${getSize};
@@ -196,18 +198,18 @@ const Label = styled.span`
    }
 
    ${props => (props.arrow ? 'position: relative' : null)};
-   ${props => (props.arrow == 'left' ? { ...leftArrow } : null)};
-   ${props => (props.arrow == 'right' ? { ...rightArrow } : null)};
-   ${props => (props.arrow == 'top' ? { ...topArrow } : null)};
-   ${props => (props.arrow == 'bottom' ? { ...bottomArrow } : null)};
+   ${props => (props.arrow === 'left' ? { ...leftArrow } : null)};
+   ${props => (props.arrow === 'right' ? { ...rightArrow } : null)};
+   ${props => (props.arrow === 'top' ? { ...topArrow } : null)};
+   ${props => (props.arrow === 'bottom' ? { ...bottomArrow } : null)};
 
    &:before {
       ${props => (props.arrow ? { ...labelBefore } : null)};
       ${props => (props.arrow ? { ...arrowLabelBefore } : null)};
-      ${props => (props.arrow == 'left' ? { ...leftArrowBefore } : null)};
-      ${props => (props.arrow == 'right' ? { ...rightArrowBefore } : null)};
-      ${props => (props.arrow == 'top' ? { ...topArrowBefore } : null)};
-      ${props => (props.arrow == 'bottom' ? { ...bottomArrowBefore } : null)};
+      ${props => (props.arrow === 'left' ? { ...leftArrowBefore } : null)};
+      ${props => (props.arrow === 'right' ? { ...rightArrowBefore } : null)};
+      ${props => (props.arrow === 'top' ? { ...topArrowBefore } : null)};
+      ${props => (props.arrow === 'bottom' ? { ...bottomArrowBefore } : null)};
    }
 `;
 

@@ -38,7 +38,7 @@ const Input = styled.input`
   transition: box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9);
 
   &::placeholder {
-    color: ${Color.GREY_VERY_STRONG};
+    color: ${Color.Gray.STRONG};
   }
 
   &:hover {
@@ -59,7 +59,7 @@ const Wrapper = styled.p`
   input {
     &:focus {
       ~ .icon {
-        fill: ${Color.GREY_SEVERE};
+        fill: ${Color.Gray.STRONG};
       }
     }
   }
@@ -68,7 +68,7 @@ const Wrapper = styled.p`
     position: absolute;
     top: .37rem;
     width: 1.5rem;
-    fill: ${Color.GREY_MODERATE};
+    fill: ${Color.Gray.MODERATE};
     z-index: 4;
     pointer-events: none;
   }

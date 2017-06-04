@@ -97,10 +97,9 @@ const Image = styled.img`
   height:100%;
 `;
 
-const Logo = (props: Props) => (
+const Logo = (props: Props) =>
   <Wrapper {...props}>
     <Image src={getImageSrc(props)} alt="logo" />
-  </Wrapper>
-);
+  </Wrapper>;
 
 export default Logo;

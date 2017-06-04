@@ -2,12 +2,7 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Color,
-  FontSize,
-  BreedEnum,
-  MagnitudeEnum,
-} from '../../lib/constants';
+import { Color, FontSize, BreedEnum, MagnitudeEnum } from '../../lib/constants';
 import type { Magnitude, Breed } from '../../lib/types';
 
 type Props =
@@ -32,7 +27,7 @@ type Props =
 const getColor = R.cond([
   [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
   [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
-  [R.T, R.always(Color.GREY_SEVERE)],
+  [R.T, R.always(Color.Gray.STRONG)],
 ]);
 
 const getMarginTopBottom = R.cond([
@@ -54,9 +49,7 @@ const Wrapper = styled.li`
   padding-left: 1rem;
 `;
 
-const Content = styled.div`
-
-`;
+const Content = styled.div``;
 
 const renderTimelineItem = (props: Props) => {
   const VerticalLine = styled.span`
@@ -66,7 +59,7 @@ const renderTimelineItem = (props: Props) => {
     left: 0;
     width: 0;
     height: 100%;
-    border: 1px solid ${Color.GREY_SEVERE};
+    border: 1px solid ${Color.Gray.STRONG};
 
     &::before {
       content: '';
@@ -99,14 +92,14 @@ const renderTimelineItem = (props: Props) => {
     width: ${R.propOr('75px', 'marginLeft')};
     text-align: right;
     font-size: ${FontSize.MINI};
-    color: ${Color.GREY_VIOLENT};
+    color: ${Color.Black.LIGHT};
   `;
 
-  const LabelTop = styled(Label)`
+  const LabelTop = Label.extend`
     top: -3px;
   `;
 
-  const LabelBottom = styled(Label)`
+  const LabelBottom = Label.extend`
     bottom: -5px;
   `;
 
@@ -124,9 +117,8 @@ const renderTimelineItem = (props: Props) => {
   );
 };
 
-export default (props: Props) => {
-  return R.cond([
+export default (props: Props) =>
+  R.cond([
     [R.prop('timeline'), renderTimelineItem],
     [R.T, R.always(<Content {...props} />)],
   ])(props);
-};

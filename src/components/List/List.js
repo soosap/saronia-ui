@@ -29,15 +29,13 @@ const Wrapper = styled.ul`
     left: 0;
     width: 0;
     height: 100%;
-    border: 1px dashed ${Color.GREY_STRONG};
+    border: 1px dashed ${Color.Gray.STRONG};
   }
 `;
 
-const Content = styled.div`
+const Content = styled.div``;
 
-`;
-
-const renderTimeline = (props: Props) => (
+const renderTimeline = (props: Props) =>
   <Wrapper {...props}>
     {props.children.map((child, index) =>
       React.cloneElement(child, {
@@ -45,11 +43,10 @@ const renderTimeline = (props: Props) => (
         type: props.type,
         gap: props.gap,
         marginLeft: props.marginLeft,
-        key: index,
+        key: child.props.labelTop || child.props.labelBottom,
       }),
     )}
-  </Wrapper>
-);
+  </Wrapper>;
 
 export default (props: Props) =>
   R.cond([
