@@ -19,14 +19,14 @@ const getBackgroundColor = R.cond([
   [R.T, R.always(Color.Gray.LIGHT)],
 ]);
 
-const getBackgroundColorHover = R.cond([
+export const getBackgroundColorHover = R.cond([
   [R.propEq('inverted', true), R.always(Color.White.MODERATE)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARK)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARK)],
   [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 
-const getBackgroundColorActive = R.cond([
+export const getBackgroundColorActive = R.cond([
   [R.propEq('inverted', true), R.always(Color.White.STRONG)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARKER)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
@@ -56,10 +56,7 @@ const getColor = R.cond([
     R.always(Color.SECONDARY),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
-  [
-    R.propEq('breed', BreedEnum.PRIMARY),
-    R.always(Color.Black.TRANSPARENT),
-  ],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.LIGHT)],
   [R.T, R.always(Color.Black.TRANSPARENT)],
 ]);
@@ -73,14 +70,8 @@ const getColorHover = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [
-    R.propEq('breed', BreedEnum.PRIMARY),
-    R.always(Color.Black.TRANSPARENT),
-  ],
-  [
-    R.propEq('breed', BreedEnum.SECONDARY),
-    R.always(Color.White.LIGHT),
-  ],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.LIGHT)],
   [R.T, R.always(Color.Black.MODERATE)],
 ]);
 
@@ -93,18 +84,12 @@ const getColorActive = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [
-    R.propEq('breed', BreedEnum.PRIMARY),
-    R.always(Color.Black.TRANSPARENT),
-  ],
-  [
-    R.propEq('breed', BreedEnum.SECONDARY),
-    R.always(Color.White.MODERATE),
-  ],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.MODERATE)],
   [R.T, R.always(Color.Black.MODERATE)],
 ]);
 
-const getFontSize = (props: Props) => {
+const getFontSize = (props) => {
   const size = R.prop('size', props);
 
   return size ? FontSize[R.toUpper(size)] : FontSize.MEDIUM;

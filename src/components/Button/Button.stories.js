@@ -47,7 +47,6 @@ stories
         ? select('radius', R.invertObj(MagnitudeEnum), 'large')
         : undefined,
       pop: select('pop', popOptions, undefined),
-      pulse: circular ? boolean('pulse', false) : undefined,
       breed: select('breed', breedOptions, 'primary'),
     });
 

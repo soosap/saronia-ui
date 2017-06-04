@@ -3,7 +3,10 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import RawButton from './RawButton';
+import RawButton, {
+  getBackgroundColorActive,
+  getBackgroundColorHover,
+} from './RawButton';
 import { Icon } from '../Icon';
 import { BreedEnum, MagnitudeEnum, Color } from '../../lib/constants';
 import type { Props } from './Button';
@@ -30,9 +33,9 @@ const getIconBackgroundColor = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY_DARKER)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY_DARKER)],
-  [R.T, R.always(Color.GREY_STRONG)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARK)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARK)],
+  [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 
 const getIconFill = R.cond([
@@ -80,9 +83,17 @@ const Wrapper = RawButton.withComponent('div').extend`
     svg {
       fill: ${getIconFillHover};
     }
+
+    span {
+      background-color: ${getBackgroundColorHover};
+    }
   }
 
   &:active {
+    span {
+      background-color: ${getBackgroundColorActive};
+    }
+
     svg {
       fill: ${getIconFillActive};
     }
@@ -106,8 +117,6 @@ const TextWrapper = styled.span`
 
 const IconButton = (props: Props) => {
   const passthroughProps = R.omit(['onClick', 'iconLeft', 'iconRight'], props);
-
-  console.log('props', props);
 
   return (
     <Wrapper {...props}>
