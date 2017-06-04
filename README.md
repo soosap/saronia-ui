@@ -1,5 +1,10 @@
 # saronia-ui
-saronia-ui is a set of React components built using **flexbox** and **styled-components**.
+React-based UI toolkit for the web.
+
+* styled-components v2
+* polished
+* ramda
+* flexbox
 
 ## Setup
 
