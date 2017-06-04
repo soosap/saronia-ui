@@ -20,14 +20,14 @@ const getBackgroundColor = R.cond([
 ]);
 
 export const getBackgroundColorHover = R.cond([
-  [R.propEq('inverted', true), R.always('transparent')],
+  [R.propEq('inverted', true), R.always(Color.White.MODERATE)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARK)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARK)],
   [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 
 export const getBackgroundColorActive = R.cond([
-  [R.propEq('inverted', true), R.always(Color.White.MODERATE)],
+  [R.propEq('inverted', true), R.always(Color.White.STRONG)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARKER)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
   [R.T, R.always(Color.Gray.STRONG)],
@@ -64,7 +64,7 @@ export const getColor = R.cond([
 export const getColorHover = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
-    R.always(Color.Primary.DARKER),
+    R.always(Color.PRIMARY),
   ],
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
