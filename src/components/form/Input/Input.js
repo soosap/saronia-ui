@@ -101,6 +101,7 @@ const WrapperIconRight = Wrapper.extend`
 const WrapperIconBothSides = Wrapper.extend`
   input {
     padding-left: 2.25rem;
+    padding-right: 2.25rem;
   }
 
   .icon {
