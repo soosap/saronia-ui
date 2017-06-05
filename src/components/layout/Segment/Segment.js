@@ -3,8 +3,13 @@ import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
 
-import type { Breed, Size } from '../../lib/types';
-import { Color, BORDER_RADIUS, BreedEnum, SizeEnum } from '../../lib/constants';
+import type { Breed, Size } from '../../../lib/types';
+import {
+  Color,
+  BORDER_RADIUS,
+  BreedEnum,
+  SizeEnum,
+} from '../../../lib/constants';
 
 type Props = {
   basic?: boolean,

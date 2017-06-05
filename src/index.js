@@ -11,7 +11,7 @@ import {
 } from './components/Button';
 import { Icon } from './components/Icon';
 import { Label } from './components/Label';
-import { Segment } from './components/Segment';
+import { Segment } from './components/layout';
 import { List, ListItem } from './components/List';
 import { Spinner } from './components/Spinner';
 import { Link } from './components/Link';
