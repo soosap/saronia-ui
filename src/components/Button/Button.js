@@ -34,8 +34,8 @@ export type CircularButtonProps = {
 
 export type Props = DefaultButtonProps | CircularButtonProps;
 
-export default (props: Props) => {
-  return R.cond([
+export default (props: Props) =>
+  R.cond([
     [
       R.prop('iconLeft'),
       R.always(<IconButton {...R.omit(['iconRight'], props)} />),
@@ -44,9 +44,13 @@ export default (props: Props) => {
       R.prop('iconRight'),
       R.always(<IconButton {...R.omit(['iconLeft'], props)} />),
     ],
-    [R.T, R.always(<RawButton {...props}>
-      <span />
-      {R.prop('children', props)}
-    </RawButton>)],
+    [
+      R.T,
+      R.always(
+        <RawButton {...props}>
+          <span />
+          {R.prop('children', props)}
+        </RawButton>,
+      ),
+    ],
   ])(props);
-}
