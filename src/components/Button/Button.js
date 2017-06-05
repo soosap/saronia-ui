@@ -44,5 +44,13 @@ export default (props: Props) =>
       R.prop('iconRight'),
       R.always(<IconButton {...R.omit(['iconLeft'], props)} />),
     ],
-    [R.T, R.always(<RawButton {...props} />)],
+    [
+      R.T,
+      R.always(
+        <RawButton {...props}>
+          <span />
+          {R.prop('children', props)}
+        </RawButton>,
+      ),
+    ],
   ])(props);

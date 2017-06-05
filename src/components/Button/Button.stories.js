@@ -11,7 +11,8 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Button, LinkButton, PulseButton } from '.';
+import { Button, LinkButton, PulseButton, RawButton } from '.';
+import { Icon } from '../Icon';
 import {
   MagnitudeEnum,
   BreedEnum,
@@ -87,6 +88,20 @@ stories
     return (
       <Button {...props} onClick={action('button-click')}>
         {children}
+      </Button>
+    );
+  })
+  .add('circular', () => {
+    const props = R.pickBy(isNotNil, {
+      inverted: boolean('inverted', false),
+      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      pop: select('pop', popOptions, undefined),
+      breed: select('breed', breedOptions, 'primary'),
+    });
+
+    return (
+      <Button {...props} circular radius="small">
+        <Icon svgPath={IconSVGPath.CLOSE} />
       </Button>
     );
   })
