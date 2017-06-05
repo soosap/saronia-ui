@@ -11,7 +11,7 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Button, LinkButton, PulseButton, RawButton } from '.';
+import { Button, LinkButton, PulseButton } from '.';
 import { Icon } from '../Icon';
 import {
   MagnitudeEnum,
