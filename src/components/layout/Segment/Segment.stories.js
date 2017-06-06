@@ -10,7 +10,7 @@ import {
   select,
 } from '@storybook/addon-knobs';
 
-import { BreedEnum, SizeEnum } from '../../lib/constants';
+import { BreedEnum, SizeEnum } from '../../../lib/constants';
 import { Segment } from '.';
 
 const stories = storiesOf('Segment', module);

@@ -1,6 +1,6 @@
 /* @flow */
-import R from 'ramda';
 import React from 'react';
+import R from 'ramda';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import {
@@ -11,7 +11,7 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Button, LinkButton, PulseButton, RawButton } from '.';
+import { Button, LinkButton, PulseButton } from '.';
 import { Icon } from '../Icon';
 import {
   MagnitudeEnum,
