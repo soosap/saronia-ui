@@ -1,6 +1,8 @@
 /* @flow */
 export default {
+  BIG_PHONE: '480px',
   TABLET: '768px',
-  DESKTOP: '992px',
-  WIDESCREEN: '1200px',
+  BIG_TABLET: '992px',
+  DESKTOP: '1200px',
+  WIDESCREEN: '1920px',
 };
