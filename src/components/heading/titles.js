@@ -2,7 +2,7 @@
 import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
-import { Font, FontSize } from '../../lib/constants';
+import { Font, FontSize, Color } from '../../lib/constants';
 
 type Props = {
   accent?: boolean,
@@ -46,7 +46,9 @@ const getFontSize = R.cond([
 export const Title = (props: Props) => {
   const { accent, transform, decoration, ...rest } = props;
 
-  const Title = styled.h1`
+  const Title = styled.h1.attrs({
+    className: 'title',
+  })`
     font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
     font-weight: 300;
     font-size: ${getFontSize};
@@ -103,7 +105,7 @@ export const Subtitle = (props: Props) => {
     padding: 0;
     line-height: 1.125;
     word-break: break-word;
-    color: grey;
+    color: ${Color.Black.LIGHT};
 
     &:not(:last-child) {
       margin-bottom: 1.5rem;
