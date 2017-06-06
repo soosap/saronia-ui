@@ -130,13 +130,10 @@ const NavigationRight = ({
 | Navigation
 |-----------------------------------------------------------
 */
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   display: flex;
   justify-content: space-between;
-  margin-top: .6rem;
-  margin-bottom: .6rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: .6rem 1rem;
   font-size: 1.3rem;
 `;
 
