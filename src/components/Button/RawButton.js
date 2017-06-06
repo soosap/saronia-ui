@@ -108,9 +108,10 @@ const getPadding = R.cond([
   [R.T, R.always(R.always('.3rem .7rem'))],
 ]);
 
-const getTransform = R.curry(pseudoState =>
-  R.when(R.propEq('pop', pseudoState), R.always('scale(1.13)')),
-);
+const getTransform = (pseudoState, props) =>
+  R.curry(pseudoState =>
+    R.when(R.propEq('pop', pseudoState), R.always('scale(1.13)')),
+  )(props);
 
 const getWidth = R.cond([
   [R.propEq('radius', MagnitudeEnum.MINI), R.always('1.5rem')],

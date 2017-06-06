@@ -1,6 +1,6 @@
 /* @flow */
-import R from 'ramda';
 import React from 'react';
+import R from 'ramda';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import {

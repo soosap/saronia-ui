@@ -48,7 +48,6 @@ export default (props: Props) =>
       R.T,
       R.always(
         <RawButton {...props}>
-          <span />
           {R.prop('children', props)}
         </RawButton>,
       ),
