@@ -3,56 +3,56 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import type { Magnitude } from '../../lib/types';
-import { MagnitudeEnum } from '../../lib/constants';
+import type { Size } from '../../lib/types';
+import { SizeEnum } from '../../lib/constants';
 
 type Props = {
   wordmark: boolean,
-  size: Magnitude,
+  size: Size,
 };
 
 const getWidth = R.cond([
   [
-    R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.MASSIVE)),
+    R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.MASSIVE)),
     R.always('48rem'),
   ],
   [
-    R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.HUGE)),
+    R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.HUGE)),
     R.always('36rem'),
   ],
   [
-    R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.BIG)),
+    R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.BIG)),
     R.always('24rem'),
   ],
   [
-    R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.LARGE)),
+    R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.LARGE)),
     R.always('20.692rem'),
   ],
   [
-    R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.MEDIUM)),
+    R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.MEDIUM)),
     R.always('13.795rem'),
   ],
   [
-    R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.SMALL)),
+    R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.SMALL)),
     R.always('11.498rem'),
   ],
   [
-    R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.TINY)),
+    R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.TINY)),
     R.always('9.2rem'),
   ],
   [
-    R.both(R.propEq('wordmark', true), R.propEq('size', MagnitudeEnum.MINI)),
+    R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.MINI)),
     R.always('6.9rem'),
   ],
   [R.propEq('wordmark', true), R.always('13.795rem')],
-  [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('16rem')],
-  [R.propEq('size', MagnitudeEnum.HUGE), R.always('12rem')],
-  [R.propEq('size', MagnitudeEnum.BIG), R.always('8rem')],
-  [R.propEq('size', MagnitudeEnum.LARGE), R.always('4.5rem')],
-  [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('3rem')],
-  [R.propEq('size', MagnitudeEnum.SMALL), R.always('2.5rem')],
-  [R.propEq('size', MagnitudeEnum.TINY), R.always('2rem')],
-  [R.propEq('size', MagnitudeEnum.MINI), R.always('1.5rem')],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always('16rem')],
+  [R.propEq('size', SizeEnum.HUGE), R.always('12rem')],
+  [R.propEq('size', SizeEnum.BIG), R.always('8rem')],
+  [R.propEq('size', SizeEnum.LARGE), R.always('4.5rem')],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always('3rem')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('2.5rem')],
+  [R.propEq('size', SizeEnum.TINY), R.always('2rem')],
+  [R.propEq('size', SizeEnum.MINI), R.always('1.5rem')],
   [R.T, R.always('3rem')],
 ]);
 
@@ -62,10 +62,10 @@ const getImageSrc = R.cond([
       R.propEq('wordmark', true),
       R.propSatisfies(
         R.contains(R.__, [
-          MagnitudeEnum.LARGE,
-          MagnitudeEnum.BIG,
-          MagnitudeEnum.HUGE,
-          MagnitudeEnum.MASSIVE,
+          SizeEnum.LARGE,
+          SizeEnum.BIG,
+          SizeEnum.HUGE,
+          SizeEnum.MASSIVE,
         ]),
         'size',
       ),
@@ -76,9 +76,9 @@ const getImageSrc = R.cond([
   [
     R.propSatisfies(
       R.contains(R.__, [
-        MagnitudeEnum.BIG,
-        MagnitudeEnum.HUGE,
-        MagnitudeEnum.MASSIVE,
+        SizeEnum.BIG,
+        SizeEnum.HUGE,
+        SizeEnum.MASSIVE,
       ]),
       'size',
     ),

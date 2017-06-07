@@ -5,7 +5,7 @@ import R from 'ramda';
 import RawButton from './RawButton';
 import IconButton from './IconButton';
 
-import type { Breed, Magnitude } from '../../lib/types';
+import type { Breed, Size } from '../../lib/types';
 
 export type DefaultButtonProps = {
   accent?: boolean,
@@ -16,7 +16,7 @@ export type DefaultButtonProps = {
   iconRight?: string,
   onClick?: Function,
   pop?: 'active' | 'focus' | 'hover',
-  size?: Magnitude,
+  size?: Size,
   breed?: Breed,
 };
 
@@ -27,8 +27,8 @@ export type CircularButtonProps = {
   inverted?: boolean,
   onClick?: Function,
   pop?: 'active' | 'focus' | 'hover',
-  radius: Magnitude,
-  size?: Magnitude,
+  radius: Size,
+  size?: Size,
   breed?: Breed,
 };
 

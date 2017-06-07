@@ -15,8 +15,9 @@ import centered from '@storybook/addon-centered';
 
 import { Card } from '.';
 import { Title } from '../heading';
-import { Row, Column } from '../layout';
+import { Row, Column, Segment } from '../layout';
 import { Icon } from '../Icon';
+import { Image } from '../Image';
 import { IconSVGPath, BreedEnum } from '../../lib/constants';
 
 const Wrapper = styled.div`
@@ -49,10 +50,12 @@ stories
           </Card.Header>
           <Card.Image src="http://placehold.it/450x200" alt="logo" />
           <Card.Content>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            <Segment>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            </Segment>
           </Card.Content>
           <Card.Footer>
             <div>Created 3 days ago...</div>

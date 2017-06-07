@@ -3,7 +3,7 @@ import React, { Component, Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { Color, BORDER_RADIUS, Breakpoint } from '../../lib/constants';
+import { Color, BORDER_RADIUS } from '../../lib/constants';
 import type { Breed } from '../../lib/types';
 
 type Props = {
@@ -91,22 +91,9 @@ const CardHeader = (props: Object) => (
 | Card.Content
 |-----------------------------------------------------------
 */
-const CardContentWrapper = styled.div`
+const CardContent = styled.div`
   flex: 1;
-  padding: .75rem;
-
-  @media (min-width: ${Breakpoint.BIG_PHONE}) {
-    padding: 1rem;
-  }
-
-  @media (min-width: ${Breakpoint.TABLET}) {
-    padding: 1.5rem;
-  }
 `;
-
-const CardContent = (props: Object) => (
-  <CardContentWrapper {...props} />
-);
 
 /*
 |-----------------------------------------------------------

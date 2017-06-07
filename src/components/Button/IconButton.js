@@ -11,19 +11,19 @@ import RawButton, {
   getColorActive,
 } from './RawButton';
 import { Icon } from '../Icon';
-import { BreedEnum, MagnitudeEnum, Color } from '../../lib/constants';
+import { BreedEnum, SizeEnum, Color } from '../../lib/constants';
 import type { Props } from './Button';
 
 const getPadding = R.cond([
-  [R.propEq('radius', MagnitudeEnum.MINI), R.always(0)],
-  [R.propEq('size', MagnitudeEnum.MINI), R.always('.2rem .3rem')],
-  [R.propEq('size', MagnitudeEnum.TINY), R.always('.2rem .3rem')],
-  [R.propEq('size', MagnitudeEnum.SMALL), R.always('.2rem .4rem')],
-  [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('.25rem .5rem')],
-  [R.propEq('size', MagnitudeEnum.LARGE), R.always('.3rem .7rem')],
-  [R.propEq('size', MagnitudeEnum.BIG), R.always('.35rem .75rem')],
-  [R.propEq('size', MagnitudeEnum.HUGE), R.always('.4rem .9rem')],
-  [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('.5rem 1.2rem')],
+  [R.propEq('radius', SizeEnum.MINI), R.always(0)],
+  [R.propEq('size', SizeEnum.MINI), R.always('.2rem .3rem')],
+  [R.propEq('size', SizeEnum.TINY), R.always('.2rem .3rem')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('.2rem .4rem')],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always('.25rem .5rem')],
+  [R.propEq('size', SizeEnum.LARGE), R.always('.3rem .7rem')],
+  [R.propEq('size', SizeEnum.BIG), R.always('.35rem .75rem')],
+  [R.propEq('size', SizeEnum.HUGE), R.always('.4rem .9rem')],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always('.5rem 1.2rem')],
   [R.T, R.always(R.always('.3rem .7rem'))],
 ]);
 

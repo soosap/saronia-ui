@@ -2,14 +2,14 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
 import { BORDER_RADIUS } from '../../lib/constants';
-import type { Breed, Magnitude } from '../../lib/types';
+import type { Breed, Size } from '../../lib/types';
 
 type Props = {
   accent?: boolean,
   breed?: Breed,
   children: Children,
   inverted?: boolean,
-  size?: Magnitude,
+  size?: Size,
   vertical?: boolean,
 };
 

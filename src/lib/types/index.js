@@ -1,7 +1,7 @@
 /* @flow */
 export type Position = 'top' | 'right' | 'bottom' | 'left';
 
-export type Magnitude =
+export type Size =
   | 'mini'
   | 'tiny'
   | 'small'
@@ -11,14 +11,26 @@ export type Magnitude =
   | 'huge'
   | 'massive';
 
+export type SizeSubset =
+  | 'small'
+  | 'medium'
+  | 'large';
+
 export type Intensity =
+  | 'minor'
   | 'light'
   | 'moderate'
   | 'strong'
-  | 'extreme'
+  | 'major'
+  | 'great';
+
+export type IntensitySubset =
+  | 'light'
+  | 'moderate'
+  | 'strong';
 
 export type Breed = 'primary' | 'secondary';
 
-export type Size = 'small' | 'medium' | 'large';
+
 
 export type Context = 'danger' | 'warning' | 'success' | 'info';

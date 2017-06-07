@@ -68,6 +68,8 @@ const Color = {
 
 Following this pattern has an important benefit: FlowType definitions will not clash w/ constants and enums.
 
+The **medium** value in _SizeEnum_ and the **moderate** value in the _IntensityEnum_ are the default values.
+
 ## Release
 
 After making changes to the project that shall be published, fire `$ yarn release`. In the ensuing prompt select between **patch**, **minor**, and **major**.

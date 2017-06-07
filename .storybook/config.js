@@ -1,8 +1,10 @@
-import { configure, setAddon } from '@storybook/react';
+import { configure, setAddon, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import infoAddon from '@storybook/addon-info';
+import backgroundColor from 'react-storybook-decorator-background';
 
 import { generateAndInjectGlobalCSS } from '../src';
+import { Color } from '../src/lib/constants';
 
 generateAndInjectGlobalCSS();
 
@@ -18,5 +20,17 @@ setOptions({
   name: 'saronia-ui',
   url: 'https://ui.saronia.io',
 });
+
+addDecorator(
+  backgroundColor([
+    Color.White.LIGHT,
+    Color.WHITE,
+    Color.CREME,
+    Color.GRAY,
+    Color.BLACK,
+    Color.PRIMARY,
+    Color.SECONDARY,
+  ]),
+);
 
 configure(loadStories, module);

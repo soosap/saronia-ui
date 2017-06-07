@@ -1,7 +1,10 @@
 /* @flow */
+import React from 'react';
 import styled from 'styled-components';
 
 import { Color } from '../../../lib/constants';
+
+type Props = {};
 
 const Footer = styled.footer`
   color: ${Color.WHITE};
@@ -10,4 +13,4 @@ const Footer = styled.footer`
   grid-row: [footer-start] / [footer-end];
 `;
 
-export default Footer;
+export default (props: Props) => <Footer {...props} />;

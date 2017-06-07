@@ -12,11 +12,11 @@ import {
 import { action } from '@storybook/addon-actions';
 
 import { Icon } from '.';
-import { IconSVGPath, MagnitudeEnum, BreedEnum } from '../../lib/constants';
+import { IconSVGPath, SizeEnum, BreedEnum } from '../../lib/constants';
 
 const stories = storiesOf('Icon', module);
 const iconOptions = R.invertObj(IconSVGPath);
-const sizeOptions = R.invertObj(MagnitudeEnum);
+const sizeOptions = R.invertObj(SizeEnum);
 const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
@@ -29,7 +29,7 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       svgPath: select('icon', iconOptions, IconSVGPath.ADD),
-      size: select('size', sizeOptions, MagnitudeEnum.MEDIUM),
+      size: select('size', sizeOptions, SizeEnum.MEDIUM),
       type: select('type', typeOptions, undefined),
       inverted: boolean('inverted', false),
     });
@@ -39,7 +39,7 @@ stories
   .add('w/ onClick handler', () => {
     const props = R.pickBy(isNotNil, {
       svgPath: select('icon', iconOptions, IconSVGPath.ADD),
-      size: select('size', sizeOptions, MagnitudeEnum.MEDIUM),
+      size: select('size', sizeOptions, SizeEnum.MEDIUM),
       type: select('type', typeOptions, undefined),
       inverted: boolean('inverted', false),
       onClick: action('icon-click'),

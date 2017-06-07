@@ -2,21 +2,21 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import { Color, FontSize, BreedEnum, MagnitudeEnum } from '../../lib/constants';
-import type { Magnitude, Breed } from '../../lib/types';
+import { Color, FontSize, BreedEnum, SizeEnum } from '../../lib/constants';
+import type { Size, Breed } from '../../lib/types';
 
 type Props =
   | {
       // default
       children?: any,
-      gap?: Magnitude,
+      gap?: Size,
       timeline?: false,
       type?: Breed,
     }
   | {
       // timeline
       children?: any,
-      gap?: Magnitude,
+      gap?: Size,
       labelBottom?: string,
       labelTop?: string,
       marginLeft?: string,
@@ -31,14 +31,14 @@ const getColor = R.cond([
 ]);
 
 const getMarginTopBottom = R.cond([
-  [R.propEq('gap', MagnitudeEnum.MINI), R.always('15px')],
-  [R.propEq('gap', MagnitudeEnum.TINY), R.always('20px')],
-  [R.propEq('gap', MagnitudeEnum.SMALL), R.always('25px')],
-  [R.propEq('gap', MagnitudeEnum.MEDIUM), R.always('30px')],
-  [R.propEq('gap', MagnitudeEnum.LARGE), R.always('35px')],
-  [R.propEq('gap', MagnitudeEnum.BIG), R.always('40px')],
-  [R.propEq('gap', MagnitudeEnum.HUGE), R.always('45px')],
-  [R.propEq('gap', MagnitudeEnum.MASSIVE), R.always('50px')],
+  [R.propEq('gap', SizeEnum.MINI), R.always('15px')],
+  [R.propEq('gap', SizeEnum.TINY), R.always('20px')],
+  [R.propEq('gap', SizeEnum.SMALL), R.always('25px')],
+  [R.propEq('gap', SizeEnum.MEDIUM), R.always('30px')],
+  [R.propEq('gap', SizeEnum.LARGE), R.always('35px')],
+  [R.propEq('gap', SizeEnum.BIG), R.always('40px')],
+  [R.propEq('gap', SizeEnum.HUGE), R.always('45px')],
+  [R.propEq('gap', SizeEnum.MASSIVE), R.always('50px')],
   [R.T, R.always('30px')],
 ]);
 
