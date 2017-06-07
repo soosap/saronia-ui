@@ -47,8 +47,13 @@ const CardHeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  .title, .subtitle, .icon {
+  .icon {
     padding: .5rem .75rem;
+    margin-bottom: 0 !important;
+  }
+
+  .title, .subtitle {
+    padding: .5rem .75rem .3rem .75rem;
     margin-bottom: 0 !important;
   }
 `;
@@ -97,16 +102,26 @@ const Wrapper = styled.div`
   border-radius: ${BORDER_RADIUS};
   height: 100%;
 
+  > .image {
+    margin: 0 -1px 0 -1px;
+  }
+
+  > .row .image:first-child {
+    margin: 0 -1px;
+  }
+
   > .row:first-child {
     border-radius: ${BORDER_RADIUS};
 
     > .image:first-of-type {
       border-radius: ${BORDER_RADIUS} 0 0 ${BORDER_RADIUS};
+      margin: -1px 0 0 -1px;
     }
 
     > .image:first-of-type:not(:first-child),
     > .image:last-of-type:not(:first-of-type) {
       border-radius: 0 ${BORDER_RADIUS} ${BORDER_RADIUS} 0;
+      margin: -1px -1px 0 0;
     }
   }
 `;
