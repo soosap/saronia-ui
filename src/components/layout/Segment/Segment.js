@@ -27,7 +27,6 @@ const Wrapper = styled.div`
   position: relative;
   padding: ${getPadding};
   font-size: 1rem;
-  background-color: ${Color.White.LIGHT};
   border-radius: ${props => props.outline ? BORDER_RADIUS : '0'};
   box-shadow: ${props => props.outline ? `
     0 2px 3px rgba(10, 10, 10, 0.1),

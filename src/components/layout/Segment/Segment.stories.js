@@ -26,7 +26,7 @@ const stories = storiesOf('Segment', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const padded = select('size', intensityOptions, 'moderate');
+  const padded = select('padded', intensityOptions, 'moderate');
   const props = R.pickBy(isNotNil, {
     padded: padded === 'true' ? true : padded === 'false' ? false : padded,
     outline: boolean('outline', false),
