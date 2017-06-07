@@ -3,11 +3,12 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { IntensityEnum } from '../../../lib/constants';
+import { IntensityEnum, Color, BORDER_RADIUS } from '../../../lib/constants';
 import type { Intensity } from '../../../lib/types';
 
 type Props = {
   padded?: boolean | Intensity,
+  outline?: boolean,
 };
 
 const getPadding = R.cond([
@@ -21,9 +22,27 @@ const getPadding = R.cond([
   [R.T, R.always('1.5rem')],
 ]);
 
-const Segment = styled.div`
+const Wrapper = styled.div`
   display: block;
+  position: relative;
   padding: ${getPadding};
+  font-size: 1rem;
+  background-color: ${Color.White.LIGHT};
+  border-radius: ${props => props.outline ? BORDER_RADIUS : '0'};
+  box-shadow: ${props => props.outline ? `
+    0 2px 3px rgba(10, 10, 10, 0.1),
+    0 0 0 1px rgba(10, 10, 10, 0.1)
+  ` : 'none'};
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
-export default (props: Props) => <Segment {...props} />;
+const Segment = (props: Props) => <Wrapper {...props} />;
+
+Segment.defaultProps = {
+  outline: false,
+};
+
+export default Segment;

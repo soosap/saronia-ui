@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react';
 import R from 'ramda';
+import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import {
@@ -29,6 +30,7 @@ stories.add('default', () => {
   const padded = select('size', intensityOptions, 'moderate');
   const props = R.pickBy(isNotNil, {
     padded: padded === 'true' ? true : padded === 'false' ? false : padded,
+    outline: boolean('outline', false),
   });
 
   return (

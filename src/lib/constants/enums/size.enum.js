@@ -1,5 +1,5 @@
 /* @flow */
-const SizeSubsetEnum = Object.freeze({
+const SizeEnum = Object.freeze({
   MINI: 'mini',
   TINY: 'tiny',
   SMALL: 'small',
@@ -10,7 +10,7 @@ const SizeSubsetEnum = Object.freeze({
   MASSIVE: 'massive',
 });
 
-const SizeEnum = Object.freeze({
+const SizeSubsetEnum = Object.freeze({
   SMALL: 'small',
   MEDIUM: 'medium',
   LARGE: 'large',
