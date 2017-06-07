@@ -135,7 +135,37 @@ stories
                 <div>...by soosap</div>
               </Card.Footer>
             </Column>
-            <Card.Image src="http://placehold.it/150x300" alt="logo" />
+            <Card.Image src="http://placehold.it/150x240" alt="logo" />
+          </Row>
+        </Card>
+      </Wrapper>
+    );
+  })
+  .add('w/ image on both sides', () => {
+    const props = R.pickBy(isNotNil, {});
+
+    return (
+      <Wrapper>
+        <Card {...props}>
+          <Row>
+            <Card.Image src="http://placehold.it/80x240" alt="logo" />
+            <Column>
+              <Card.Header>
+                <Title size="4">New item</Title>
+                <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
+              </Card.Header>
+              <Card.Content>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              </Card.Content>
+              <Card.Footer>
+                <div>Created 3 days ago...</div>
+                <div>...by soosap</div>
+              </Card.Footer>
+            </Column>
+            <Card.Image src="http://placehold.it/80x240" alt="logo" />
           </Row>
         </Card>
       </Wrapper>
@@ -151,15 +181,15 @@ stories
             <Title size="4">New item</Title>
             <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
           </Card.Header>
-          <Card.Section>
-            <Card.Image src="http://placehold.it/450x200" alt="logo" />
+          <Row>
+            <Card.Image src="http://placehold.it/125x200" alt="logo" />
             <Card.Content>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
               <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
             </Card.Content>
-          </Card.Section>
+          </Row>
           <Card.Footer>
             <div>Created 3 days ago...</div>
             <div>...by soosap</div>

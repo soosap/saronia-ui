@@ -33,7 +33,7 @@ const CardFooter = (props: Object) => (
 const CardImage = styled.img.attrs({
   className: 'image',
 })`
-  margin: -1px -1px;
+  flex: none;
 `;
 
 /*
@@ -97,23 +97,16 @@ const Wrapper = styled.div`
   border-radius: ${BORDER_RADIUS};
   height: 100%;
 
-  .row > .image {
-    &:first-child {
+  > .row:first-child {
+    border-radius: ${BORDER_RADIUS};
+
+    > .image:first-of-type {
       border-radius: ${BORDER_RADIUS} 0 0 ${BORDER_RADIUS};
     }
 
-    &:last-child {
+    > .image:first-of-type:not(:first-child),
+    > .image:last-of-type:not(:first-of-type) {
       border-radius: 0 ${BORDER_RADIUS} ${BORDER_RADIUS} 0;
-    }
-  }
-
-  .column > .image {
-    &:first-child {
-      border-radius: ${BORDER_RADIUS} ${BORDER_RADIUS} 0 0;
-    }
-
-    &:last-child {
-      border-radius: 0 0 ${BORDER_RADIUS} ${BORDER_RADIUS};
     }
   }
 `;
