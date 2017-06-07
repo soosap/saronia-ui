@@ -15,6 +15,7 @@ import centered from '@storybook/addon-centered';
 
 import { Card } from '.';
 import { Title } from '../heading';
+import { Row, Column } from '../layout';
 import { Icon } from '../Icon';
 import { IconSVGPath } from '../../lib/constants';
 
@@ -24,7 +25,6 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const positionOptions = { LEFT: 'left', RIGHT: 'right', DEFAULT: undefined };
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -83,70 +83,83 @@ stories
       </Wrapper>
     );
   })
-  .add('w/ image on the side', () => {
+  .add('w/ image on the left', () => {
     const props = R.pickBy(isNotNil, {});
-    const imagePosition = select(
-      'Image: position',
-      R.invertObj(positionOptions),
-      'undefined',
-    );
-    const imageProps = R.pickBy(isNotNil, {
-      position: imagePosition,
-      src: imagePosition === 'undefined'
-        ? 'http://placehold.it/450x200'
-        : 'http://placehold.it/200x200',
-    });
 
     return (
       <Wrapper>
-        <Card {...props} onClick={action('clicked')}>
-          <Card.Header>
-            <Title size="4">New item</Title>
-            <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
-          </Card.Header>
-          <Card.Image {...imageProps} alt="logo" />
-          <Card.Content>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-          </Card.Content>
-          <Card.Footer>
-            <div>Created 3 days ago...</div>
-            <div>...by soosap</div>
-          </Card.Footer>
+        <Card {...props}>
+          <Row>
+            <Card.Image src="http://placehold.it/150x300" alt="logo" />
+            <Column>
+              <Card.Header>
+                <Title size="4">New item</Title>
+                <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
+              </Card.Header>
+              <Card.Content>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              </Card.Content>
+              <Card.Footer>
+                <div>Created 3 days ago...</div>
+                <div>...by soosap</div>
+              </Card.Footer>
+            </Column>
+          </Row>
         </Card>
       </Wrapper>
     );
   })
-  .add('w/ header and footer on edge', () => {
+  .add('w/ image on the right', () => {
     const props = R.pickBy(isNotNil, {});
-    const imagePosition = select(
-      'Image: position',
-      R.invertObj(positionOptions),
-      'undefined',
-    );
-    const imageProps = R.pickBy(isNotNil, {
-      position: imagePosition,
-      src: imagePosition === 'undefined'
-        ? 'http://placehold.it/450x200'
-        : 'http://placehold.it/200x200',
-    });
 
     return (
       <Wrapper>
-        <Card {...props} onClick={action('clicked')}>
+        <Card {...props}>
+          <Row>
+            <Column>
+              <Card.Header>
+                <Title size="4">New item</Title>
+                <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
+              </Card.Header>
+              <Card.Content>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              </Card.Content>
+              <Card.Footer>
+                <div>Created 3 days ago...</div>
+                <div>...by soosap</div>
+              </Card.Footer>
+            </Column>
+            <Card.Image src="http://placehold.it/150x300" alt="logo" />
+          </Row>
+        </Card>
+      </Wrapper>
+    );
+  })
+  .add('w/ nested structure', () => {
+    const props = R.pickBy(isNotNil, {});
+
+    return (
+      <Wrapper>
+        <Card {...props}>
           <Card.Header>
             <Title size="4">New item</Title>
             <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
           </Card.Header>
-          <Card.Image {...imageProps} alt="logo" />
-          <Card.Content>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-          </Card.Content>
+          <Card.Section>
+            <Card.Image src="http://placehold.it/450x200" alt="logo" />
+            <Card.Content>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            </Card.Content>
+          </Card.Section>
           <Card.Footer>
             <div>Created 3 days ago...</div>
             <div>...by soosap</div>

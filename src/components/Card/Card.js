@@ -21,7 +21,7 @@ const CardFooterWrapper = styled.footer`
   }
 `;
 
-const CardFooter = (props) => (
+const CardFooter = (props: Object) => (
   <CardFooterWrapper {...props} />
 );
 
@@ -30,14 +30,11 @@ const CardFooter = (props) => (
 | Card.Image
 |-----------------------------------------------------------
 */
-const CardImageWrapper = styled.img`
-  width: 100%;
-  height: 100%;
+const CardImage = styled.img.attrs({
+  className: 'image',
+})`
+  margin: -1px -1px;
 `;
-
-const CardImage = (props) => (
-  <CardImageWrapper {...props} />
-);
 
 /*
 |-----------------------------------------------------------
@@ -67,6 +64,7 @@ const CardHeader = (props: Object) => (
 |-----------------------------------------------------------
 */
 const CardContentWrapper = styled.div`
+  flex: 1;
   padding: .75rem;
 
   @media (min-width: ${Breakpoint.BIG_PHONE}) {
@@ -78,7 +76,7 @@ const CardContentWrapper = styled.div`
   }
 `;
 
-const CardContent = (props) => (
+const CardContent = (props: Object) => (
   <CardContentWrapper {...props} />
 );
 
@@ -91,12 +89,33 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+
   box-shadow:
     0 2px 3px rgba(10, 10, 10, 0.1),
     0 0 0 1px rgba(10, 10, 10, 0.1);
   color: ${Color.BLACK};
   border-radius: ${BORDER_RADIUS};
   height: 100%;
+
+  .row > .image {
+    &:first-child {
+      border-radius: ${BORDER_RADIUS} 0 0 ${BORDER_RADIUS};
+    }
+
+    &:last-child {
+      border-radius: 0 ${BORDER_RADIUS} ${BORDER_RADIUS} 0;
+    }
+  }
+
+  .column > .image {
+    &:first-child {
+      border-radius: ${BORDER_RADIUS} ${BORDER_RADIUS} 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 ${BORDER_RADIUS} ${BORDER_RADIUS};
+    }
+  }
 `;
 
 class Card extends Component<void, Props, void> {

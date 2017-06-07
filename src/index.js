@@ -11,7 +11,7 @@ import {
 } from './components/Button';
 import { Icon } from './components/Icon';
 import { Label } from './components/Label';
-import { Segment } from './components/layout';
+import { Segment, Row, Column } from './components/layout';
 import { List, ListItem } from './components/List';
 import { Spinner } from './components/Spinner';
 import { Link } from './components/Link';
@@ -50,7 +50,6 @@ export {
   PulseButton,
   Buttons,
   Label,
-  Segment,
   Icon,
   List,
   ListItem,
@@ -58,6 +57,10 @@ export {
   Link,
   Logo,
   Navigation,
+  // layout
+  Segment,
+  Row,
+  Column,
   // heading
   Title,
   Subtitle,
