@@ -16,6 +16,7 @@ import { List, ListItem } from './components/List';
 import { Spinner } from './components/Spinner';
 import { Link } from './components/Link';
 import { Logo } from './components/Logo';
+import { Card } from './components/Card';
 import { Navigation } from './components/Navigation';
 
 import { Title, Subtitle } from './components/heading';
@@ -49,6 +50,7 @@ export {
   LinkButton,
   PulseButton,
   Buttons,
+  Card,
   Label,
   Icon,
   List,
