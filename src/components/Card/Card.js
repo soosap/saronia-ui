@@ -56,7 +56,7 @@ const CardHeaderWrapper = styled.header`
   }
 `;
 
-const CardHeader = (props) => (
+const CardHeader = (props: Object) => (
   <CardHeaderWrapper {...props} />
 );
 
@@ -96,6 +96,7 @@ const Wrapper = styled.div`
     0 0 0 1px rgba(10, 10, 10, 0.1);
   color: ${Color.BLACK};
   border-radius: ${BORDER_RADIUS};
+  height: 100%;
 `;
 
 class Card extends Component<void, Props, void> {
