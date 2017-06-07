@@ -14,13 +14,10 @@ import centered from '@storybook/addon-centered';
 import { Button, LinkButton, PulseButton } from '.';
 import { Icon } from '../Icon';
 import {
-  MagnitudeEnum,
+  SizeEnum,
   BreedEnum,
   IconSVGPath,
 } from '../../lib/constants';
-
-const stories = storiesOf('Button', module);
-stories.addDecorator(withKnobs).addDecorator(centered);
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const iconOptions = R.invertObj(IconSVGPath);
@@ -35,6 +32,9 @@ const isNotNil = R.both(
   R.complement(R.equals('undefined')),
 );
 
+const stories = storiesOf('Button', module);
+stories.addDecorator(withKnobs).addDecorator(centered);
+
 stories
   .add('default', () => {
     const circular = boolean('circular', false);
@@ -42,10 +42,10 @@ stories
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
       inverted: boolean('inverted', false),
-      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      size: select('size', R.invertObj(SizeEnum), 'medium'),
       circular,
       radius: circular
-        ? select('radius', R.invertObj(MagnitudeEnum), 'large')
+        ? select('radius', R.invertObj(SizeEnum), 'large')
         : undefined,
       pop: select('pop', popOptions, undefined),
       breed: select('breed', breedOptions, 'primary'),
@@ -62,7 +62,7 @@ stories
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
       inverted: boolean('inverted', false),
-      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      size: select('size', R.invertObj(SizeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
       breed: select('breed', breedOptions, 'primary'),
     });
@@ -80,7 +80,7 @@ stories
       iconLeft: boolean('iconLeft', true) ? IconSVGPath.ADD : 'undefined',
       iconRight: boolean('iconRight', true) ? IconSVGPath.TRASH : 'undefined',
       inverted: boolean('inverted', false),
-      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      size: select('size', R.invertObj(SizeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
       breed: select('breed', breedOptions, 'primary'),
     });
@@ -94,7 +94,7 @@ stories
   .add('circular', () => {
     const props = R.pickBy(isNotNil, {
       inverted: boolean('inverted', false),
-      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      size: select('size', R.invertObj(SizeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
       breed: select('breed', breedOptions, 'primary'),
     });
@@ -112,10 +112,10 @@ stories
       accent: boolean('accent', false),
       icon: select('icon', iconOptions, IconSVGPath.ADD),
       inverted: boolean('inverted', false),
-      size: select('size', R.invertObj(MagnitudeEnum), MagnitudeEnum.MEDIUM),
+      size: select('size', R.invertObj(SizeEnum), SizeEnum.MEDIUM),
       circular,
       radius: circular
-        ? select('radius', R.invertObj(MagnitudeEnum), MagnitudeEnum.BIG)
+        ? select('radius', R.invertObj(SizeEnum), SizeEnum.BIG)
         : undefined,
       pop: select('pop', popOptions, undefined),
       breed: select('breed', breedOptions, 'secondary'),

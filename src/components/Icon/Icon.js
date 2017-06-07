@@ -3,12 +3,12 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import type { Magnitude, Breed } from '../../lib/types';
-import { MagnitudeEnum, BreedEnum, Color } from '../../lib/constants';
+import type { Size, Breed } from '../../lib/types';
+import { SizeEnum, BreedEnum, Color } from '../../lib/constants';
 
 type Props = {
   inverted?: boolean,
-  size?: Magnitude,
+  size?: Size,
   svgPath: string,
   type?: Breed,
   viewBox?: string,
@@ -30,14 +30,14 @@ const getFill = R.cond([
 ]);
 
 const getWidth = R.cond([
-  [R.propEq('size', MagnitudeEnum.MINI), R.always('0.64rem')],
-  [R.propEq('size', MagnitudeEnum.TINY), R.always('0.72rem')],
-  [R.propEq('size', MagnitudeEnum.SMALL), R.always('.9rem')],
-  [R.propEq('size', MagnitudeEnum.MEDIUM), R.always('1.1rem')],
-  [R.propEq('size', MagnitudeEnum.LARGE), R.always('1.4rem')],
-  [R.propEq('size', MagnitudeEnum.BIG), R.always('1.8rem')],
-  [R.propEq('size', MagnitudeEnum.HUGE), R.always('2.1rem')],
-  [R.propEq('size', MagnitudeEnum.MASSIVE), R.always('2.6rem')],
+  [R.propEq('size', SizeEnum.MINI), R.always('0.64rem')],
+  [R.propEq('size', SizeEnum.TINY), R.always('0.72rem')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('.9rem')],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always('1.1rem')],
+  [R.propEq('size', SizeEnum.LARGE), R.always('1.4rem')],
+  [R.propEq('size', SizeEnum.BIG), R.always('1.8rem')],
+  [R.propEq('size', SizeEnum.HUGE), R.always('2.1rem')],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always('2.6rem')],
   [R.T, R.always('1rem')],
 ]);
 

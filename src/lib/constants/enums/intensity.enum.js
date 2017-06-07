@@ -1,9 +1,20 @@
 /* @flow */
+
+// http://www.geo.mtu.edu/UPSeis/magnitude.html
+// Earthquake magnitude scale
 const IntensityEnum = Object.freeze({
+  MINOR: 'minor',
   LIGHT: 'light',
   MODERATE: 'moderate',
   STRONG: 'strong',
-  EXTREME: 'extreme',
+  MAJOR: 'major',
+  GREAT: 'great',
 });
 
-export default IntensityEnum;
+const IntensitySubsetEnum = Object.freeze({
+  LIGHT: 'light',
+  MODERATE: 'moderate',
+  STRONG: 'strong',
+});
+
+export { IntensityEnum, IntensitySubsetEnum };

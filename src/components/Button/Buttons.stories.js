@@ -14,7 +14,7 @@ import {
 import centered from '@storybook/addon-centered';
 
 import { Buttons, Button, LinkButton } from '.';
-import { BreedEnum, MagnitudeEnum } from '../../lib/constants';
+import { BreedEnum, SizeEnum } from '../../lib/constants';
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
@@ -32,7 +32,7 @@ stories
       breed: select('breed', breedOptions, 'primary'),
       inverted: boolean('inverted', true),
       vertical: boolean('vertical', false),
-      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      size: select('size', R.invertObj(SizeEnum), 'medium'),
     });
 
     return (
@@ -49,7 +49,7 @@ stories
       breed: select('breed', breedOptions, 'primary'),
       inverted: boolean('inverted', true),
       vertical: boolean('vertical', false),
-      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      size: select('size', R.invertObj(SizeEnum), 'medium'),
     });
 
     return (
@@ -77,7 +77,7 @@ stories
       breed: select('breed', breedOptions, 'primary'),
       inverted: boolean('inverted', true),
       vertical: boolean('vertical', false),
-      size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+      size: select('size', R.invertObj(SizeEnum), 'medium'),
     });
 
     return (

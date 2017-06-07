@@ -1,16 +1,16 @@
 /* @flow */
 import BreedEnum from './breed.enum';
 import ContextEnum from './context.enum';
-import MagnitudeEnum from './magnitude.enum';
 import PositionEnum from './position.enum';
-import SizeEnum from './size.enum';
-import IntensityEnum from './intensity.enum';
+import { SizeEnum, SizeSubsetEnum } from './size.enum';
+import { IntensityEnum, IntensitySubsetEnum } from './intensity.enum';
 
 export {
   BreedEnum,
   ContextEnum,
-  MagnitudeEnum,
   PositionEnum,
   SizeEnum,
+  SizeSubsetEnum,
   IntensityEnum,
+  IntensitySubsetEnum,
 };

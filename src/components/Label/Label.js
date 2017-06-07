@@ -2,7 +2,7 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import type { Position, Magnitude, Breed } from '../../lib/types';
+import type { Position, Size, Breed } from '../../lib/types';
 
 import {
   Color,
@@ -11,21 +11,21 @@ import {
   BorderWidth,
   BORDER_RADIUS,
   BreedEnum,
-  MagnitudeEnum,
+  SizeEnum,
 } from '../../lib/constants';
 
 type Props =
   | {|
       circular?: false,
-      size?: Magnitude,
+      size?: Size,
       arrow?: Position,
       type?: Breed,
       inverted?: boolean,
     |}
   | {|
       circular: true,
-      radius: Magnitude,
-      size?: Magnitude,
+      radius: Size,
+      size?: Size,
       type?: Breed,
       inverted?: boolean,
     |};
@@ -152,14 +152,14 @@ const getSize = R.cond([
 ]);
 
 const getWidth = R.cond([
-  [R.propEq('radius', MagnitudeEnum.MINI), R.always('1rem')],
-  [R.propEq('radius', MagnitudeEnum.TINY), R.always('1.3rem')],
-  [R.propEq('radius', MagnitudeEnum.SMALL), R.always('1.5rem')],
-  [R.propEq('radius', MagnitudeEnum.MEDIUM), R.always('1.8rem')],
-  [R.propEq('radius', MagnitudeEnum.LARGE), R.always('2.1rem')],
-  [R.propEq('radius', MagnitudeEnum.BIG), R.always('2.5rem')],
-  [R.propEq('radius', MagnitudeEnum.HUGE), R.always('3rem')],
-  [R.propEq('radius', MagnitudeEnum.MASSIVE), R.always('3.5rem')],
+  [R.propEq('radius', SizeEnum.MINI), R.always('1rem')],
+  [R.propEq('radius', SizeEnum.TINY), R.always('1.3rem')],
+  [R.propEq('radius', SizeEnum.SMALL), R.always('1.5rem')],
+  [R.propEq('radius', SizeEnum.MEDIUM), R.always('1.8rem')],
+  [R.propEq('radius', SizeEnum.LARGE), R.always('2.1rem')],
+  [R.propEq('radius', SizeEnum.BIG), R.always('2.5rem')],
+  [R.propEq('radius', SizeEnum.HUGE), R.always('3rem')],
+  [R.propEq('radius', SizeEnum.MASSIVE), R.always('3.5rem')],
   [R.T, R.always('inherit')],
 ]);
 

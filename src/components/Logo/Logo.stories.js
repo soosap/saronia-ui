@@ -7,7 +7,7 @@ import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
 import { Logo } from '.';
 
-import { MagnitudeEnum } from '../../lib/constants';
+import { SizeEnum } from '../../lib/constants';
 
 const isNotNil = R.both(
   R.complement(R.isNil),
@@ -20,7 +20,7 @@ stories.addDecorator(withKnobs);
 stories.add('symbol', () => {
   const props = R.pickBy(isNotNil, {
     wordmark: boolean('wordmark', false),
-    size: select('size', R.invertObj(MagnitudeEnum), 'medium'),
+    size: select('size', R.invertObj(SizeEnum), 'medium'),
   });
 
   return <Logo {...props} />;

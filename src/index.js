@@ -11,21 +11,20 @@ import {
 } from './components/Button';
 import { Icon } from './components/Icon';
 import { Label } from './components/Label';
-import { Segment, Row, Column } from './components/layout';
-import { List, ListItem } from './components/List';
-import { Spinner } from './components/Spinner';
 import { Link } from './components/Link';
 import { Logo } from './components/Logo';
 import { Card } from './components/Card';
+import { Image } from './components/Image';
+import { Spinner } from './components/Spinner';
+import { List, ListItem } from './components/List';
 import { Navigation } from './components/Navigation';
-
+import { Segment, Row, Column, Footer, Header } from './components/layout';
 import { Title, Subtitle } from './components/heading';
 import {
   Form,
   Field,
   FieldLabel,
   Input,
-  InputWithAddons,
   Radio,
   TextArea,
   ContextMessage,
@@ -45,24 +44,28 @@ export const generateAndInjectGlobalCSS = () => injectGlobal`
 `;
 
 export {
-  Button,
-  RawButton,
-  LinkButton,
-  PulseButton,
-  Buttons,
   Card,
   Label,
   Icon,
   List,
   ListItem,
-  Spinner,
   Link,
   Logo,
+  Image,
+  Spinner,
   Navigation,
+  // button
+  Button,
+  RawButton,
+  LinkButton,
+  PulseButton,
+  Buttons,
   // layout
   Segment,
   Row,
   Column,
+  Footer,
+  Header,
   // heading
   Title,
   Subtitle,
@@ -71,7 +74,6 @@ export {
   Field,
   FieldLabel,
   Input,
-  InputWithAddons,
   Radio,
   TextArea,
   ContextMessage,

@@ -12,7 +12,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import { List, ListItem } from '.';
-import { MagnitudeEnum, BreedEnum } from '../../lib/constants';
+import { SizeEnum, BreedEnum } from '../../lib/constants';
 
 const stories = storiesOf('List', module);
 stories.addDecorator(withKnobs);
@@ -27,7 +27,7 @@ stories.add('timeline', () => {
   const props = R.pickBy(isNotNil, {
     timeline: boolean('timeline', true),
     marginLeft: text('marginLeft', '75px'),
-    gap: select('gap', R.invertObj(MagnitudeEnum), 'medium'),
+    gap: select('gap', R.invertObj(SizeEnum), 'medium'),
     type: select('type', typeOptions, undefined),
   });
 
