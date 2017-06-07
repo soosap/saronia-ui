@@ -17,7 +17,7 @@ import { Card } from '.';
 import { Title } from '../heading';
 import { Row, Column } from '../layout';
 import { Icon } from '../Icon';
-import { IconSVGPath } from '../../lib/constants';
+import { IconSVGPath, BreedEnum } from '../../lib/constants';
 
 const Wrapper = styled.div`
   width: 450px;
@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -35,7 +36,9 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories
   .add('default', () => {
-    const props = R.pickBy(isNotNil, {});
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+    });
 
     return (
       <Wrapper>
@@ -60,7 +63,9 @@ stories
     );
   })
   .add('w/o image', () => {
-    const props = R.pickBy(isNotNil, {});
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+    });
 
     return (
       <Wrapper>
@@ -84,7 +89,9 @@ stories
     );
   })
   .add('w/ image on the left', () => {
-    const props = R.pickBy(isNotNil, {});
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+    });
 
     return (
       <Wrapper>
@@ -113,7 +120,9 @@ stories
     );
   })
   .add('w/ image on the right', () => {
-    const props = R.pickBy(isNotNil, {});
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+    });
 
     return (
       <Wrapper>
@@ -142,7 +151,9 @@ stories
     );
   })
   .add('w/ image on both sides', () => {
-    const props = R.pickBy(isNotNil, {});
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+    });
 
     return (
       <Wrapper>
@@ -172,7 +183,9 @@ stories
     );
   })
   .add('w/ nested structure', () => {
-    const props = R.pickBy(isNotNil, {});
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+    });
 
     return (
       <Wrapper>

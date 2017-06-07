@@ -1,10 +1,33 @@
 /* @flow */
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
+import R from 'ramda';
 import styled from 'styled-components';
 
 import { Color, BORDER_RADIUS, Breakpoint } from '../../lib/constants';
+import type { Breed } from '../../lib/types';
 
-type Props = {};
+type Props = {
+  children: Children,
+  breed?: Breed,
+};
+
+const getColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.Black.LIGHT)],
+  [R.propEq('breed', 'secondary'), R.always(Color.White.STRONG)],
+  [R.T, R.always(Color.BLACK)],
+]);
+
+const getBorderColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARKER)],
+  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARKER)],
+  [R.T, R.always(Color.Gray.LIGHT)],
+]);
+
+const getBackgroundColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.T, R.always('transparent')],
+]);
 
 /*
 |-----------------------------------------------------------
@@ -12,7 +35,7 @@ type Props = {};
 |-----------------------------------------------------------
 */
 const CardFooterWrapper = styled.footer`
-  border-top: 1px solid ${Color.Gray.LIGHT};
+  border-top: 1px solid ${getBorderColor};
   display: flex;
   justify-content: space-between;
 
@@ -91,17 +114,33 @@ const CardContent = (props: Object) => (
 |-----------------------------------------------------------
 */
 const Wrapper = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
+  position: relative;
+
+  color: ${getColor};
+  background-color: ${getBackgroundColor};
+  border-radius: ${BORDER_RADIUS};
+  height: 100%;
 
   box-shadow:
     0 2px 3px rgba(10, 10, 10, 0.1),
     0 0 0 1px rgba(10, 10, 10, 0.1);
-  color: ${Color.BLACK};
-  border-radius: ${BORDER_RADIUS};
-  height: 100%;
 
+  /*
+  |-----------------------------------------------------------
+  | .icon
+  |-----------------------------------------------------------
+  */
+  .icon {
+    fill: ${getColor};
+  }
+
+  /*
+  |-----------------------------------------------------------
+  | .image
+  |-----------------------------------------------------------
+  */
   > .image {
     margin: 0 -1px 0 -1px;
   }
@@ -134,9 +173,11 @@ class Card extends Component<void, Props, void> {
 
   render() {
     return (
-      <Wrapper>
+      <Wrapper {...this.props}>
         {React.Children.map(this.props.children, child =>
-          React.cloneElement(child, {}),
+          React.cloneElement(child, {
+            breed: this.props.breed,
+          }),
         )}
       </Wrapper>
     );
