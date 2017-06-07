@@ -2,9 +2,9 @@ import { configure, setAddon, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import infoAddon from '@storybook/addon-info';
 import backgroundColor from 'react-storybook-decorator-background';
-import { Color } from '../constants';
 
 import { generateAndInjectGlobalCSS } from '../src';
+import { Color } from '../src/lib/constants';
 
 generateAndInjectGlobalCSS();
 

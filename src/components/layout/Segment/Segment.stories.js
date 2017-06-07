@@ -1,7 +1,6 @@
 /* @flow */
 import React from 'react';
 import R from 'ramda';
-import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import {
@@ -35,7 +34,7 @@ stories.add('default', () => {
 
   return (
     <Segment {...props} onClick={action('clicked')}>
-      Hey I am a Segment!
+      {'SARONIA is a language learning platform.'.repeat(20)}
     </Segment>
   );
 });
