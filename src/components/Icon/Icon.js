@@ -30,9 +30,9 @@ const getFill = R.cond([
 ]);
 
 const getWidth = R.cond([
-  [R.propEq('size', SizeEnum.MINI), R.always('0.64rem')],
-  [R.propEq('size', SizeEnum.TINY), R.always('0.72rem')],
-  [R.propEq('size', SizeEnum.SMALL), R.always('.9rem')],
+  [R.propEq('size', SizeEnum.MINI), R.always('0.50rem')],
+  [R.propEq('size', SizeEnum.TINY), R.always('0.62rem')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('.88rem')],
   [R.propEq('size', SizeEnum.MEDIUM), R.always('1.1rem')],
   [R.propEq('size', SizeEnum.LARGE), R.always('1.4rem')],
   [R.propEq('size', SizeEnum.BIG), R.always('1.8rem')],

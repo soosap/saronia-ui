@@ -1,34 +1,46 @@
-// flow-typed signature: e0384a3ab38cf7ce71e0f20a49980386
-// flow-typed version: e8362066ed/styled-components_v1.4.x/flow_>=v0.25.x
+// flow-typed signature: 989824ae6a1a8e9fda47980ac75bf396
+// flow-typed version: 0e8d3fe7bf/styled-components_v1.4.x/flow_>=v0.25.x
 
 // @flow
 
+type $npm$styledComponents$Interpolation = ((executionContext: Object) => string) | string | number;
+type $npm$styledComponents$NameGenerator = (hash: number) => string
+
+type $npm$styledComponents$StyledComponent = (
+  strings: Array<string>,
+  ...interpolations: Array<$npm$styledComponents$Interpolation>
+) => ReactClass<*>;
+
+
+type $npm$styledComponents$Theme = {[key: string]: mixed};
+type $npm$styledComponents$ThemeProviderProps = {
+  theme: ((outerTheme: $npm$styledComponents$Theme) => void) | $npm$styledComponents$Theme
+};
+type $npm$styledComponents$Component =
+  | React$Component<*, *, *>
+  | (props: *) => React$Element<*>;
+
+class Npm$StyledComponents$ThemeProvider extends React$Component {
+  props: $npm$styledComponents$ThemeProviderProps;
+}
+
 declare module 'styled-components' {
-  declare type Interpolation = ((executionContext: Object) => string) | string | number;
-  declare type NameGenerator = (hash: number) => string
+  declare type Interpolation = $npm$styledComponents$Interpolation;
+  declare type NameGenerator = $npm$styledComponents$NameGenerator;
 
-  declare type StyledComponent = (
-    strings: Array<string>,
-    ...interpolations: Array<Interpolation>
-  ) => ReactClass<*>;
+  declare type StyledComponent = $npm$styledComponents$StyledComponent;
 
-
-  declare type Theme = {[key: string]: mixed};
-  declare type ThemeProviderProps = {
-    theme: ((outerTheme: Theme) => void) | Theme
-  };
-
-  declare class ThemeProvider extends React$Component {
-    props: ThemeProviderProps;
-  }
+  declare type Theme = $npm$styledComponents$Theme;
+  declare type ThemeProviderProps = $npm$styledComponents$ThemeProviderProps;
+  declare type Component = $npm$styledComponents$Component;
 
   declare module.exports: {
     injectGlobal: (strings: Array<string>, ...interpolations: Array<Interpolation>) => void,
     css: (strings: Array<string>, ...interpolations: Array<Interpolation>) => Array<Interpolation>,
-    keyframes: (nameGenerator: NameGenerator) => (strings: Array<string>, ...interpolations: Array<Interpolation>) => string,
-    withTheme: () => React$Component<*, ThemeProviderProps, *>,
-    ThemeProvider: typeof ThemeProvider,
-    (baseComponent: React$Component<*, * , *>): StyledComponent,
+    keyframes: (strings: Array<string>, ...interpolations: Array<Interpolation>) => string,
+    withTheme: (component: Component) => React$Component<*, ThemeProviderProps, *>,
+    ThemeProvider: typeof Npm$StyledComponents$ThemeProvider,
+    (baseComponent: Component): StyledComponent,
     a: StyledComponent,
     abbr: StyledComponent,
     address: StyledComponent,
@@ -163,5 +175,73 @@ declare module 'styled-components' {
     svg: StyledComponent,
     text: StyledComponent,
     tspan: StyledComponent,
+  };
+}
+
+declare module 'styled-components/native' {
+  declare type Interpolation = $npm$styledComponents$Interpolation;
+  declare type NameGenerator = $npm$styledComponents$NameGenerator;
+
+  declare type StyledComponent = $npm$styledComponents$StyledComponent;
+
+  declare type Theme = $npm$styledComponents$Theme;
+  declare type ThemeProviderProps = $npm$styledComponents$ThemeProviderProps;
+  declare type Component = $npm$styledComponents$Component;
+
+  declare module.exports: {
+    css: (strings: Array<string>, ...interpolations: Array<Interpolation>) => Array<Interpolation>,
+    withTheme: (component: Component) => React$Component<*, ThemeProviderProps, *>,
+    keyframes: (strings: Array<string>, ...interpolations: Array<Interpolation>) => string,
+    ThemeProvider: typeof Npm$StyledComponents$ThemeProvider,
+
+    (baseComponent: Component): StyledComponent,
+
+    ActivityIndicator: StyledComponent,
+    ActivityIndicatorIOS: StyledComponent,
+    ART: StyledComponent,
+    Button: StyledComponent,
+    DatePickerIOS: StyledComponent,
+    DrawerLayoutAndroid: StyledComponent,
+    FlatList: StyledComponent,
+    Image: StyledComponent,
+    ImageEditor: StyledComponent,
+    ImageStore: StyledComponent,
+    KeyboardAvoidingView: StyledComponent,
+    ListView: StyledComponent,
+    MapView: StyledComponent,
+    Modal: StyledComponent,
+    Navigator: StyledComponent,
+    NavigatorIOS: StyledComponent,
+    Picker: StyledComponent,
+    PickerIOS: StyledComponent,
+    ProgressBarAndroid: StyledComponent,
+    ProgressViewIOS: StyledComponent,
+    RecyclerViewBackedScrollView: StyledComponent,
+    RefreshControl: StyledComponent,
+    ScrollView: StyledComponent,
+    SectionList: StyledComponent,
+    SegmentedControlIOS: StyledComponent,
+    Slider: StyledComponent,
+    SliderIOS: StyledComponent,
+    SnapshotViewIOS: StyledComponent,
+    StatusBar: StyledComponent,
+    SwipeableListView: StyledComponent,
+    Switch: StyledComponent,
+    SwitchAndroid: StyledComponent,
+    SwitchIOS: StyledComponent,
+    TabBarIOS: StyledComponent,
+    Text: StyledComponent,
+    TextInput: StyledComponent,
+    ToastAndroid: StyledComponent,
+    ToolbarAndroid: StyledComponent,
+    Touchable: StyledComponent,
+    TouchableHighlight: StyledComponent,
+    TouchableNativeFeedback: StyledComponent,
+    TouchableOpacity: StyledComponent,
+    TouchableWithoutFeedback: StyledComponent,
+    View: StyledComponent,
+    ViewPagerAndroid: StyledComponent,
+    VirtualizedList: StyledComponent,
+    WebView: StyledComponent,
   };
 }
