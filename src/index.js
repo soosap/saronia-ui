@@ -14,6 +14,7 @@ import { Label } from './components/Label';
 import { Link } from './components/Link';
 import { Logo } from './components/Logo';
 import { Card } from './components/Card';
+import { Tag, Tags } from './components/Tag';
 import { Image } from './components/Image';
 import { Spinner } from './components/Spinner';
 import { List, ListItem } from './components/List';
@@ -54,6 +55,8 @@ export {
   Image,
   Spinner,
   Navigation,
+  Tag,
+  Tags,
   // button
   Button,
   RawButton,
