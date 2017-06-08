@@ -4,9 +4,13 @@ import styled from 'styled-components';
 
 type Props = {};
 
-const FieldLabel = styled.div`
+export const FONT_SIZE = '.92rem';
+
+const FieldLabel = styled.div.attrs({
+  className: 'field-label',
+})`
   font-weight: 400;
-  font-size: .975rem;
+  font-size: ${FONT_SIZE};
   margin-bottom: .25rem;
 `;
 

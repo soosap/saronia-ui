@@ -6,13 +6,15 @@ type Props = {
   inline?: boolean,
 };
 
+export const MARGIN_BOTTOM = '1.2rem';
+
 const Field = styled.label.attrs({
   className: 'field',
 })`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: ${MARGIN_BOTTOM};
 
   .context-message {
     margin-top: -.25rem;

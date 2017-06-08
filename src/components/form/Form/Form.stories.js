@@ -39,33 +39,35 @@ const stories = storiesOf('Form', module);
 stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
-  const props = R.pickBy(isNotNil, {});
+  const props = R.pickBy(isNotNil, {
+    compact: boolean('compact', false),
+  });
 
   return (
-    <Form>
+    <Form {...props}>
       <CloseIcon><Icon svgPath={IconSVGPath.CLOSE} /></CloseIcon>
-      <Fields {...props}>
+      <Fields>
         <Field>
           <FieldLabel>First name</FieldLabel>
-          <Input placeholder="Enter something..." onClick={action('clicked')} />
+          <Input placeholder="Enter something..." />
         </Field>
         <Field>
           <FieldLabel>Last name</FieldLabel>
-          <Input placeholder="Enter something..." onClick={action('clicked')} />
+          <Input placeholder="Enter something..." />
         </Field>
       </Fields>
-      <Fields {...props}>
+      <Fields>
         <Field>
           <FieldLabel>First name</FieldLabel>
-          <Input placeholder="Enter something..." onClick={action('clicked')} />
+          <Input placeholder="Enter something..." />
         </Field>
         <Field>
           <FieldLabel>Last name</FieldLabel>
-          <Input placeholder="Enter something..." onClick={action('clicked')} />
+          <Input placeholder="Enter something..." />
         </Field>
         <Field>
           <FieldLabel>Last name</FieldLabel>
-          <Input placeholder="Enter something..." onClick={action('clicked')} />
+          <Input placeholder="Enter something..." />
         </Field>
       </Fields>
       <Fields>
