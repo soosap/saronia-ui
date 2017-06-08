@@ -12,7 +12,7 @@ const Field = styled.label.attrs({
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  margin-bottom: .6rem;
+  margin-bottom: 1rem;
 
   .context-message {
     margin-top: -.25rem;

@@ -26,7 +26,6 @@ const Input = styled.input`
   position: relative;
   font-size: 1rem;
   padding: 0 .5rem;
-  margin-bottom: .5rem;
   height: 2rem;
   line-height: 2rem;
   vertical-align: middle;
