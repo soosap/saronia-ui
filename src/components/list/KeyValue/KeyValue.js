@@ -1,8 +1,11 @@
 /* @flow */
-import React from 'react';
+import React, { Children } from 'react';
 import styled from 'styled-components';
 
-type Props = {};
+type Props = {
+  keyWidth?: string,
+  children: Children,
+};
 
 const Wrapper = styled.div`
   background-color: yellow;
@@ -14,10 +17,18 @@ const Wrapper = styled.div`
   }
 `;
 
-const KeyValue = (props: Props) => <Wrapper {...props} />;
+const KeyValue = (props: Props) => (
+  <Wrapper {...props}>
+    {React.Children.map(props.children, child =>
+      React.cloneElement(child, {
+        keyWidth: child.props.keyWidth ? child.props.keyWidth : props.keyWidth,
+      }),
+    )}
+  </Wrapper>
+);
 
 KeyValue.defaultProps = {
-  outline: false,
+  keyWidth: '90px',
 };
 
 export default KeyValue;

@@ -27,12 +27,13 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
+      keyWidth: text('keyWidth', '90px'),
     });
 
     return (
       <KeyValue {...props}>
         <KeyValuePair>
-          <div>language</div>
+          <div>very very very long key</div>
           <div>Tamil</div>
         </KeyValuePair>
         <KeyValuePairs pairs={3}>

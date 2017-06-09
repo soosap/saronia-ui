@@ -31,8 +31,4 @@ const Wrapper = styled.div.attrs({
 
 const KeyValuePair = (props: Props) => <Wrapper {...props} />;
 
-KeyValuePair.defaultProps = {
-  keyWidth: '90px',
-};
-
 export default KeyValuePair;

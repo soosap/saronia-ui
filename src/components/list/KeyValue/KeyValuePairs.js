@@ -1,10 +1,12 @@
 /* @flow */
-import React from 'react';
+import React, { Children } from 'react';
 import styled from 'styled-components';
 import { Breakpoint } from '../../../lib/constants';
 
 type Props = {
   pairs?: number,
+  keyWidth?: string,
+  children: Children,
 };
 
 const Wrapper = styled.div`
@@ -20,7 +22,15 @@ const Wrapper = styled.div`
   }
 `;
 
-const KeyValuePairs = (props: Props) => <Wrapper {...props} />;
+const KeyValuePairs = (props: Props) => (
+  <Wrapper {...props}>
+    {React.Children.map(props.children, child =>
+      React.cloneElement(child, {
+        keyWidth: child.props.keyWidth ? child.props.keyWidth : props.keyWidth,
+      }),
+    )}
+  </Wrapper>
+);
 
 KeyValuePairs.defaultProps = {
   pairs: 2,
