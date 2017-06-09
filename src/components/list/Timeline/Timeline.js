@@ -34,7 +34,7 @@ const Wrapper = styled.ul`
 
 const Timeline = (props: Props) =>
   <Wrapper {...props}>
-    {props.children.map((child, index) =>
+    {props.children.map(child =>
       React.cloneElement(child, {
         type: props.type,
         gap: props.gap,
