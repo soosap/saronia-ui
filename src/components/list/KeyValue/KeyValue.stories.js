@@ -13,6 +13,7 @@ import {
 import centered from '@storybook/addon-centered';
 
 import { KeyValue, KeyValuePair, KeyValuePairs } from '.';
+import { Tags, Tag } from '../../Tag';
 
 const isNotNil = R.both(
   R.complement(R.isNil),
@@ -26,17 +27,21 @@ stories
 stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
-      accent: boolean('accent', false),
       keyWidth: text('keyWidth', '90px'),
     });
 
     return (
       <KeyValue {...props}>
         <KeyValuePair>
-          <div>very very very long key</div>
-          <div>Tamil</div>
+          <div>tags</div>
+          <Tags>
+            <Tag>wildlife</Tag>
+            <Tag>animal</Tag>
+            <Tag>marine</Tag>
+            <Tag>endangered</Tag>
+          </Tags>
         </KeyValuePair>
-        <KeyValuePairs pairs={3}>
+        <KeyValuePairs pairs={number('pairs', 2)}>
           <KeyValuePair>
             <div>createdBy</div>
             <div>soosap</div>

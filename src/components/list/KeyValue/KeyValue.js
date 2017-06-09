@@ -8,12 +8,10 @@ type Props = {
 };
 
 const Wrapper = styled.div`
-  background-color: yellow;
-  width: 90%;
-  padding-left: .2rem;
+  padding-left: .35rem;
 
   .key-value-pair {
-    margin-right: .2rem;
+    margin-right: .35rem;
   }
 `;
 
