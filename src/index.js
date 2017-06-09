@@ -19,7 +19,13 @@ import { Image } from './components/Image';
 import { Spinner } from './components/Spinner';
 import { Navigation } from './components/Navigation';
 import { Segment, Row, Column, Footer, Header } from './components/layout';
-import { Timeline, TimelineEvent } from './components/list';
+import {
+  Timeline,
+  TimelineEvent,
+  KeyValue,
+  KeyValuePair,
+  KeyValuePairs,
+} from './components/list';
 import { Title, Subtitle } from './components/heading';
 import {
   Form,
@@ -48,8 +54,6 @@ export {
   Card,
   Label,
   Icon,
-  Timeline,
-  TimelineEvent,
   Link,
   Logo,
   Image,
@@ -69,6 +73,12 @@ export {
   Column,
   Footer,
   Header,
+  // list
+  Timeline,
+  TimelineEvent,
+  KeyValue,
+  KeyValuePair,
+  KeyValuePairs,
   // heading
   Title,
   Subtitle,
