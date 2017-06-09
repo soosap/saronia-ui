@@ -2,13 +2,12 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import { Color } from '../../lib/constants';
-import type { Size, Breed } from '../../lib/types';
+import { Color } from '../../../lib/constants';
+import type { Size, Breed } from '../../../lib/types';
 
 type Props = {
   children: any,
   gap?: Size,
-  timeline?: boolean,
   marginLeft?: string,
   type?: Breed,
 };
@@ -33,13 +32,10 @@ const Wrapper = styled.ul`
   }
 `;
 
-const Content = styled.div``;
-
-const renderTimeline = (props: Props) =>
+const Timeline = (props: Props) =>
   <Wrapper {...props}>
-    {props.children.map((child, index) =>
+    {props.children.map(child =>
       React.cloneElement(child, {
-        timeline: props.timeline,
         type: props.type,
         gap: props.gap,
         marginLeft: props.marginLeft,
@@ -48,8 +44,4 @@ const renderTimeline = (props: Props) =>
     )}
   </Wrapper>;
 
-export default (props: Props) =>
-  R.cond([
-    [R.prop('timeline'), renderTimeline],
-    [R.T, R.always(<Content {...props} />)],
-  ])(props);
+export default Timeline;

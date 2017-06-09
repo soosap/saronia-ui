@@ -26,7 +26,7 @@ const getBorderColor = R.cond([
 const getBackgroundColor = R.cond([
   [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
   [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
-  [R.T, R.always(Color.White.MODERATE)],
+  [R.T, R.always(Color.White.LIGHT)],
 ]);
 
 /*

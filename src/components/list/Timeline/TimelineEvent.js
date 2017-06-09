@@ -2,27 +2,17 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import { Color, FontSize, BreedEnum, SizeEnum } from '../../lib/constants';
-import type { Size, Breed } from '../../lib/types';
+import { Color, FontSize, BreedEnum, SizeEnum } from '../../../lib/constants';
+import type { Size, Breed } from '../../../lib/types';
 
-type Props =
-  | {
-      // default
-      children?: any,
-      gap?: Size,
-      timeline?: false,
-      type?: Breed,
-    }
-  | {
-      // timeline
-      children?: any,
-      gap?: Size,
-      labelBottom?: string,
-      labelTop?: string,
-      marginLeft?: string,
-      timeline: true,
-      type?: Breed,
-    };
+type Props = {
+  children?: any,
+  gap?: Size,
+  labelBottom?: string,
+  labelTop?: string,
+  marginLeft?: string,
+  type?: Breed,
+};
 
 const getColor = R.cond([
   [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
@@ -43,16 +33,12 @@ const getMarginTopBottom = R.cond([
 ]);
 
 const Wrapper = styled.li`
-  display: flex;
   margin: ${getMarginTopBottom} 0;
   position: relative;
   padding-left: 1rem;
 `;
 
-const Content = styled.div``;
-
-const renderTimelineItem = (props: Props) => {
-  const VerticalLine = styled.span`
+const VerticalLine = styled.span`
     content: '';
     position: absolute;
     top: 0;
@@ -86,7 +72,7 @@ const renderTimelineItem = (props: Props) => {
     }
   `;
 
-  const Label = styled.span`
+const Label = styled.span`
     position: absolute;
     left: -${R.propOr('75px', 'marginLeft')};
     width: ${R.propOr('75px', 'marginLeft')};
@@ -95,30 +81,24 @@ const renderTimelineItem = (props: Props) => {
     color: ${Color.Black.LIGHT};
   `;
 
-  const LabelTop = Label.extend`
+const LabelTop = Label.extend`
     top: -3px;
   `;
 
-  const LabelBottom = Label.extend`
+const LabelBottom = Label.extend`
     bottom: -5px;
   `;
 
-  return (
-    <Wrapper {...props}>
-      <VerticalLine type={props.type} />
-      <LabelTop {...R.pick(['marginLeft'], props)}>
-        {R.prop('labelTop', props)}&nbsp;&nbsp;&nbsp;
-      </LabelTop>
-      <LabelBottom {...R.pick(['marginLeft'], props)}>
-        {R.prop('labelBottom', props)}&nbsp;&nbsp;&nbsp;
-      </LabelBottom>
-      <Content {...props}>{props.children}</Content>
-    </Wrapper>
-  );
-};
+const TimelineEvent = (props: Props) =>
+  <Wrapper {...props}>
+    <VerticalLine type={props.type} />
+    <LabelTop {...R.pick(['marginLeft'], props)}>
+      {R.prop('labelTop', props)}&nbsp;&nbsp;&nbsp;
+    </LabelTop>
+    <LabelBottom {...R.pick(['marginLeft'], props)}>
+      {R.prop('labelBottom', props)}&nbsp;&nbsp;&nbsp;
+    </LabelBottom>
+    {props.children}
+  </Wrapper>;
 
-export default (props: Props) =>
-  R.cond([
-    [R.prop('timeline'), renderTimelineItem],
-    [R.T, R.always(<Content {...props} />)],
-  ])(props);
+export default TimelineEvent;

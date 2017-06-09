@@ -3,7 +3,7 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { IntensityEnum, Color, BORDER_RADIUS } from '../../../lib/constants';
+import { IntensityEnum, BORDER_RADIUS } from '../../../lib/constants';
 import type { Intensity } from '../../../lib/types';
 
 type Props = {
