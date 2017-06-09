@@ -1,3 +1,2 @@
 /* @flow */
-export { default as List } from './List';
-export { default as ListItem } from './ListItem';
+export { Timeline, TimelineEvent } from './Timeline';

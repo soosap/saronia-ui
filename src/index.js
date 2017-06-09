@@ -17,9 +17,9 @@ import { Card } from './components/Card';
 import { Tag, Tags } from './components/Tag';
 import { Image } from './components/Image';
 import { Spinner } from './components/Spinner';
-import { List, ListItem } from './components/List';
 import { Navigation } from './components/Navigation';
 import { Segment, Row, Column, Footer, Header } from './components/layout';
+import { Timeline, TimelineEvent } from './components/list';
 import { Title, Subtitle } from './components/heading';
 import {
   Form,
@@ -48,8 +48,8 @@ export {
   Card,
   Label,
   Icon,
-  List,
-  ListItem,
+  Timeline,
+  TimelineEvent,
   Link,
   Logo,
   Image,
