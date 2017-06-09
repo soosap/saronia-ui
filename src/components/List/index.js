@@ -1,3 +1,11 @@
 /* @flow */
-export { Timeline, TimelineEvent } from './Timeline';
-export { KeyValue, KeyValuePair, KeyValuePairs } from './KeyValue';
+import { Timeline, TimelineEvent } from './Timeline';
+import { KeyValue, KeyValuePair, KeyValuePairs } from './KeyValue';
+
+export {
+  Timeline,
+  TimelineEvent,
+  KeyValue,
+  KeyValuePair,
+  KeyValuePairs,
+};
