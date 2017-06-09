@@ -35,7 +35,7 @@ stories
           <div>language</div>
           <div>Tamil</div>
         </KeyValuePair>
-        <KeyValuePairs>
+        <KeyValuePairs pairs={3}>
           <KeyValuePair>
             <div>createdBy</div>
             <div>soosap</div>
@@ -43,6 +43,14 @@ stories
           <KeyValuePair>
             <div>updatedBy</div>
             <div>soosap</div>
+          </KeyValuePair>
+          <KeyValuePair>
+            <div>createdAt</div>
+            <div>2 days ago</div>
+          </KeyValuePair>
+          <KeyValuePair>
+            <div>updatedAt</div>
+            <div>2 minutes ago</div>
           </KeyValuePair>
         </KeyValuePairs>
       </KeyValue>
