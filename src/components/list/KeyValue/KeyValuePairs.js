@@ -9,6 +9,7 @@ type Props = {
   keyWidth?: string,
   children: Children,
   breed?: Breed,
+  compact?: boolean,
 };
 
 const Wrapper = styled.div`
@@ -30,6 +31,7 @@ const KeyValuePairs = (props: Props) => (
       React.cloneElement(child, {
         keyWidth: child.props.keyWidth ? child.props.keyWidth : props.keyWidth,
         breed: props.breed,
+        compact: props.compact,
       }),
     )}
   </Wrapper>

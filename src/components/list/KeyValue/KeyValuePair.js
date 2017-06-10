@@ -8,6 +8,7 @@ import type { Breed } from '../../../lib/types';
 type Props = {
   keyWidth?: string,
   breed?: Breed,
+  compact?: boolean,
 };
 
 const getKeyColor = R.cond([
@@ -28,6 +29,11 @@ const getKeyBackgroundColorDark = R.cond([
   [R.T, R.always(Color.Gray)],
 ]);
 
+const getPadding = R.cond([
+  [R.propEq('compact', true), R.always('.2rem .3rem')],
+  [R.T, R.always('.3rem .5rem')],
+]);
+
 const Wrapper = styled.div.attrs({
   className: 'key-value-pair',
 })`
@@ -40,11 +46,11 @@ const Wrapper = styled.div.attrs({
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
 
   @media (min-width: ${Breakpoint.TABLET}) {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 
   > * {
-    padding: .3rem .5rem;
+    padding: ${getPadding};
   }
 
   > *:first-child {

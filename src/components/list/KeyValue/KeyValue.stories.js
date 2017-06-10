@@ -33,6 +33,7 @@ stories
     const props = R.pickBy(isNotNil, {
       keyWidth: text('keyWidth', '90px'),
       breed: select('breed', breedOptions, undefined),
+      compact: boolean('compact', false),
     });
 
     return (
