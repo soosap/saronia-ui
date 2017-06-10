@@ -30,7 +30,7 @@ const getKeyBackgroundColorDark = R.cond([
 ]);
 
 const getPadding = R.cond([
-  [R.propEq('compact', true), R.always('.2rem .3rem')],
+  [R.propEq('compact', true), R.always('.2rem .4rem')],
   [R.T, R.always('.3rem .5rem')],
 ]);
 
