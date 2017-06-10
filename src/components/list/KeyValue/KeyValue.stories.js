@@ -14,7 +14,11 @@ import centered from '@storybook/addon-centered';
 
 import { KeyValue, KeyValuePair, KeyValuePairs } from '.';
 import { Tags, Tag } from '../../Tag';
+import {
+  BreedEnum,
+} from '../../../lib/constants';
 
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -28,6 +32,7 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       keyWidth: text('keyWidth', '90px'),
+      breed: select('breed', breedOptions, undefined),
     });
 
     return (
