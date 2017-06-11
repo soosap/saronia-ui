@@ -24,6 +24,10 @@ const isNotNil = R.both(
   R.complement(R.equals('undefined')),
 );
 
+const Wrapper = styled.div`
+  text-align: center;
+`;
+
 const ImageContainer = styled.div`
   width: 150px;
   display: flex;
@@ -34,28 +38,37 @@ const Image = styled.img`
   width: 100%;;
 `;
 
+const Content = styled.div`
+  margin-top: ${props => props.sticky && '51.81px'};
+`
+
 stories
   .add('text', () => {
     const props = R.pickBy(isNotNil, {
-      accent: boolean('accent', false),
+      sticky: boolean('sticky', false),
     });
 
     return (
-      <Navigation {...props}>
-        <Navigation.Left>
-          <ImageContainer>
-            <Image src="/wordmark.png" alt="logo" />
-          </ImageContainer>
-        </Navigation.Left>
-        <Navigation.Right>
-          <Navigation.Item name="login" initial onClick={action('clicked')}>
-            <span>Login</span>
-          </Navigation.Item>
-          <Navigation.Item name="signup" onClick={action('clicked')}>
-            <span>Signup</span>
-          </Navigation.Item>
-        </Navigation.Right>
-      </Navigation>
+      <Wrapper>
+        <Navigation {...props}>
+          <Navigation.Left>
+            <ImageContainer>
+              <Image src="/wordmark.png" alt="logo" />
+            </ImageContainer>
+          </Navigation.Left>
+          <Navigation.Right>
+            <Navigation.Item name="login" initial onClick={action('clicked')}>
+              <span>Login</span>
+            </Navigation.Item>
+            <Navigation.Item name="signup" onClick={action('clicked')}>
+              <span>Signup</span>
+            </Navigation.Item>
+          </Navigation.Right>
+        </Navigation>
+        <Content {...props}>
+          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+        </Content>
+      </Wrapper>
     );
   })
   .add('links', () =>
@@ -66,11 +79,7 @@ stories
         </ImageContainer>
       </Navigation.Left>
       <Navigation.Right>
-        <Navigation.Item
-          name="login"
-          initial
-          onClick={action('clicked')}
-        >
+        <Navigation.Item name="login" initial onClick={action('clicked')}>
           <Link>Login</Link>
         </Navigation.Item>
         <Navigation.Item name="signup" onClick={action('clicked')}>

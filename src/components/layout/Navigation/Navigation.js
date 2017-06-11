@@ -6,6 +6,7 @@ import { Color } from '../../../lib/constants';
 
 type Props = {
   children: Children,
+  sticky?: boolean,
 };
 
 type State = {
@@ -135,6 +136,11 @@ const Wrapper = styled.nav`
   justify-content: space-between;
   padding: .6rem 1rem;
   font-size: 1.3rem;
+  position: ${props => props.sticky ? 'fixed' : 'inherit'};
+  left: ${props => props.sticky && 0};
+  right: ${props => props.sticky && 0};
+  top: ${props => props.sticky && 0};
+  background-color: white;
 `;
 
 class Navigation extends Component<void, Props, State> {
@@ -152,7 +158,7 @@ class Navigation extends Component<void, Props, State> {
 
   render() {
     return (
-      <Wrapper>
+      <Wrapper sticky={this.props.sticky}>
         {React.Children.map(this.props.children, child =>
           React.cloneElement(child, {
             selectItem: this.handleItemSelection,
