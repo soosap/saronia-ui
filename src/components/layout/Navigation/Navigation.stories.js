@@ -38,10 +38,6 @@ const Image = styled.img`
   width: 100%;;
 `;
 
-const Content = styled.div`
-  margin-top: ${props => props.sticky && '51.81px'};
-`
-
 stories
   .add('text', () => {
     const props = R.pickBy(isNotNil, {
@@ -65,9 +61,7 @@ stories
             </Navigation.Item>
           </Navigation.Right>
         </Navigation>
-        <Content {...props}>
-          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
-        </Content>
+        {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
       </Wrapper>
     );
   })
