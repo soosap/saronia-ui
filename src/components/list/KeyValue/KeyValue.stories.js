@@ -13,7 +13,7 @@ import {
 import centered from '@storybook/addon-centered';
 
 import { KeyValue, KeyValuePair, KeyValuePairs } from '.';
-import { Tags, Tag } from '../../Tag';
+import { Tags, Tag } from '../../core';
 import {
   BreedEnum,
 } from '../../../lib/constants';

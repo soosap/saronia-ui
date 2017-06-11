@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { Segment } from './Segment';
 import { Row } from './Row';
 import { Column } from './Column';
+import { Navigation } from './Navigation';
 
 export {
   Wrapper,
@@ -13,4 +14,5 @@ export {
   Segment,
   Row,
   Column,
+  Navigation,
 };

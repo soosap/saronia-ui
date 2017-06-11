@@ -13,11 +13,8 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Form } from '.';
-import { Field, Fields, FieldLabel } from '../Field';
-import { Input } from '../Input';
-import { Button } from '../../Button';
-import { Icon } from '../../Icon';
+import { Button, Icon } from '../../core';
+import { Form, Field, Fields, FieldLabel, Input } from '../../form';
 import { IconSVGPath } from '../../../lib/constants';
 
 const isNotNil = R.both(

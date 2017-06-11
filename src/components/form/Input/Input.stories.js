@@ -12,8 +12,8 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Input, InputWithAddons } from '.';
-import { Icon } from '../../Icon';
+import { Input } from '.';
+
 import { Field, Fields, FieldLabel } from '../Field';
 import { IconSVGPath } from '../../../lib/constants';
 
@@ -75,18 +75,4 @@ stories
     });
 
     return <Input {...props} />;
-  })
-  .add('w/ addons', () => {
-    const props = R.pickBy(isNotNil, {
-      accent: boolean('accent', false),
-      placeholder: 'Enter your name...',
-    });
-
-    return (
-      <InputWithAddons onClick={action('clicked')}>
-        <Icon svgPath={IconSVGPath.ADD} />
-        <Input {...props} />
-        <Icon svgPath={IconSVGPath.TRASH} />
-      </InputWithAddons>
-    );
   });
