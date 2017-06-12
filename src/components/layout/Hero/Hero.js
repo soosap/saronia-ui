@@ -27,9 +27,9 @@ const getHeight = R.cond([
   [R.T, R.always('11.25rem')],
 ]);
 
-const getMarginTopHero = R.cond([
+const getStickyTop = R.cond([
   [R.propEq('hasNavigation', true), R.always(NAVIGATION_HEIGHT)],
-  [R.T, R.always('0rem')],
+  [R.T, R.always('inherit')],
 ]);
 
 const Wrapper = styled.header`
@@ -39,22 +39,13 @@ const Wrapper = styled.header`
   align-items: center;
   background-size: contain;
   background-color: ${getBackgroundColor};
-  z-index: -1;
-  position: ${props => (props.sticky ? 'fixed' : 'inherit')};
+  position: ${props => (props.sticky ? 'sticky' : 'inherit')};
   height: ${getHeight};
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  margin-top: ${getMarginTopHero};
-  left: 0;
-  right: 0;
-  top: 0;
+  top: ${getStickyTop};
   font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
-
-  + * {
-    position: relative;
-    margin-top: ${props =>
-      `calc(${getMarginTopHero(props)} + ${props.sticky && getHeight(props)})`};
-  }
+  z-index: 1;
 `;
 
 const Hero = (props: Props) => <Wrapper {...props} />;

@@ -129,7 +129,7 @@ const PADDING_TOP_BOTTOM = '0.3rem';
 export const NAVIGATION_HEIGHT = `calc(
   ${`${NAVIGATION_HEIGHT_INNER}
   + ${PADDING_TOP_BOTTOM}
-  + ${PADDING_TOP_BOTTOM}`}
+  + ${PADDING_TOP_BOTTOM} - 1px`}
 )`;
 
 const Wrapper = styled.nav.attrs({
@@ -141,16 +141,10 @@ const Wrapper = styled.nav.attrs({
   height: ${NAVIGATION_HEIGHT_INNER};
   padding: ${PADDING_TOP_BOTTOM} 1rem;
   font-size: 1.3rem;
-  position: ${props => (props.sticky ? 'fixed' : 'inherit')};
-  left: ${props => props.sticky && 0};
-  right: ${props => props.sticky && 0};
+  position: ${props => (props.sticky ? 'sticky' : 'inherit')};
   top: ${props => props.sticky && 0};
   background-color: ${getBackgroundColor};
   z-index: 2;
-
-  + * {
-    margin-top: ${props => props.sticky && NAVIGATION_HEIGHT};
-  }
 
   .image {
     height: 36px;
