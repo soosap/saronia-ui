@@ -9,6 +9,7 @@ import type { Breed, SizeSubset } from '../../../lib/types';
 type Props = {
   breed?: Breed,
   size?: SizeSubset,
+  sticky?: boolean,
 };
 
 const getBackgroundColor = R.cond([
@@ -17,10 +18,10 @@ const getBackgroundColor = R.cond([
   [R.T, R.always(Color.White.STRONG)],
 ]);
 
-const getPadding = R.cond([
-  [R.propEq('size', SizeSubsetEnum.SMALL), R.always('1.5rem')],
-  [R.propEq('size', SizeSubsetEnum.LARGE), R.always('5rem 1.5rem')],
-  [R.T, R.always('3rem 1.5rem')],
+const getHeight = R.cond([
+  [R.propEq('size', SizeSubsetEnum.SMALL), R.always('7.5rem')],
+  [R.propEq('size', SizeSubsetEnum.LARGE), R.always('15rem')],
+  [R.T, R.always('11.25rem')],
 ]);
 
 const Wrapper = styled.header`
@@ -31,16 +32,18 @@ const Wrapper = styled.header`
   background-size: contain;
   background-color: ${getBackgroundColor};
   z-index: -1;
-  position: fixed;
+  position: ${props => props.sticky ? 'fixed' : 'inherit'};
+  height: ${getHeight};
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   left: 0;
   right: 0;
-  padding: ${getPadding};
   top: 0;
   font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
 
   + * {
     position: relative;
-    margin-top: 160px;
+    margin-top: ${props => props.sticky ? getHeight(props) : 'inherit'};
   }
 `;
 
