@@ -13,20 +13,20 @@ type Props = {
 
 const getKeyColor = R.cond([
   [R.propEq('breed', 'primary'), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', 'secondary'), R.always(Color.WHITE)],
-  [R.T, R.always(Color.CREME)],
+  [R.propEq('breed', 'secondary'), R.always(Color.BLACK)],
+  [R.T, R.always(Color.Creme.LIGHT)],
 ]);
 
 const getKeyBackgroundColor = R.cond([
   [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
   [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
-  [R.T, R.always(Color.Black.TRANSPARENT)],
+  [R.T, R.always(Color.White.TRANSPARENT)],
 ]);
 
 const getKeyBackgroundColorDark = R.cond([
   [R.propEq('breed', 'primary'), R.always(Color.Primary.DARK)],
   [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARK)],
-  [R.T, R.always(Color.Black.TRANSPARENT)],
+  [R.T, R.always(Color.White.TRANSPARENT)],
 ]);
 
 const getPadding = R.cond([
@@ -39,9 +39,9 @@ const Wrapper = styled.div.attrs({
 })`
   display: grid;
   grid-template-columns: ${R.prop('keyWidth')} 1fr;
-  margin-bottom: .35rem;
+  margin-bottom: .5rem;
   font-size: .9rem;
-  border: 1px solid ${getKeyBackgroundColor};
+  border: 2px solid ${getKeyBackgroundColor};
   border-radius: ${BORDER_RADIUS};
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
 

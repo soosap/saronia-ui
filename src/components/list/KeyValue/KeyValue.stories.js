@@ -1,8 +1,8 @@
 /* @flow */
 import React from 'react';
 import R from 'ramda';
+import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import {
   withKnobs,
   text,
@@ -16,6 +16,7 @@ import { KeyValue, KeyValuePair, KeyValuePairs } from '.';
 import { Tags, Tag } from '../../core';
 import {
   BreedEnum,
+  Color,
 } from '../../../lib/constants';
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
@@ -24,14 +25,26 @@ const isNotNil = R.both(
   R.complement(R.equals('undefined')),
 );
 
+const StoryWrapper = styled.div`
+  background-color: ${Color.Black.LIGHT};
+  color: ${Color.GRAY};
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+`;
+
 const stories = storiesOf('KeyValue', module);
 stories
-  .addDecorator(withKnobs).addDecorator(centered);
+  .addDecorator(withKnobs).addDecorator(centered).addDecorator(story => (
+    <StoryWrapper>
+      {story()}
+    </StoryWrapper>
+  ));
 
 stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
-      keyWidth: text('keyWidth', '90px'),
+      keyWidth: text('keyWidth', '100px'),
       breed: select('breed', breedOptions, undefined),
       compact: boolean('compact', false),
     });
