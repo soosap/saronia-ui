@@ -21,18 +21,6 @@ setOptions({
   url: 'https://ui.saronia.io',
 });
 
-// addDecorator(
-//   backgroundColor([
-//     Color.White.LIGHT,
-//     Color.WHITE,
-//     Color.CREME,
-//     Color.GRAY,
-//     Color.BLACK,
-//     Color.PRIMARY,
-//     Color.SECONDARY,
-//   ]),
-// );
-
 // addDecorator(backgrounds([
 //   { name: 'Color.White.LIGHT', value: Color.White.LIGHT, default: true },
 //   { name: 'Color.WHITE', value: Color.WHITE },

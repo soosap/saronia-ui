@@ -7,3 +7,5 @@
 [libs]
 
 [options]
+module.name_mapper='^constants\(\/?.*\)$' -> '<PROJECT_ROOT>/src/lib/constants/\1'
+module.name_mapper='^types\(\/?.*\)$' -> '<PROJECT_ROOT>/src/lib/types/\1'

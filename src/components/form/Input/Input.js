@@ -3,7 +3,7 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { Icon } from '../../Icon';
+import { Icon } from '../../core';
 import { BORDER_RADIUS, Color } from '../../../lib/constants';
 import type { Context } from '../../../lib/types';
 
