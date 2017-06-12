@@ -58,7 +58,7 @@ const NavigationItem = ({
   activeItem,
   selectItem,
   onClick,
-}: ItemContainer) => (
+}: ItemContainer) =>
   <WrapperItem
     active={(activeItem || (initial && name)) === name}
     onClick={() => {
@@ -67,8 +67,7 @@ const NavigationItem = ({
     }}
   >
     {children}
-  </WrapperItem>
-);
+  </WrapperItem>;
 
 /*
 |-----------------------------------------------------------
@@ -83,7 +82,7 @@ const NavigationLeft = ({
   children,
   selectItem,
   activeItem,
-}: NavigationContainer) => (
+}: NavigationContainer) =>
   <WrapperLeft>
     {React.Children.map(children, (child) => {
       if (child.type && child.type.name === 'NavigationItem') {
@@ -95,8 +94,7 @@ const NavigationLeft = ({
 
       return child;
     })}
-  </WrapperLeft>
-);
+  </WrapperLeft>;
 
 /*
 |-----------------------------------------------------------
@@ -111,7 +109,7 @@ const NavigationRight = ({
   children,
   selectItem,
   activeItem,
-}: NavigationContainer) => (
+}: NavigationContainer) =>
   <WrapperRight>
     {React.Children.map(children, (child) => {
       if (child.type && child.type.name === 'NavigationItem') {
@@ -123,20 +121,24 @@ const NavigationRight = ({
 
       return child;
     })}
-  </WrapperRight>
-);
+  </WrapperRight>;
 
 /*
 |-----------------------------------------------------------
 | Navigation
 |-----------------------------------------------------------
 */
+const NAVIGATION_HEIGHT = '36px';
+const PADDING_TOP_BOTTOM = '0.6rem';
+
 const Wrapper = styled.nav`
   display: flex;
   justify-content: space-between;
-  padding: .6rem 1rem;
+  align-items: center;
+  height: ${NAVIGATION_HEIGHT};
+  padding: ${PADDING_TOP_BOTTOM} 1rem;
   font-size: 1.3rem;
-  position: ${props => props.sticky ? 'fixed' : 'inherit'};
+  position: ${props => (props.sticky ? 'fixed' : 'inherit')};
   left: ${props => props.sticky && 0};
   right: ${props => props.sticky && 0};
   top: ${props => props.sticky && 0};
@@ -144,7 +146,13 @@ const Wrapper = styled.nav`
   z-index: 1;
 
   + * {
-    margin-top: ${props => props.sticky && '51.81px'};
+    margin-top: ${props =>
+      props.sticky && `calc(
+        ${`${NAVIGATION_HEIGHT}
+        + ${PADDING_TOP_BOTTOM}
+        + ${PADDING_TOP_BOTTOM}`}
+      )`
+    };
   }
 `;
 
