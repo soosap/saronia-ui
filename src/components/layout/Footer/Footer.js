@@ -13,6 +13,7 @@ const Footer = styled.footer`
   padding: 1rem 1rem 2.5rem;
   font-weight: 400;
   line-height: 1.5;
+  z-index: 1;
 
   @media (min-width: ${Breakpoint.BIG_PHONE}) {
     padding: 1.5rem 1.5rem 3rem;

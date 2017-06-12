@@ -10,6 +10,7 @@ import { Subtitle } from './Subtitle';
 import { Tag, Tags } from './Tag';
 import { Image } from './Image';
 import { Spinner } from './Spinner';
+import { Avatar } from './Avatar';
 
 export {
   Button,
@@ -28,4 +29,5 @@ export {
   Spinner,
   Title,
   Subtitle,
+  Avatar,
 };
