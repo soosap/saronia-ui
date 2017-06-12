@@ -141,6 +141,7 @@ const Wrapper = styled.nav`
   right: ${props => props.sticky && 0};
   top: ${props => props.sticky && 0};
   background-color: white;
+  z-index: 1;
 
   + * {
     margin-top: ${props => props.sticky && '51.81px'};

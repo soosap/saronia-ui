@@ -13,7 +13,7 @@ import {
   select,
 } from '@storybook/addon-knobs';
 
-import { Navigation } from '.';
+import { Navigation } from '../../layout';
 import { Buttons, Button, Link } from '../../core';
 
 const stories = storiesOf('Navigation', module);
@@ -61,7 +61,9 @@ stories
             </Navigation.Item>
           </Navigation.Right>
         </Navigation>
-        {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+        <div>
+          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+        </div>
       </Wrapper>
     );
   })
