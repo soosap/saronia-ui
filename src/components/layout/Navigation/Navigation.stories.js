@@ -13,12 +13,14 @@ import {
   select,
 } from '@storybook/addon-knobs';
 
-import { Navigation } from '../../layout';
-import { Buttons, Button, Link } from '../../core';
+import { Navigation, Segment } from '../../layout';
+import { Buttons, Button, Link, Image } from '../../core';
+import { BreedEnum } from '../../../lib/constants';
 
 const stories = storiesOf('Navigation', module);
 stories.addDecorator(withKnobs);
 
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -28,29 +30,18 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const ImageContainer = styled.div`
-  width: 150px;
-  display: flex;
-  align-items: center;
-`;
-
-const Image = styled.img`
-  width: 100%;;
-`;
-
 stories
   .add('text', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
+      breed: select('breed', breedOptions, 'undefined'),
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Left>
-            <ImageContainer>
-              <Image src="/wordmark.png" alt="logo" />
-            </ImageContainer>
+            <Image src="/wordmark.png" alt="logo" />
           </Navigation.Left>
           <Navigation.Right>
             <Navigation.Item name="login" initial onClick={action('clicked')}>
@@ -61,18 +52,16 @@ stories
             </Navigation.Item>
           </Navigation.Right>
         </Navigation>
-        <div>
+        <Segment>
           {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
-        </div>
+        </Segment>
       </Wrapper>
     );
   })
   .add('links', () =>
     <Navigation>
       <Navigation.Left>
-        <ImageContainer>
-          <Image src="/wordmark.png" alt="logo" />
-        </ImageContainer>
+        <Image src="/wordmark.png" alt="logo" />
       </Navigation.Left>
       <Navigation.Right>
         <Navigation.Item name="login" initial onClick={action('clicked')}>
@@ -87,9 +76,7 @@ stories
   .add('buttons', () =>
     <Navigation>
       <Navigation.Left>
-        <ImageContainer>
-          <Image src="/wordmark.png" alt="logo" />
-        </ImageContainer>
+        <Image src="/wordmark.png" alt="logo" />
       </Navigation.Left>
       <Navigation.Right>
         <Buttons breed="primary">

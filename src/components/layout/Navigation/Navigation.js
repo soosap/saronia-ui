@@ -2,10 +2,13 @@
 import React, { Component, Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
+
 import { Color } from '../../../lib/constants';
+import type { Breed } from '../../../lib/types';
 
 type Props = {
   children: Children,
+  breed?: Breed,
   sticky?: boolean,
 };
 
@@ -24,6 +27,12 @@ type ItemContainer = NavigationContainer & {
   initial?: string,
   onClick: Function,
 };
+
+const getBackgroundColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARK)],
+  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARK)],
+  [R.T, R.always(Color.White.LIGHT)],
+]);
 
 /*
 |-----------------------------------------------------------
@@ -142,7 +151,7 @@ const Wrapper = styled.nav`
   left: ${props => props.sticky && 0};
   right: ${props => props.sticky && 0};
   top: ${props => props.sticky && 0};
-  background-color: white;
+  background-color: ${getBackgroundColor};
   z-index: 1;
 
   + * {
@@ -171,7 +180,7 @@ class Navigation extends Component<void, Props, State> {
 
   render() {
     return (
-      <Wrapper sticky={this.props.sticky}>
+      <Wrapper {...this.props}>
         {React.Children.map(this.props.children, child =>
           React.cloneElement(child, {
             selectItem: this.handleItemSelection,
