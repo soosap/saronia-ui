@@ -22,11 +22,11 @@ const Wrapper = styled.div`
     text-decoration: none;
 
     &:not(:first-child):not(:last-child) {
-      border-left: ${p => (p.vertical ? '1px solid' : 'none')};
-      border-top: ${p => (p.vertical ? 'none' : '1px solid')};
-      border-bottom: ${p => (p.vertical ? 'none' : '1px solid')};
+      border-left: ${p => p.inverted && (p.vertical ? '1px solid' : 'none')};
+      border-top: ${p => p.inverted && (p.vertical ? 'none' : '1px solid')};
+      border-bottom: ${p => p.inverted && (p.vertical ? 'none' : '1px solid')};
       border-radius: 0;
-      border: 1px solid;
+      border: ${p => p.inverted && '1px solid'};
       border-right: ${p => p.inverted && (p.vertical ? '1px solid' : 'none')};
       border-bottom: ${p => p.inverted && (p.vertical ? 'none' : '1px solid')};
     }
