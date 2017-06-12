@@ -115,14 +115,7 @@ const NavigationCollection = ({
         });
       }
 
-      return React.cloneElement(
-        child,
-        {
-          // Todo: Improve inverted and breed colors on primary or secondary bg
-          // inverted: !child.props.breed && true,
-          // breed: !child.props.breed && breed !== 'primary' && breed,
-        },
-      );
+      return child;
     })}
   </WrapperCollection>;
 
