@@ -29,10 +29,11 @@ const getHeight = R.cond([
 
 const getStickyTop = R.cond([
   [R.propEq('hasNavigation', true), R.always(NAVIGATION_HEIGHT)],
-  [R.T, R.always('inherit')],
+  [R.T, R.always('0')],
 ]);
 
 const Wrapper = styled.header`
+  grid-area: header;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,7 +46,7 @@ const Wrapper = styled.header`
   padding-right: 1.5rem;
   top: ${getStickyTop};
   font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
-  z-index: 0;
+  z-index: -1;
 `;
 
 const Hero = (props: Props) => <Wrapper {...props} />;
