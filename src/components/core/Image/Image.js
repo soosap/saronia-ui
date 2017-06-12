@@ -13,15 +13,11 @@ const Figure = styled.figure.attrs({
   className: 'image',
 })`
   margin: 0;
-  width: ${props => props.width ? props.width : 'inherit'};
-  height: ${props => props.height ? props.height : 'inherit'};
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Wrapper = styled.img`
-  height: 100%;
+  width: ${props => props.width ? props.width : 'inherit'};
+  height: ${props => props.height ? props.height : 'inherit'};
 `;
 
 const Image = (props: Props) =>
