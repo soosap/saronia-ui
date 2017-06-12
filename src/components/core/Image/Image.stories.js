@@ -12,6 +12,8 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
+import { Image } from '../../core';
+
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -22,9 +24,11 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
-    width: text('width', '100%'),
-    height: text('height', '100%'),
+    width: text('width', '200px'),
+    height: text('height', 'inherit'),
+    src: '/wordmark.png',
+    alt: 'logo',
   });
 
-  return <Image {...props} onClick={action('clicked')} />;
+  return <Image {...props} />;
 });

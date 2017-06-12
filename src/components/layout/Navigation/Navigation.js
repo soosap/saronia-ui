@@ -138,7 +138,7 @@ const NavigationRight = ({
 |-----------------------------------------------------------
 */
 const NAVIGATION_HEIGHT = '36px';
-const PADDING_TOP_BOTTOM = '0.6rem';
+const PADDING_TOP_BOTTOM = '0.3rem';
 
 const Wrapper = styled.nav`
   display: flex;
@@ -162,6 +162,10 @@ const Wrapper = styled.nav`
         + ${PADDING_TOP_BOTTOM}`}
       )`
     };
+  }
+
+  .image {
+    height: 36px;
   }
 `;
 
