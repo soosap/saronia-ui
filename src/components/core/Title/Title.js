@@ -2,7 +2,7 @@
 import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
-import { Font, FontSize } from '../../../lib/constants';
+import { Font, FontSize, Color } from '../../../lib/constants';
 
 type Props = {
   accent?: boolean,
@@ -17,10 +17,10 @@ type Props = {
 | Helper methods
 |-----------------------------------------------------------
 */
-export const getTextTransform = props =>
+export const getTextTransform = (props: Props) =>
   props.transform ? props.transform : 'inherit';
 
-export const getTextDecoration = props =>
+export const getTextDecoration = (props: Props) =>
   props.decoration ? props.decoration : 'inherit';
 
 export const getTextAlign = R.cond([
@@ -54,6 +54,7 @@ const Title = (props: Props) => {
     padding: 0;
     line-height: 1.125;
     word-break: break-word;
+    color: ${Color.BLACK};
 
     &:not(:last-child) {
       margin-bottom: 1.5rem;

@@ -13,7 +13,10 @@ import {
 
 import { Title, Subtitle } from '../../core';
 import { Hero } from '../../layout';
+import { BreedEnum, SizeSubsetEnum } from '../../../lib/constants';
 
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const sizeOptions = R.invertObj(R.merge(SizeSubsetEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -26,6 +29,8 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
+      breed: select('breed', breedOptions, 'undefined'),
+      size: select('size', sizeOptions, 'undefined'),
     });
 
     return (

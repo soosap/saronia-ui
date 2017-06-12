@@ -3,14 +3,24 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { Color, Font } from '../../../lib/constants';
+import { Color, Font, SizeSubsetEnum } from '../../../lib/constants';
+import type { Breed, SizeSubset } from '../../../lib/types';
 
 type Props = {
-  backgroundImage?: string,
+  breed?: Breed,
+  size?: SizeSubset,
 };
 
-const getHeight = R.cond([
-  [R.T, R.always('100px')],
+const getBackgroundColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.White.STRONG)],
+]);
+
+const getPadding = R.cond([
+  [R.propEq('size', SizeSubsetEnum.SMALL), R.always('1.5rem')],
+  [R.propEq('size', SizeSubsetEnum.LARGE), R.always('5rem 1.5rem')],
+  [R.T, R.always('3rem 1.5rem')],
 ]);
 
 const Wrapper = styled.header`
@@ -19,19 +29,18 @@ const Wrapper = styled.header`
   justify-content: center;
   align-items: center;
   background-size: contain;
-  background-color: ${Color.White.STRONG};
+  background-color: ${getBackgroundColor};
   z-index: -1;
   position: fixed;
   left: 0;
   right: 0;
-  height: ${getHeight};
+  padding: ${getPadding};
   top: 0;
-  font-family: ${props => props.accent ? Font.ACCENT : Font.SYSTEM};
+  font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
 
   + * {
     position: relative;
     margin-top: 160px;
-    background-color: white;
   }
 `;
 
