@@ -58,31 +58,55 @@ stories
       </Wrapper>
     );
   })
-  .add('links', () =>
-    <Navigation>
-      <Navigation.Left>
-        <Image src="/wordmark.png" alt="logo" />
-      </Navigation.Left>
-      <Navigation.Right>
-        <Navigation.Item name="login" initial onClick={action('clicked')}>
-          <Link>Login</Link>
-        </Navigation.Item>
-        <Navigation.Item name="signup" onClick={action('clicked')}>
-          <a>Signup</a>
-        </Navigation.Item>
-      </Navigation.Right>
-    </Navigation>,
-  )
-  .add('buttons', () =>
-    <Navigation>
-      <Navigation.Left>
-        <Image src="/wordmark.png" alt="logo" />
-      </Navigation.Left>
-      <Navigation.Right>
-        <Buttons breed="primary">
-          <Button>Login</Button>
-          <Button>Sign up</Button>
-        </Buttons>
-      </Navigation.Right>
-    </Navigation>,
-  );
+  .add('links', () => {
+    const props = R.pickBy(isNotNil, {
+      sticky: boolean('sticky', false),
+      breed: select('breed', breedOptions, 'undefined'),
+    });
+
+    return (
+      <Wrapper>
+        <Navigation {...props}>
+          <Navigation.Left>
+            <Image src="/wordmark.png" alt="logo" />
+          </Navigation.Left>
+          <Navigation.Right>
+            <Navigation.Item name="login" initial onClick={action('clicked')}>
+              <Link>Login</Link>
+            </Navigation.Item>
+            <Navigation.Item name="signup" onClick={action('clicked')}>
+              <a>Signup</a>
+            </Navigation.Item>
+          </Navigation.Right>
+        </Navigation>
+        <Segment>
+          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+        </Segment>
+      </Wrapper>
+    );
+  })
+  .add('buttons', () => {
+    const props = R.pickBy(isNotNil, {
+      sticky: boolean('sticky', false),
+      breed: select('breed', breedOptions, 'undefined'),
+    });
+
+    return (
+      <Wrapper>
+        <Navigation {...props}>
+          <Navigation.Left>
+            <Image src="/wordmark.png" alt="logo" />
+          </Navigation.Left>
+          <Navigation.Right>
+            <Buttons>
+              <Button>Login</Button>
+              <Button>Sign up</Button>
+            </Buttons>
+          </Navigation.Right>
+        </Navigation>
+        <Segment>
+          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+        </Segment>
+      </Wrapper>
+    );
+  });

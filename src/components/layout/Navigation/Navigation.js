@@ -3,7 +3,7 @@ import React, { Component, Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { Color } from '../../../lib/constants';
+import { Color, BreedEnum } from '../../../lib/constants';
 import type { Breed } from '../../../lib/types';
 
 type Props = {
@@ -16,22 +16,36 @@ type State = {
   activeItem: ?string,
 };
 
-type NavigationContainer = {
+type NavigationCollectionProps = {
   children: Children,
+  breed?: Breed,
   activeItem: ?string,
   selectItem: (item: string) => void,
 };
 
-type ItemContainer = NavigationContainer & {
+type NavigationItemProps = NavigationCollectionProps & {
   name: string,
+  breed?: Breed,
   initial?: string,
   onClick: Function,
 };
 
+const getColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', 'secondary'), R.always(Color.WHITE)],
+  [R.T, R.always(Color.BLACK)],
+]);
+
 const getBackgroundColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARK)],
-  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARK)],
-  [R.T, R.always(Color.White.LIGHT)],
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.WHITE)],
+]);
+
+const getBorderColor = R.cond([
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.WHITE)],
+  [R.T, R.always(Color.PRIMARY)],
 ]);
 
 /*
@@ -39,15 +53,14 @@ const getBackgroundColor = R.cond([
 | Navigation.Item
 |-----------------------------------------------------------
 */
-const getBorderBottom = R.cond([
-  [R.propEq('active', true), R.always(`3px solid ${Color.PRIMARY}`)],
-]);
-
 const WrapperItem = styled.div`
-  border-bottom: ${getBorderBottom};
+  padding-bottom: .2rem;
+  border-bottom: ${props =>
+    props.active && `2px solid ${getBorderColor(props)}`};
+  color: ${getColor};
 
   a {
-    color: ${Color.BLACK};
+    color: ${getColor};
     text-decoration: none;
   }
 
@@ -60,77 +73,55 @@ const WrapperItem = styled.div`
   }
 `;
 
-const NavigationItem = ({
-  children,
-  name,
-  initial,
-  activeItem,
-  selectItem,
-  onClick,
-}: ItemContainer) =>
-  <WrapperItem
-    active={(activeItem || (initial && name)) === name}
-    onClick={() => {
-      if (onClick) onClick();
-      selectItem(name);
-    }}
-  >
-    {children}
-  </WrapperItem>;
+const NavigationItem = (props: NavigationItemProps) => {
+  const { children, name, initial, activeItem, selectItem, onClick } = props;
+
+  return (
+    <WrapperItem
+      {...props}
+      active={(activeItem || (initial && name)) === name}
+      onClick={() => {
+        if (onClick) onClick();
+        selectItem(name);
+      }}
+    >
+      {children}
+    </WrapperItem>
+  );
+};
 
 /*
 |-----------------------------------------------------------
-| Navigation.Left
+| Navigation.Collection
 |-----------------------------------------------------------
 */
-const WrapperLeft = styled.div`
+const WrapperCollection = styled.div`
   display: flex;
 `;
 
-const NavigationLeft = ({
+const NavigationCollection = ({
   children,
+  breed,
   selectItem,
   activeItem,
-}: NavigationContainer) =>
-  <WrapperLeft>
+}: NavigationCollectionProps) =>
+  <WrapperCollection>
     {React.Children.map(children, (child) => {
       if (child.type && child.type.name === 'NavigationItem') {
         return React.cloneElement(child, {
           selectItem,
           activeItem,
+          breed,
         });
       }
 
-      return child;
+      return React.cloneElement(child, {
+        // Todo: Improve inverted and breed colors on primary or secondary bg
+        // inverted: !child.props.breed && true,
+        // breed: !child.props.breed && breed !== 'primary' && breed,
+      });
     })}
-  </WrapperLeft>;
-
-/*
-|-----------------------------------------------------------
-| Navigation.Right
-|-----------------------------------------------------------
-*/
-const WrapperRight = styled.div`
-  display: flex;
-`;
-
-const NavigationRight = ({
-  children,
-  selectItem,
-  activeItem,
-}: NavigationContainer) =>
-  <WrapperRight>
-    {React.Children.map(children, (child) => {
-      if (child.type && child.type.name === 'NavigationItem') {
-        return React.cloneElement(child, {
-          selectItem,
-          activeItem,
-        });
-      }
-
-      return child;
-    })}
-  </WrapperRight>;
+  </WrapperCollection>;
 
 /*
 |-----------------------------------------------------------
@@ -156,12 +147,12 @@ const Wrapper = styled.nav`
 
   + * {
     margin-top: ${props =>
-      props.sticky && `calc(
+      props.sticky &&
+      `calc(
         ${`${NAVIGATION_HEIGHT}
         + ${PADDING_TOP_BOTTOM}
         + ${PADDING_TOP_BOTTOM}`}
-      )`
-    };
+      )`};
   }
 
   .image {
@@ -170,8 +161,8 @@ const Wrapper = styled.nav`
 `;
 
 class Navigation extends Component<void, Props, State> {
-  static Left = NavigationLeft;
-  static Right = NavigationRight;
+  static Left = NavigationCollection;
+  static Right = NavigationCollection;
   static Item = NavigationItem;
 
   state = {
@@ -189,6 +180,7 @@ class Navigation extends Component<void, Props, State> {
           React.cloneElement(child, {
             selectItem: this.handleItemSelection,
             activeItem: this.state.activeItem,
+            breed: this.props.breed,
           }),
         )}
       </Wrapper>
