@@ -12,10 +12,10 @@ type Props = {
 };
 
 const Wrapper = styled.div`
-  padding-left: .35rem;
+  padding-left: .5rem;
 
   .key-value-pair {
-    margin-right: .35rem;
+    margin-right: .5rem;
   }
 `;
 
