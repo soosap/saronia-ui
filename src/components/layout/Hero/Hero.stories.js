@@ -12,8 +12,8 @@ import {
   select,
 } from '@storybook/addon-knobs';
 
-import { Title, Subtitle } from '../../core';
-import { Hero, Segment } from '../../layout';
+import { Title, Subtitle, Image } from '../../core';
+import { Hero, Segment, Navigation } from '../../layout';
 import { BreedEnum, SizeSubsetEnum } from '../../../lib/constants';
 
 const Wrapper = styled.div`
@@ -33,23 +33,61 @@ const isNotNil = R.both(
 const stories = storiesOf('Hero', module);
 stories.addDecorator(withKnobs);
 
-stories.add('default', () => {
-  const props = R.pickBy(isNotNil, {
-    accent: boolean('accent', false),
-    breed: select('breed', breedOptions, 'undefined'),
-    size: select('size', sizeOptions, 'undefined'),
-    sticky: boolean('sticky', false),
-  });
+stories
+  .add('default', () => {
+    const props = R.pickBy(isNotNil, {
+      accent: boolean('accent', false),
+      breed: select('breed', breedOptions, 'undefined'),
+      size: select('size', sizeOptions, 'undefined'),
+      sticky: boolean('sticky', false),
+    });
 
-  return (
-    <Wrapper>
-      <Hero {...props} onClick={action('clicked')}>
-        <Title size="4">Create wordbank</Title>
-        <Subtitle size="2" accent>Wildlife animals</Subtitle>
-      </Hero>
-      <Segment>
-        {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
-      </Segment>
-    </Wrapper>
-  );
-});
+    return (
+      <Wrapper>
+        <Hero {...props} onClick={action('clicked')}>
+          <Title size="4">Create wordbank</Title>
+          <Subtitle size="2" accent>Wildlife animals</Subtitle>
+        </Hero>
+        <Segment>
+          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+        </Segment>
+      </Wrapper>
+    );
+  })
+  .add('w/ navigation', () => {
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+      size: select('size', sizeOptions, 'undefined'),
+      sticky: boolean('sticky', false),
+      hasNavigation: true,
+    });
+
+    return (
+      <Wrapper>
+        <Navigation sticky>
+          <Navigation.Left>
+            <Image src="/wordmark.png" alt="logo" />
+          </Navigation.Left>
+          <Navigation.Right>
+            <Navigation.Item name="login" initial>
+              <span>Login</span>
+            </Navigation.Item>
+            <Navigation.Item name="signup">
+              <span>Signup</span>
+            </Navigation.Item>
+          </Navigation.Right>
+        </Navigation>
+        <Hero {...props}>
+          <Title size="4">Create wordbank</Title>
+          <Subtitle size="2" accent>Wildlife animals</Subtitle>
+        </Hero>
+        <Segment>
+          {R.times(
+            (index: number) =>
+              <div key={index}>Hello world. Hello saronia. Hello you.</div>,
+            40,
+          )}
+        </Segment>
+      </Wrapper>
+    );
+  });

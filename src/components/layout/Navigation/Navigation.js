@@ -115,11 +115,14 @@ const NavigationCollection = ({
         });
       }
 
-      return React.cloneElement(child, {
-        // Todo: Improve inverted and breed colors on primary or secondary bg
-        // inverted: !child.props.breed && true,
-        // breed: !child.props.breed && breed !== 'primary' && breed,
-      });
+      return React.cloneElement(
+        child,
+        {
+          // Todo: Improve inverted and breed colors on primary or secondary bg
+          // inverted: !child.props.breed && true,
+          // breed: !child.props.breed && breed !== 'primary' && breed,
+        },
+      );
     })}
   </WrapperCollection>;
 
@@ -128,14 +131,21 @@ const NavigationCollection = ({
 | Navigation
 |-----------------------------------------------------------
 */
-const NAVIGATION_HEIGHT = '36px';
+const NAVIGATION_HEIGHT_INNER = '36px';
 const PADDING_TOP_BOTTOM = '0.3rem';
+export const NAVIGATION_HEIGHT = `calc(
+  ${`${NAVIGATION_HEIGHT_INNER}
+  + ${PADDING_TOP_BOTTOM}
+  + ${PADDING_TOP_BOTTOM}`}
+)`;
 
-const Wrapper = styled.nav`
+const Wrapper = styled.nav.attrs({
+  className: 'navigation',
+})`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: ${NAVIGATION_HEIGHT};
+  height: ${NAVIGATION_HEIGHT_INNER};
   padding: ${PADDING_TOP_BOTTOM} 1rem;
   font-size: 1.3rem;
   position: ${props => (props.sticky ? 'fixed' : 'inherit')};
@@ -143,16 +153,10 @@ const Wrapper = styled.nav`
   right: ${props => props.sticky && 0};
   top: ${props => props.sticky && 0};
   background-color: ${getBackgroundColor};
-  z-index: 1;
+  z-index: 2;
 
   + * {
-    margin-top: ${props =>
-      props.sticky &&
-      `calc(
-        ${`${NAVIGATION_HEIGHT}
-        + ${PADDING_TOP_BOTTOM}
-        + ${PADDING_TOP_BOTTOM}`}
-      )`};
+    margin-top: ${props => props.sticky && NAVIGATION_HEIGHT};
   }
 
   .image {

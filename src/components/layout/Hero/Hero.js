@@ -1,8 +1,9 @@
 /* @flow */
-import React from 'react';
+import React, { Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
+import { NAVIGATION_HEIGHT } from '../Navigation/Navigation';
 import { Color, Font, SizeSubsetEnum } from '../../../lib/constants';
 import type { Breed, SizeSubset } from '../../../lib/types';
 
@@ -10,6 +11,8 @@ type Props = {
   breed?: Breed,
   size?: SizeSubset,
   sticky?: boolean,
+  children: Children,
+  hasNavigation?: boolean,
 };
 
 const getBackgroundColor = R.cond([
@@ -24,6 +27,11 @@ const getHeight = R.cond([
   [R.T, R.always('11.25rem')],
 ]);
 
+const getMarginTopHero = R.cond([
+  [R.propEq('hasNavigation', true), R.always(NAVIGATION_HEIGHT)],
+  [R.T, R.always('0rem')],
+]);
+
 const Wrapper = styled.header`
   display: flex;
   flex-direction: column;
@@ -32,10 +40,11 @@ const Wrapper = styled.header`
   background-size: contain;
   background-color: ${getBackgroundColor};
   z-index: -1;
-  position: ${props => props.sticky ? 'fixed' : 'inherit'};
+  position: ${props => (props.sticky ? 'fixed' : 'inherit')};
   height: ${getHeight};
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  margin-top: ${getMarginTopHero};
   left: 0;
   right: 0;
   top: 0;
@@ -43,12 +52,15 @@ const Wrapper = styled.header`
 
   + * {
     position: relative;
-    margin-top: ${props => props.sticky ? getHeight(props) : 'inherit'};
+    margin-top: ${props =>
+      `calc(${getMarginTopHero(props)} + ${props.sticky && getHeight(props)})`};
   }
 `;
 
 const Hero = (props: Props) => <Wrapper {...props} />;
 
-Hero.defaultProps = {};
+Hero.defaultProps = {
+  hasNavigation: false,
+};
 
 export default Hero;
