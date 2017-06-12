@@ -13,11 +13,14 @@ import {
 } from '@storybook/addon-knobs';
 
 import { Title, Subtitle, Image } from '../../core';
-import { Hero, Segment, Navigation } from '../../layout';
+import { Hero, Segment as RawSegment, Navigation } from '../../layout';
 import { BreedEnum, SizeSubsetEnum } from '../../../lib/constants';
 
 const Wrapper = styled.div`
   text-align: center;
+`;
+
+const Segment = styled(RawSegment)`
   background-color: white;
 `;
 
