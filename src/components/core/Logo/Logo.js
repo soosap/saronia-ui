@@ -1,8 +1,8 @@
 /* @flow */
 import React from 'react';
 import R from 'ramda';
-import styled from 'styled-components';
 
+import { Image } from '../../core';
 import type { Size } from '../../../lib/types';
 import { SizeEnum } from '../../../lib/constants';
 
@@ -75,11 +75,7 @@ const getImageSrc = R.cond([
   [R.propEq('wordmark', true), R.always('/wordmark.png')],
   [
     R.propSatisfies(
-      R.contains(R.__, [
-        SizeEnum.BIG,
-        SizeEnum.HUGE,
-        SizeEnum.MASSIVE,
-      ]),
+      R.contains(R.__, [SizeEnum.BIG, SizeEnum.HUGE, SizeEnum.MASSIVE]),
       'size',
     ),
     R.always('/logo@2x.png'),
@@ -87,19 +83,12 @@ const getImageSrc = R.cond([
   [R.T, R.always('/logo.png')],
 ]);
 
-const Wrapper = styled.div`
-  width: ${getWidth};
-  display: flex;
-  justify-content: center;
-`;
-const Image = styled.img`
-  width:100%;
-  height:100%;
-`;
-
 const Logo = (props: Props) =>
-  <Wrapper {...props}>
-    <Image src={getImageSrc(props)} alt="logo" />
-  </Wrapper>;
+  <Image
+    {...props}
+    alt="logo"
+    src={getImageSrc(props)}
+    width={getWidth(props)}
+  />;
 
 export default Logo;
