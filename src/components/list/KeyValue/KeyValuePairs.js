@@ -15,6 +15,7 @@ type Props = {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: auto;
+  grid-column-gap: .5rem;
 
   @media (min-width: ${Breakpoint.BIG_PHONE}) {
     grid-template-columns: ${props => '1fr '.repeat(props.pairs - 1)};

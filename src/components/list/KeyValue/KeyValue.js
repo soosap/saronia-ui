@@ -11,13 +11,7 @@ type Props = {
   compact?: boolean,
 };
 
-const Wrapper = styled.div`
-  padding-left: .5rem;
-
-  .key-value-pair {
-    margin-right: .5rem;
-  }
-`;
+const Wrapper = styled.div``;
 
 const KeyValue = (props: Props) => (
   <Wrapper {...props}>
