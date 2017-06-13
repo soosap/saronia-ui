@@ -14,14 +14,14 @@ type Props = {
 };
 
 const getWidth = R.cond([
-  [R.propEq('size', SizeEnum.MINI), R.always('30px')],
-  [R.propEq('size', SizeEnum.TINY), R.always('35px')],
-  [R.propEq('size', SizeEnum.SMALL), R.always('40px')],
-  [R.propEq('size', SizeEnum.MEDIUM), R.always('50px')],
-  [R.propEq('size', SizeEnum.LARGE), R.always('75px')],
-  [R.propEq('size', SizeEnum.BIG), R.always('100px')],
-  [R.propEq('size', SizeEnum.HUGE), R.always('125px')],
-  [R.propEq('size', SizeEnum.MASSIVE), R.always('150px')],
+  [R.propEq('size', SizeEnum.MINI), R.always('25px')],
+  [R.propEq('size', SizeEnum.TINY), R.always('30px')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('35px')],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always('40px')],
+  [R.propEq('size', SizeEnum.LARGE), R.always('50px')],
+  [R.propEq('size', SizeEnum.BIG), R.always('75px')],
+  [R.propEq('size', SizeEnum.HUGE), R.always('100px')],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always('125px')],
   [R.T, R.always('50px')],
 ]);
 

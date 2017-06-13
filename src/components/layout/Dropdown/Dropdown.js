@@ -3,7 +3,6 @@ import React, { Component, Children, Element } from 'react';
 import styled, { keyframes } from 'styled-components';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
-import { Menu } from '../../layout';
 import { BORDER_RADIUS, Color } from '../../../lib/constants';
 
 type Placement =
@@ -20,7 +19,7 @@ type DefaultProps = {
 
 type Props = {
   children: Children,
-  overlay: Element<Menu>,
+  overlay: Element<*>,
   trigger?: 'click' | 'hover',
   placement?: Placement,
 };
@@ -47,11 +46,12 @@ const Wrapper = styled.div`
   }
 `;
 
-
 const Overlay = styled.div`
   position: absolute;
+  background-color: ${Color.White.LIGHT};
+  font-size: 1rem;
   right: 0;
-  top: 100%;
+  top: calc(100% + 3px);
   width: 100%;
   border-bottom-left-radius: ${BORDER_RADIUS};
   border-bottom-right-radius: ${BORDER_RADIUS};
@@ -73,7 +73,9 @@ const Overlay = styled.div`
   }
 `;
 
-const Target = styled.div``;
+const Target = styled.div`
+  display: flex;
+`;
 
 class Dropdown extends Component<DefaultProps, Props, State> {
   static defaultProps = {
