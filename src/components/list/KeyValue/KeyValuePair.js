@@ -40,7 +40,8 @@ const Wrapper = styled.div.attrs({
   display: grid;
   grid-template-columns: ${R.prop('keyWidth')} 1fr;
   margin-bottom: .5rem;
-  font-size: .9rem;
+  font-size: .7rem;
+  font-weight: 300;
   border: 2px solid ${getKeyBackgroundColor};
   border-radius: ${BORDER_RADIUS};
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
