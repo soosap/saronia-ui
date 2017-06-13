@@ -10,11 +10,12 @@ import type { Size } from '../../../lib/types';
 type Props = {
   src?: string,
   size?: Size,
+  onClick?: Function,
 };
 
 const getWidth = R.cond([
-  [R.propEq('size', SizeEnum.MINI), R.always('25px')],
-  [R.propEq('size', SizeEnum.TINY), R.always('30px')],
+  [R.propEq('size', SizeEnum.MINI), R.always('30px')],
+  [R.propEq('size', SizeEnum.TINY), R.always('35px')],
   [R.propEq('size', SizeEnum.SMALL), R.always('40px')],
   [R.propEq('size', SizeEnum.MEDIUM), R.always('50px')],
   [R.propEq('size', SizeEnum.LARGE), R.always('75px')],
@@ -22,6 +23,11 @@ const getWidth = R.cond([
   [R.propEq('size', SizeEnum.HUGE), R.always('125px')],
   [R.propEq('size', SizeEnum.MASSIVE), R.always('150px')],
   [R.T, R.always('50px')],
+]);
+
+const getCursor = R.cond([
+  [R.prop('onClick'), R.always('pointer')],
+  [R.T, R.always('inherit')],
 ]);
 
 const Wrapper = styled.div.attrs({
@@ -32,6 +38,7 @@ const Wrapper = styled.div.attrs({
   border-radius: ${BORDER_RADIUS};
   background-color: #9BC866;
   position: relative;
+  cursor: ${getCursor};
 `;
 
 const Image = styled(RawImage)`
@@ -40,10 +47,15 @@ const Image = styled(RawImage)`
   bottom: 0;
 `;
 
-const Avatar = (props: Props) =>
-  <Wrapper {...props}>
-    <Image src={props.src} alt="avatar" width="100%" />
-  </Wrapper>;
+const Avatar = (props: Props) => {
+  console.log('props', props);
+
+  return (
+    <Wrapper {...props}>
+      <Image src={props.src} alt="avatar" width="100%" />
+    </Wrapper>
+  );
+}
 
 Avatar.defaultProps = {
   src: '/avatar_dugorim.png',

@@ -24,10 +24,19 @@ const isNotNil = R.both(
 const stories = storiesOf('Avatar', module);
 stories.addDecorator(withKnobs).addDecorator(centered);
 
-stories.add('default', () => {
-  const props = R.pickBy(isNotNil, {
-    size: select('size', sizeOptions, 'undefined'),
-  });
+stories
+  .add('default', () => {
+    const props = R.pickBy(isNotNil, {
+      size: select('size', sizeOptions, 'undefined'),
+    });
 
-  return <Avatar {...props} onClick={action('clicked')} />;
-});
+    return <Avatar {...props} />;
+  })
+  .add('w/ onClick handler', () => {
+    const props = R.pickBy(isNotNil, {
+      size: select('size', sizeOptions, 'undefined'),
+      onClick: action('avatar-click'),
+    });
+
+    return <Avatar {...props} />;
+  });
