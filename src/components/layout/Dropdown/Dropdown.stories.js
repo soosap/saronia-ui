@@ -29,7 +29,7 @@ stories.add('default', () => {
   const overlay = (
     <Menu vertical>
       <Menu.Item>
-        <Link href="https://ui.saronia.io">Settings</Link>
+        <Link href="https://saronia.com">Settings</Link>
       </Menu.Item>
       <Menu.Item>
         <Link href="https://saronia.com/feedback">Feedback</Link>
@@ -58,7 +58,6 @@ stories.add('default', () => {
     `;
 
   const props = R.pickBy(isNotNil, {
-    accent: boolean('accent', false),
     overlay,
   });
 
