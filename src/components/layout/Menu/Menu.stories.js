@@ -25,7 +25,6 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
-    accent: boolean('accent', false),
     vertical: boolean('vertical', true),
   });
 

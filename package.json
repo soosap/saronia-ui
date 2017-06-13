@@ -22,6 +22,7 @@
     "ramda": "^0.24.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-overlays": "^0.7.0",
     "styled-components": "^2.0.0"
   },
   "devDependencies": {
