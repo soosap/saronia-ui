@@ -41,7 +41,7 @@ stories
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Left>
-            <Image src="/wordmark.png" alt="logo" />
+            <Image src="/wordmark.png" alt="logo" height="36px" />
           </Navigation.Left>
           <Navigation.Right>
             <Navigation.Item name="login" initial onClick={action('clicked')}>
@@ -68,7 +68,7 @@ stories
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Left>
-            <Image src="/wordmark.png" alt="logo" />
+            <Image src="/wordmark.png" alt="logo" height="36px" />
           </Navigation.Left>
           <Navigation.Right>
             <Navigation.Item name="login" initial onClick={action('clicked')}>
@@ -95,7 +95,7 @@ stories
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Left>
-            <Image src="/wordmark.png" alt="logo" />
+            <Image src="/wordmark.png" alt="logo" height="36px" />
           </Navigation.Left>
           <Navigation.Right>
             <Buttons>

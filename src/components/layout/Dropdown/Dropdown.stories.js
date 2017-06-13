@@ -29,6 +29,8 @@ stories
     });
 
     return (
-      <Dropdown {...props} onClick={action('clicked')} />
+      <Dropdown {...props} onClick={action('clicked')}>
+        hello
+      </Dropdown>
     );
   });

@@ -7,6 +7,8 @@ import { Segment } from './Segment';
 import { Row } from './Row';
 import { Column } from './Column';
 import { Navigation } from './Navigation';
+import { Dropdown } from './Dropdown';
+import { Menu } from './Menu';
 
 export {
   Wrapper,
@@ -17,4 +19,6 @@ export {
   Row,
   Column,
   Navigation,
+  Dropdown,
+  Menu,
 };

@@ -4,7 +4,6 @@ import { Field, Fields, FieldLabel } from './Field';
 import { Input, TextArea } from './Input';
 import { Radio } from './Radio';
 import { ContextMessage } from './ContextMessage';
-import { Dropdown } from './Dropdown';
 
 export {
   Form,
@@ -15,5 +14,4 @@ export {
   Radio,
   TextArea,
   ContextMessage,
-  Dropdown,
 };
