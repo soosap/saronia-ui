@@ -13,12 +13,11 @@ const Figure = styled.figure.attrs({
   className: 'image',
 })`
   margin: 0;
+  width: ${props => props.width ? props.width : 'auto'};
+  height: ${props => props.height ? props.height : 'auto'};
 `;
 
-const Wrapper = styled.img`
-  width: ${props => props.width ? props.width : 'inherit'};
-  height: ${props => props.height ? props.height : 'inherit'};
-`;
+const Wrapper = styled.img``;
 
 const Image = (props: Props) =>
   <Figure {...props}>
