@@ -50,7 +50,7 @@ stories
     });
 
     return (
-      <KeyValue {...props}>
+      <KeyValue {...props} style={{ maxWidth: '1200px' }}>
         <KeyValuePair>
           <div>tags</div>
           <Tags>

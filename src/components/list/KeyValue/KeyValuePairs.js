@@ -10,6 +10,7 @@ type Props = {
   children: Children,
   breed?: Breed,
   compact?: boolean,
+  style?: Object,
 };
 
 const Wrapper = styled.div`
@@ -33,6 +34,7 @@ const KeyValuePairs = (props: Props) => (
         keyWidth: child.props.keyWidth ? child.props.keyWidth : props.keyWidth,
         breed: props.breed,
         compact: props.compact,
+        style: props.style,
       }),
     )}
   </Wrapper>

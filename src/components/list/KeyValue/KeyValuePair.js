@@ -9,6 +9,7 @@ type Props = {
   keyWidth?: string,
   breed?: Breed,
   compact?: boolean,
+  style?: Object,
 };
 
 const getKeyColor = R.cond([
@@ -40,14 +41,14 @@ const Wrapper = styled.div.attrs({
   display: grid;
   grid-template-columns: ${R.prop('keyWidth')} 1fr;
   margin-bottom: .5rem;
-  font-size: .7rem;
+  font-size: .8rem;
   font-weight: 300;
-  border: 2px solid ${getKeyBackgroundColor};
   border-radius: ${BORDER_RADIUS};
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
+  word-break: break-all;
 
   @media (min-width: ${Breakpoint.TABLET}) {
-    font-size: 1rem;
+    font-size: .85rem;
   }
 
   > * {
@@ -62,10 +63,16 @@ const Wrapper = styled.div.attrs({
       ${getKeyBackgroundColorDark} 100%);
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
     color: ${getKeyColor};
+    border-top-left-radius: ${BORDER_RADIUS};
+    border-bottom-left-radius: ${BORDER_RADIUS};
   }
 
   > *:last-child {
-
+    border-top: 2px solid ${getKeyBackgroundColor};
+    border-bottom: 2px solid ${getKeyBackgroundColor};
+    border-right: 2px solid ${getKeyBackgroundColor};
+    border-top-right-radius: ${BORDER_RADIUS};
+    border-bottom-right-radius: ${BORDER_RADIUS};
   }
 `;
 
