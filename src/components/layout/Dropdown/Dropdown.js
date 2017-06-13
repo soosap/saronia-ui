@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component, Children, Element } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
 import { Menu } from '../../layout';
@@ -29,12 +29,24 @@ type State = {
   visible: boolean,
 };
 
+const animation = keyframes`
+  0% {
+    opacity: .7;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
 const Wrapper = styled.div`
   position: relative;
   &:hover {
     cursor: pointer;
   }
 `;
+
 
 const Overlay = styled.div`
   position: absolute;
@@ -54,6 +66,9 @@ const Overlay = styled.div`
   .dropdown-menu {
     .menu-item, .menu-divider {
       display: ${props => (props.visible ? 'flex' : 'none')};
+      opacity: 0;
+      transform-origin: top left;
+      animation: ${animation} 300ms ease-in-out forwards;
     }
   }
 `;
