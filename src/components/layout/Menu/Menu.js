@@ -25,6 +25,10 @@ const Wrapper = styled.ul.attrs({
   display: flex;
   flex-direction: ${props => props.vertical ? 'column' : 'row'};
 
+  .menu-item:first-of-type {
+    margin-top: .15rem;
+  }
+
   .menu-item:last-of-type {
     margin-bottom: .15rem;
   }
@@ -37,7 +41,7 @@ const Item = styled.li.attrs({
 
   a {
     flex: 1;
-    padding: .3rem .75rem;
+    padding: .2rem .5rem;
     color: ${Color.Black.LIGHT};
     text-decoration: none;
     border-radius: ${BORDER_RADIUS};

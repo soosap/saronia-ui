@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component, Children, Element } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
 import { BORDER_RADIUS, Color } from '../../../lib/constants';
@@ -28,17 +28,6 @@ type State = {
   visible: boolean,
 };
 
-const animation = keyframes`
-  0% {
-    opacity: .7;
-    transform: scale(0.96);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-`;
-
 const Wrapper = styled.div`
   position: relative;
   &:hover {
@@ -49,12 +38,11 @@ const Wrapper = styled.div`
 const Overlay = styled.div`
   position: absolute;
   background-color: ${Color.White.LIGHT};
-  font-size: 1rem;
+  font-size: .9rem;
   right: 0;
-  top: calc(100% + 3px);
+  top: calc(100% + .6rem);
   width: 100%;
-  border-bottom-left-radius: ${BORDER_RADIUS};
-  border-bottom-right-radius: ${BORDER_RADIUS};
+  border-radius: ${BORDER_RADIUS};
   box-shadow: ${props =>
     props.visible &&
     `
@@ -66,10 +54,20 @@ const Overlay = styled.div`
   .dropdown-menu {
     .menu-item, .menu-divider {
       display: ${props => (props.visible ? 'flex' : 'none')};
-      opacity: 0;
-      transform-origin: top left;
-      animation: ${animation} 300ms ease-in-out forwards;
     }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: ${props => (props.visible ? 'block' : 'none')};
+    top: -.5rem;
+    left: .5rem;
+    width: 0;
+    height: 0;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid ${Color.PRIMARY};
+    border-left: 8px solid transparent;
   }
 `;
 

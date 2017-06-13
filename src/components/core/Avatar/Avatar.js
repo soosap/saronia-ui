@@ -39,6 +39,7 @@ const Wrapper = styled.div.attrs({
   background-color: #9BC866;
   position: relative;
   cursor: ${getCursor};
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.32);
 `;
 
 const Image = styled(RawImage)`

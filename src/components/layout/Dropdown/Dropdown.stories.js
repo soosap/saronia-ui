@@ -46,7 +46,7 @@ stories.add('default', () => {
       justify-content: center;
       align-items: center;
       padding-right: .5rem;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
 
       *:first-child {
         margin-right: .6rem;
@@ -64,7 +64,7 @@ stories.add('default', () => {
   return (
     <Dropdown {...props} onClick={action('clicked')}>
       <User>
-        <Avatar size="tiny" />
+        <Avatar size="small" />
         <span>soosap</span>
         <Icon svgPath={IconSVGPath.CARET_DOWN} />
       </User>
