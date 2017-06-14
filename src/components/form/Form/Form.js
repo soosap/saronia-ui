@@ -12,8 +12,6 @@ type Props = {
 const Wrapper = styled.form`
   flex-grow: 1;
   position: relative;
-  padding-left: 1rem;
-  padding-right: 1rem;
 
   .field {
     margin-bottom: ${props => props.compact ? '.6rem' : MARGIN_BOTTOM};
