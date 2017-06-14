@@ -52,7 +52,11 @@ stories
           <Subtitle size="2" accent>Wildlife animals</Subtitle>
         </Hero>
         <Segment>
-          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+          {R.times(
+            index =>
+              <div key={index}>Hello world. Hello saronia. Hello you.</div>,
+            40,
+          )}
         </Segment>
       </Wrapper>
     );

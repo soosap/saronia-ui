@@ -41,7 +41,7 @@ const getIconBackgroundColor = R.cond([
   [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 
-const Wrapper = RawButton.withComponent('div').extend`
+const Wrapper = RawButton.extend`
   padding: 0;
   align-items: stretch;
   transition: all .6s;
