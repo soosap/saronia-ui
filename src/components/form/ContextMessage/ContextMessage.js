@@ -15,7 +15,7 @@ const ContextMessage = styled.div.attrs({
 })`
   color: ${props => (props.context ?
     Color.Context[R.toUpper(props.context)] : 'inherit')};
-  font-size: .7rem;
+  font-size: .75rem;
   margin-bottom: .2rem;
   margin-left: .05rem;
 `;
