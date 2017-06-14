@@ -48,15 +48,10 @@ const Image = styled(RawImage)`
   bottom: 0;
 `;
 
-const Avatar = (props: Props) => {
-  console.log('props', props);
-
-  return (
-    <Wrapper {...props}>
-      <Image src={props.src} alt="avatar" width="100%" />
-    </Wrapper>
-  );
-}
+const Avatar = (props: Props) =>
+  <Wrapper {...props}>
+    <Image src={props.src} alt="avatar" width="100%" />
+  </Wrapper>;
 
 Avatar.defaultProps = {
   src: '/avatar_dugorim.png',
