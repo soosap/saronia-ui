@@ -15,8 +15,11 @@ import centered from '@storybook/addon-centered';
 
 import { Button, Icon } from '../../core';
 import { Form, Field, Fields, FieldLabel, Input } from '../../form';
-import { IconSVGPath } from '../../../lib/constants';
+import { IconSVGPath, IntensityEnum } from '../../../lib/constants';
 
+const intensityOptions = R.invertObj(
+  R.merge(IntensityEnum, { FALSE: false, TRUE: true }),
+);
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -36,8 +39,10 @@ const stories = storiesOf('Form', module);
 stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
+  const padded = select('padded', intensityOptions, 'moderate');
   const props = R.pickBy(isNotNil, {
     compact: boolean('compact', false),
+    padded: padded === 'true' ? true : padded === 'false' ? false : padded,
   });
 
   return (
