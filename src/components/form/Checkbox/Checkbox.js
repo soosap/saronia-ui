@@ -47,7 +47,8 @@ const Wrapper = styled.label`
   display: flex;
   align-items: stretch;
   &:not(:last-of-type) {
-    margin-bottom: .3rem;
+    margin-bottom: ${props => props.vertical ? '.3rem' : '0'};
+    margin-right: ${props => props.vertical ? '0' : '.8rem'}
   }
 `;
 
