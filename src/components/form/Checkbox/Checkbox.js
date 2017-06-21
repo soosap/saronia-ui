@@ -108,7 +108,7 @@ const Square = styled.span.attrs({
   height: ${WIDTH}px;
   border-radius: ${BORDER_RADIUS};
   border: 2px solid ${Color.BLACK};
-  margin-right: .3rem;
+  margin-right: .5rem;
   box-sizing: border-box;
   transition: all 0.3s;
 `;
