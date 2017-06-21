@@ -28,7 +28,7 @@ const getCheckmarkColor = R.cond([
 
 const checking = keyframes`
   0% {
-    width: 0:
+    width: 0;
     height: 0;
     transform: translate(0,0) rotate(45deg);
   }
