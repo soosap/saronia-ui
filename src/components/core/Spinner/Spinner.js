@@ -1,50 +1,55 @@
 /* @flow */
 import React from 'react';
-import styled from 'styled-components';
+import R from 'ramda';
+import styled, { keyframes } from 'styled-components';
+
+import { Color } from '../../../lib/constants';
+import type { Breed } from '../../../lib/types';
 
 type Props = {
-  width: number,
-  height: number,
+  breed: Breed,
 };
 
-const Wrapper = styled.svg`
-  path {
-    fill: none;
-    stroke-width: 5;
+const getBackgroundColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.BLACK)],
+]);
+
+const bounce = keyframes`
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1.0);
   }
 `;
 
-const BigCircle = styled.path`
-  stroke: #ddd;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+  text-align: center;
 `;
 
-const SmallCircle = styled.path`
-  fill: yellow;
-
-  stroke: orange;
+const Bounce = styled.div`
+  width: 18px;
+  height: 18px;
+  background-color: ${getBackgroundColor};
+  border-radius: 100%;
+  display: inline-block;
+  animation: ${bounce} 1.5s infinite ease-in-out both;
+  animation-delay: ${props => props.animationDelay};
 `;
 
-const Success = styled.path`
-  stroke: green;
-`;
-
-const Error = styled.path`
-  stroke: red;
-`;
-
-const Spinner = ({ width, height }: Props) => (
-  <Wrapper width={`${width}`} height={`${height}`}>
-    <BigCircle d={'M 60 60 m 0 -50 a 50 50 0 0 1 0 100 a 50 50 0 0 1 0 -100'} />
-    <SmallCircle d={'M 60 60 m 0 -30 a 30 30 0 0 1 0 60 a 30 30 0 0 1 0 -60'} />
-    <Success d={'M 60 10 A 50 50 0 0 1 100 30 L 60 70 L 50 60'} />
-    <Error d={'M 60 10 A 50 50 0 0 1 95 24 L 50 80'} />
-    <Error d={'M 60 30 A 30 30 0 0 1 84 78 L 50 50'} />
+const Spinner = (props: Props) => (
+  <Wrapper {...props}>
+    <Bounce {...props} animationDelay="-0.32s" />
+    <Bounce {...props} animationDelay="-0.16s" />
+    <Bounce {...props} />
   </Wrapper>
 );
-
-Spinner.defaultProps = {
-  width: 120,
-  height: 120,
-};
 
 export default Spinner;

@@ -11,8 +11,10 @@ import {
   select,
 } from '@storybook/addon-knobs';
 
-import Spinner from './Spinner';
+import { Spinner } from '.';
+import { BreedEnum } from '../../../lib/constants';
 
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -22,6 +24,8 @@ const stories = storiesOf('Spinner', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const props = R.pickBy(isNotNil, { accent: boolean('accent', false) });
+  const props = R.pickBy(isNotNil, {
+    breed: select('breed', breedOptions, 'undefined'),
+  });
   return <Spinner {...props} onClick={action('clicked')} />;
 });
