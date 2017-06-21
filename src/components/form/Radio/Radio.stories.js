@@ -12,7 +12,7 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Checkbox, Checkboxes } from '.';
+import { Radio, RadioGroup } from '.';
 import { BreedEnum } from '../../../lib/constants';
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
@@ -21,21 +21,23 @@ const isNotNil = R.both(
   R.complement(R.equals('undefined')),
 );
 
-const stories = storiesOf('Checkbox', module);
+const stories = storiesOf('Radio', module);
 stories.addDecorator(withKnobs).addDecorator(centered);
 
-stories.add('default', () => {
-  const props = R.pickBy(isNotNil, {
-    breed: select('breed', breedOptions, 'undefined'),
-    vertical: boolean('vertical', true),
-  });
+stories
+  .add('default', () => {
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+      vertical: boolean('vertical', true),
+    });
 
-  return (
-    <Checkboxes {...props}>
-      <Checkbox value="tamil">தமிழ்</Checkbox>
-      <Checkbox value="hindi">हिंदी</Checkbox>
-      <Checkbox value="malayalam">മലയാളം</Checkbox>
-      <Checkbox value="telugu">తెలుగు</Checkbox>
-    </Checkboxes>
-  );
-});
+    return (
+      <RadioGroup {...props} name="difficulty">
+        <Radio value="all">All</Radio>
+        <Radio value="easy">Easy</Radio>
+        <Radio value="medium">Medium</Radio>
+        <Radio value="hard">Hard</Radio>
+        <Radio value="nightmare">Nightmare</Radio>
+      </RadioGroup>
+    );
+  });

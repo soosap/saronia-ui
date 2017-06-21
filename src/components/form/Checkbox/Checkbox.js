@@ -10,6 +10,7 @@ type Props = {
   children: Children,
   breed?: Breed,
   vertical?: boolean,
+  value: string,
 };
 
 const WIDTH = 20;
@@ -122,7 +123,7 @@ const Text = styled.span`
 const Checkbox = (props: Props) =>
   <Wrapper {...props}>
     <CheckboxWrapper>
-      <Input breed={props.breed} type="checkbox" />
+      <Input breed={props.breed} value={props.value} type="checkbox" />
       <Square />
     </CheckboxWrapper>
     <Text>{props.children}</Text>
