@@ -27,14 +27,15 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
     breed: select('breed', breedOptions, 'undefined'),
+    vertical: boolean('vertical', true),
   });
 
   return (
-    <Checkboxes vertical={boolean('vertical', true)}>
-      <Checkbox {...props}>தமிழ்</Checkbox>
-      <Checkbox {...props}>हिंदी</Checkbox>
-      <Checkbox {...props}>മലയാളം</Checkbox>
-      <Checkbox {...props}>తెలుగు</Checkbox>
+    <Checkboxes {...props}>
+      <Checkbox>தமிழ்</Checkbox>
+      <Checkbox>हिंदी</Checkbox>
+      <Checkbox>മലയാളം</Checkbox>
+      <Checkbox>తెలుగు</Checkbox>
     </Checkboxes>
   );
 });

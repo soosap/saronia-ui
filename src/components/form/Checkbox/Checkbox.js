@@ -1,32 +1,45 @@
 /* @flow */
 import React, { Children } from 'react';
+import R from 'ramda';
 import styled, { keyframes } from 'styled-components';
 
 import { BORDER_RADIUS, Color } from '../../../lib/constants';
+import type { Breed } from '../../../lib/types';
 
 type Props = {
   children: Children,
+  breed?: Breed,
+  vertical?: boolean,
 };
 
 const WIDTH = 20;
+
+const getBackgroundColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.BLACK)],
+]);
+
+const getCheckmarkColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', 'secondary'), R.always(Color.WHITE)],
+  [R.T, R.always(Color.WHITE)],
+]);
 
 const checking = keyframes`
   0% {
     width: 0:
     height: 0;
-    border-color: #212121;
     transform: translate(0,0) rotate(45deg);
   }
   33% {
     width: 3px:
     height: 0;
-    border-color: #212121;
     transform: translate(0,0) rotate(45deg);
   }
   100% {
     width: 3px;
     height: 8px;
-    border-color: #212121;
     transform: translate(0,-8px) rotate(45deg);
   }
 `;
@@ -50,6 +63,10 @@ const Wrapper = styled.label`
     margin-bottom: ${props => props.vertical ? '.3rem' : '0'};
     margin-right: ${props => props.vertical ? '0' : '.8rem'}
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const CheckboxWrapper = styled.div`
@@ -64,18 +81,19 @@ const Input = styled.input`
   height: 0;
 
   &:checked + .square {
-    border: ${WIDTH * 0.5}px solid ${Color.PRIMARY};
+    border: ${WIDTH * 0.5}px solid ${getBackgroundColor};
     animation: ${bounce} 250ms;
 
     &::before {
       content: '';
       position: absolute;
-      top: 9px;
+      top: ${0.65 * WIDTH}px;
       left: 4px;
       border-right: 3px solid transparent;
       border-bottom: 3px solid transparent;
       transform: rotate(45deg);
       transform-origin: 0% 100%;
+      border-color: ${getCheckmarkColor};
       animation: ${checking} 125ms 250ms forwards;
     }
   };
@@ -89,18 +107,22 @@ const Square = styled.span.attrs({
   width: ${WIDTH}px;
   height: ${WIDTH}px;
   border-radius: ${BORDER_RADIUS};
-  border: 2px solid black;
+  border: 2px solid ${Color.BLACK};
   margin-right: .3rem;
   box-sizing: border-box;
   transition: all 0.3s;
 `;
 
-const Text = styled.span``;
+const Text = styled.span`
+  display: flex;
+  align-items: center;
+  height: ${1.5 * WIDTH}px;
+`;
 
 const Checkbox = (props: Props) =>
-  <Wrapper>
+  <Wrapper {...props}>
     <CheckboxWrapper>
-      <Input type="checkbox" />
+      <Input breed={props.breed} type="checkbox" />
       <Square />
     </CheckboxWrapper>
     <Text>{props.children}</Text>
