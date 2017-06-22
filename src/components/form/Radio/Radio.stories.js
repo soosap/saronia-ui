@@ -38,6 +38,7 @@ stories
         <Radio value="medium">Medium</Radio>
         <Radio value="hard">Hard</Radio>
         <Radio value="nightmare">Nightmare</Radio>
+        <Radio value="disabled" disabled>Disabled</Radio>
       </RadioGroup>
     );
   });

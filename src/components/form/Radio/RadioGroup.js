@@ -14,7 +14,7 @@ type Props = {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
-  justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const RadioGroup = (props: Props) => (
