@@ -10,6 +10,7 @@ type Props = {
   children: Children,
   breed?: Breed,
   vertical?: boolean,
+  value: string,
 };
 
 const WIDTH = 20;
@@ -79,6 +80,7 @@ const Input = styled.input`
   margin: 0;
   width: 0;
   height: 0;
+  opacity: 0;
 
   &:checked + .square {
     border: ${WIDTH * 0.5}px solid ${getBackgroundColor};
@@ -108,7 +110,7 @@ const Square = styled.span.attrs({
   height: ${WIDTH}px;
   border-radius: ${BORDER_RADIUS};
   border: 2px solid ${Color.BLACK};
-  margin-right: .3rem;
+  margin-right: .5rem;
   box-sizing: border-box;
   transition: all 0.3s;
 `;
@@ -122,7 +124,7 @@ const Text = styled.span`
 const Checkbox = (props: Props) =>
   <Wrapper {...props}>
     <CheckboxWrapper>
-      <Input breed={props.breed} type="checkbox" />
+      <Input breed={props.breed} value={props.value} type="checkbox" />
       <Square />
     </CheckboxWrapper>
     <Text>{props.children}</Text>

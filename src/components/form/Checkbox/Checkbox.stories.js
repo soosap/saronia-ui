@@ -32,10 +32,10 @@ stories.add('default', () => {
 
   return (
     <Checkboxes {...props}>
-      <Checkbox>தமிழ்</Checkbox>
-      <Checkbox>हिंदी</Checkbox>
-      <Checkbox>മലയാളം</Checkbox>
-      <Checkbox>తెలుగు</Checkbox>
+      <Checkbox value="tamil">தமிழ்</Checkbox>
+      <Checkbox value="hindi">हिंदी</Checkbox>
+      <Checkbox value="malayalam">മലയാളം</Checkbox>
+      <Checkbox value="telugu">తెలుగు</Checkbox>
     </Checkboxes>
   );
 });

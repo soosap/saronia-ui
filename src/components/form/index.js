@@ -2,8 +2,9 @@
 import { Form } from './Form';
 import { Field, Fields, FieldLabel } from './Field';
 import { Input, TextArea } from './Input';
-import { Radio } from './Radio';
+import { Radio, RadioGroup } from './Radio';
 import { ContextMessage } from './ContextMessage';
+import { Checkbox, Checkboxes } from './Checkbox';
 
 export {
   Form,
@@ -12,6 +13,9 @@ export {
   FieldLabel,
   Input,
   Radio,
+  RadioGroup,
   TextArea,
   ContextMessage,
+  Checkbox,
+  Checkboxes,
 };
