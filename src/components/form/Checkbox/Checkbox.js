@@ -80,6 +80,7 @@ const Input = styled.input`
   margin: 0;
   width: 0;
   height: 0;
+  opacity: 0;
 
   &:checked + .square {
     border: ${WIDTH * 0.5}px solid ${getBackgroundColor};

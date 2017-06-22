@@ -13,20 +13,41 @@ type Props = {
   disabled?: boolean,
 };
 
+const getInnerCircleFillColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.Black.LIGHT)],
+]);
+
+const getBorder = R.cond([
+  [R.propEq('breed', 'primary'), R.always(`1px solid ${Color.PRIMARY}`)],
+  [R.propEq('breed', 'secondary'), R.always(`1px solid ${Color.SECONDARY}`)],
+  [R.T, R.always(`1px solid ${Color.Black.LIGHT}`)],
+]);
+
+const getBorderHover = R.cond([
+  [R.propEq('breed', 'primary'), R.always(`1px solid ${Color.Primary.DARKER}`)],
+  [
+    R.propEq('breed', 'secondary'),
+    R.always(`1px solid ${Color.Secondary.DARKER}`),
+  ],
+  [R.T, R.always(`1px solid ${Color.Black.STRONG}`)],
+]);
+
 const Wrapper = styled.label`
   position: relative;
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-bottom: .5rem;
 
   &:not(:last-of-type) {
-    margin-bottom: .3rem;
     margin-right: ${props => (props.vertical ? '0' : '1.2rem')}
   }
 
   &:hover {
     .radio-label::before {
-      border: 1px solid ${Color.Primary.DARKER};
+      border: ${getBorderHover};
     }
   }
 `;
@@ -39,7 +60,7 @@ const Input = styled.input`
   &:checked {
     + .radio-label {
       &::before {
-        background-color: ${Color.PRIMARY};
+        background-color: ${getInnerCircleFillColor};
         box-shadow: inset 0 0 0 3px ${Color.WHITE};
       }
     }
@@ -49,7 +70,6 @@ const Input = styled.input`
     + .radio-label {
       &::before {
         outline: none;
-        border-color: ${Color.Primary.DARKER};
       }
     }
   }
@@ -76,7 +96,7 @@ const Text = styled.span.attrs({
     content: '';
     background-color: ${Color.WHITE};
     border-radius: 500rem;
-    border: 1px solid ${Color.Primary.LIGHT};
+    border: ${getBorder};
     display: inline-block;
     width: calc(1rem - 2px);
     height: calc(1rem - 2px);
@@ -100,7 +120,7 @@ const Radio = (props: Props) =>
       type="radio"
       {...R.pick(['name', 'value', 'breed', 'disabled'])(props)}
     />
-    <Text {...R.pick(['disabled'])(props)}>{props.children}</Text>
+    <Text {...R.pick(['breed', 'disabled'])(props)}>{props.children}</Text>
   </Wrapper>;
 
 Radio.defaultProps = {
