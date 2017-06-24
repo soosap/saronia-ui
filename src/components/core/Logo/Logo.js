@@ -14,46 +14,46 @@ type Props = {
 const getWidth = R.cond([
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.MASSIVE)),
-    R.always('48rem'),
+    R.always('725px'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.HUGE)),
-    R.always('36rem'),
+    R.always('580px'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.BIG)),
-    R.always('24rem'),
+    R.always('464px'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.LARGE)),
-    R.always('20.692rem'),
+    R.always('348px'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.MEDIUM)),
-    R.always('13.795rem'),
+    R.always('290px'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.SMALL)),
-    R.always('11.498rem'),
+    R.always('232px'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.TINY)),
-    R.always('9.2rem'),
+    R.always('174px'),
   ],
   [
     R.both(R.propEq('wordmark', true), R.propEq('size', SizeEnum.MINI)),
-    R.always('6.9rem'),
+    R.always('116px'),
   ],
-  [R.propEq('wordmark', true), R.always('13.795rem')],
-  [R.propEq('size', SizeEnum.MASSIVE), R.always('16rem')],
-  [R.propEq('size', SizeEnum.HUGE), R.always('12rem')],
-  [R.propEq('size', SizeEnum.BIG), R.always('8rem')],
-  [R.propEq('size', SizeEnum.LARGE), R.always('4.5rem')],
-  [R.propEq('size', SizeEnum.MEDIUM), R.always('3rem')],
-  [R.propEq('size', SizeEnum.SMALL), R.always('2.5rem')],
-  [R.propEq('size', SizeEnum.TINY), R.always('2rem')],
-  [R.propEq('size', SizeEnum.MINI), R.always('1.5rem')],
-  [R.T, R.always('3rem')],
+  [R.propEq('wordmark', true), R.always('174px')],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always('150px')],
+  [R.propEq('size', SizeEnum.HUGE), R.always('120px')],
+  [R.propEq('size', SizeEnum.BIG), R.always('96px')],
+  [R.propEq('size', SizeEnum.LARGE), R.always('72px')],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always('60px')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('48px')],
+  [R.propEq('size', SizeEnum.TINY), R.always('36px')],
+  [R.propEq('size', SizeEnum.MINI), R.always('24px')],
+  [R.T, R.always('60px')],
 ]);
 
 const getImageSrc = R.cond([
@@ -70,17 +70,17 @@ const getImageSrc = R.cond([
         'size',
       ),
     ),
-    R.always('/wordmark@2x.png'),
+    R.always('/logo_wordmark@2x.png'),
   ],
-  [R.propEq('wordmark', true), R.always('/wordmark.png')],
+  [R.propEq('wordmark', true), R.always('/logo_wordmark.png')],
   [
     R.propSatisfies(
       R.contains(R.__, [SizeEnum.BIG, SizeEnum.HUGE, SizeEnum.MASSIVE]),
       'size',
     ),
-    R.always('/logo@2x.png'),
+    R.always('/logo_symbol@2x.png'),
   ],
-  [R.T, R.always('/logo.png')],
+  [R.T, R.always('/logo_symbol.png')],
 ]);
 
 const Logo = (props: Props) =>
