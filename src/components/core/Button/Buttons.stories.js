@@ -82,9 +82,9 @@ stories
 
     return (
       <Buttons {...props} onClick={action('clicked')}>
-        <LinkButton href="https://saronia.com/login">Login</LinkButton>
-        <LinkButton>Do nothing</LinkButton>
-        <LinkButton href="https://saronia.com/signup">Sign up</LinkButton>
+        <Button href="https://saronia.com/login">Login</Button>
+        <Button>Do nothing</Button>
+        <Button href="https://saronia.com/signup">Sign up</Button>
       </Buttons>
     );
   });
