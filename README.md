@@ -31,6 +31,7 @@ git commit -m 'Added hover effects on <Pill /> component'
 
 # Regularly push your work to obtain feedback
 git push
+git push -u origin fix/border-logic-card
 ```
 
 ## Development

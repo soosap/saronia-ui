@@ -1,10 +1,10 @@
 /* @flow */
-const PRIMARY = '#FFCA33';
+const PRIMARY = '#FFC51A';
 const Primary = {
-  LIGHT: '#FFD14D',
-  LIGHTER: '#FFD96C',
+  LIGHTER: '#FFD14D',
+  LIGHT: '#FFCB34',
   DARK: '#FFBE00',
-  DARKER: '#F9BA00',
+  DARKER: '#ECAB00',
 };
 
 const SECONDARY = '#F37C4A';

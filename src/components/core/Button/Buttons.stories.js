@@ -14,6 +14,7 @@ import {
 import centered from '@storybook/addon-centered';
 
 import { Buttons, Button } from '.';
+import { Link } from '../Link';
 import { BreedEnum, SizeEnum } from '../../../lib/constants';
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
@@ -82,9 +83,15 @@ stories
 
     return (
       <Buttons {...props} onClick={action('clicked')}>
-        <Button href="https://saronia.com/login">Login</Button>
+        <Button>
+          <Link href="https://saronia.com/login">Login</Link>
+        </Button>
         <Button>Do nothing</Button>
-        <Button href="https://saronia.com/signup">Sign up</Button>
+        <Button>
+          <Link href="https://saronia.com/signup">
+            Sign up
+          </Link>
+        </Button>
       </Buttons>
     );
   });

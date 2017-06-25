@@ -49,11 +49,11 @@ const getBorder = R.cond([
 export const getColor = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
-    R.always(Color.PRIMARY),
+    R.always(Color.Primary.DARK),
   ],
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
-    R.always(Color.SECONDARY),
+    R.always(Color.Secondary.DARK),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
@@ -64,11 +64,11 @@ export const getColor = R.cond([
 export const getColorHover = R.cond([
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
-    R.always(Color.PRIMARY),
+    R.always(Color.Primary.DARKER),
   ],
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
-    R.always(Color.SECONDARY),
+    R.always(Color.Secondary.DARKER),
   ],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.LIGHT)],
