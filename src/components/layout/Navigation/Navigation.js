@@ -140,15 +140,11 @@ const Wrapper = styled.nav.attrs({
   align-items: center;
   height: ${NAVIGATION_HEIGHT_INNER};
   padding: ${PADDING_TOP_BOTTOM} 1rem;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   position: ${props => (props.sticky ? 'sticky' : 'inherit')};
   top: ${props => props.sticky && 0};
   background-color: ${getBackgroundColor};
   z-index: 2;
-
-  .image {
-    height: 36px;
-  }
 `;
 
 class Navigation extends Component<void, Props, State> {
