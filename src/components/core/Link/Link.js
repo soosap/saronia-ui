@@ -6,7 +6,7 @@ import { Color } from '../../../lib/constants';
 
 const getColor = R.cond([
   [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.LIGHT)],
   [R.T, R.always(Color.BLACK)],
 ]);
 

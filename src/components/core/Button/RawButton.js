@@ -53,11 +53,11 @@ export const getColor = R.cond([
   ],
   [
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
-    R.always(Color.Secondary.DARK),
+    R.always(Color.Secondary.LIGHT),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.LIGHT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.Black.TRANSPARENT)],
 ]);
 
@@ -71,7 +71,7 @@ export const getColorHover = R.cond([
     R.always(Color.Secondary.DARKER),
   ],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.LIGHT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.Black.MODERATE)],
 ]);
 
@@ -85,7 +85,7 @@ export const getColorActive = R.cond([
     R.always(Color.SECONDARY),
   ],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.MODERATE)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.Black.MODERATE)],
 ]);
 
