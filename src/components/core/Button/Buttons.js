@@ -24,6 +24,10 @@ const Wrapper = styled.div`
   display: inline-flex;
   flex-direction: ${props => (props.vertical && 'column') || 'row'};
 
+  .link {
+    text-decoration: none;
+  }
+
   > * {
     border-radius: 0;
     text-decoration: none;

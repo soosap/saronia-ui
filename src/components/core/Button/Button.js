@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react';
+import React, { Children } from 'react';
 import R from 'ramda';
 import type { Breed, Size } from '../../../lib/types';
 
@@ -17,6 +17,7 @@ export type DefaultButtonProps = {
   pop?: 'active' | 'focus' | 'hover',
   size?: Size,
   breed?: Breed,
+  children: string | Children,
 };
 
 export type CircularButtonProps = {
@@ -29,6 +30,7 @@ export type CircularButtonProps = {
   radius: Size,
   size?: Size,
   breed?: Breed,
+  children: string | Children,
 };
 
 export type Props = DefaultButtonProps | CircularButtonProps;
@@ -47,7 +49,18 @@ export default (props: Props) =>
       R.T,
       R.always(
         <RawButton {...props}>
-          {R.prop('children', props)}
+          {React.Children.map(
+            props.children,
+            child =>
+              React.isValidElement(child)
+                ? React.cloneElement(child, {
+                  accent: props.accent,
+                  breed: props.breed,
+                  inverted: props.inverted,
+                  size: props.size,
+                })
+                : child,
+          )}
         </RawButton>,
       ),
     ],

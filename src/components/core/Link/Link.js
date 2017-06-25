@@ -1,17 +1,30 @@
 /* @flow */
 import styled from 'styled-components';
+import R from 'ramda';
 
 import { Color } from '../../../lib/constants';
+
+const getColor = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.BLACK)],
+]);
+
+const getColorHover = R.cond([
+  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARKER)],
+  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARKER)],
+  [R.T, R.always(Color.Black.STRONG)],
+]);
 
 const Link = styled.a.attrs({
   className: 'link',
 })`
-  color: ${Color.PRIMARY};
+  color: ${getColor};
   text-decoration: underline;
   cursor: pointer;
 
   &:hover {
-    color: ${Color.Primary.DARK};
+    color: ${getColorHover};
   }
 `;
 
