@@ -13,7 +13,7 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Buttons, Button, LinkButton } from '.';
+import { Buttons, Button } from '.';
 import { BreedEnum, SizeEnum } from '../../../lib/constants';
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
