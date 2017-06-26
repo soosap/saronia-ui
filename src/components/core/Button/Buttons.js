@@ -313,4 +313,8 @@ const Buttons = (props: Props) =>
     )}
   </Wrapper>;
 
+Buttons.defaultProps = {
+  vertical: false,
+};
+
 export default Buttons;

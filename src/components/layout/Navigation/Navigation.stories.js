@@ -14,7 +14,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import { Navigation, Segment } from '../../layout';
-import { Buttons, Button, Link, Image } from '../../core';
+import { Buttons, Button, Link, Logo } from '../../core';
 import { BreedEnum } from '../../../lib/constants';
 
 const stories = storiesOf('Navigation', module);
@@ -41,7 +41,7 @@ stories
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Left>
-            <Image src="/wordmark.png" alt="logo" height="36px" />
+            <Logo wordmark size="tiny" />
           </Navigation.Left>
           <Navigation.Right>
             <Navigation.Item name="login" initial onClick={action('clicked')}>
@@ -68,7 +68,7 @@ stories
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Left>
-            <Image src="/wordmark.png" alt="logo" height="36px" />
+            <Logo wordmark size="tiny" />
           </Navigation.Left>
           <Navigation.Right>
             <Navigation.Item name="login" initial onClick={action('clicked')}>
@@ -95,10 +95,10 @@ stories
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Left>
-            <Image src="/wordmark.png" alt="logo" height="36px" />
+            <Logo wordmark size="tiny" />
           </Navigation.Left>
           <Navigation.Right>
-            <Buttons>
+            <Buttons inverted breed="primary">
               <Button>Login</Button>
               <Button>Sign up</Button>
             </Buttons>
