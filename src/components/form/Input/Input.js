@@ -37,7 +37,7 @@ const Input = styled.input`
   transition: box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9);
 
   &::placeholder {
-    color: ${Color.Gray.STRONG};
+    color: ${Color.Gray.MODERATE};
   }
 
   &:hover {
