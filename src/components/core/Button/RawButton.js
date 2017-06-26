@@ -97,14 +97,14 @@ const getFontSize = (props) => {
 
 const getPadding = R.cond([
   [R.propEq('radius', SizeEnum.MINI), R.always(0)],
-  [R.propEq('size', SizeEnum.MINI), R.always('.2rem .3rem')],
-  [R.propEq('size', SizeEnum.TINY), R.always('.2rem .3rem')],
-  [R.propEq('size', SizeEnum.SMALL), R.always('.2rem .4rem')],
-  [R.propEq('size', SizeEnum.MEDIUM), R.always('.25rem .5rem')],
-  [R.propEq('size', SizeEnum.LARGE), R.always('.3rem .7rem')],
-  [R.propEq('size', SizeEnum.BIG), R.always('.35rem .75rem')],
-  [R.propEq('size', SizeEnum.HUGE), R.always('.4rem .9rem')],
-  [R.propEq('size', SizeEnum.MASSIVE), R.always('.5rem 1.2rem')],
+  [R.propEq('size', SizeEnum.MINI), R.always('.25rem .4rem')],
+  [R.propEq('size', SizeEnum.TINY), R.always('.3rem .5rem')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('.35rem .6rem')],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always('.4rem .7rem')],
+  [R.propEq('size', SizeEnum.LARGE), R.always('.45rem .7rem')],
+  [R.propEq('size', SizeEnum.BIG), R.always('.5rem .75rem')],
+  [R.propEq('size', SizeEnum.HUGE), R.always('.55rem .9rem')],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always('.6rem 1.2rem')],
   [R.T, R.always(R.always('.3rem .7rem'))],
 ]);
 
@@ -129,7 +129,9 @@ const getWidth = R.cond([
   [R.T, R.always('inherit')],
 ]);
 
-const RawButton = styled.button`
+const RawButton = styled.button.attrs({
+  className: 'button',
+})`
   background-color: ${getBackgroundColor};
   width: ${getWidth};
   height: ${getWidth};

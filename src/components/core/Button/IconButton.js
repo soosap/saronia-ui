@@ -36,8 +36,8 @@ const getIconBackgroundColor = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARKER)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARK)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARK)],
   [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 

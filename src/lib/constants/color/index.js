@@ -3,8 +3,8 @@ const PRIMARY = '#FFC92F';
 const Primary = {
   LIGHTER: '#FFD459',
   LIGHT: '#FFCF45',
-  DARK: '#FEC216',
-  DARKER: '#FAB900',
+  DARK: '#FAB900',
+  DARKER: '#FAB200',
 };
 
 const SECONDARY = '#FF7E36';

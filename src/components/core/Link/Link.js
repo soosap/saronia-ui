@@ -2,9 +2,17 @@
 import styled from 'styled-components';
 import R from 'ramda';
 
-import { Color } from '../../../lib/constants';
+import { Color, BreedEnum } from '../../../lib/constants';
 
 const getColor = R.cond([
+  [
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
+    R.always(Color.Black.TRANSPARENT),
+  ],
+  [
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
+    R.always(Color.White.STRONG),
+  ],
   [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
   [R.propEq('breed', 'secondary'), R.always(Color.Secondary.LIGHT)],
   [R.T, R.always(Color.BLACK)],

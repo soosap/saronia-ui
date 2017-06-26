@@ -56,7 +56,7 @@ export default (props: Props) =>
                 ? React.cloneElement(child, {
                   accent: props.accent,
                   breed: props.breed,
-                  inverted: props.inverted,
+                  inverted: !props.inverted,
                   size: props.size,
                 })
                 : child,
