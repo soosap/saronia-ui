@@ -38,7 +38,7 @@ const Wrapper = styled.label`
   position: relative;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? 'default' : 'pointer'};
   margin-bottom: .5rem;
   margin-right: ${props => (props.vertical ? '0' : '1.2rem')};
 
@@ -72,10 +72,12 @@ const Input = styled.input`
   }
 
   &:disabled {
+    cursor: initial;
+
     + .radio-label {
       &::before {
-        box-shadow: inset 0 0 0 3px ${Color.Gray.LIGHT};
-        border-color: ${Color.Gray.STRONG};
+        box-shadow: inset 0 0 0 3px ${Color.Gray.MINOR};
+        border-color: ${Color.Gray.MODERATE};
         background: ${Color.Gray.LIGHT};
       }
     }
@@ -87,7 +89,7 @@ const Text = styled.span.attrs({
 })`
   display: flex;
   align-items: center;
-  color: ${props => (props.disabled ? Color.Gray.STRONG : Color.BLACK)};
+  color: ${props => (props.disabled ? Color.Gray.MAJOR : Color.BLACK)};
 
   &::before {
     content: '';
@@ -100,7 +102,7 @@ const Text = styled.span.attrs({
     margin-right: ${props => (props.vertical ? '0.5rem' : '0.4rem')};
     vertical-align: bottom;
     text-align: center;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'default' : 'pointer'};
     transition: all 250ms ease;
   }
 
