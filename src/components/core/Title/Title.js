@@ -31,8 +31,8 @@ export const getMarginBottom = R.cond([
   [R.propEq('size', '2'), R.always('1.2rem')],
   [R.propEq('size', '3'), R.always('1.1rem')],
   [R.propEq('size', '4'), R.always('1rem')],
-  [R.propEq('size', '5'), R.always('0.7rem')],
-  [R.propEq('size', '6'), R.always('0.5rem')],
+  [R.propEq('size', '5'), R.always('0.9rem')],
+  [R.propEq('size', '6'), R.always('0.7rem')],
   [R.T, R.always('1.1rem')],
 ]);
 
