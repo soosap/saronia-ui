@@ -14,14 +14,14 @@ type Props = {
 };
 
 const getInnerCircleFillColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARK)],
   [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.Black.LIGHT)],
 ]);
 
 const getBorder = R.cond([
-  [R.propEq('breed', 'primary'), R.always(`1px solid ${Color.PRIMARY}`)],
-  [R.propEq('breed', 'secondary'), R.always(`1px solid ${Color.SECONDARY}`)],
+  [R.propEq('breed', 'primary'), R.always(`2px solid ${Color.Primary.DARK}`)],
+  [R.propEq('breed', 'secondary'), R.always(`2px solid ${Color.SECONDARY}`)],
   [R.T, R.always(`2px solid ${Color.Black.LIGHT}`)],
 ]);
 
@@ -91,7 +91,7 @@ const Text = styled.span.attrs({
 
   &::before {
     content: '';
-    background-color: ${Color.WHITE};
+    background-color: transparent;
     border-radius: 500rem;
     border: ${getBorder};
     display: inline-block;
