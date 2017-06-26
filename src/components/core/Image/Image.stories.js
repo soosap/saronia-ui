@@ -26,7 +26,7 @@ stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
     width: text('width', '200px'),
     height: text('height', 'inherit'),
-    src: '/wordmark.png',
+    src: '/logo_wordmark.png',
     alt: 'logo',
   });
 

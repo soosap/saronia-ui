@@ -1,6 +1,8 @@
 # saronia-ui
 React-based UI toolkit for the web.
 
+![saronia-ui logo](/public/logo_saronia_ui.png)
+
 * styled-components v2
 * polished
 * ramda
@@ -31,6 +33,7 @@ git commit -m 'Added hover effects on <Pill /> component'
 
 # Regularly push your work to obtain feedback
 git push
+git push -u origin fix/border-logic-card
 ```
 
 ## Development

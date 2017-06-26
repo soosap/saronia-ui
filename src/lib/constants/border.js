@@ -10,6 +10,6 @@ export const BorderWidth = {
 
 export default {
   DEFAULT: `1px solid ${Color.BLACK}`,
-  PRIMARY: `1px solid ${Color.Primary.DARKER}`,
-  SECONDARY: `1px solid ${Color.SECONDARY}`,
+  PRIMARY: `1px solid ${Color.Primary.DARK}`,
+  SECONDARY: `1px solid ${Color.Secondary.LIGHT}`,
 };

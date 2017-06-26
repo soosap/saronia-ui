@@ -1,5 +1,5 @@
 /* @flow */
-import { Button, LinkButton, RawButton, PulseButton, Buttons } from './Button';
+import { Button, RawButton, PulseButton, Buttons } from './Button';
 import { Icon } from './Icon';
 import { Label } from './Label';
 import { Link } from './Link';
@@ -14,7 +14,6 @@ import { Avatar } from './Avatar';
 
 export {
   Button,
-  LinkButton,
   RawButton,
   PulseButton,
   Buttons,

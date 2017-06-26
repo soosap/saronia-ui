@@ -11,7 +11,8 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { Button, LinkButton, PulseButton } from '.';
+import { Button, PulseButton } from '.';
+import { Link } from '../Link';
 import { Icon } from '../Icon';
 import {
   SizeEnum,
@@ -68,9 +69,9 @@ stories
     });
 
     return (
-      <LinkButton {...props} href="https://saronia.com">
-        {children}
-      </LinkButton>
+      <Button {...props}>
+        <Link href="https://saronia.com">{children}</Link>
+      </Button>
     );
   })
   .add('icon', () => {

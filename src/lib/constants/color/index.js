@@ -1,18 +1,18 @@
 /* @flow */
-const PRIMARY = '#FFCA33';
+const PRIMARY = '#FFC92F';
 const Primary = {
-  LIGHT: '#FFD14D',
-  LIGHTER: '#FFD96C',
-  DARK: '#FFBE00',
-  DARKER: '#F9BA00',
+  LIGHTER: '#FFD459',
+  LIGHT: '#FFCF45',
+  DARK: '#FAB900',
+  DARKER: '#FAB200',
 };
 
-const SECONDARY = '#F37C4A';
+const SECONDARY = '#FF7E36';
 const Secondary = {
-  LIGHT: '#F48759',
-  LIGHTER: '#F48B5F',
-  DARK: '#F16B33',
-  DARKER: '#F05B1D',
+  LIGHTER: '#FF9358',
+  LIGHT: '#FF8A4A',
+  DARK: '#FA7429',
+  DARKER: '#F1691D',
 };
 
 const BLACK_SUEDE_BEHR = '#3D3E3C';
