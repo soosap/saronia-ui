@@ -2,7 +2,7 @@
 import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
-import { Font, FontSize, Color } from '../../../lib/constants';
+import { Font, Color } from '../../../lib/constants';
 
 type Props = {
   accent?: boolean,

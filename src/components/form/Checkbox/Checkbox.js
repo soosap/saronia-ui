@@ -10,7 +10,7 @@ type Props = {
   children: Children,
   breed?: Breed,
   vertical?: boolean,
-  value: string,
+  value?: boolean,
 };
 
 const WIDTH = 20;
@@ -60,10 +60,8 @@ const bounce = keyframes`
 const Wrapper = styled.label`
   display: flex;
   align-items: stretch;
-  &:not(:last-of-type) {
-    margin-bottom: ${props => props.vertical ? '.3rem' : '0'};
-    margin-right: ${props => props.vertical ? '0' : '.8rem'}
-  }
+  margin-bottom: ${props => props.vertical ? '.5rem' : '0'};
+  margin-right: ${props => (props.vertical ? '0' : '1.2rem')};
 
   &:hover {
     cursor: pointer;
@@ -89,7 +87,7 @@ const Input = styled.input`
     &::before {
       content: '';
       position: absolute;
-      top: ${0.65 * WIDTH}px;
+      top: 8px;
       left: 4px;
       border-right: 3px solid transparent;
       border-bottom: 3px solid transparent;
@@ -118,7 +116,6 @@ const Square = styled.span.attrs({
 const Text = styled.span`
   display: flex;
   align-items: center;
-  height: ${1.5 * WIDTH}px;
 `;
 
 const Checkbox = (props: Props) =>
