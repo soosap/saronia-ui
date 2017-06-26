@@ -1,17 +1,12 @@
 /* @flow */
 import React from 'react';
+import styled from 'styled-components';
 import R from 'ramda';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  select,
-} from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import { Title } from '.';
+import { Color } from '../../../lib/constants';
 
 const stories = storiesOf('Title', module);
 stories.addDecorator(withKnobs);
@@ -21,20 +16,68 @@ const isNotNil = R.both(
   R.complement(R.equals('undefined')),
 );
 
+const LoremIpsum = styled.div`
+  text-align: ${props => props.centered ? 'center' : 'left'};
+  margin-bottom: 1rem;
+  background-color: ${Color.White.STRONG};
+`;
+
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
     accent: boolean('accent', false),
+    centered: boolean('centered', false),
   });
 
   return (
     <div>
-      <Title {...props} size="1">Title 1</Title>
-      <Title {...props} size="2">Title 2</Title>
-      <Title {...props} size="3">Title 3</Title>
+      <Title {...props} size="1">Title 1: Dugorim returns</Title>
+      <LoremIpsum {...props}>
+        Normal text underneath.<br />
+        Normal text underneath.<br />
+        Normal text underneath.
+      </LoremIpsum>
+
+      <Title {...props} size="2">Title 2: {'Seetha\'s'} empire</Title>
+      <LoremIpsum {...props}>
+        Normal text underneath.<br />
+        Normal text underneath.<br />
+        Normal text underneath.
+      </LoremIpsum>
+
+      <Title {...props} size="3">Title 3: {'Sapiras\''} revenge</Title>
+      <LoremIpsum {...props}>
+        Normal text underneath.<br />
+        Normal text underneath.<br />
+        Normal text underneath.
+      </LoremIpsum>
+
       <Title {...props}>Title 3 (default)</Title>
-      <Title {...props} size="4">Title 4</Title>
-      <Title {...props} size="5">Title 5</Title>
-      <Title {...props} size="6">Title 6</Title>
+      <LoremIpsum {...props}>
+        Normal text underneath.<br />
+        Normal text underneath.<br />
+        Normal text underneath.
+      </LoremIpsum>
+
+      <Title {...props} size="4">Title 4: Uniting forces</Title>
+      <LoremIpsum {...props}>
+        Normal text underneath.<br />
+        Normal text underneath.<br />
+        Normal text underneath.
+      </LoremIpsum>
+
+      <Title {...props} size="5">Title 5: SARONIA strikes back</Title>
+      <LoremIpsum {...props}>
+        Normal text underneath.<br />
+        Normal text underneath.<br />
+        Normal text underneath.
+      </LoremIpsum>
+
+      <Title {...props} size="6">Title 6: New adventures</Title>
+      <LoremIpsum {...props}>
+        Normal text underneath.<br />
+        Normal text underneath.<br />
+        Normal text underneath.
+      </LoremIpsum>
     </div>
   );
 });

@@ -13,6 +13,7 @@ import {
 import centered from '@storybook/addon-centered';
 
 import { Radio, RadioGroup } from '.';
+import { Checkbox, Checkboxes } from '../Checkbox';
 import { BreedEnum } from '../../../lib/constants';
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
@@ -32,13 +33,25 @@ stories
     });
 
     return (
-      <RadioGroup {...props} name="difficulty">
-        <Radio value="all">All</Radio>
-        <Radio value="easy">Easy</Radio>
-        <Radio value="medium">Medium</Radio>
-        <Radio value="hard">Hard</Radio>
-        <Radio value="nightmare">Nightmare</Radio>
-        <Radio value="disabled" disabled>Disabled</Radio>
-      </RadioGroup>
+      <div>
+        <Checkboxes vertical={props.vertical}>
+          <Checkbox>black</Checkbox>
+          <Checkbox>white</Checkbox>
+          <Checkbox>yellow</Checkbox>
+        </Checkboxes>
+        <RadioGroup {...props} name="difficulty">
+          <Radio value="all">All</Radio>
+          <Radio value="easy">Easy</Radio>
+          <Radio value="medium">Medium</Radio>
+          <Radio value="hard">Hard</Radio>
+          <Radio value="nightmare">Nightmare</Radio>
+          <Radio value="disabled" disabled>Disabled</Radio>
+        </RadioGroup>
+        <Checkboxes vertical={props.vertical}>
+          <Checkbox>black</Checkbox>
+          <Checkbox>white</Checkbox>
+          <Checkbox>yellow</Checkbox>
+        </Checkboxes>
+      </div>
     );
   });

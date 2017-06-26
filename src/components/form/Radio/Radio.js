@@ -14,36 +14,33 @@ type Props = {
 };
 
 const getInnerCircleFillColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARK)],
   [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.Black.LIGHT)],
 ]);
 
 const getBorder = R.cond([
-  [R.propEq('breed', 'primary'), R.always(`1px solid ${Color.PRIMARY}`)],
-  [R.propEq('breed', 'secondary'), R.always(`1px solid ${Color.SECONDARY}`)],
-  [R.T, R.always(`1px solid ${Color.Black.LIGHT}`)],
+  [R.propEq('breed', 'primary'), R.always(`2px solid ${Color.Primary.DARK}`)],
+  [R.propEq('breed', 'secondary'), R.always(`2px solid ${Color.SECONDARY}`)],
+  [R.T, R.always(`2px solid ${Color.Black.LIGHT}`)],
 ]);
 
 const getBorderHover = R.cond([
-  [R.propEq('breed', 'primary'), R.always(`1px solid ${Color.Primary.DARKER}`)],
+  [R.propEq('breed', 'primary'), R.always(`2px solid ${Color.Primary.DARKER}`)],
   [
     R.propEq('breed', 'secondary'),
-    R.always(`1px solid ${Color.Secondary.DARKER}`),
+    R.always(`2px solid ${Color.Secondary.DARKER}`),
   ],
-  [R.T, R.always(`1px solid ${Color.Black.STRONG}`)],
+  [R.T, R.always(`2px solid ${Color.Black.STRONG}`)],
 ]);
 
 const Wrapper = styled.label`
   position: relative;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? 'default' : 'pointer'};
   margin-bottom: .5rem;
-
-  &:not(:last-of-type) {
-    margin-right: ${props => (props.vertical ? '0' : '1.2rem')}
-  }
+  margin-right: ${props => (props.vertical ? '0' : '1.2rem')};
 
   &:hover {
     .radio-label::before {
@@ -75,10 +72,12 @@ const Input = styled.input`
   }
 
   &:disabled {
+    cursor: initial;
+
     + .radio-label {
       &::before {
-        box-shadow: inset 0 0 0 3px ${Color.Gray.LIGHT};
-        border-color: ${Color.Gray.STRONG};
+        box-shadow: inset 0 0 0 3px ${Color.Gray.MINOR};
+        border-color: ${Color.Gray.MODERATE};
         background: ${Color.Gray.LIGHT};
       }
     }
@@ -90,20 +89,20 @@ const Text = styled.span.attrs({
 })`
   display: flex;
   align-items: center;
-  color: ${props => (props.disabled ? Color.Gray.STRONG : Color.BLACK)};
+  color: ${props => (props.disabled ? Color.Gray.MAJOR : Color.BLACK)};
 
   &::before {
     content: '';
-    background-color: ${Color.WHITE};
+    background-color: transparent;
     border-radius: 500rem;
     border: ${getBorder};
     display: inline-block;
-    width: calc(1rem - 2px);
-    height: calc(1rem - 2px);
+    width: 16px;
+    height: 16px;
     margin-right: ${props => (props.vertical ? '0.5rem' : '0.4rem')};
     vertical-align: bottom;
     text-align: center;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'default' : 'pointer'};
     transition: all 250ms ease;
   }
 

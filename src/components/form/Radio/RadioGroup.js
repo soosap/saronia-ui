@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
   flex-wrap: wrap;
+  margin-bottom: 1rem;
 `;
 
 const RadioGroup = (props: Props) => (

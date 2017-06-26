@@ -13,7 +13,7 @@ type Props = {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
-  justify-content: space-between;
+  margin-bottom: 1rem;
 `;
 
 const Checkboxes = (props: Props) => (
