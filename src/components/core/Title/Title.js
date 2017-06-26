@@ -19,10 +19,10 @@ type Props = {
 */
 export const getFontSize = R.cond([
   [R.propEq('size', '1'), R.always('3rem')],
-  [R.propEq('size', '2'), R.always('2.4rem')],
-  [R.propEq('size', '3'), R.always('2rem')],
-  [R.propEq('size', '4'), R.always('1.6rem')],
-  [R.propEq('size', '5'), R.always('1.3rem')],
+  [R.propEq('size', '2'), R.always('2.6rem')],
+  [R.propEq('size', '3'), R.always('2.2rem')],
+  [R.propEq('size', '4'), R.always('1.8rem')],
+  [R.propEq('size', '5'), R.always('1.4rem')],
   [R.propEq('size', '6'), R.always('1.1rem')],
 ]);
 
@@ -52,7 +52,7 @@ const Title = (props: Props) => {
     margin-bottom: ${getMarginBottom};
 
     + .subtitle {
-      margin-top: -${getMarginBottom};
+      margin-top: ${props => `calc(-${getMarginBottom(props)} + 0.15rem)`};
     }
   `.withComponent(`h${props.size || '3'}`);
 
