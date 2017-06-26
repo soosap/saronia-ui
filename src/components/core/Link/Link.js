@@ -13,8 +13,8 @@ const getColor = R.cond([
     R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.White.STRONG),
   ],
-  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.LIGHT)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARK)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.LIGHT)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
