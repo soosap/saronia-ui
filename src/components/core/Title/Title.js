@@ -30,12 +30,12 @@ export const getTextAlign = R.cond([
 ]);
 
 export const getFontSize = R.cond([
-  [R.propEq('size', '1'), R.always(FontSize.MASSIVE)],
-  [R.propEq('size', '2'), R.always(FontSize.HUGE)],
-  [R.propEq('size', '3'), R.always(FontSize.BIG)],
-  [R.propEq('size', '4'), R.always(FontSize.LARGE)],
-  [R.propEq('size', '5'), R.always(FontSize.MEDIUM)],
-  [R.propEq('size', '6'), R.always(FontSize.SMALL)],
+  [R.propEq('size', '1'), R.always('3rem')],
+  [R.propEq('size', '2'), R.always('2.4rem')],
+  [R.propEq('size', '3'), R.always('2rem')],
+  [R.propEq('size', '4'), R.always('1.6rem')],
+  [R.propEq('size', '5'), R.always('1.3rem')],
+  [R.propEq('size', '6'), R.always('1rem')],
 ]);
 
 const Title = (props: Props) => {
