@@ -92,20 +92,20 @@ const NavigationItem = (props: NavigationItemProps) => {
 
 /*
 |-----------------------------------------------------------
-| Navigation.Collection
+| Navigation.Menu
 |-----------------------------------------------------------
 */
-const WrapperCollection = styled.div`
+const WrapperMenu = styled.div`
   display: flex;
 `;
 
-const NavigationCollection = ({
+const NavigationMenu = ({
   children,
   breed,
   selectItem,
   activeItem,
 }: NavigationCollectionProps) =>
-  <WrapperCollection>
+  <WrapperMenu>
     {React.Children.map(children, (child) => {
       if (child.type && child.type.name === 'NavigationItem') {
         return React.cloneElement(child, {
@@ -117,7 +117,7 @@ const NavigationCollection = ({
 
       return child;
     })}
-  </WrapperCollection>;
+  </WrapperMenu>;
 
 /*
 |-----------------------------------------------------------
@@ -148,8 +148,7 @@ const Wrapper = styled.nav.attrs({
 `;
 
 class Navigation extends Component<void, Props, State> {
-  static Left = NavigationCollection;
-  static Right = NavigationCollection;
+  static Menu = NavigationMenu;
   static Item = NavigationItem;
 
   state = {

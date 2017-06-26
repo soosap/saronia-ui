@@ -9,6 +9,7 @@ import { SizeEnum } from '../../../lib/constants';
 type Props = {
   wordmark: boolean,
   size: Size,
+  black?: boolean,
 };
 
 const getWidth = R.cond([
@@ -57,6 +58,45 @@ const getWidth = R.cond([
 ]);
 
 const getImageSrc = R.cond([
+  [
+    R.allPass([
+      R.propEq('black', true),
+      R.propEq('wordmark', true),
+      R.propSatisfies(
+        R.contains(R.__, [
+          SizeEnum.LARGE,
+          SizeEnum.BIG,
+          SizeEnum.HUGE,
+          SizeEnum.MASSIVE,
+        ]),
+        'size',
+      ),
+    ]),
+    R.always('/logo_wordmark_black@2x.png'),
+  ],
+  [
+    R.allPass([
+      R.propEq('black', true),
+      R.propSatisfies(
+        R.contains(R.__, [
+          SizeEnum.LARGE,
+          SizeEnum.BIG,
+          SizeEnum.HUGE,
+          SizeEnum.MASSIVE,
+        ]),
+        'size',
+      ),
+    ]),
+    R.always('/logo_symbol_black@2x.png'),
+  ],
+  [
+    R.both(
+      R.propEq('black', true),
+      R.propEq('wordmark', true),
+    ),
+    R.always('/logo_wordmark_black.png'),
+  ],
+  [R.propEq('black', true), R.always('/logo_symbol_black.png')],
   [
     R.both(
       R.propEq('wordmark', true),

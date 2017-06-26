@@ -19,6 +19,7 @@ stories.addDecorator(withKnobs);
 stories.add('symbol', () => {
   const props = R.pickBy(isNotNil, {
     wordmark: boolean('wordmark', false),
+    black: boolean('black', false),
     size: select('size', R.invertObj(SizeEnum), 'medium'),
   });
 

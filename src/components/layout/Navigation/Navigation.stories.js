@@ -5,13 +5,7 @@ import styled from 'styled-components';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  select,
-} from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import { Navigation, Segment } from '../../layout';
 import { Buttons, Button, Link, Logo } from '../../core';
@@ -20,7 +14,6 @@ import { BreedEnum } from '../../../lib/constants';
 const stories = storiesOf('Navigation', module);
 stories.addDecorator(withKnobs);
 
-const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -34,26 +27,29 @@ stories
   .add('text', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
-      breed: select('breed', breedOptions, 'undefined'),
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
-          <Navigation.Left>
+          <Navigation.Menu key="left">
             <Logo wordmark size="tiny" />
-          </Navigation.Left>
-          <Navigation.Right>
+          </Navigation.Menu>
+          <Navigation.Menu key="right">
             <Navigation.Item name="login" initial onClick={action('clicked')}>
               <span>Login</span>
             </Navigation.Item>
             <Navigation.Item name="signup" onClick={action('clicked')}>
               <span>Signup</span>
             </Navigation.Item>
-          </Navigation.Right>
+          </Navigation.Menu>
         </Navigation>
         <Segment>
-          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+          {R.times(
+            index =>
+              <div key={index}>Hello world. Hello saronia. Hello you.</div>,
+            40,
+          )}
         </Segment>
       </Wrapper>
     );
@@ -61,26 +57,30 @@ stories
   .add('links', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
-      breed: select('breed', breedOptions, 'undefined'),
+      breed: BreedEnum.PRIMARY,
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
-          <Navigation.Left>
-            <Logo wordmark size="tiny" />
-          </Navigation.Left>
-          <Navigation.Right>
+          <Navigation.Menu key="left">
+            <Logo black wordmark size="tiny" />
+          </Navigation.Menu>
+          <Navigation.Menu key="right">
             <Navigation.Item name="login" initial onClick={action('clicked')}>
               <Link>Login</Link>
             </Navigation.Item>
             <Navigation.Item name="signup" onClick={action('clicked')}>
-              <a>Signup</a>
+              <Link>Signup</Link>
             </Navigation.Item>
-          </Navigation.Right>
+          </Navigation.Menu>
         </Navigation>
         <Segment>
-          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+          {R.times(
+            index =>
+              <div key={index}>Hello world. Hello saronia. Hello you.</div>,
+            40,
+          )}
         </Segment>
       </Wrapper>
     );
@@ -88,24 +88,28 @@ stories
   .add('buttons', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
-      breed: select('breed', breedOptions, 'undefined'),
+      breed: BreedEnum.SECONDARY,
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
-          <Navigation.Left>
-            <Logo wordmark size="tiny" />
-          </Navigation.Left>
-          <Navigation.Right>
-            <Buttons inverted breed="primary">
+          <Navigation.Menu key="left">
+            <Logo black wordmark size="tiny" />
+          </Navigation.Menu>
+          <Navigation.Menu key="right">
+            <Buttons breed="secondary">
               <Button>Login</Button>
               <Button>Sign up</Button>
             </Buttons>
-          </Navigation.Right>
+          </Navigation.Menu>
         </Navigation>
         <Segment>
-          {R.times(() => <div>Hello world. Hello saronia. Hello you.</div>, 40)}
+          {R.times(
+            index =>
+              <div key={index}>Hello world. Hello saronia. Hello you.</div>,
+            40,
+          )}
         </Segment>
       </Wrapper>
     );
