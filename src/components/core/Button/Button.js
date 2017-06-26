@@ -17,7 +17,7 @@ export type DefaultButtonProps = {
   pop?: 'active' | 'focus' | 'hover',
   size?: Size,
   breed?: Breed,
-  children: string | Children,
+  children?: string | Children,
 };
 
 export type CircularButtonProps = {
@@ -30,7 +30,7 @@ export type CircularButtonProps = {
   radius: Size,
   size?: Size,
   breed?: Breed,
-  children: string | Children,
+  children?: string | Children,
 };
 
 export type Props = DefaultButtonProps | CircularButtonProps;
