@@ -3,11 +3,7 @@ import { injectGlobal } from 'styled-components';
 import { Font, FONT_URL } from './lib/constants';
 
 export const generateAndInjectGlobalCSS = () => injectGlobal`
-  @font-face {
-    font-family: ${Font.SYSTEM};
-    font-family: ${Font.ACCENT};
-    src: url(${FONT_URL});
-  }
+  @import url(${FONT_URL});
 
   body {
     font-family: ${Font.SYSTEM};

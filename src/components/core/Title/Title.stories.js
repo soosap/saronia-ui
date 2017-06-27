@@ -6,7 +6,6 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import { Title } from '.';
-import { Color } from '../../../lib/constants';
 
 const stories = storiesOf('Title', module);
 stories.addDecorator(withKnobs);
@@ -18,8 +17,7 @@ const isNotNil = R.both(
 
 const LoremIpsum = styled.div`
   text-align: ${props => props.centered ? 'center' : 'left'};
-  margin-bottom: 1rem;
-  background-color: ${Color.White.STRONG};
+  margin-bottom: 2rem;
 `;
 
 stories.add('default', () => {
