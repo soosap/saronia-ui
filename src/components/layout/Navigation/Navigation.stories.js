@@ -61,14 +61,16 @@ stories
   .add('links', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
-      breed: BreedEnum.PRIMARY,
+      breed: select('breed', breedOptions, 'undefined'),
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Menu key="left">
-            <Logo black wordmark size="tiny" />
+            {props.breed
+              ? <Logo black wordmark size="tiny" />
+              : <Logo wordmark size="tiny" />}
           </Navigation.Menu>
           <Navigation.Menu key="right">
             <Navigation.Item name="login" initial onClick={action('clicked')}>
@@ -92,14 +94,16 @@ stories
   .add('buttons', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
-      breed: BreedEnum.SECONDARY,
+      breed: select('breed', breedOptions, 'undefined'),
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Menu key="left">
-            <Logo black wordmark size="tiny" />
+            {props.breed
+              ? <Logo black wordmark size="tiny" />
+              : <Logo wordmark size="tiny" />}
           </Navigation.Menu>
           <Navigation.Menu key="right">
             <Buttons breed="secondary">
