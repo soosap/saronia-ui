@@ -10,7 +10,7 @@ type Props = {
   children: Children,
   breed?: Breed,
   vertical?: boolean,
-  value?: boolean,
+  value?: string,
 };
 
 const WIDTH = 20;
@@ -41,7 +41,7 @@ const checking = keyframes`
   100% {
     width: 3px;
     height: 8px;
-    transform: translate(0,-8px) rotate(45deg);
+    transform: translate(0, -90%) rotate(45deg);
   }
 `;
 
@@ -87,12 +87,12 @@ const Input = styled.input`
     &::before {
       content: '';
       position: absolute;
-      top: 8px;
+      top: 50%;
       left: 4px;
       border-right: 3px solid transparent;
       border-bottom: 3px solid transparent;
-      transform: rotate(45deg);
       transform-origin: 0% 100%;
+      transform: rotate(45deg);
       border-color: ${getCheckmarkColor};
       animation: ${checking} 125ms 250ms forwards;
     }

@@ -42,7 +42,7 @@ const Title = (props: Props) => {
   })`
     font-family: ${props => (props.accent ? Font.ACCENT : Font.SYSTEM)};
     font-size: ${getFontSize};
-    font-weight: ${props => (props.size === '6' ? 'bold' : '400')};
+    font-weight: ${props => (props.size === '6' ? '600' : '400')};
     text-align: ${props => (props.centered ? 'center' : 'left')};
     margin: 0;
     padding: 0;
