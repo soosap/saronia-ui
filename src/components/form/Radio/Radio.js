@@ -3,7 +3,7 @@ import React, { Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { Color } from '../../../lib/constants';
+import { Color, BreedEnum } from '../../../lib/constants';
 import type { Breed } from '../../../lib/types';
 
 type Props = {
@@ -11,40 +11,53 @@ type Props = {
   name?: string,
   breed?: Breed,
   disabled?: boolean,
+  inverted?: boolean,
 };
 
+const getBackgroundColor = R.cond([
+  [R.propEq('inverted', true), R.always(Color.Black.LIGHT)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.T, R.always(Color.WHITE)],
+]);
+
 const getInnerCircleFillColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARK)],
-  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [
+    R.both(R.propEq('breed', BreedEnum.PRIMARY), R.propEq('inverted', true)),
+    R.always(Color.Primary.DARK),
+  ],
+  [
+    R.both(R.propEq('breed', BreedEnum.SECONDARY), R.propEq('inverted', true)),
+    R.always(Color.SECONDARY),
+  ],
+  [R.propEq('inverted', true), R.always(Color.WHITE)],
   [R.T, R.always(Color.Black.LIGHT)],
 ]);
 
-const getBorder = R.cond([
-  [R.propEq('breed', 'primary'), R.always(`2px solid ${Color.Primary.DARK}`)],
-  [R.propEq('breed', 'secondary'), R.always(`2px solid ${Color.SECONDARY}`)],
-  [R.T, R.always(`2px solid ${Color.Black.LIGHT}`)],
-]);
-
-const getBorderHover = R.cond([
-  [R.propEq('breed', 'primary'), R.always(`2px solid ${Color.Primary.DARKER}`)],
+const getInnerCircleFillColorHover = R.cond([
   [
-    R.propEq('breed', 'secondary'),
-    R.always(`2px solid ${Color.Secondary.DARKER}`),
+    R.both(R.propEq('breed', BreedEnum.PRIMARY), R.propEq('inverted', true)),
+    R.always(Color.Primary.DARKER),
   ],
-  [R.T, R.always(`2px solid ${Color.Black.STRONG}`)],
+  [
+    R.both(R.propEq('breed', BreedEnum.SECONDARY), R.propEq('inverted', true)),
+    R.always(Color.Secondary.DARKER),
+  ],
+  [R.propEq('inverted', true), R.always(Color.White.STRONG)],
+  [R.T, R.always(Color.Black.STRONG)],
 ]);
 
 const Wrapper = styled.label`
   position: relative;
   display: flex;
   align-items: center;
-  cursor: ${props => props.disabled ? 'default' : 'pointer'};
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
   margin-bottom: .5rem;
   margin-right: ${props => (props.vertical ? '0' : '1.2rem')};
 
   &:hover {
     .radio-label::before {
-      border: ${getBorderHover};
+      border: ${props => `2px solid ${getInnerCircleFillColorHover(props)}`};
     }
   }
 `;
@@ -58,7 +71,7 @@ const Input = styled.input`
     + .radio-label {
       &::before {
         background-color: ${getInnerCircleFillColor};
-        box-shadow: inset 0 0 0 3px ${Color.WHITE};
+        box-shadow: ${props => `inset 0 0 0 3px ${getBackgroundColor(props)}`};
       }
     }
   }
@@ -82,6 +95,16 @@ const Input = styled.input`
       }
     }
   }
+
+  &:hover {
+    &:checked {
+      + .radio-label {
+        &::before {
+          background-color: ${getInnerCircleFillColorHover};
+        }
+      }
+    }
+  }
 `;
 
 const Text = styled.span.attrs({
@@ -93,16 +116,16 @@ const Text = styled.span.attrs({
 
   &::before {
     content: '';
-    background-color: transparent;
+    background-color: ${getBackgroundColor};
     border-radius: 500rem;
-    border: ${getBorder};
+    border: ${props => `2px solid ${getInnerCircleFillColor(props)}`};
     display: inline-block;
     width: 16px;
     height: 16px;
     margin-right: ${props => (props.vertical ? '0.5rem' : '0.4rem')};
     vertical-align: bottom;
     text-align: center;
-    cursor: ${props => props.disabled ? 'default' : 'pointer'};
+    cursor: ${props => (props.disabled ? 'default' : 'pointer')};
     transition: all 250ms ease;
   }
 
@@ -117,13 +140,16 @@ const Radio = (props: Props) =>
   <Wrapper {...props}>
     <Input
       type="radio"
-      {...R.pick(['name', 'value', 'breed', 'disabled'])(props)}
+      {...R.pick(['name', 'value', 'breed', 'inverted', 'disabled'])(props)}
     />
-    <Text {...R.pick(['breed', 'disabled'])(props)}>{props.children}</Text>
+    <Text {...R.pick(['breed', 'inverted', 'disabled'])(props)}>
+      {props.children}
+    </Text>
   </Wrapper>;
 
 Radio.defaultProps = {
   disabled: false,
+  inverted: false,
 };
 
 export default Radio;

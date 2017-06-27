@@ -7,8 +7,9 @@ import type { Breed } from '../../../lib/types';
 type Props = {
   children: Children,
   name: string,
-  vertical?: boolean,
   breed?: Breed,
+  inverted?: boolean,
+  vertical?: boolean,
 };
 
 const Wrapper = styled.div`
@@ -24,6 +25,7 @@ const RadioGroup = (props: Props) => (
       React.cloneElement(child, {
         name: props.name,
         breed: props.breed,
+        inverted: props.inverted,
         vertical: props.vertical,
       }),
     )}
@@ -32,6 +34,7 @@ const RadioGroup = (props: Props) => (
 
 RadioGroup.defaultProps = {
   vertical: false,
+  inverted: false,
 };
 
 export default RadioGroup;

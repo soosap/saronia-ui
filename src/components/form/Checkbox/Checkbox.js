@@ -10,7 +10,7 @@ type Props = {
   children: Children,
   breed?: Breed,
   vertical?: boolean,
-  value?: boolean,
+  value?: string,
 };
 
 const WIDTH = 20;
