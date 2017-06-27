@@ -1,7 +1,7 @@
 # saronia-ui
 React-based UI toolkit for the web.
 
-![saronia-ui logo](/public/logo_saronia_ui.png)
+![saronia-ui logo](https://ui.saronia.io/logo_saronia_ui.png)
 
 * styled-components v2
 * polished
