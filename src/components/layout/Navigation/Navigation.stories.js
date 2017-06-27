@@ -5,19 +5,20 @@ import styled from 'styled-components';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
 import { Navigation, Segment } from '../../layout';
 import { Buttons, Button, Link, Logo } from '../../core';
 import { BreedEnum } from '../../../lib/constants';
 
-const stories = storiesOf('Navigation', module);
-stories.addDecorator(withKnobs);
-
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
 );
+
+const stories = storiesOf('Navigation', module);
+stories.addDecorator(withKnobs);
 
 const Wrapper = styled.div`
   text-align: center;
@@ -27,13 +28,16 @@ stories
   .add('text', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
+      breed: select('breed', breedOptions, 'undefined'),
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Menu key="left">
-            <Logo wordmark size="tiny" />
+            {props.breed
+              ? <Logo black wordmark size="tiny" />
+              : <Logo wordmark size="tiny" />}
           </Navigation.Menu>
           <Navigation.Menu key="right">
             <Navigation.Item name="login" initial onClick={action('clicked')}>

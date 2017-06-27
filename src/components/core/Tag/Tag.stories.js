@@ -15,12 +15,11 @@ import centered from '@storybook/addon-centered';
 import { BreedEnum } from '../../../lib/constants';
 import { Tag, Tags } from '.';
 
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
 );
-
-const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 
 const stories = storiesOf('Tag', module);
 stories.addDecorator(withKnobs).addDecorator(centered);

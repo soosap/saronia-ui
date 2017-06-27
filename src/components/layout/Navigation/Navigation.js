@@ -31,14 +31,14 @@ type NavigationItemProps = NavigationCollectionProps & {
 };
 
 const getColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', 'secondary'), R.always(Color.WHITE)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.WHITE)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
 const getBackgroundColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.WHITE)],
 ]);
 
@@ -145,6 +145,7 @@ const Wrapper = styled.nav.attrs({
   top: ${props => props.sticky && 0};
   background-color: ${getBackgroundColor};
   z-index: 2;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
 `;
 
 class Navigation extends Component<void, Props, State> {
