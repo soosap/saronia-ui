@@ -12,6 +12,12 @@
     prop-types "^15.5.8"
     react-inspector "^2.0.0"
 
+"@storybook/addon-backgrounds@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-3.0.0.tgz#f59d55bc66abf3cede54b85b5b03f8153c684da9"
+  dependencies:
+    object-assign "^4.1.0"
+
 "@storybook/addon-centered@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@storybook/addon-centered/-/addon-centered-3.0.0.tgz#2c6b7044eb7d094cc9675ec54223ef498dc7af68"
@@ -5378,12 +5384,6 @@ react-split-pane@^0.1.63:
     inline-style-prefixer "^3.0.2"
     prop-types "^15.5.8"
     react-style-proptype "^3.0.0"
-
-react-storybook-addon-backgrounds@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/react-storybook-addon-backgrounds/-/react-storybook-addon-backgrounds-0.0.7.tgz#588348ef8d730c2d3da784aab2e3cdf8cc9103d0"
-  dependencies:
-    object-assign "^4.1.0"
 
 react-stubber@^1.0.0:
   version "1.0.0"
