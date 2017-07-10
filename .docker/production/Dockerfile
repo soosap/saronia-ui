@@ -1,7 +1,8 @@
-FROM nginx:1.13.0-alpine
+FROM nginx:1.13.2-alpine
 MAINTAINER Prasath Soosaithasan <prasath.soosaithasan@gmail.com>
 
-# -------------------------------------------------------------------------
-#  Bake static files into image
-# -------------------------------------------------------------------------
+# Embed application files into image -------------------------------------------
 COPY storybook-static /usr/share/nginx/html
+
+# Embed custom configuration file ----------------------------------------------
+COPY .docker/production/nginx.conf /etc/nginx/nginx.conf
