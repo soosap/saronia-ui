@@ -144,7 +144,7 @@ const Wrapper = styled.nav.attrs({
   position: ${props => (props.sticky ? 'sticky' : 'inherit')};
   top: ${props => props.sticky && 0};
   background-color: ${getBackgroundColor};
-  z-index: 2;
+  z-index: 10;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
 `;
 
