@@ -75,6 +75,8 @@ stories
   .add('w/o image', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
     });
 
     return (
@@ -103,6 +105,8 @@ stories
   .add('w/ image on the left', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
     });
 
     return (
@@ -136,6 +140,8 @@ stories
   .add('w/ image on the right', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
     });
 
     return (
@@ -169,6 +175,8 @@ stories
   .add('w/ image on both sides', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
     });
 
     return (
@@ -203,6 +211,8 @@ stories
   .add('w/ nested structure', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
     });
 
     return (
