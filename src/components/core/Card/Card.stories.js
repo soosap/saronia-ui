@@ -16,7 +16,11 @@ import centered from '@storybook/addon-centered';
 import { Card } from '.';
 import { Title, Icon } from '../../core';
 import { Row, Column, Segment } from '../../layout';
-import { IconSVGPath, BreedEnum } from '../../../lib/constants';
+import {
+  IconSVGPath,
+  BreedEnum,
+  IntensitySubsetEnum,
+} from '../../../lib/constants';
 
 const Wrapper = styled.div`
   width: 450px;
@@ -25,6 +29,9 @@ const Wrapper = styled.div`
 `;
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const intensitiySubsetOptions = R.invertObj(
+  R.merge(IntensitySubsetEnum, { DEFAULT: undefined }),
+);
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -37,6 +44,8 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
     });
 
     return (
