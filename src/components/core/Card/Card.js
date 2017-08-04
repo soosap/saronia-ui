@@ -3,7 +3,11 @@ import React, { Component, Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { Color, BORDER_RADIUS } from '../../../lib/constants';
+import {
+  Color,
+  BORDER_RADIUS,
+  IntensitySubsetEnum,
+} from '../../../lib/constants';
 import type { Breed } from '../../../lib/types';
 
 type Props = {
@@ -29,6 +33,40 @@ const getBackgroundColor = R.cond([
   [R.T, R.always(Color.White.LIGHT)],
 ]);
 
+const getBoxShadow = R.cond([
+  [
+    R.propEq('elevation', IntensitySubsetEnum.LIGHT),
+    R.always(`
+      0 0 0 1px rgba(16, 22, 26, 0.1),
+      0 1px 1px rgba(16, 22, 26, 0.2),
+      0 2px 6px rgba(16, 22, 26, 0.2)
+    `),
+  ],
+  [
+    R.propEq('elevation', IntensitySubsetEnum.MODERATE),
+    R.always(`
+      0 0 0 1px rgba(16, 22, 26, 0.1),
+      0 2px 4px rgba(16, 22, 26, 0.2),
+      0 8px 24px rgba(16, 22, 26, 0.2)
+    `),
+  ],
+  [
+    R.propEq('elevation', IntensitySubsetEnum.STRONG),
+    R.always(`
+      0 0 0 1px rgba(16, 22, 26, 0.1),
+      0 4px 8px rgba(16, 22, 26, 0.2),
+      0 18px 46px 6px rgba(16, 22, 26, 0.2)
+    `),
+  ],
+  [
+    R.T,
+    R.always(`
+      0 2px 3px rgba(10, 10, 10, 0.1),
+      0 0 0 1px rgba(10, 10, 10, 0.1)
+    `),
+  ],
+]);
+
 /*
 |-----------------------------------------------------------
 | Card.Footer
@@ -44,9 +82,7 @@ const CardFooterWrapper = styled.footer`
   }
 `;
 
-const CardFooter = (props: Object) => (
-  <CardFooterWrapper {...props} />
-);
+const CardFooter = (props: Object) => <CardFooterWrapper {...props} />;
 
 /*
 |-----------------------------------------------------------
@@ -75,25 +111,21 @@ const CardHeaderWrapper = styled.header`
     margin-bottom: 0 !important;
   }
 
-  .title, .subtitle {
+  .title,
+  .subtitle {
     padding: .5rem .75rem .3rem .75rem;
     margin-bottom: 0 !important;
   }
 `;
 
-const CardHeader = (props: Object) => (
-  <CardHeaderWrapper {...props} />
-);
-
+const CardHeader = (props: Object) => <CardHeaderWrapper {...props} />;
 
 /*
 |-----------------------------------------------------------
 | Card.Content
 |-----------------------------------------------------------
 */
-const CardContent = styled.div`
-  flex: 1;
-`;
+const CardContent = styled.div`flex: 1;`;
 
 /*
 |-----------------------------------------------------------
@@ -110,9 +142,7 @@ const Wrapper = styled.div`
   border-radius: ${BORDER_RADIUS};
   height: 100%;
 
-  box-shadow:
-    0 2px 3px rgba(10, 10, 10, 0.1),
-    0 0 0 1px rgba(10, 10, 10, 0.1);
+  box-shadow: ${getBoxShadow};
 
   /*
   |-----------------------------------------------------------
