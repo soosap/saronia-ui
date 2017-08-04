@@ -33,30 +33,36 @@ const getBackgroundColor = R.cond([
   [R.T, R.always(Color.White.LIGHT)],
 ]);
 
+const BoxShadow = {
+  [IntensitySubsetEnum.LIGHT]: `
+    0 0 0 1px rgba(16, 22, 26, 0.1),
+    0 1px 1px rgba(16, 22, 26, 0.2),
+    0 2px 6px rgba(16, 22, 26, 0.2)
+  `,
+  [IntensitySubsetEnum.MODERATE]: `
+    0 0 0 1px rgba(16, 22, 26, 0.1),
+    0 2px 4px rgba(16, 22, 26, 0.2),
+    0 8px 24px rgba(16, 22, 26, 0.2)
+  `,
+  [IntensitySubsetEnum.STRONG]: `
+    0 0 0 1px rgba(16, 22, 26, 0.1),
+    0 4px 8px rgba(16, 22, 26, 0.2),
+    0 18px 46px 6px rgba(16, 22, 26, 0.2)
+  `,
+};
+
 const getBoxShadow = R.cond([
   [
     R.propEq('elevation', IntensitySubsetEnum.LIGHT),
-    R.always(`
-      0 0 0 1px rgba(16, 22, 26, 0.1),
-      0 1px 1px rgba(16, 22, 26, 0.2),
-      0 2px 6px rgba(16, 22, 26, 0.2)
-    `),
+    R.always(BoxShadow[IntensitySubsetEnum.LIGHT]),
   ],
   [
     R.propEq('elevation', IntensitySubsetEnum.MODERATE),
-    R.always(`
-      0 0 0 1px rgba(16, 22, 26, 0.1),
-      0 2px 4px rgba(16, 22, 26, 0.2),
-      0 8px 24px rgba(16, 22, 26, 0.2)
-    `),
+    R.always(BoxShadow[IntensitySubsetEnum.MODERATE]),
   ],
   [
     R.propEq('elevation', IntensitySubsetEnum.STRONG),
-    R.always(`
-      0 0 0 1px rgba(16, 22, 26, 0.1),
-      0 4px 8px rgba(16, 22, 26, 0.2),
-      0 18px 46px 6px rgba(16, 22, 26, 0.2)
-    `),
+    R.always(BoxShadow[IntensitySubsetEnum.STRONG]),
   ],
   [
     R.T,
@@ -66,6 +72,26 @@ const getBoxShadow = R.cond([
     `),
   ],
 ]);
+
+const getInteractiveBoxShadow = R.ifElse(
+  R.propEq('interactive', true),
+  R.cond([
+    [
+      R.propEq('elevation', IntensitySubsetEnum.LIGHT),
+      R.always(BoxShadow[IntensitySubsetEnum.MODERATE]),
+    ],
+    [
+      R.propEq('elevation', IntensitySubsetEnum.MODERATE),
+      R.always(BoxShadow[IntensitySubsetEnum.STRONG]),
+    ],
+    [
+      R.propEq('elevation', IntensitySubsetEnum.STRONG),
+      R.always(BoxShadow[IntensitySubsetEnum.STRONG]),
+    ],
+    [R.T, R.always(BoxShadow[IntensitySubsetEnum.MODERATE])],
+  ]),
+  R.always(''),
+);
 
 /*
 |-----------------------------------------------------------
@@ -143,6 +169,8 @@ const Wrapper = styled.div`
   height: 100%;
 
   box-shadow: ${getBoxShadow};
+  transition: transform 200ms cubic-bezier(0.4, 1, 0.75, 0.9),
+    box-shadow 200ms cubic-bezier(0.4, 1, 0.75, 0.9);
 
   /*
   |-----------------------------------------------------------
@@ -179,6 +207,15 @@ const Wrapper = styled.div`
       border-radius: 0 ${BORDER_RADIUS} ${BORDER_RADIUS} 0;
       margin: -1px -1px 0 0;
     }
+  }
+
+  &:hover {
+    box-shadow: ${getInteractiveBoxShadow};
+    cursor: ${R.ifElse(
+      R.propEq('interactive', true),
+      R.always('pointer'),
+      R.always('default'),
+    )};
   }
 `;
 
