@@ -19,6 +19,7 @@ import { Row, Column, Segment } from '../../layout';
 import {
   IconSVGPath,
   BreedEnum,
+  IntensityEnum,
   IntensitySubsetEnum,
 } from '../../../lib/constants';
 
@@ -57,12 +58,10 @@ stories
           </Card.Header>
           <Card.Image src="http://placehold.it/450x200" alt="logo" />
           <Card.Content>
-            <Segment>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-            </Segment>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
           </Card.Content>
           <Card.Footer>
             <div>Created 3 days ago...</div>
@@ -87,12 +86,10 @@ stories
             <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
           </Card.Header>
           <Card.Content>
-            <Segment>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-            </Segment>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
           </Card.Content>
           <Card.Footer>
             <div>Created 3 days ago...</div>
@@ -119,13 +116,11 @@ stories
                 <Title size="4">New item</Title>
                 <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
               </Card.Header>
-              <Card.Content>
-                <Segment padded="light">
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                </Segment>
+              <Card.Content padded={IntensityEnum.LIGHT}>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
               </Card.Content>
               <Card.Footer>
                 <div>Created 3 days ago...</div>
@@ -153,13 +148,11 @@ stories
                 <Title size="4">New item</Title>
                 <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
               </Card.Header>
-              <Card.Content>
-                <Segment padded="light">
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                </Segment>
+              <Card.Content padded={IntensityEnum.LIGHT}>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
               </Card.Content>
               <Card.Footer>
                 <div>Created 3 days ago...</div>
@@ -189,13 +182,11 @@ stories
                 <Title size="4">New item</Title>
                 <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
               </Card.Header>
-              <Card.Content>
-                <Segment padded="light">
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                </Segment>
+              <Card.Content padded={IntensityEnum.LIGHT}>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
               </Card.Content>
               <Card.Footer>
                 <div>Created 3 days ago...</div>
@@ -224,13 +215,11 @@ stories
           </Card.Header>
           <Row>
             <Card.Image src="http://placehold.it/125x200" alt="logo" />
-            <Card.Content>
-              <Segment padded="light">
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
-              </Segment>
+            <Card.Content padded={IntensityEnum.LIGHT}>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+              <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
             </Card.Content>
           </Row>
           <Card.Footer>

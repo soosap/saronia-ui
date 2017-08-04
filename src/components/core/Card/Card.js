@@ -3,10 +3,13 @@ import React, { Component, Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
+import { Segment } from '../../layout';
+
 import {
   Color,
   BORDER_RADIUS,
   IntensitySubsetEnum,
+  IntensityEnum,
 } from '../../../lib/constants';
 import type { Breed } from '../../../lib/types';
 
@@ -151,7 +154,9 @@ const CardHeader = (props: Object) => <CardHeaderWrapper {...props} />;
 | Card.Content
 |-----------------------------------------------------------
 */
-const CardContent = styled.div`flex: 1;`;
+const CardContent = styled(Segment).attrs({
+  padded: IntensityEnum.MODERATE,
+})`flex: 1;`;
 
 /*
 |-----------------------------------------------------------
