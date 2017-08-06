@@ -9,7 +9,6 @@ import centered from '@storybook/addon-centered';
 
 import { Flipper } from '.';
 import { Card, Title, Icon } from '../../core';
-import { Segment } from '../../layout';
 import {
   IconSVGPath,
   BreedEnum,
@@ -51,7 +50,7 @@ stories.add('default', () => {
         </Card.Header>
         <Card.Image src="http://placehold.it/450x200" alt="logo" />
         <Card.Content padded={false}>
-          <Flipper>
+          <Flipper padded>
             <Flipper.Front>Front content</Flipper.Front>
             <Flipper.Back>Back content</Flipper.Back>
           </Flipper>

@@ -14,11 +14,10 @@ type Props = {
 
 const getTotalHeight = R.cond([[R.T, R.always('210px')]]);
 
-const Wrapper = styled(Segment).attrs({ padded: false })`
+const Wrapper = styled.div`
   perspective: 1000px;
-  width: calc(100% - ${getPadding} - ${getPadding});
-  height: calc(${getTotalHeight} - ${getPadding} - ${getPadding});
-  background-color: yellow;
+  width: 100%;
+  height: ${getTotalHeight};
 
   &:hover .flipper {
     transform: rotateX(180deg);
@@ -36,14 +35,13 @@ const WrapperInner = styled.div.attrs({ className: 'flipper' })`
 `;
 
 /* front pane, placed above back */
-const FrontView = styled.div`
+const FrontView = styled(Segment)`
   backface-visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
   width: calc(100% - ${getPadding} - ${getPadding});
   height: calc(${getTotalHeight} - ${getPadding} - ${getPadding});
-  background-color: purple;
 
   z-index: 2;
   /* for firefox 31 */
@@ -51,7 +49,7 @@ const FrontView = styled.div`
 `;
 
 /* back, initially hidden pane */
-const BackView = styled.div`
+const BackView = styled(Segment)`
   backface-visibility: hidden;
   position: absolute;
   top: 0;
@@ -59,7 +57,6 @@ const BackView = styled.div`
   width: calc(100% - ${getPadding} - ${getPadding});
   height: calc(${getTotalHeight} - ${getPadding} - ${getPadding});
   background-color: green;
-  z-index: 3;
 
   transform: rotateX(180deg);
 `;
@@ -71,19 +68,16 @@ class Flipper extends Component<void, Props, void> {
   render() {
     return (
       <Wrapper {...this.props}>
-        <WrapperInner {...this.props}>
-          <div>
-            {React.Children.map(this.props.children, (child) => {
-              console.log('child.type', child.type);
+        <WrapperInner>
+          {React.Children.map(this.props.children, (child) => {
+            console.log('child.type', child.type);
 
-              return child.type
-                ? React.cloneElement(child, {
-                  breed: this.props.breed,
-                  padded: this.props.padded || false,
-                })
-                : child;
-            })}
-          </div>
+            return child.type
+              ? React.cloneElement(child, {
+                breed: this.props.breed,
+              })
+              : child;
+          })}
         </WrapperInner>
       </Wrapper>
     );
