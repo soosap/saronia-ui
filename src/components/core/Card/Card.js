@@ -13,11 +13,18 @@ import {
   IntensityEnum,
   ThemeEnum,
 } from '../../../lib/constants';
-import type { Theme, Position, SizeSubset } from '../../../lib/types';
+import type {
+  Theme,
+  Position,
+  SizeSubset,
+  IntensitySubset,
+} from '../../../lib/types';
 
 type Props = {
   children: Children,
   theme?: Theme,
+  elevation?: IntensitySubset,
+  interactive?: boolean,
   badge?: string | number | Element<*>,
   badgePosition?: Position,
   badgeSize?: SizeSubset,
@@ -168,7 +175,7 @@ const CardContent = styled(Segment).attrs({
 | Card
 |-----------------------------------------------------------
 */
-const Wrapper = styled.div`
+const Wrapper = styled(Segment).attrs({ padded: false })`
   position: relative;
   display: flex;
   flex-direction: column;
