@@ -1,40 +1,43 @@
 /* @flow */
-import React, { Component, Children } from 'react';
+import React, { Component, Children, Element } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
 import { Segment } from '../../layout';
+import Badge from './Badge';
 
 import {
   Color,
   BORDER_RADIUS,
   IntensitySubsetEnum,
   IntensityEnum,
+  ThemeEnum,
 } from '../../../lib/constants';
-import type { Theme } from '../../../lib/types';
+import type { Theme, Position, SizeSubset } from '../../../lib/types';
 
 type Props = {
   children: Children,
   theme?: Theme,
-  badge?: string | number,
-  badgePosition?: PositionSubset,
+  badge?: string | number | Element<*>,
+  badgePosition?: Position,
+  badgeSize?: SizeSubset,
 };
 
 const getColor = R.cond([
-  [R.propEq('theme', 'primary'), R.always(Color.Black.LIGHT)],
-  [R.propEq('theme', 'secondary'), R.always(Color.White.STRONG)],
+  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Black.LIGHT)],
+  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
 const getBorderColor = R.cond([
-  [R.propEq('theme', 'primary'), R.always(Color.Primary.DARKER)],
-  [R.propEq('theme', 'secondary'), R.always(Color.Secondary.DARKER)],
+  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Primary.DARKER)],
+  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
   [R.T, R.always(Color.Gray.LIGHT)],
 ]);
 
 const getBackgroundColor = R.cond([
-  [R.propEq('theme', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('theme', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.White.LIGHT)],
 ]);
 
@@ -166,9 +169,9 @@ const CardContent = styled(Segment).attrs({
 |-----------------------------------------------------------
 */
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
 
   color: ${getColor};
   background-color: ${getBackgroundColor};
@@ -235,6 +238,13 @@ class Card extends Component<void, Props, void> {
   render() {
     return (
       <Wrapper {...this.props}>
+        {this.props.badge &&
+          <Badge
+            size={this.props.badgeSize}
+            position={this.props.badgePosition}
+          >
+            {this.props.badge}
+          </Badge>}
         {React.Children.map(this.props.children, child =>
           React.cloneElement(child, {
             theme: this.props.theme,

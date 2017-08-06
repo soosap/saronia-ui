@@ -4,13 +4,7 @@ import R from 'ramda';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  select,
-} from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
 import { Card } from '.';
@@ -19,8 +13,10 @@ import { Row, Column } from '../../layout';
 import {
   IconSVGPath,
   ThemeEnum,
+  PositionEnum,
   IntensityEnum,
   IntensitySubsetEnum,
+  SizeSubsetEnum,
 } from '../../../lib/constants';
 
 const Wrapper = styled.div`
@@ -30,6 +26,12 @@ const Wrapper = styled.div`
 `;
 
 const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const badgePositionOptions = R.invertObj(
+  R.merge(PositionEnum, { DEFAULT: undefined }),
+);
+const badgeSizeOptions = R.invertObj(
+  R.merge(SizeSubsetEnum, { DEFAULT: undefined }),
+);
 const intensitiySubsetOptions = R.invertObj(
   R.merge(IntensitySubsetEnum, { DEFAULT: undefined }),
 );
@@ -47,6 +49,38 @@ stories
       theme: select('theme', themeOptions, 'undefined'),
       elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
+    });
+
+    return (
+      <Wrapper>
+        <Card {...props} onClick={action('clicked')}>
+          <Card.Header>
+            <Title size="4">New item</Title>
+            <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
+          </Card.Header>
+          <Card.Image src="http://placehold.it/450x200" alt="logo" />
+          <Card.Content>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+          </Card.Content>
+          <Card.Footer>
+            <div>Created 3 days ago...</div>
+            <div>...by soosap</div>
+          </Card.Footer>
+        </Card>
+      </Wrapper>
+    );
+  })
+  .add('w/ badge', () => {
+    const props = R.pickBy(isNotNil, {
+      theme: select('theme', themeOptions, 'undefined'),
+      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
+      badge: text('badge', '99'),
+      badgePosition: select('badgePosition', badgePositionOptions, 'undefined'),
+      badgeSize: select('badgeSize', badgeSizeOptions, 'undefined'),
     });
 
     return (
