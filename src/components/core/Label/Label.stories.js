@@ -7,12 +7,11 @@ import {
   withKnobs,
   text,
   boolean,
-  number,
   select,
 } from '@storybook/addon-knobs';
 
 import {
-  PositionEnum,
+  PositionEdgesOnlyEnum,
   SizeEnum,
   ThemeEnum,
   Color,
@@ -20,9 +19,9 @@ import {
 
 import { Label } from '.';
 
-const positionOptions = R.invertObj(PositionEnum);
+const positionOptions = R.invertObj(PositionEdgesOnlyEnum);
 const sizeOptions = R.invertObj(SizeEnum);
-const typeOptions = R.invertObj(R.merge({ DEFAULT: undefined }, ThemeEnum));
+const themeOptions = R.invertObj(R.merge({ DEFAULT: undefined }, ThemeEnum));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -38,7 +37,7 @@ stories
 
     const props = R.pickBy(isNotNil, {
       size: select('size', sizeOptions, 'medium'),
-      type: select('type', typeOptions, undefined),
+      theme: select('theme', themeOptions, undefined),
       inverted: boolean('inverted', false),
       circular,
       radius: circular ? select('radius', sizeOptions, 'medium') : undefined,
@@ -54,17 +53,17 @@ stories
     const children = text('children', 'MyLabel');
 
     const props = R.pickBy(isNotNil, {
-      arrow: select('arrow', positionOptions, 'top'),
+      arrowPosition: select('arrowPosition', positionOptions, 'top'),
       size: select('size', sizeOptions, 'medium'),
-      type: select('type', typeOptions, undefined),
+      theme: select('theme', themeOptions, undefined),
       inverted: boolean('inverted', false),
     });
 
     const getFlexDirection = R.cond([
-      [R.propEq('arrow', 'top'), R.always('column')],
-      [R.propEq('arrow', 'bottom'), R.always('column-reverse')],
-      [R.propEq('arrow', 'left'), R.always('row')],
-      [R.propEq('arrow', 'right'), R.always('row-reverse')],
+      [R.propEq('arrowPosition', 'top'), R.always('column')],
+      [R.propEq('arrowPosition', 'bottom'), R.always('column-reverse')],
+      [R.propEq('arrowPosition', 'left'), R.always('row')],
+      [R.propEq('arrowPosition', 'right'), R.always('row-reverse')],
     ]);
 
     const Wrapper = styled.div`

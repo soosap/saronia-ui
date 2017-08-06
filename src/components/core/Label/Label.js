@@ -1,8 +1,8 @@
 /* @flow */
-import R from 'ramda';
 import React from 'react';
+import R from 'ramda';
 import styled from 'styled-components';
-import type { Position, Size, Theme } from '../../../lib/types';
+import type { PositionEdgesOnly, Size, Theme } from '../../../lib/types';
 
 import {
   Color,
@@ -18,15 +18,15 @@ type Props =
   | {|
       circular?: false,
       size?: Size,
-      arrow?: Position,
-      type?: Theme,
+      arrowPositionPosition?: PositionEdgesOnly,
+      theme?: Theme,
       inverted?: boolean,
     |}
   | {|
       circular: true,
       radius: Size,
       size?: Size,
-      type?: Theme,
+      theme?: Theme,
       inverted?: boolean,
     |};
 
@@ -38,7 +38,7 @@ const labelBefore = {
   'border-color': 'inherit',
 };
 
-const arrowLabelBefore = {
+const arrowPositionLabelBefore = {
   position: 'absolute',
   content: '""',
   transform: 'rotate(45deg)',
@@ -101,27 +101,27 @@ const bottomArrowBefore = {
 
 const getBackgroundColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', 'secondary')),
+    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
     R.always(Color.WHITE),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', 'primary')),
+    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
     R.always(Color.WHITE),
   ],
   [R.propEq('inverted', true), R.always(Color.WHITE)],
-  [R.propEq('type', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('type', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.propEq('inverted', true), R.always(Color.WHITE)],
   [R.T, R.always(Color.GRAY)],
 ]);
 
 const getBorderColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
     R.always(Color.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
   [R.propEq('inverted', true), R.always(Color.Gray.STRONG)],
@@ -130,25 +130,25 @@ const getBorderColor = R.cond([
 
 const getColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
     R.always(Color.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
   [R.T, R.always(Color.Black.TRANSPARENT)],
 ]);
 
 const getSize = R.cond([
-  [R.propEq('size', 'mini'), R.always(FontSize.MINI)],
-  [R.propEq('size', 'tiny'), R.always(FontSize.TINY)],
-  [R.propEq('size', 'small'), R.always(FontSize.SMALL)],
-  [R.propEq('size', 'medium'), R.always(FontSize.MEDIUM)],
-  [R.propEq('size', 'large'), R.always(FontSize.LARGE)],
-  [R.propEq('size', 'big'), R.always(FontSize.BIG)],
-  [R.propEq('size', 'huge'), R.always(FontSize.HUGE)],
-  [R.propEq('size', 'massive'), R.always(FontSize.MASSIVE)],
+  [R.propEq('size', SizeEnum.MINI), R.always(FontSize.MINI)],
+  [R.propEq('size', SizeEnum.TINY), R.always(FontSize.TINY)],
+  [R.propEq('size', SizeEnum.SMALL), R.always(FontSize.SMALL)],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always(FontSize.MEDIUM)],
+  [R.propEq('size', SizeEnum.LARGE), R.always(FontSize.LARGE)],
+  [R.propEq('size', SizeEnum.BIG), R.always(FontSize.BIG)],
+  [R.propEq('size', SizeEnum.HUGE), R.always(FontSize.HUGE)],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always(FontSize.MASSIVE)],
 ]);
 
 const getWidth = R.cond([
@@ -174,9 +174,9 @@ const Label = styled.span`
   width: ${props => (props.circular ? getWidth : undefined)};
   height: ${props => (props.circular ? getWidth : undefined)};
   margin-left: ${props =>
-    props.arrow === 'left' ? '0.5em !important' : undefined};
+    props.arrowPosition === 'left' ? '0.5em !important' : undefined};
   margin-right: ${props =>
-    props.arrow === 'right' ? '0.5em !important' : undefined};
+    props.arrowPosition === 'right' ? '0.5em !important' : undefined};
   background-color: ${getBackgroundColor};
   color: ${getColor};
   font-size: ${getSize};
@@ -190,27 +190,30 @@ const Label = styled.span`
   line-height: 1em;
   font-weight: bold;
 
-   &:first-child {
-       margin-left: 0;
-   }
-   &:last-child {
-       margin-right: 0;
-   }
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
 
-   ${props => (props.arrow ? 'position: relative' : null)};
-   ${props => (props.arrow === 'left' ? { ...leftArrow } : null)};
-   ${props => (props.arrow === 'right' ? { ...rightArrow } : null)};
-   ${props => (props.arrow === 'top' ? { ...topArrow } : null)};
-   ${props => (props.arrow === 'bottom' ? { ...bottomArrow } : null)};
+  ${props => (props.arrowPosition ? 'position: relative' : null)};
+  ${props => (props.arrowPosition === 'left' ? { ...leftArrow } : null)};
+  ${props => (props.arrowPosition === 'right' ? { ...rightArrow } : null)};
+  ${props => (props.arrowPosition === 'top' ? { ...topArrow } : null)};
+  ${props => (props.arrowPosition === 'bottom' ? { ...bottomArrow } : null)};
 
-   &:before {
-      ${props => (props.arrow ? { ...labelBefore } : null)};
-      ${props => (props.arrow ? { ...arrowLabelBefore } : null)};
-      ${props => (props.arrow === 'left' ? { ...leftArrowBefore } : null)};
-      ${props => (props.arrow === 'right' ? { ...rightArrowBefore } : null)};
-      ${props => (props.arrow === 'top' ? { ...topArrowBefore } : null)};
-      ${props => (props.arrow === 'bottom' ? { ...bottomArrowBefore } : null)};
-   }
+  &:before {
+    ${props => (props.arrowPosition ? { ...labelBefore } : null)};
+    ${props => (props.arrowPosition ? { ...arrowPositionLabelBefore } : null)};
+    ${props =>
+      props.arrowPosition === 'left' ? { ...leftArrowBefore } : null};
+    ${props =>
+      props.arrowPosition === 'right' ? { ...rightArrowBefore } : null};
+    ${props => (props.arrowPosition === 'top' ? { ...topArrowBefore } : null)};
+    ${props =>
+      props.arrowPosition === 'bottom' ? { ...bottomArrowBefore } : null};
+  }
 `;
 
 export default (props: Props) => <Label {...props} />;

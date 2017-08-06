@@ -16,11 +16,11 @@ export {
   Header,
   Footer,
   Segment,
+  Flipper,
   Hero,
   Row,
   Column,
   Navigation,
   Dropdown,
   Menu,
-  Flipper,
 };

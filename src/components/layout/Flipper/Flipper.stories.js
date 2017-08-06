@@ -53,7 +53,7 @@ stories.add('default', () => {
         <Card.Content padded={false}>
           <Flipper padded>
             <Flipper.Front theme={ThemeEnum.PRIMARY} background={Color.PRIMARY}>
-              Front content
+              Front content... hover me!
             </Flipper.Front>
             <Flipper.Back background={Color.SECONDARY}>
               Back content

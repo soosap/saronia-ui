@@ -16,6 +16,8 @@ import type { Theme } from '../../../lib/types';
 type Props = {
   children: Children,
   theme?: Theme,
+  badge?: string | number,
+  badgePosition?: PositionSubset,
 };
 
 const getColor = R.cond([
