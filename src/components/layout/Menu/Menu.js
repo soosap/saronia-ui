@@ -3,11 +3,11 @@ import React, { Children, Component } from 'react';
 import styled from 'styled-components';
 
 import { Color, BORDER_RADIUS } from '../../../lib/constants';
-import type { Breed } from '../../../lib/types';
+import type { Theme } from '../../../lib/types';
 
 type Props = {
   children: Children,
-  breed?: Breed,
+  theme?: Theme,
   vertical?: boolean,
   selectedKeys?: Array<string>,
 };
@@ -97,7 +97,7 @@ class Menu extends Component<DefaultProps, Props, State> {
           React.cloneElement(child, {
             // selectItem: this.handleItemSelection,
             // activeItem: this.state.activeItem,
-            breed: this.props.breed,
+            theme: this.props.theme,
           }),
         )}
       </Wrapper>

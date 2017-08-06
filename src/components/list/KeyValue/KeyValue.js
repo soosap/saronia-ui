@@ -2,12 +2,12 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
 
-import type { Breed } from '../../../lib/types';
+import type { Theme } from '../../../lib/types';
 
 type Props = {
   keyWidth?: string,
   children: Children,
-  breed?: Breed,
+  theme?: Theme,
   compact?: boolean,
   style?: Object,
 };
@@ -19,7 +19,7 @@ const KeyValue = (props: Props) => (
     {React.Children.map(props.children, child =>
       React.cloneElement(child, {
         keyWidth: child.props.keyWidth ? child.props.keyWidth : props.keyWidth,
-        breed: props.breed,
+        theme: props.theme,
         compact: props.compact,
         style: props.style,
       }),

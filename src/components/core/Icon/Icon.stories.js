@@ -12,12 +12,12 @@ import {
 import { action } from '@storybook/addon-actions';
 
 import { Icon } from '.';
-import { IconSVGPath, SizeEnum, BreedEnum } from '../../../lib/constants';
+import { IconSVGPath, SizeEnum, ThemeEnum } from '../../../lib/constants';
 
 const stories = storiesOf('Icon', module);
 const iconOptions = R.invertObj(IconSVGPath);
 const sizeOptions = R.invertObj(SizeEnum);
-const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const typeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),

@@ -4,11 +4,11 @@ import R from 'ramda';
 import styled, { keyframes } from 'styled-components';
 
 import { BORDER_RADIUS, Color } from '../../../lib/constants';
-import type { Breed } from '../../../lib/types';
+import type { Theme } from '../../../lib/types';
 
 type Props = {
   children: Children,
-  breed?: Breed,
+  theme?: Theme,
   vertical?: boolean,
   value?: string,
 };
@@ -16,14 +16,14 @@ type Props = {
 const WIDTH = 20;
 
 const getBackgroundColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('theme', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('theme', 'secondary'), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
 const getCheckmarkColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', 'secondary'), R.always(Color.WHITE)],
+  [R.propEq('theme', 'primary'), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('theme', 'secondary'), R.always(Color.WHITE)],
   [R.T, R.always(Color.WHITE)],
 ]);
 
@@ -121,7 +121,7 @@ const Text = styled.span`
 const Checkbox = (props: Props) =>
   <Wrapper {...props}>
     <CheckboxWrapper>
-      <Input breed={props.breed} value={props.value} type="checkbox" />
+      <Input theme={props.theme} value={props.value} type="checkbox" />
       <Square />
     </CheckboxWrapper>
     <Text>{props.children}</Text>

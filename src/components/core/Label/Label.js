@@ -2,7 +2,7 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import type { Position, Size, Breed } from '../../../lib/types';
+import type { Position, Size, Theme } from '../../../lib/types';
 
 import {
   Color,
@@ -10,7 +10,7 @@ import {
   FontSize,
   BorderWidth,
   BORDER_RADIUS,
-  BreedEnum,
+  ThemeEnum,
   SizeEnum,
 } from '../../../lib/constants';
 
@@ -19,14 +19,14 @@ type Props =
       circular?: false,
       size?: Size,
       arrow?: Position,
-      type?: Breed,
+      type?: Theme,
       inverted?: boolean,
     |}
   | {|
       circular: true,
       radius: Size,
       size?: Size,
-      type?: Breed,
+      type?: Theme,
       inverted?: boolean,
     |};
 
@@ -117,11 +117,11 @@ const getBackgroundColor = R.cond([
 
 const getBorderColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('type', ThemeEnum.PRIMARY)),
     R.always(Color.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('type', ThemeEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
   [R.propEq('inverted', true), R.always(Color.Gray.STRONG)],
@@ -130,11 +130,11 @@ const getBorderColor = R.cond([
 
 const getColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('type', ThemeEnum.PRIMARY)),
     R.always(Color.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('type', BreedEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('type', ThemeEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
   [R.T, R.always(Color.Black.TRANSPARENT)],

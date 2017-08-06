@@ -29,7 +29,7 @@ export type IntensitySubset =
   | 'moderate'
   | 'strong';
 
-export type Breed = 'primary' | 'secondary';
+export type Theme = 'primary' | 'secondary';
 
 
 

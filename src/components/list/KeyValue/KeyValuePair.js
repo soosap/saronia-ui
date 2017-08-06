@@ -3,30 +3,30 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 import { Breakpoint, Color, BORDER_RADIUS } from '../../../lib/constants';
-import type { Breed } from '../../../lib/types';
+import type { Theme } from '../../../lib/types';
 
 type Props = {
   keyWidth?: string,
-  breed?: Breed,
+  theme?: Theme,
   compact?: boolean,
   style?: Object,
 };
 
 const getKeyColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', 'secondary'), R.always(Color.BLACK)],
+  [R.propEq('theme', 'primary'), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('theme', 'secondary'), R.always(Color.BLACK)],
   [R.T, R.always(Color.Creme.LIGHT)],
 ]);
 
 const getKeyBackgroundColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('theme', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('theme', 'secondary'), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.White.TRANSPARENT)],
 ]);
 
 const getKeyBackgroundColorDark = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARK)],
-  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARK)],
+  [R.propEq('theme', 'primary'), R.always(Color.Primary.DARK)],
+  [R.propEq('theme', 'secondary'), R.always(Color.Secondary.DARK)],
   [R.T, R.always(Color.White.TRANSPARENT)],
 ]);
 

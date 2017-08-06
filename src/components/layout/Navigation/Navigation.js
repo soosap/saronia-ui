@@ -3,12 +3,12 @@ import React, { Component, Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { Color, BreedEnum } from '../../../lib/constants';
-import type { Breed } from '../../../lib/types';
+import { Color, ThemeEnum } from '../../../lib/constants';
+import type { Theme } from '../../../lib/types';
 
 type Props = {
   children: Children,
-  breed?: Breed,
+  theme?: Theme,
   sticky?: boolean,
 };
 
@@ -18,33 +18,33 @@ type State = {
 
 type NavigationCollectionProps = {
   children: Children,
-  breed?: Breed,
+  theme?: Theme,
   activeItem: ?string,
   selectItem: (item: string) => void,
 };
 
 type NavigationItemProps = NavigationCollectionProps & {
   name: string,
-  breed?: Breed,
+  theme?: Theme,
   initial?: string,
   onClick: Function,
 };
 
 const getColor = R.cond([
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.WHITE)],
+  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.WHITE)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
 const getBackgroundColor = R.cond([
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.WHITE)],
 ]);
 
 const getBorderColor = R.cond([
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.WHITE)],
+  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.WHITE)],
   [R.T, R.always(Color.PRIMARY)],
 ]);
 
@@ -101,7 +101,7 @@ const WrapperMenu = styled.div`
 
 const NavigationMenu = ({
   children,
-  breed,
+  theme,
   selectItem,
   activeItem,
 }: NavigationCollectionProps) =>
@@ -111,7 +111,7 @@ const NavigationMenu = ({
         return React.cloneElement(child, {
           selectItem,
           activeItem,
-          breed,
+          theme,
         });
       }
 
@@ -167,7 +167,7 @@ class Navigation extends Component<void, Props, State> {
           React.cloneElement(child, {
             selectItem: this.handleItemSelection,
             activeItem: this.state.activeItem,
-            breed: this.props.breed,
+            theme: this.props.theme,
           }),
         )}
       </Wrapper>

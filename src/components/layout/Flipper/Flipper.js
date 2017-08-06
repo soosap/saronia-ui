@@ -4,12 +4,12 @@ import R from 'ramda';
 import styled from 'styled-components';
 
 import { Segment } from '../Segment';
-import type { Breed } from '../../../lib/types';
+import type { Theme } from '../../../lib/types';
 import { getPadding } from '../Segment/Segment';
 
 type Props = {
   children: Children,
-  breed?: Breed,
+  theme?: Theme,
 };
 
 const getTotalHeight = R.cond([[R.T, R.always('210px')]]);
@@ -56,7 +56,7 @@ const BackView = styled(Segment)`
   left: 0;
   width: calc(100% - ${getPadding} - ${getPadding});
   height: calc(${getTotalHeight} - ${getPadding} - ${getPadding});
-  background-color: green;
+  background-color: #EDEAE0;
 
   transform: rotateX(180deg);
 `;
@@ -74,7 +74,7 @@ class Flipper extends Component<void, Props, void> {
 
             return child.type
               ? React.cloneElement(child, {
-                breed: this.props.breed,
+                theme: this.props.theme,
               })
               : child;
           })}

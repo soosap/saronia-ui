@@ -1,7 +1,7 @@
 /* @flow */
-const BreedEnum = Object.freeze({
+const ThemeEnum = Object.freeze({
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
 });
 
-export default BreedEnum;
+export default ThemeEnum;

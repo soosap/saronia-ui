@@ -13,9 +13,9 @@ import centered from '@storybook/addon-centered';
 
 import { KeyValue, KeyValuePair, KeyValuePairs } from '.';
 import { Tags, Tag } from '../../core';
-import { BreedEnum } from '../../../lib/constants';
+import { ThemeEnum } from '../../../lib/constants';
 
-const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -27,7 +27,7 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
     keyWidth: text('keyWidth', '100px'),
-    breed: select('breed', breedOptions, undefined),
+    theme: select('theme', themeOptions, undefined),
     compact: boolean('compact', false),
   });
 

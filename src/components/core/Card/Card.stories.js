@@ -18,7 +18,7 @@ import { Title, Icon } from '../../core';
 import { Row, Column } from '../../layout';
 import {
   IconSVGPath,
-  BreedEnum,
+  ThemeEnum,
   IntensityEnum,
   IntensitySubsetEnum,
 } from '../../../lib/constants';
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
 const intensitiySubsetOptions = R.invertObj(
   R.merge(IntensitySubsetEnum, { DEFAULT: undefined }),
 );
@@ -44,7 +44,7 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
       elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -73,7 +73,7 @@ stories
   })
   .add('w/o image', () => {
     const props = R.pickBy(isNotNil, {
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
       elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -101,7 +101,7 @@ stories
   })
   .add('w/ image on the left', () => {
     const props = R.pickBy(isNotNil, {
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
       elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -134,7 +134,7 @@ stories
   })
   .add('w/ image on the right', () => {
     const props = R.pickBy(isNotNil, {
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
       elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -167,7 +167,7 @@ stories
   })
   .add('w/ image on both sides', () => {
     const props = R.pickBy(isNotNil, {
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
       elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -201,7 +201,7 @@ stories
   })
   .add('w/ nested structure', () => {
     const props = R.pickBy(isNotNil, {
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
       elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });

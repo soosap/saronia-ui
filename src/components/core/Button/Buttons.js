@@ -4,15 +4,15 @@ import R from 'ramda';
 import styled from 'styled-components';
 import {
   BORDER_RADIUS,
-  BreedEnum,
+  ThemeEnum,
   SizeEnum,
   Color,
 } from '../../../lib/constants';
-import type { Breed, Size } from '../../../lib/types';
+import type { Theme, Size } from '../../../lib/types';
 
 type Props = {
   accent?: boolean,
-  breed?: Breed,
+  theme?: Theme,
   children: Children,
   inverted?: boolean,
   size?: Size,
@@ -34,19 +34,19 @@ const getButtonPadding = R.cond([
 
 const getBorderColor = R.cond([
   [
-    R.both(R.propEq('breed', BreedEnum.PRIMARY), R.propEq('inverted', true)),
+    R.both(R.propEq('theme', ThemeEnum.PRIMARY), R.propEq('inverted', true)),
     R.always(Color.PRIMARY),
   ],
   [
-    R.both(R.propEq('breed', BreedEnum.PRIMARY), R.propEq('inverted', false)),
+    R.both(R.propEq('theme', ThemeEnum.PRIMARY), R.propEq('inverted', false)),
     R.always(Color.Black.TRANSPARENT),
   ],
   [
-    R.both(R.propEq('breed', BreedEnum.SECONDARY), R.propEq('inverted', true)),
+    R.both(R.propEq('theme', ThemeEnum.SECONDARY), R.propEq('inverted', true)),
     R.always(Color.SECONDARY),
   ],
   [
-    R.both(R.propEq('breed', BreedEnum.SECONDARY), R.propEq('inverted', false)),
+    R.both(R.propEq('theme', ThemeEnum.SECONDARY), R.propEq('inverted', false)),
     R.always(Color.White.STRONG),
   ],
   [R.T, R.always(Color.BLACK)],
@@ -171,7 +171,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-right: ${props =>
         `${getBorder({
@@ -181,7 +181,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-bottom: ${props =>
         `${getBorder({
@@ -191,7 +191,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-left: ${props =>
         `${getBorder({
@@ -201,7 +201,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
     }
 
@@ -218,7 +218,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-right: ${props =>
         `${getBorder({
@@ -228,7 +228,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-bottom: ${props =>
         `${getBorder({
@@ -238,7 +238,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-left: ${props =>
         `${getBorder({
@@ -248,7 +248,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
     }
 
@@ -265,7 +265,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-right: ${props =>
         `${getBorder({
@@ -275,7 +275,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-bottom: ${props =>
         `${getBorder({
@@ -285,7 +285,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
       border-left: ${props =>
         `${getBorder({
@@ -295,7 +295,7 @@ const Wrapper = styled.div`
           vertical: props.vertical,
         })} ${getBorderColor({
           inverted: props.inverted,
-          breed: props.breed,
+          theme: props.theme,
         })}`};
     }
   }
@@ -306,7 +306,7 @@ const Buttons = (props: Props) =>
     {React.Children.map(props.children, child =>
       React.cloneElement(child, {
         accent: props.accent,
-        breed: props.breed,
+        theme: props.theme,
         inverted: props.inverted,
         size: props.size,
       }),

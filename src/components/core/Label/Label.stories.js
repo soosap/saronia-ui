@@ -14,7 +14,7 @@ import {
 import {
   PositionEnum,
   SizeEnum,
-  BreedEnum,
+  ThemeEnum,
   Color,
 } from '../../../lib/constants';
 
@@ -22,7 +22,7 @@ import { Label } from '.';
 
 const positionOptions = R.invertObj(PositionEnum);
 const sizeOptions = R.invertObj(SizeEnum);
-const typeOptions = R.invertObj(R.merge({ DEFAULT: undefined }, BreedEnum));
+const typeOptions = R.invertObj(R.merge({ DEFAULT: undefined }, ThemeEnum));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),

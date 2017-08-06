@@ -9,9 +9,9 @@ import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
 import { Navigation, Segment } from '../../layout';
 import { Buttons, Button, Link, Logo } from '../../core';
-import { BreedEnum } from '../../../lib/constants';
+import { ThemeEnum } from '../../../lib/constants';
 
-const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -28,14 +28,14 @@ stories
   .add('text', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Menu key="left">
-            {props.breed
+            {props.theme
               ? <Logo black wordmark size="tiny" />
               : <Logo wordmark size="tiny" />}
           </Navigation.Menu>
@@ -61,14 +61,14 @@ stories
   .add('links', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Menu key="left">
-            {props.breed
+            {props.theme
               ? <Logo black wordmark size="tiny" />
               : <Logo wordmark size="tiny" />}
           </Navigation.Menu>
@@ -94,19 +94,19 @@ stories
   .add('buttons', () => {
     const props = R.pickBy(isNotNil, {
       sticky: boolean('sticky', false),
-      breed: select('breed', breedOptions, 'undefined'),
+      theme: select('theme', themeOptions, 'undefined'),
     });
 
     return (
       <Wrapper>
         <Navigation {...props}>
           <Navigation.Menu key="left">
-            {props.breed
+            {props.theme
               ? <Logo black wordmark size="tiny" />
               : <Logo wordmark size="tiny" />}
           </Navigation.Menu>
           <Navigation.Menu key="right">
-            <Buttons breed="secondary">
+            <Buttons theme="secondary">
               <Button>Login</Button>
               <Button>Sign up</Button>
             </Buttons>

@@ -10,8 +10,9 @@ import centered from '@storybook/addon-centered';
 import { Flipper } from '.';
 import { Card, Title, Icon } from '../../core';
 import {
+  Color,
   IconSVGPath,
-  BreedEnum,
+  ThemeEnum,
   IntensitySubsetEnum,
 } from '../../../lib/constants';
 
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
 const intensitiySubsetOptions = R.invertObj(
   R.merge(IntensitySubsetEnum, { DEFAULT: undefined }),
 );
@@ -36,7 +37,7 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
-    breed: select('breed', breedOptions, 'undefined'),
+    theme: select('theme', themeOptions, 'undefined'),
     elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
     interactive: boolean('interactive', false),
   });
@@ -51,7 +52,9 @@ stories.add('default', () => {
         <Card.Image src="http://placehold.it/450x200" alt="logo" />
         <Card.Content padded={false}>
           <Flipper padded>
-            <Flipper.Front>Front content</Flipper.Front>
+            <Flipper.Front theme={Theme.SECONDARY} background={Color.WHITE}>
+              Front content
+            </Flipper.Front>
             <Flipper.Back>Back content</Flipper.Back>
           </Flipper>
         </Card.Content>

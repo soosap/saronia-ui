@@ -2,12 +2,12 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
 
-import type { Breed } from '../../../lib/types';
+import type { Theme } from '../../../lib/types';
 
 type Props = {
   children: Children,
   name: string,
-  breed?: Breed,
+  theme?: Theme,
   inverted?: boolean,
   vertical?: boolean,
 };
@@ -24,7 +24,7 @@ const RadioGroup = (props: Props) => (
     {React.Children.map(props.children, child =>
       React.cloneElement(child, {
         name: props.name,
-        breed: props.breed,
+        theme: props.theme,
         inverted: props.inverted,
         vertical: props.vertical,
       }),

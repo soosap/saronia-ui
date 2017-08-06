@@ -2,25 +2,25 @@
 import styled from 'styled-components';
 import R from 'ramda';
 
-import { Color, BreedEnum } from '../../../lib/constants';
+import { Color, ThemeEnum } from '../../../lib/constants';
 
 const getColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
     R.always(Color.Black.TRANSPARENT),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
     R.always(Color.White.STRONG),
   ],
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARK)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.LIGHT)],
+  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Primary.DARK)],
+  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.Secondary.LIGHT)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
 const getColorHover = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARKER)],
-  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARKER)],
+  [R.propEq('theme', 'primary'), R.always(Color.Primary.DARKER)],
+  [R.propEq('theme', 'secondary'), R.always(Color.Secondary.DARKER)],
   [R.T, R.always(Color.Black.STRONG)],
 ]);
 

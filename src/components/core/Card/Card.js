@@ -11,28 +11,28 @@ import {
   IntensitySubsetEnum,
   IntensityEnum,
 } from '../../../lib/constants';
-import type { Breed } from '../../../lib/types';
+import type { Theme } from '../../../lib/types';
 
 type Props = {
   children: Children,
-  breed?: Breed,
+  theme?: Theme,
 };
 
 const getColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Black.LIGHT)],
-  [R.propEq('breed', 'secondary'), R.always(Color.White.STRONG)],
+  [R.propEq('theme', 'primary'), R.always(Color.Black.LIGHT)],
+  [R.propEq('theme', 'secondary'), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
 const getBorderColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARKER)],
-  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARKER)],
+  [R.propEq('theme', 'primary'), R.always(Color.Primary.DARKER)],
+  [R.propEq('theme', 'secondary'), R.always(Color.Secondary.DARKER)],
   [R.T, R.always(Color.Gray.LIGHT)],
 ]);
 
 const getBackgroundColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('theme', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('theme', 'secondary'), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.White.LIGHT)],
 ]);
 
@@ -235,7 +235,7 @@ class Card extends Component<void, Props, void> {
       <Wrapper {...this.props}>
         {React.Children.map(this.props.children, child =>
           React.cloneElement(child, {
-            breed: this.props.breed,
+            theme: this.props.theme,
           }),
         )}
       </Wrapper>
