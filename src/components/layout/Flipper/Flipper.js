@@ -42,7 +42,6 @@ const FrontView = styled(Segment)`
   left: 0;
   width: calc(100% - ${getPadding} - ${getPadding});
   height: calc(${getTotalHeight} - ${getPadding} - ${getPadding});
-
   z-index: 2;
   /* for firefox 31 */
   transform: rotateX(0deg);
@@ -56,7 +55,6 @@ const BackView = styled(Segment)`
   left: 0;
   width: calc(100% - ${getPadding} - ${getPadding});
   height: calc(${getTotalHeight} - ${getPadding} - ${getPadding});
-  background-color: #EDEAE0;
 
   transform: rotateX(180deg);
 `;
@@ -70,8 +68,6 @@ class Flipper extends Component<void, Props, void> {
       <Wrapper {...this.props}>
         <WrapperInner>
           {React.Children.map(this.props.children, (child) => {
-            console.log('child.type', child.type);
-
             return child.type
               ? React.cloneElement(child, {
                 theme: this.props.theme,

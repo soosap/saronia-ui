@@ -4,11 +4,13 @@ import R from 'ramda';
 import styled from 'styled-components';
 
 import { IntensityEnum, BORDER_RADIUS } from '../../../lib/constants';
-import type { Intensity } from '../../../lib/types';
+import type { Intensity, Theme } from '../../../lib/types';
 
 type Props = {
   padded?: boolean | Intensity,
   outline?: boolean,
+  theme?: Theme,
+  color?: string,
 };
 
 export const getPadding = R.cond([
@@ -22,10 +24,16 @@ export const getPadding = R.cond([
   [R.T, R.always('1.5rem')],
 ]);
 
+const getBackgroundColor = R.cond([
+  [R.prop('background'), R.prop('background')],
+  [R.T, R.always('inherit')],
+]);
+
 const Wrapper = styled.div`
   display: block;
   position: relative;
   padding: ${getPadding};
+  background-color: ${getBackgroundColor};
   font-size: 1rem;
   border-radius: ${props => props.outline ? BORDER_RADIUS : '0'};
   box-shadow: ${props => props.outline ? `

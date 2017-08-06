@@ -31,6 +31,4 @@ export type IntensitySubset =
 
 export type Theme = 'primary' | 'secondary';
 
-
-
 export type Context = 'danger' | 'warning' | 'success' | 'info';

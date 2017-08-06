@@ -52,10 +52,12 @@ stories.add('default', () => {
         <Card.Image src="http://placehold.it/450x200" alt="logo" />
         <Card.Content padded={false}>
           <Flipper padded>
-            <Flipper.Front theme={Theme.SECONDARY} background={Color.WHITE}>
+            <Flipper.Front theme={ThemeEnum.PRIMARY} background={Color.PRIMARY}>
               Front content
             </Flipper.Front>
-            <Flipper.Back>Back content</Flipper.Back>
+            <Flipper.Back background={Color.SECONDARY}>
+              Back content
+            </Flipper.Back>
           </Flipper>
         </Card.Content>
         <Card.Footer>
