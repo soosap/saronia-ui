@@ -15,7 +15,7 @@ import centered from '@storybook/addon-centered';
 
 import { Card } from '.';
 import { Title, Icon } from '../../core';
-import { Row, Column, Segment } from '../../layout';
+import { Row, Column } from '../../layout';
 import {
   IconSVGPath,
   BreedEnum,
