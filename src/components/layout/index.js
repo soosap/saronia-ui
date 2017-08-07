@@ -4,6 +4,7 @@ import { Footer } from './Footer';
 import { Header } from './Header';
 import { Hero } from './Hero';
 import { Segment } from './Segment';
+import { Flipper } from './Flipper';
 import { Row } from './Row';
 import { Column } from './Column';
 import { Navigation } from './Navigation';
@@ -15,6 +16,7 @@ export {
   Header,
   Footer,
   Segment,
+  Flipper,
   Hero,
   Row,
   Column,

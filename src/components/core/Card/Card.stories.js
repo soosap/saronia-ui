@@ -4,23 +4,19 @@ import R from 'ramda';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  select,
-} from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
 import { Card } from '.';
 import { Title, Icon } from '../../core';
-import { Row, Column, Segment } from '../../layout';
+import { Row, Column } from '../../layout';
 import {
   IconSVGPath,
   BreedEnum,
+  PositionEnum,
   IntensityEnum,
   IntensitySubsetEnum,
+  SizeEnum,
 } from '../../../lib/constants';
 
 const Wrapper = styled.div`
@@ -30,6 +26,10 @@ const Wrapper = styled.div`
 `;
 
 const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
+const badgePositionOptions = R.invertObj(
+  R.merge(PositionEnum, { DEFAULT: undefined }),
+);
+const badgeSizeOptions = R.invertObj(R.merge(SizeEnum, { DEFAULT: undefined }));
 const intensitiySubsetOptions = R.invertObj(
   R.merge(IntensitySubsetEnum, { DEFAULT: undefined }),
 );
@@ -45,7 +45,8 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
-      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      inverted: boolean('inverted', false),
+      elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
 
@@ -71,10 +72,93 @@ stories
       </Wrapper>
     );
   })
+  .add('w/ badge', () => {
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
+      elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
+      badge: text('badge', '99') || true,
+      badgePosition: select(
+        'badgePosition',
+        badgePositionOptions,
+        PositionEnum.TOP_CENTER,
+      ),
+      badgeSize: select('badgeSize', badgeSizeOptions, 'undefined'),
+    });
+
+    return (
+      <Wrapper>
+        <Card {...props} onClick={action('clicked')}>
+          <Card.Header>
+            <Title size="4">New item</Title>
+            <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
+          </Card.Header>
+          <Card.Image src="http://placehold.it/450x200" alt="logo" />
+          <Card.Content>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+          </Card.Content>
+          <Card.Footer>
+            <div>Created 3 days ago...</div>
+            <div>...by soosap</div>
+          </Card.Footer>
+        </Card>
+      </Wrapper>
+    );
+  })
+  .add('w/ badge component', () => {
+    const props = R.pickBy(isNotNil, {
+      breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
+      elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
+      interactive: boolean('interactive', false),
+      badgePosition: select('badgePosition', badgePositionOptions, 'undefined'),
+      badgeSize: select('badgeSize', badgeSizeOptions, 'undefined'),
+    });
+
+    const BadgeWrapper = styled.div`
+      display: flex;
+      flex-direction: column;
+      line-height: 18px;
+    `;
+
+    const Badge = (
+      <BadgeWrapper>
+        <div style={{ fontSize: '1.2rem', marginTop: '5px' }}>99</div>
+        <div style={{ fontSize: 12 }}>CX</div>
+      </BadgeWrapper>
+    );
+
+    return (
+      <Wrapper>
+        <Card {...props} badge={Badge}>
+          <Card.Header>
+            <Title size="4">New item</Title>
+            <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
+          </Card.Header>
+          <Card.Image src="http://placehold.it/450x200" alt="logo" />
+          <Card.Content>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+          </Card.Content>
+          <Card.Footer>
+            <div>Created 3 days ago...</div>
+            <div>...by soosap</div>
+          </Card.Footer>
+        </Card>
+      </Wrapper>
+    );
+  })
   .add('w/o image', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
-      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      inverted: boolean('inverted', false),
+      elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
 
@@ -102,7 +186,8 @@ stories
   .add('w/ image on the left', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
-      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      inverted: boolean('inverted', false),
+      elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
 
@@ -135,7 +220,8 @@ stories
   .add('w/ image on the right', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
-      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      inverted: boolean('inverted', false),
+      elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
 
@@ -168,7 +254,8 @@ stories
   .add('w/ image on both sides', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
-      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      inverted: boolean('inverted', false),
+      elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
 
@@ -202,7 +289,8 @@ stories
   .add('w/ nested structure', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
-      elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
+      inverted: boolean('inverted', false),
+      elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
 

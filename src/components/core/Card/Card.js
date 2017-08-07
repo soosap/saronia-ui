@@ -1,38 +1,60 @@
 /* @flow */
-import React, { Component, Children } from 'react';
+import React, { Component, Children, Element } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
 import { Segment } from '../../layout';
+import Badge from './Badge';
 
 import {
   Color,
   BORDER_RADIUS,
   IntensitySubsetEnum,
   IntensityEnum,
+  BreedEnum,
 } from '../../../lib/constants';
-import type { Breed } from '../../../lib/types';
+import type {
+  Breed,
+  Position,
+  Size,
+  IntensitySubset,
+} from '../../../lib/types';
 
 type Props = {
   children: Children,
   breed?: Breed,
+  inverted?: boolean,
+  elevation?: IntensitySubset,
+  interactive?: boolean,
+  badge?: boolean | string | number | Element<*>,
+  badgePosition?: Position,
+  badgeSize?: Size,
 };
 
 const getColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Black.LIGHT)],
-  [R.propEq('breed', 'secondary'), R.always(Color.White.STRONG)],
+  [R.propEq('inverted', true), R.always(Color.BLACK)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.LIGHT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
-const getBorderColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARKER)],
-  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARKER)],
-  [R.T, R.always(Color.Gray.LIGHT)],
+const getBorder = R.cond([
+  [
+    R.propEq('breed', BreedEnum.PRIMARY),
+    R.always(`2px solid ${Color.Primary.DARKER}`),
+  ],
+  [
+    R.propEq('breed', BreedEnum.SECONDARY),
+    R.always(`2px solid ${Color.Secondary.DARKER}`),
+  ],
+  [R.propEq('inverted', true), R.always(`2px solid ${Color.Gray.LIGHT}`)],
+  [R.T, R.always(`1px solid ${Color.Gray.LIGHT}`)],
 ]);
 
 const getBackgroundColor = R.cond([
-  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('inverted', true), R.always(Color.White.LIGHT)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.White.LIGHT)],
 ]);
 
@@ -54,7 +76,7 @@ const BoxShadow = {
   `,
 };
 
-const getBoxShadow = R.cond([
+export const getBoxShadow = R.cond([
   [
     R.propEq('elevation', IntensitySubsetEnum.LIGHT),
     R.always(BoxShadow[IntensitySubsetEnum.LIGHT]),
@@ -76,7 +98,7 @@ const getBoxShadow = R.cond([
   ],
 ]);
 
-const getInteractiveBoxShadow = R.ifElse(
+export const getInteractiveBoxShadow = R.ifElse(
   R.propEq('interactive', true),
   R.cond([
     [
@@ -102,7 +124,7 @@ const getInteractiveBoxShadow = R.ifElse(
 |-----------------------------------------------------------
 */
 const CardFooterWrapper = styled.footer`
-  border-top: 1px solid ${getBorderColor};
+  border-top: ${getBorder};
   display: flex;
   justify-content: space-between;
 
@@ -144,6 +166,7 @@ const CardHeaderWrapper = styled.header`
   .subtitle {
     padding: .5rem .75rem .3rem .75rem;
     margin-bottom: 0 !important;
+    color: ${getColor};
   }
 `;
 
@@ -163,15 +186,16 @@ const CardContent = styled(Segment).attrs({
 | Card
 |-----------------------------------------------------------
 */
-const Wrapper = styled.div`
+const Wrapper = styled(Segment).attrs({ padded: false })`
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
 
   color: ${getColor};
   background-color: ${getBackgroundColor};
   border-radius: ${BORDER_RADIUS};
   height: 100%;
+  border: ${props => props.inverted && getBorder(props)};
 
   box-shadow: ${getBoxShadow};
   transition: transform 200ms cubic-bezier(0.4, 1, 0.75, 0.9),
@@ -233,9 +257,19 @@ class Card extends Component<void, Props, void> {
   render() {
     return (
       <Wrapper {...this.props}>
+        {this.props.badge &&
+          <Badge
+            size={this.props.badgeSize}
+            position={this.props.badgePosition}
+            breed={this.props.breed}
+            inverted={this.props.inverted}
+          >
+            {this.props.badge}
+          </Badge>}
         {React.Children.map(this.props.children, child =>
           React.cloneElement(child, {
             breed: this.props.breed,
+            inverted: this.props.inverted,
           }),
         )}
       </Wrapper>

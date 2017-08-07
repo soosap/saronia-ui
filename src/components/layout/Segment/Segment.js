@@ -4,28 +4,36 @@ import R from 'ramda';
 import styled from 'styled-components';
 
 import { IntensityEnum, BORDER_RADIUS } from '../../../lib/constants';
-import type { Intensity } from '../../../lib/types';
+import type { Intensity, Breed } from '../../../lib/types';
 
 type Props = {
   padded?: boolean | Intensity,
   outline?: boolean,
+  breed?: Breed,
+  color?: string,
 };
 
-const getPadding = R.cond([
+export const getPadding = R.cond([
   [R.propEq('padded', IntensityEnum.MINOR), R.always('.5rem')],
   [R.propEq('padded', IntensityEnum.LIGHT), R.always('.75rem')],
   [R.propEq('padded', IntensityEnum.MODERATE), R.always('1rem')],
   [R.propEq('padded', IntensityEnum.STRONG), R.always('1.5rem')],
   [R.propEq('padded', IntensityEnum.MAJOR), R.always('2rem')],
   [R.propEq('padded', IntensityEnum.GREAT), R.always('3rem')],
-  [R.propEq('padded', false), R.always('0')],
+  [R.propEq('padded', false), R.always('0rem')],
   [R.T, R.always('1.5rem')],
+]);
+
+const getBackgroundColor = R.cond([
+  [R.prop('background'), R.prop('background')],
+  [R.T, R.always('inherit')],
 ]);
 
 const Wrapper = styled.div`
   display: block;
   position: relative;
   padding: ${getPadding};
+  background-color: ${getBackgroundColor};
   font-size: 1rem;
   border-radius: ${props => props.outline ? BORDER_RADIUS : '0'};
   box-shadow: ${props => props.outline ? `
