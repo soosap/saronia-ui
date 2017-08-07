@@ -23,6 +23,7 @@ import type {
 type Props = {
   children: Children,
   breed?: Breed,
+  inverted?: boolean,
   elevation?: IntensitySubset,
   interactive?: boolean,
   badge?: boolean | string | number | Element<*>,
@@ -36,10 +37,16 @@ const getColor = R.cond([
   [R.T, R.always(Color.BLACK)],
 ]);
 
-const getBorderColor = R.cond([
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARKER)],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
-  [R.T, R.always(Color.Gray.LIGHT)],
+const getBorder = R.cond([
+  [
+    R.propEq('breed', BreedEnum.PRIMARY),
+    R.always(`2px solid ${Color.Primary.DARKER}`),
+  ],
+  [
+    R.propEq('breed', BreedEnum.SECONDARY),
+    R.always(`2px solid ${Color.Secondary.DARKER}`),
+  ],
+  [R.T, R.always(`1px solid ${Color.Gray.LIGHT}`)],
 ]);
 
 const getBackgroundColor = R.cond([
@@ -114,7 +121,7 @@ export const getInteractiveBoxShadow = R.ifElse(
 |-----------------------------------------------------------
 */
 const CardFooterWrapper = styled.footer`
-  border-top: 1px solid ${getBorderColor};
+  border-top: ${getBorder};
   display: flex;
   justify-content: space-between;
 
@@ -249,14 +256,15 @@ class Card extends Component<void, Props, void> {
           <Badge
             size={this.props.badgeSize}
             position={this.props.badgePosition}
-            elevation={this.props.elevation}
-            interactive={this.props.interactive}
+            breed={this.props.breed}
+            inverted={this.props.inverted}
           >
             {this.props.badge}
           </Badge>}
         {React.Children.map(this.props.children, child =>
           React.cloneElement(child, {
-            // breed: this.props.breed || undefined,
+            breed: this.props.breed,
+            inverted: this.props.inverted,
           }),
         )}
       </Wrapper>

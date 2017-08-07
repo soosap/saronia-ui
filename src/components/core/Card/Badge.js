@@ -97,15 +97,31 @@ const getWidth = R.cond([
 ]);
 
 const getBackgroundColor = R.cond([
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always('hey')],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always('hey')],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.White.STRONG)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.WHITE)],
 ]);
 
-const getBorderColor = R.cond([
-  [R.propEq('breed', BreedEnum.PRIMARY), R.always('hey')],
-  [R.propEq('breed', BreedEnum.SECONDARY), R.always('hey')],
-  [R.T, R.always(Color.Gray.LIGHT)],
+const getColor = R.cond([
+  [R.T, R.always(Color.BLACK)],
+]);
+
+const getBorder = R.cond([
+  [
+    R.propEq('breed', BreedEnum.PRIMARY),
+    R.always(`2px solid ${Color.Primary.DARKER}`),
+  ],
+  [
+    R.propEq('breed', BreedEnum.SECONDARY),
+    R.always(`2px solid ${Color.Secondary.DARKER}`),
+  ],
+  [R.T, R.always(`1px solid ${Color.Gray.LIGHT}`)],
+]);
+
+const getBorderRadiusCorrection = R.cond([
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always('4px')],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always('4px')],
+  [R.T, R.always('2px')],
 ]);
 
 const Wrapper = styled.div`
@@ -118,9 +134,10 @@ const Wrapper = styled.div`
 
   width: ${getWidth};
   height: ${getWidth};
+  color: ${getColor};
   background-color: ${getBackgroundColor};
-  border: 1px solid ${getBorderColor};
-  border-radius: calc((${getWidth} + 2px)/2);
+  border: ${getBorder};
+  border-radius: calc((${getWidth} + ${getBorderRadiusCorrection})/2);
 
   display: flex;
   justify-content: center;
