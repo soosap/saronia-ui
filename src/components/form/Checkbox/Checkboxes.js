@@ -2,12 +2,12 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
 
-import type { Theme } from '../../../lib/types';
+import type { Breed } from '../../../lib/types';
 
 type Props = {
   children: Children,
   vertical?: boolean,
-  theme?: Theme,
+  breed?: Breed,
 };
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ const Checkboxes = (props: Props) => (
   <Wrapper {...props}>
     {React.Children.map(props.children, child =>
       React.cloneElement(child, {
-        theme: props.theme,
+        breed: props.breed,
         vertical: props.vertical,
       }),
     )}

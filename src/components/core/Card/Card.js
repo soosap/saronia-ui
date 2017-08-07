@@ -11,40 +11,40 @@ import {
   BORDER_RADIUS,
   IntensitySubsetEnum,
   IntensityEnum,
-  ThemeEnum,
+  BreedEnum,
 } from '../../../lib/constants';
 import type {
-  Theme,
+  Breed,
   Position,
-  SizeSubset,
+  Size,
   IntensitySubset,
 } from '../../../lib/types';
 
 type Props = {
   children: Children,
-  theme?: Theme,
+  breed?: Breed,
   elevation?: IntensitySubset,
   interactive?: boolean,
-  badge?: string | number | Element<*>,
+  badge?: boolean | string | number | Element<*>,
   badgePosition?: Position,
-  badgeSize?: SizeSubset,
+  badgeSize?: Size,
 };
 
 const getColor = R.cond([
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Black.LIGHT)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.White.STRONG)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.LIGHT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.BLACK)],
 ]);
 
 const getBorderColor = R.cond([
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Primary.DARKER)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARKER)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
   [R.T, R.always(Color.Gray.LIGHT)],
 ]);
 
 const getBackgroundColor = R.cond([
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.White.LIGHT)],
 ]);
 
@@ -66,7 +66,7 @@ const BoxShadow = {
   `,
 };
 
-const getBoxShadow = R.cond([
+export const getBoxShadow = R.cond([
   [
     R.propEq('elevation', IntensitySubsetEnum.LIGHT),
     R.always(BoxShadow[IntensitySubsetEnum.LIGHT]),
@@ -88,7 +88,7 @@ const getBoxShadow = R.cond([
   ],
 ]);
 
-const getInteractiveBoxShadow = R.ifElse(
+export const getInteractiveBoxShadow = R.ifElse(
   R.propEq('interactive', true),
   R.cond([
     [
@@ -249,12 +249,14 @@ class Card extends Component<void, Props, void> {
           <Badge
             size={this.props.badgeSize}
             position={this.props.badgePosition}
+            elevation={this.props.elevation}
+            interactive={this.props.interactive}
           >
             {this.props.badge}
           </Badge>}
         {React.Children.map(this.props.children, child =>
           React.cloneElement(child, {
-            theme: this.props.theme,
+            // breed: this.props.breed || undefined,
           }),
         )}
       </Wrapper>

@@ -4,12 +4,12 @@ import R from 'ramda';
 import styled from 'styled-components';
 
 import { Segment } from '../Segment';
-import type { Theme } from '../../../lib/types';
+import type { Breed } from '../../../lib/types';
 import { getPadding } from '../Segment/Segment';
 
 type Props = {
   children: Children,
-  theme?: Theme,
+  breed?: Breed,
 };
 
 const getTotalHeight = R.cond([[R.T, R.always('210px')]]);
@@ -70,7 +70,7 @@ class Flipper extends Component<void, Props, void> {
           {React.Children.map(this.props.children, (child) => {
             return child.type
               ? React.cloneElement(child, {
-                theme: this.props.theme,
+                breed: this.props.breed,
               })
               : child;
           })}

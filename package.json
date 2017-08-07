@@ -24,7 +24,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-overlays": "^0.7.0",
-    "styled-components": "^2.0.0"
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.0.1",

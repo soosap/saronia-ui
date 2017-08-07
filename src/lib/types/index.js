@@ -39,6 +39,6 @@ export type Intensity =
 
 export type IntensitySubset = 'light' | 'moderate' | 'strong';
 
-export type Theme = 'primary' | 'secondary';
+export type Breed = 'primary' | 'secondary';
 
 export type Context = 'danger' | 'warning' | 'success' | 'info';

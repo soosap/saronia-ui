@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Children } from 'react';
 import R from 'ramda';
-import type { Theme, Size } from '../../../lib/types';
+import type { Breed, Size } from '../../../lib/types';
 
 import RawButton from './RawButton';
 import IconButton from './IconButton';
@@ -16,7 +16,7 @@ export type DefaultButtonProps = {
   onClick?: Function,
   pop?: 'active' | 'focus' | 'hover',
   size?: Size,
-  theme?: Theme,
+  breed?: Breed,
   children?: string | Children,
 };
 
@@ -29,7 +29,7 @@ export type CircularButtonProps = {
   pop?: 'active' | 'focus' | 'hover',
   radius: Size,
   size?: Size,
-  theme?: Theme,
+  breed?: Breed,
   children?: string | Children,
 };
 
@@ -55,7 +55,7 @@ export default (props: Props) =>
               React.isValidElement(child)
                 ? React.cloneElement(child, {
                   accent: props.accent,
-                  theme: props.theme,
+                  breed: props.breed,
                   inverted: !props.inverted,
                   size: props.size,
                 })

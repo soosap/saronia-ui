@@ -13,9 +13,9 @@ import {
 import centered from '@storybook/addon-centered';
 
 import { Checkbox, Checkboxes } from '.';
-import { ThemeEnum } from '../../../lib/constants';
+import { BreedEnum } from '../../../lib/constants';
 
-const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -26,7 +26,7 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
-    theme: select('theme', themeOptions, 'undefined'),
+    breed: select('breed', breedOptions, 'undefined'),
     vertical: boolean('vertical', true),
   });
 

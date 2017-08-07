@@ -4,15 +4,15 @@ import R from 'ramda';
 import styled, { keyframes } from 'styled-components';
 
 import { Color } from '../../../lib/constants';
-import type { Theme } from '../../../lib/types';
+import type { Breed } from '../../../lib/types';
 
 type Props = {
-  theme: Theme,
+  breed: Breed,
 };
 
 const getBackgroundColor = R.cond([
-  [R.propEq('theme', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('theme', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.BLACK)],
 ]);
 

@@ -16,11 +16,11 @@ import { Link } from '../Link';
 import { Icon } from '../Icon';
 import {
   SizeEnum,
-  ThemeEnum,
+  BreedEnum,
   IconSVGPath,
 } from '../../../lib/constants';
 
-const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const iconOptions = R.invertObj(IconSVGPath);
 const popOptions = R.invertObj({
   ACTIVE: 'active',
@@ -49,7 +49,7 @@ stories
         ? select('radius', R.invertObj(SizeEnum), 'large')
         : undefined,
       pop: select('pop', popOptions, undefined),
-      theme: select('theme', themeOptions, 'primary'),
+      breed: select('breed', breedOptions, 'primary'),
     });
 
     return (
@@ -65,7 +65,7 @@ stories
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(SizeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
-      theme: select('theme', themeOptions, 'primary'),
+      breed: select('breed', breedOptions, 'primary'),
     });
 
     return (
@@ -83,7 +83,7 @@ stories
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(SizeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
-      theme: select('theme', themeOptions, 'primary'),
+      breed: select('breed', breedOptions, 'primary'),
     });
 
     return (
@@ -97,7 +97,7 @@ stories
       inverted: boolean('inverted', false),
       size: select('size', R.invertObj(SizeEnum), 'medium'),
       pop: select('pop', popOptions, undefined),
-      theme: select('theme', themeOptions, 'primary'),
+      breed: select('breed', breedOptions, 'primary'),
     });
 
     return (
@@ -119,7 +119,7 @@ stories
         ? select('radius', R.invertObj(SizeEnum), SizeEnum.BIG)
         : undefined,
       pop: select('pop', popOptions, undefined),
-      theme: select('theme', themeOptions, 'secondary'),
+      breed: select('breed', breedOptions, 'secondary'),
     });
 
     return (

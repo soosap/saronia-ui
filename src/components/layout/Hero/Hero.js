@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 import { NAVIGATION_HEIGHT } from '../Navigation/Navigation';
 import { Color, Font, SizeSubsetEnum } from '../../../lib/constants';
-import type { Theme, SizeSubset } from '../../../lib/types';
+import type { Breed, SizeSubset } from '../../../lib/types';
 
 type Props = {
-  theme?: Theme,
+  breed?: Breed,
   size?: SizeSubset,
   sticky?: boolean,
   children: Children,
@@ -16,8 +16,8 @@ type Props = {
 };
 
 const getBackgroundColor = R.cond([
-  [R.propEq('theme', 'primary'), R.always(Color.PRIMARY)],
-  [R.propEq('theme', 'secondary'), R.always(Color.SECONDARY)],
+  [R.propEq('breed', 'primary'), R.always(Color.PRIMARY)],
+  [R.propEq('breed', 'secondary'), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.White.STRONG)],
 ]);
 

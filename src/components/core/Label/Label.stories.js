@@ -13,7 +13,7 @@ import {
 import {
   PositionEdgesOnlyEnum,
   SizeEnum,
-  ThemeEnum,
+  BreedEnum,
   Color,
 } from '../../../lib/constants';
 
@@ -21,7 +21,7 @@ import { Label } from '.';
 
 const positionOptions = R.invertObj(PositionEdgesOnlyEnum);
 const sizeOptions = R.invertObj(SizeEnum);
-const themeOptions = R.invertObj(R.merge({ DEFAULT: undefined }, ThemeEnum));
+const breedOptions = R.invertObj(R.merge({ DEFAULT: undefined }, BreedEnum));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -37,7 +37,7 @@ stories
 
     const props = R.pickBy(isNotNil, {
       size: select('size', sizeOptions, 'medium'),
-      theme: select('theme', themeOptions, undefined),
+      breed: select('breed', breedOptions, undefined),
       inverted: boolean('inverted', false),
       circular,
       radius: circular ? select('radius', sizeOptions, 'medium') : undefined,
@@ -55,7 +55,7 @@ stories
     const props = R.pickBy(isNotNil, {
       arrowPosition: select('arrowPosition', positionOptions, 'top'),
       size: select('size', sizeOptions, 'medium'),
-      theme: select('theme', themeOptions, undefined),
+      breed: select('breed', breedOptions, undefined),
       inverted: boolean('inverted', false),
     });
 

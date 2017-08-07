@@ -2,13 +2,13 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
 import { Breakpoint } from '../../../lib/constants';
-import type { Theme } from '../../../lib/types';
+import type { Breed } from '../../../lib/types';
 
 type Props = {
   pairs?: number,
   keyWidth?: string,
   children: Children,
-  theme?: Theme,
+  breed?: Breed,
   compact?: boolean,
   style?: Object,
 };
@@ -32,7 +32,7 @@ const KeyValuePairs = (props: Props) => (
     {React.Children.map(props.children, child =>
       React.cloneElement(child, {
         keyWidth: child.props.keyWidth ? child.props.keyWidth : props.keyWidth,
-        theme: props.theme,
+        breed: props.breed,
         compact: props.compact,
         style: props.style,
       }),

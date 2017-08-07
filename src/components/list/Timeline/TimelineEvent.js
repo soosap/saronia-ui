@@ -2,8 +2,8 @@
 import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
-import { Color, FontSize, ThemeEnum, SizeEnum } from '../../../lib/constants';
-import type { Size, Theme } from '../../../lib/types';
+import { Color, FontSize, BreedEnum, SizeEnum } from '../../../lib/constants';
+import type { Size, Breed } from '../../../lib/types';
 
 type Props = {
   children?: any,
@@ -11,12 +11,12 @@ type Props = {
   labelBottom?: string,
   labelTop?: string,
   marginLeft?: string,
-  type?: Theme,
+  type?: Breed,
 };
 
 const getColor = R.cond([
-  [R.propEq('type', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
-  [R.propEq('type', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.Gray.STRONG)],
 ]);
 

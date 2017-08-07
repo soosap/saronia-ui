@@ -3,13 +3,13 @@ import R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
 import { Color } from '../../../lib/constants';
-import type { Size, Theme } from '../../../lib/types';
+import type { Size, Breed } from '../../../lib/types';
 
 type Props = {
   children: any,
   gap?: Size,
   marginLeft?: string,
-  type?: Theme,
+  type?: Breed,
 };
 
 const Wrapper = styled.ul`

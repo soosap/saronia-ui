@@ -12,12 +12,12 @@ import {
 } from '@storybook/addon-knobs';
 
 import { Timeline, TimelineEvent } from '.';
-import { SizeEnum, ThemeEnum } from '../../../lib/constants';
+import { SizeEnum, BreedEnum } from '../../../lib/constants';
 
 const stories = storiesOf('Timeline', module);
 stories.addDecorator(withKnobs);
 
-const typeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const typeOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),

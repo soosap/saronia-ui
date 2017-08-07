@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {
   Border,
   BORDER_RADIUS,
-  ThemeEnum,
+  BreedEnum,
   Color,
   Font,
   FontSize,
@@ -14,32 +14,32 @@ import {
 
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always('transparent')],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.Gray.LIGHT)],
 ]);
 
 export const getBackgroundColorHover = R.cond([
   [R.propEq('inverted', true), R.always(Color.White.MODERATE)],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Primary.DARK)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.Secondary.DARK)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARK)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARK)],
   [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 
 export const getBackgroundColorActive = R.cond([
   [R.propEq('inverted', true), R.always(Color.White.STRONG)],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Primary.DARKER)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARKER)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARKER)],
   [R.T, R.always(Color.Gray.STRONG)],
 ]);
 
 const getBorder = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Border.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Border.SECONDARY),
   ],
   [R.propEq('inverted', true), R.always(Border.DEFAULT)],
@@ -48,44 +48,44 @@ const getBorder = R.cond([
 
 export const getColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.Primary.DARK),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.Secondary.LIGHT),
   ],
   [R.propEq('inverted', true), R.always(Color.BLACK)],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.White.STRONG)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.Black.TRANSPARENT)],
 ]);
 
 export const getColorHover = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.Primary.DARKER),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.Secondary.DARKER),
   ],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.White.STRONG)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.Black.MODERATE)],
 ]);
 
 export const getColorActive = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.Primary.DARKER),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.White.STRONG)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.Black.MODERATE)],
 ]);
 

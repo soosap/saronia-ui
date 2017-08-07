@@ -14,7 +14,7 @@ import {
 
 import { Title, Subtitle, Image } from '../../core';
 import { Hero, Segment as RawSegment, Navigation } from '../../layout';
-import { ThemeEnum, SizeSubsetEnum } from '../../../lib/constants';
+import { BreedEnum, SizeSubsetEnum } from '../../../lib/constants';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -24,7 +24,7 @@ const Segment = styled(RawSegment)`
   background-color: white;
 `;
 
-const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const sizeOptions = R.invertObj(
   R.merge(SizeSubsetEnum, { DEFAULT: undefined }),
 );
@@ -40,7 +40,7 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      theme: select('theme', themeOptions, 'undefined'),
+      breed: select('breed', breedOptions, 'undefined'),
       size: select('size', sizeOptions, 'undefined'),
       sticky: boolean('sticky', false),
     });
@@ -63,7 +63,7 @@ stories
   })
   .add('w/ navigation', () => {
     const props = R.pickBy(isNotNil, {
-      theme: select('theme', themeOptions, 'undefined'),
+      breed: select('breed', breedOptions, 'undefined'),
       size: select('size', sizeOptions, 'undefined'),
       sticky: boolean('sticky', false),
       hasNavigation: true,

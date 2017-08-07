@@ -6,9 +6,9 @@ import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
 import { Radio, RadioGroup } from '.';
-import { ThemeEnum } from '../../../lib/constants';
+import { BreedEnum } from '../../../lib/constants';
 
-const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -19,7 +19,7 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
-    theme: select('theme', themeOptions, 'undefined'),
+    breed: select('breed', breedOptions, 'undefined'),
     inverted: boolean('inverted', false),
     vertical: boolean('vertical', true),
   });

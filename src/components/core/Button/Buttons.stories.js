@@ -15,9 +15,9 @@ import centered from '@storybook/addon-centered';
 
 import { Buttons, Button } from '.';
 import { Link } from '../Link';
-import { ThemeEnum, SizeEnum } from '../../../lib/constants';
+import { BreedEnum, SizeEnum } from '../../../lib/constants';
 
-const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -30,7 +30,7 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      theme: select('theme', themeOptions, 'primary'),
+      breed: select('breed', breedOptions, 'primary'),
       inverted: boolean('inverted', true),
       vertical: boolean('vertical', false),
       size: select('size', R.invertObj(SizeEnum), 'medium'),
@@ -47,7 +47,7 @@ stories
   .add('two items only', () => {
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      theme: select('theme', themeOptions, 'primary'),
+      breed: select('breed', breedOptions, 'primary'),
       inverted: boolean('inverted', true),
       vertical: boolean('vertical', false),
       size: select('size', R.invertObj(SizeEnum), 'medium'),
@@ -68,14 +68,14 @@ stories
     |
     | Currently, all props are passed to the underlying HTML
     | element. This will throw an error as an <a> tag receives
-    | unknown props 'accent', 'theme', etc. There is currently
+    | unknown props 'accent', 'breed', etc. There is currently
     | no official solution via styled-components. It's being
     | worked on and it'll probably land in v3.0.
     |
     */
     const props = R.pickBy(isNotNil, {
       accent: boolean('accent', false),
-      theme: select('theme', themeOptions, 'primary'),
+      breed: select('breed', breedOptions, 'primary'),
       inverted: boolean('inverted', true),
       vertical: boolean('vertical', false),
       size: select('size', R.invertObj(SizeEnum), 'medium'),

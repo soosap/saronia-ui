@@ -2,7 +2,7 @@
 import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
-import type { PositionEdgesOnly, Size, Theme } from '../../../lib/types';
+import type { PositionEdgesOnly, Size, Breed } from '../../../lib/types';
 
 import {
   Color,
@@ -10,7 +10,7 @@ import {
   FontSize,
   BorderWidth,
   BORDER_RADIUS,
-  ThemeEnum,
+  BreedEnum,
   SizeEnum,
 } from '../../../lib/constants';
 
@@ -19,14 +19,14 @@ type Props =
       circular?: false,
       size?: Size,
       arrowPositionPosition?: PositionEdgesOnly,
-      theme?: Theme,
+      breed?: Breed,
       inverted?: boolean,
     |}
   | {|
       circular: true,
       radius: Size,
       size?: Size,
-      theme?: Theme,
+      breed?: Breed,
       inverted?: boolean,
     |};
 
@@ -101,27 +101,27 @@ const bottomArrowBefore = {
 
 const getBackgroundColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.WHITE),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.WHITE),
   ],
   [R.propEq('inverted', true), R.always(Color.WHITE)],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.propEq('inverted', true), R.always(Color.WHITE)],
   [R.T, R.always(Color.GRAY)],
 ]);
 
 const getBorderColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
   [R.propEq('inverted', true), R.always(Color.Gray.STRONG)],
@@ -130,11 +130,11 @@ const getBorderColor = R.cond([
 
 const getColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
   [R.T, R.always(Color.Black.TRANSPARENT)],

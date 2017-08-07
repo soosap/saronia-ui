@@ -1,5 +1,5 @@
 /* @flow */
-import ThemeEnum from './theme.enum';
+import BreedEnum from './breed.enum';
 import ContextEnum from './context.enum';
 import {
   PositionEnum,
@@ -10,7 +10,7 @@ import { SizeEnum, SizeSubsetEnum } from './size.enum';
 import { IntensityEnum, IntensitySubsetEnum } from './intensity.enum';
 
 export {
-  ThemeEnum,
+  BreedEnum,
   ContextEnum,
   PositionEnum,
   PositionEdgesOnlyEnum,

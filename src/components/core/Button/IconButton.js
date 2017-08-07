@@ -11,7 +11,7 @@ import RawButton, {
   getColorActive,
 } from './RawButton';
 import { Icon } from '../Icon';
-import { ThemeEnum, SizeEnum, Color } from '../../../lib/constants';
+import { BreedEnum, SizeEnum, Color } from '../../../lib/constants';
 import type { Props } from './Button';
 
 const getPadding = R.cond([
@@ -29,15 +29,15 @@ const getPadding = R.cond([
 
 const getIconBackgroundColor = R.cond([
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.PRIMARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.PRIMARY)),
     R.always(Color.PRIMARY),
   ],
   [
-    R.both(R.propEq('inverted', true), R.propEq('theme', ThemeEnum.SECONDARY)),
+    R.both(R.propEq('inverted', true), R.propEq('breed', BreedEnum.SECONDARY)),
     R.always(Color.SECONDARY),
   ],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.Primary.DARK)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.Secondary.DARK)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Primary.DARK)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.Secondary.DARK)],
   [R.T, R.always(Color.Gray.MODERATE)],
 ]);
 

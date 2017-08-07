@@ -5,25 +5,25 @@ import styled from 'styled-components';
 
 import { Icon as RawIcon } from '../Icon';
 import { BORDER_RADIUS, Color, IconSVGPath } from '../../../lib/constants';
-import type { Theme } from '../../../lib/types';
+import type { Breed } from '../../../lib/types';
 
 type Props = {
   padded?: boolean,
   rounded?: boolean,
   onClose?: Function,
-  theme?: Theme,
+  breed?: Breed,
   children: Children,
 };
 
 const getColor = R.cond([
-  [R.propEq('theme', 'primary'), R.always(Color.Black.TRANSPARENT)],
-  [R.propEq('theme', 'secondary'), R.always(Color.White.MODERATE)],
+  [R.propEq('breed', 'primary'), R.always(Color.Black.TRANSPARENT)],
+  [R.propEq('breed', 'secondary'), R.always(Color.White.MODERATE)],
   [R.T, R.always(Color.Black.TRANSPARENT)],
 ]);
 
 const getBackgroundColor = R.cond([
-  [R.propEq('theme', 'primary'), R.always(Color.Primary.DARKER)],
-  [R.propEq('theme', 'secondary'), R.always(Color.Secondary.DARKER)],
+  [R.propEq('breed', 'primary'), R.always(Color.Primary.DARKER)],
+  [R.propEq('breed', 'secondary'), R.always(Color.Secondary.DARKER)],
   [R.T, R.always(Color.Gray.LIGHT)],
 ]);
 

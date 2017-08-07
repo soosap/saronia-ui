@@ -3,29 +3,29 @@ import React from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import type { Size, Theme } from '../../../lib/types';
-import { SizeEnum, ThemeEnum, Color } from '../../../lib/constants';
+import type { Size, Breed } from '../../../lib/types';
+import { SizeEnum, BreedEnum, Color } from '../../../lib/constants';
 
 type Props = {
   inverted?: boolean,
   size?: Size,
   svgPath: string,
-  type?: Theme,
+  type?: Breed,
   viewBox?: string,
   onClick?: Function,
 };
 
 const getFill = R.cond([
   [
-    R.both(R.propEq('type', ThemeEnum.PRIMARY), R.propEq('inverted', true)),
+    R.both(R.propEq('type', BreedEnum.PRIMARY), R.propEq('inverted', true)),
     R.always(Color.Black.TRANSPARENT),
   ],
   [
-    R.both(R.propEq('type', ThemeEnum.SECONDARY), R.propEq('inverted', true)),
+    R.both(R.propEq('type', BreedEnum.SECONDARY), R.propEq('inverted', true)),
     R.always(Color.White.LIGHT),
   ],
-  [R.propEq('type', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
-  [R.propEq('type', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.propEq('type', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('type', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.BLACK)],
 ]);
 

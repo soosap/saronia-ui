@@ -12,7 +12,7 @@ import { Card, Title, Icon } from '../../core';
 import {
   Color,
   IconSVGPath,
-  ThemeEnum,
+  BreedEnum,
   IntensitySubsetEnum,
 } from '../../../lib/constants';
 
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const intensitiySubsetOptions = R.invertObj(
   R.merge(IntensitySubsetEnum, { DEFAULT: undefined }),
 );
@@ -37,7 +37,7 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
-    theme: select('theme', themeOptions, 'undefined'),
+    breed: select('breed', breedOptions, 'undefined'),
     elevation: select('elecation', intensitiySubsetOptions, 'undefined'),
     interactive: boolean('interactive', false),
   });
@@ -52,7 +52,7 @@ stories.add('default', () => {
         <Card.Image src="http://placehold.it/450x200" alt="logo" />
         <Card.Content padded={false}>
           <Flipper padded>
-            <Flipper.Front theme={ThemeEnum.PRIMARY} background={Color.PRIMARY}>
+            <Flipper.Front breed={BreedEnum.PRIMARY} background={Color.PRIMARY}>
               Front content... hover me!
             </Flipper.Front>
             <Flipper.Back background={Color.SECONDARY}>

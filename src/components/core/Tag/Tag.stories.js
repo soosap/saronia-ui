@@ -12,10 +12,10 @@ import {
 } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 
-import { ThemeEnum } from '../../../lib/constants';
+import { BreedEnum } from '../../../lib/constants';
 import { Tag, Tags } from '.';
 
-const themeOptions = R.invertObj(R.merge(ThemeEnum, { DEFAULT: undefined }));
+const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const isNotNil = R.both(
   R.complement(R.isNil),
   R.complement(R.equals('undefined')),
@@ -27,7 +27,7 @@ stories.addDecorator(withKnobs).addDecorator(centered);
 stories.add('default', () => {
   const props = R.pickBy(isNotNil, {
     children: text('children', 'wildlife'),
-    theme: select('theme', themeOptions, 'undefined'),
+    breed: select('breed', breedOptions, 'undefined'),
     padded: boolean('padded', false),
     rounded: boolean('rounded', false),
     onClose: boolean('onClose', true) && action('closed'),

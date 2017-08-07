@@ -3,13 +3,19 @@ import React, { Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { PositionEnum, SizeSubsetEnum } from '../../../lib/constants';
-import type { Position, SizeSubset } from '../../../lib/types';
+import {
+  PositionEnum,
+  SizeEnum,
+  Color,
+  BreedEnum,
+} from '../../../lib/constants';
+import type { Position, Size, Breed } from '../../../lib/types';
 
 type Props = {
   children: Children,
   position?: Position,
-  size?: SizeSubset,
+  size?: Size,
+  breed?: Breed,
 };
 
 const getTopPosition = R.cond([
@@ -79,10 +85,27 @@ const getLeftPosition = R.cond([
 ]);
 
 const getWidth = R.cond([
-  [R.propEq('size', SizeSubsetEnum.SMALL), R.always('30px')],
-  [R.propEq('size', SizeSubsetEnum.MEDIUM), R.always('50px')],
-  [R.propEq('size', SizeSubsetEnum.LARGE), R.always('70px')],
+  [R.propEq('size', SizeEnum.MINI), R.always('10px')],
+  [R.propEq('size', SizeEnum.TINY), R.always('30px')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('40px')],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always('50px')],
+  [R.propEq('size', SizeEnum.LARGE), R.always('70px')],
+  [R.propEq('size', SizeEnum.BIG), R.always('90px')],
+  [R.propEq('size', SizeEnum.HUGE), R.always('120px')],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always('150px')],
   [R.T, R.always('50px')],
+]);
+
+const getBackgroundColor = R.cond([
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always('hey')],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always('hey')],
+  [R.T, R.always(Color.WHITE)],
+]);
+
+const getBorderColor = R.cond([
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always('hey')],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always('hey')],
+  [R.T, R.always(Color.Gray.LIGHT)],
 ]);
 
 const Wrapper = styled.div`
@@ -94,19 +117,19 @@ const Wrapper = styled.div`
 
   width: ${getWidth};
   height: ${getWidth};
-  border-radius: calc(${getWidth}/2);
+  background-color: ${getBackgroundColor};
+  border: 1px solid ${getBorderColor};
+  border-radius: calc((${getWidth} + 2px)/2);
 
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-
-  background-color: orange;
 `;
 
-const Badge = ({ children, size, position }: Props) => {
+const Badge = ({ children, size, position, breed }: Props) => {
   return (
-    <Wrapper size={size} position={position}>
+    <Wrapper size={size} position={position} breed={breed}>
       {children}
     </Wrapper>
   );
@@ -114,7 +137,7 @@ const Badge = ({ children, size, position }: Props) => {
 
 Badge.defaultProps = {
   position: PositionEnum.TOP_RIGHT,
-  size: SizeSubsetEnum.MEDIUM,
+  size: SizeEnum.MEDIUM,
 };
 
 export default Badge;

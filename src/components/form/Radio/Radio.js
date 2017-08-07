@@ -3,31 +3,31 @@ import React, { Children } from 'react';
 import R from 'ramda';
 import styled from 'styled-components';
 
-import { Color, ThemeEnum } from '../../../lib/constants';
-import type { Theme } from '../../../lib/types';
+import { Color, BreedEnum } from '../../../lib/constants';
+import type { Breed } from '../../../lib/types';
 
 type Props = {
   children: Children,
   name?: string,
-  theme?: Theme,
+  breed?: Breed,
   disabled?: boolean,
   inverted?: boolean,
 };
 
 const getBackgroundColor = R.cond([
   [R.propEq('inverted', true), R.always(Color.Black.LIGHT)],
-  [R.propEq('theme', ThemeEnum.PRIMARY), R.always(Color.PRIMARY)],
-  [R.propEq('theme', ThemeEnum.SECONDARY), R.always(Color.SECONDARY)],
+  [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
+  [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.WHITE)],
 ]);
 
 const getInnerCircleFillColor = R.cond([
   [
-    R.both(R.propEq('theme', ThemeEnum.PRIMARY), R.propEq('inverted', true)),
+    R.both(R.propEq('breed', BreedEnum.PRIMARY), R.propEq('inverted', true)),
     R.always(Color.Primary.DARK),
   ],
   [
-    R.both(R.propEq('theme', ThemeEnum.SECONDARY), R.propEq('inverted', true)),
+    R.both(R.propEq('breed', BreedEnum.SECONDARY), R.propEq('inverted', true)),
     R.always(Color.SECONDARY),
   ],
   [R.propEq('inverted', true), R.always(Color.WHITE)],
@@ -36,11 +36,11 @@ const getInnerCircleFillColor = R.cond([
 
 const getInnerCircleFillColorHover = R.cond([
   [
-    R.both(R.propEq('theme', ThemeEnum.PRIMARY), R.propEq('inverted', true)),
+    R.both(R.propEq('breed', BreedEnum.PRIMARY), R.propEq('inverted', true)),
     R.always(Color.Primary.DARKER),
   ],
   [
-    R.both(R.propEq('theme', ThemeEnum.SECONDARY), R.propEq('inverted', true)),
+    R.both(R.propEq('breed', BreedEnum.SECONDARY), R.propEq('inverted', true)),
     R.always(Color.Secondary.DARKER),
   ],
   [R.propEq('inverted', true), R.always(Color.White.STRONG)],
@@ -140,9 +140,9 @@ const Radio = (props: Props) =>
   <Wrapper {...props}>
     <Input
       type="radio"
-      {...R.pick(['name', 'value', 'theme', 'inverted', 'disabled'])(props)}
+      {...R.pick(['name', 'value', 'breed', 'inverted', 'disabled'])(props)}
     />
-    <Text {...R.pick(['theme', 'inverted', 'disabled'])(props)}>
+    <Text {...R.pick(['breed', 'inverted', 'disabled'])(props)}>
       {props.children}
     </Text>
   </Wrapper>;

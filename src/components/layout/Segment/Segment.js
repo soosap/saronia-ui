@@ -4,12 +4,12 @@ import R from 'ramda';
 import styled from 'styled-components';
 
 import { IntensityEnum, BORDER_RADIUS } from '../../../lib/constants';
-import type { Intensity, Theme } from '../../../lib/types';
+import type { Intensity, Breed } from '../../../lib/types';
 
 type Props = {
   padded?: boolean | Intensity,
   outline?: boolean,
-  theme?: Theme,
+  breed?: Breed,
   color?: string,
 };
 
