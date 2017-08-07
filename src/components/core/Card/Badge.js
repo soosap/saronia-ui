@@ -16,6 +16,7 @@ type Props = {
   position?: Position,
   size?: Size,
   breed?: Breed,
+  inverted?: boolean,
 };
 
 const getTopPosition = R.cond([
@@ -102,10 +103,6 @@ const getBackgroundColor = R.cond([
   [R.T, R.always(Color.WHITE)],
 ]);
 
-const getColor = R.cond([
-  [R.T, R.always(Color.BLACK)],
-]);
-
 const getBorder = R.cond([
   [
     R.propEq('breed', BreedEnum.PRIMARY),
@@ -115,6 +112,7 @@ const getBorder = R.cond([
     R.propEq('breed', BreedEnum.SECONDARY),
     R.always(`2px solid ${Color.Secondary.DARKER}`),
   ],
+  [R.propEq('inverted', true), R.always(`2px solid ${Color.Gray.LIGHT}`)],
   [R.T, R.always(`1px solid ${Color.Gray.LIGHT}`)],
 ]);
 
@@ -134,7 +132,7 @@ const Wrapper = styled.div`
 
   width: ${getWidth};
   height: ${getWidth};
-  color: ${getColor};
+  color: ${Color.BLACK};
   background-color: ${getBackgroundColor};
   border: ${getBorder};
   border-radius: calc((${getWidth} + ${getBorderRadiusCorrection})/2);
@@ -145,9 +143,9 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Badge = ({ children, size, position, breed }: Props) => {
+const Badge = ({ children, size, position, breed, inverted }: Props) => {
   return (
-    <Wrapper size={size} position={position} breed={breed}>
+    <Wrapper size={size} position={position} breed={breed} inverted={inverted}>
       {children}
     </Wrapper>
   );

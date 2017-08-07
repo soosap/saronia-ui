@@ -29,9 +29,7 @@ const breedOptions = R.invertObj(R.merge(BreedEnum, { DEFAULT: undefined }));
 const badgePositionOptions = R.invertObj(
   R.merge(PositionEnum, { DEFAULT: undefined }),
 );
-const badgeSizeOptions = R.invertObj(
-  R.merge(SizeEnum, { DEFAULT: undefined }),
-);
+const badgeSizeOptions = R.invertObj(R.merge(SizeEnum, { DEFAULT: undefined }));
 const intensitiySubsetOptions = R.invertObj(
   R.merge(IntensitySubsetEnum, { DEFAULT: undefined }),
 );
@@ -47,6 +45,7 @@ stories
   .add('default', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -76,10 +75,15 @@ stories
   .add('w/ badge', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
       badge: text('badge', '99') || true,
-      badgePosition: select('badgePosition', badgePositionOptions, 'undefined'),
+      badgePosition: select(
+        'badgePosition',
+        badgePositionOptions,
+        PositionEnum.TOP_CENTER,
+      ),
       badgeSize: select('badgeSize', badgeSizeOptions, 'undefined'),
     });
 
@@ -108,6 +112,7 @@ stories
   .add('w/ badge component', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
       badgePosition: select('badgePosition', badgePositionOptions, 'undefined'),
@@ -152,6 +157,7 @@ stories
   .add('w/o image', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -180,6 +186,7 @@ stories
   .add('w/ image on the left', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -213,6 +220,7 @@ stories
   .add('w/ image on the right', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -246,6 +254,7 @@ stories
   .add('w/ image on both sides', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });
@@ -280,6 +289,7 @@ stories
   .add('w/ nested structure', () => {
     const props = R.pickBy(isNotNil, {
       breed: select('breed', breedOptions, 'undefined'),
+      inverted: boolean('inverted', false),
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
     });

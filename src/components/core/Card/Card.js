@@ -32,6 +32,7 @@ type Props = {
 };
 
 const getColor = R.cond([
+  [R.propEq('inverted', true), R.always(Color.BLACK)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.Black.LIGHT)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.White.STRONG)],
   [R.T, R.always(Color.BLACK)],
@@ -46,10 +47,12 @@ const getBorder = R.cond([
     R.propEq('breed', BreedEnum.SECONDARY),
     R.always(`2px solid ${Color.Secondary.DARKER}`),
   ],
+  [R.propEq('inverted', true), R.always(`2px solid ${Color.Gray.LIGHT}`)],
   [R.T, R.always(`1px solid ${Color.Gray.LIGHT}`)],
 ]);
 
 const getBackgroundColor = R.cond([
+  [R.propEq('inverted', true), R.always(Color.White.LIGHT)],
   [R.propEq('breed', BreedEnum.PRIMARY), R.always(Color.PRIMARY)],
   [R.propEq('breed', BreedEnum.SECONDARY), R.always(Color.SECONDARY)],
   [R.T, R.always(Color.White.LIGHT)],
@@ -163,6 +166,7 @@ const CardHeaderWrapper = styled.header`
   .subtitle {
     padding: .5rem .75rem .3rem .75rem;
     margin-bottom: 0 !important;
+    color: ${getColor};
   }
 `;
 
@@ -191,6 +195,7 @@ const Wrapper = styled(Segment).attrs({ padded: false })`
   background-color: ${getBackgroundColor};
   border-radius: ${BORDER_RADIUS};
   height: 100%;
+  border: ${props => props.inverted && getBorder(props)};
 
   box-shadow: ${getBoxShadow};
   transition: transform 200ms cubic-bezier(0.4, 1, 0.75, 0.9),
