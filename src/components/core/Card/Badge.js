@@ -78,6 +78,13 @@ const getLeftPosition = R.cond([
   [R.T, R.always(0)],
 ]);
 
+const getWidth = R.cond([
+  [R.propEq('size', SizeSubsetEnum.SMALL), R.always('30px')],
+  [R.propEq('size', SizeSubsetEnum.MEDIUM), R.always('50px')],
+  [R.propEq('size', SizeSubsetEnum.LARGE), R.always('70px')],
+  [R.T, R.always('50px')],
+]);
+
 const Wrapper = styled.div`
   position: absolute;
   top: ${getTopPosition};
@@ -85,8 +92,9 @@ const Wrapper = styled.div`
 
   transform: translate(-50%, -50%);
 
-  width: 50px;
-  height: 50px;
+  width: ${getWidth};
+  height: ${getWidth};
+  border-radius: calc(${getWidth}/2);
 
   display: flex;
   justify-content: center;
@@ -94,7 +102,6 @@ const Wrapper = styled.div`
   text-align: center;
 
   background-color: orange;
-  border-radius: 25px;
 `;
 
 const Badge = ({ children, size, position }: Props) => {
