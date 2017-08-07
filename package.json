@@ -1,6 +1,6 @@
 {
   "name": "@saronia/saronia-ui",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "ui component library",
   "main": "build/index.js",
   "files": [
