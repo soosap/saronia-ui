@@ -86,13 +86,13 @@ const getLeftPosition = R.cond([
 
 const getWidth = R.cond([
   [R.propEq('size', SizeEnum.MINI), R.always('10px')],
-  [R.propEq('size', SizeEnum.TINY), R.always('30px')],
-  [R.propEq('size', SizeEnum.SMALL), R.always('40px')],
-  [R.propEq('size', SizeEnum.MEDIUM), R.always('50px')],
-  [R.propEq('size', SizeEnum.LARGE), R.always('70px')],
-  [R.propEq('size', SizeEnum.BIG), R.always('90px')],
-  [R.propEq('size', SizeEnum.HUGE), R.always('120px')],
-  [R.propEq('size', SizeEnum.MASSIVE), R.always('150px')],
+  [R.propEq('size', SizeEnum.TINY), R.always('20px')],
+  [R.propEq('size', SizeEnum.SMALL), R.always('25px')],
+  [R.propEq('size', SizeEnum.MEDIUM), R.always('30px')],
+  [R.propEq('size', SizeEnum.LARGE), R.always('45px')],
+  [R.propEq('size', SizeEnum.BIG), R.always('60px')],
+  [R.propEq('size', SizeEnum.HUGE), R.always('75px')],
+  [R.propEq('size', SizeEnum.MASSIVE), R.always('100px')],
   [R.T, R.always('50px')],
 ]);
 
@@ -112,6 +112,7 @@ const Wrapper = styled.div`
   position: absolute;
   top: ${getTopPosition};
   left: ${getLeftPosition};
+  z-index: 2;
 
   transform: translate(-50%, -50%);
 
