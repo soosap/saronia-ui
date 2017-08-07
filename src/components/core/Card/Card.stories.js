@@ -116,18 +116,19 @@ stories
       elevation: select('elevation', intensitiySubsetOptions, 'undefined'),
       interactive: boolean('interactive', false),
       badgePosition: select('badgePosition', badgePositionOptions, 'undefined'),
-      badgeSize: select('badgeSize', badgeSizeOptions, 'undefined'),
+      badgeSize: select('badgeSize', badgeSizeOptions, SizeEnum.LARGE),
     });
 
     const BadgeWrapper = styled.div`
       display: flex;
       flex-direction: column;
-      line-height: 18px;
+      line-height: 16px;
+      margin-top: 5px;
     `;
 
     const Badge = (
       <BadgeWrapper>
-        <div style={{ fontSize: '1.2rem', marginTop: '5px' }}>99</div>
+        <div style={{ fontSize: '1.2rem', marginTop: '5px' }}>999</div>
         <div style={{ fontSize: 12 }}>CX</div>
       </BadgeWrapper>
     );
@@ -137,7 +138,6 @@ stories
         <Card {...props} badge={Badge}>
           <Card.Header>
             <Title size="4">New item</Title>
-            <Icon svgPath={IconSVGPath.CLOSE} onClick={action('closed')} />
           </Card.Header>
           <Card.Image src="http://placehold.it/450x200" alt="logo" />
           <Card.Content>

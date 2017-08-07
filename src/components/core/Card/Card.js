@@ -151,11 +151,12 @@ const CardImage = styled.img.attrs({
 | Card.Header
 |-----------------------------------------------------------
 */
-const CardHeaderWrapper = styled.header`
+const CardHeader = styled.header`
   box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 
   .icon {
     padding: .5rem .75rem;
@@ -169,8 +170,6 @@ const CardHeaderWrapper = styled.header`
     color: ${getColor};
   }
 `;
-
-const CardHeader = (props: Object) => <CardHeaderWrapper {...props} />;
 
 /*
 |-----------------------------------------------------------
