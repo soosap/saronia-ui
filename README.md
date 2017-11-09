@@ -75,7 +75,7 @@ The **medium** value in _SizeEnum_ and the **moderate** value in the _IntensityE
 
 ## Release
 
-After making changes to the project that shall be published, fire `$ yarn release`. In the ensuing prompt select between **patch**, **minor**, and **major**.
+After making changes to the project that shall be published, fire `$ npm run release`. In the ensuing prompt select between **patch**, **minor**, and **major**. Be aware, this is the only command that must be run with **npm** rather than **yarn**.
 
 ## Contributors
 * @DaniyarJakupov
